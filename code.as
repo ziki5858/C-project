@@ -9,10 +9,13 @@ endmcr
  mov STR[5], STR[2] 
  sub r1, r4 
  m_mcr
+mcr m_mcr2 
 L1: inc K 
  bne LOOP 
+endmcr 
 END: hlt 
 .define len = 4 
 STR: .string “abcdef” 
 LIST: .data 6, -9, len 
 K: .data 22
+m_mcr2
