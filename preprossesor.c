@@ -5,7 +5,6 @@
 #define SKIP_SPACES(line) while(*line == ' ' || *line == '\t') line++
 #define MAX_LINE_LENGTH 80
 #define NUMBER_OF_SAVED_WORDS 4
-extern char **saved_words;
 
 typedef struct macro *Macro ;
 
@@ -17,17 +16,6 @@ struct macro {
 Trie macro_trie;
 
 
-
-int is_save_word(char * word)
-{
-	int i;
-	for (i = 0; i < NUMBER_OF_SAVED_WORDS; i++)
-	{
-		if (strcmp(word, saved_words[i]) == 0)
-			return 1;
-	}
-	return 0;
-}
 
 
 int determaine_which_line_is_it(char *line){
@@ -80,24 +68,7 @@ void insert_line_to_macro(Macro m, char *line){
 	m->value = temp;
 }
 
-int is_valid_macro_line(char *line){
-	int i;
-	char *copy_line = malloc(strlen(line) + 1);
-	char *temp;
-	strcpy(copy_line, line);
-	SKIP_SPACES(copy_line);
-	temp = strtok(copy_line, " ");
-	temp = strtok(NULL, " ");
-	if (temp == NULL)
-		return 0;
-	if (is_save_word(temp))
-		return 0;
-	temp = strtok(NULL, " ");
-	if (temp != NULL)
-		return 0;
-	return 1;
-	
-}
+
 
 void preprocess(char *line){
 	
