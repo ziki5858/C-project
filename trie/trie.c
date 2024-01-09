@@ -1,8 +1,9 @@
 #include "trie.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-#define TRIE_BASE_CHAR '/'
-#define TRIE_CHAR_COUNT 76
+#define TRIE_BASE_CHAR '.'
+#define TRIE_CHAR_COUNT 77
 
 struct trie_node {
     void * end_of_string_pointer;
@@ -15,7 +16,9 @@ struct trie {
 
 
 static TrieNode exist_in_internal_trie(TrieNode node_i,const char * string) {
-    while(node_i) {
+    
+	while(node_i) {
+		
         if(*string == '\0'){
 			if (node_i->end_of_string_pointer != NULL) 
             	return node_i;
@@ -23,7 +26,7 @@ static TrieNode exist_in_internal_trie(TrieNode node_i,const char * string) {
 				return NULL;
         }
         node_i = node_i->next[(*string) - TRIE_BASE_CHAR];
-        string++;
+		string++;
     }
     return NULL;
 }
@@ -61,6 +64,7 @@ void delete_from_trie(Trie trie,const char *string) {
 }
 
 void * exist_in_trie(Trie trie,const char *string) {
+	//printf("string: %s\n", string);
     TrieNode find_node;
     if(string == NULL)
         return NULL;
