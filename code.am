@@ -13,3 +13,11 @@ LIST: .data 6, -9, len
 K: .data 22
 L1: inc K 
 bne LOOP 
+L1: inc K 
+bne LOOP 
+L1: inc K 
+bne LOOP 
+L1: inc K 
+bne LOOP 
+L1: inc K 
+bne LOOP 
