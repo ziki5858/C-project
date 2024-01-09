@@ -1,2 +1,2 @@
-pre: preprossesor.c
-	gcc *.c ./trie/trie.c -o pre 
+pre: preprossesor.c trie/trie.c
+	gcc  preprossesor.c trie/trie.c -o pre -g
