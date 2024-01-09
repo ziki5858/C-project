@@ -46,7 +46,3 @@ struct pattern {
   } def;
 };
 
-struct node {
-  struct pattern *data;
-  struct Node *next;
-};
