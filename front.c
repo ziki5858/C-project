@@ -1,5 +1,6 @@
 #include "front.h"
 
+
 struct pattern {
   char *error[MAX_ERROR_SIZE];
   char *label[MAX_LINE_SIZE];
