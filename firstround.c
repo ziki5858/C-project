@@ -2,6 +2,8 @@
 #include "front.h"
 #include "tables.h"
 #define WIDTH_OF_WORD 15
+#define MAX_DATA_VALUE 8191
+#define MIN_DATA_VALUE -8192
 
 struct symbol {
   char *label;
@@ -21,8 +23,8 @@ struct external {
 };
 
 struct entry {
-  char *label;
-  int address;
+  Symbol symbol;	
+  
 };
 
 struct word_bin {
@@ -85,17 +87,18 @@ External create_external(char *label, int address) {
 }
 
 
-Entry create_entry(char *label, int address) {
+Entry create_entry(Symbol symbol) {
   Entry e = (Entry)malloc(sizeof(struct entry));
-  e->label = label;
-  e->address = address;
-  if(insert_to_trie(entries, label, e))
+  e->symbol = symbol;
+  if(insert_to_trie(entries, symbol->label, e))
     {
 	entry_table[num_of_entries++] = e;	
   	return e;
 	}
   return NULL;
 }
+
+
 
 void add_IC_to_symbol_table(int IC) {
   int i;
@@ -107,13 +110,28 @@ void add_IC_to_symbol_table(int IC) {
   }
 }
 
-
-
+char* encoded_data(int n) {
+  int num_bits = 14;
+  char *string = malloc(num_bits + 1);
+  if (!string) {
+    return NULL;
+  }
+  for (int i = num_bits - 1; i >= 0; i--) {
+    string[i] = (n & 1) + '0';
+    n >>= 1;
+  }
+  string[num_bits] = '\0';
+  return string;
+}
 
 
 
 void first_round(struct node *head) {
   struct node *current_pattern = head;
+
+  char buffer[MAX_LINE_SIZE];
+  int data_element;
+  int error_flag = 0;
 
   symbols = trie();
   externals = trie();
@@ -136,34 +154,103 @@ void first_round(struct node *head) {
 
   while (current_pattern) {
 	switch (current_pattern->data->type_line) {
+	case ERROR:
+	  printf("%s\n", current_pattern->data->error);
+	  break;
+
 	case DIRECTIVE:
 	  switch (current_pattern->data->dir.directive_type) {
 	  case DATA:
-		data->lines = (WordBin *)realloc(data->lines, sizeof(WordBin) * (data->num_of_lines + current_pattern->data->dir.data->num_of_operands));
-		for (int i = 0; i < current_pattern->data->dir.data->num_of_operands; i++) {
-		  if (current_pattern->data->dir.data->operands[i].op_type == IMMEDIATE_NUMBER) {
-			data->lines[data->num_of_lines + i].word = current_pattern->data->dir.data->operands[i].operand_value.value;
-		  } else if (current_pattern->data->dir.data->operands[i].op_type == IMMEDIATE_CONSANT) {
-			data->lines[data->num_of_lines + i].word = create_constant(current_pattern->data->dir.data->operands[i].operand_value.op, 0);
-		  } else if (current_pattern->data->dir.data->operands[i].op_type == DIRECT) {
-			data->lines[data->num_of_lines + i].word = create_symbol(current_pattern->data->dir.data->operands[i].operand_value.op, 0, DATA);
-		  } else if (current_pattern->data->dir.data->operands[i].op_type == DIRECT_INDEX) {
-			data->lines[data->num_of_lines + i].word = create_symbol(current_pattern->data->dir.data->operands[i].operand_value.op, 0, DATA);
-		  } else if (current_pattern->data->dir.data->operands[i].op_type == REGISTER) {
-			data->lines[data->num_of_lines + i].word = current_pattern->data->dir.data->operands[i].operand_value.reg;
-		  }
+	  	if(current_pattern->label[0])
+		{
+			Symbol s = (Symbol)exist_in_trie(symbols, current_pattern->label);
+			if (s && s->type == ENRTY)
+			{
+				s->type = ENTRY_DATA;
+				s->address = DC;
+			}
+			else if (!s)
+			{
+				s = create_symbol(current_pattern->label, DC, DATA);
+				if (!s)
+				{	error_flag = 1;
+					printf("error: fail to add symbol %s\n", current_pattern->label);
+				}
+			}
+			else
+			{	error_flag = 1;
+				printf("error: symbol %s already exist\n", current_pattern->label);
+			}
 		}
-		data->num_of_lines += current_pattern->data->dir.data->num_of_operands;
-		DC += current_pattern->data->dir.data->num_of_operands;
+
+		data->lines = (WordBin *)realloc(data->lines, sizeof(WordBin) * (data->num_of_lines + current_pattern->data->dir.size));
+		for (int i = 0; i < current_pattern->data->dir.size; i++)
+		{
+			buffer = current_pattern->data->dir.data[i];
+			if (exist_in_trie(constant, buffer))
+			{
+				data_element = ((Constant)exist_in_trie(constant, buffer))->value;
+			}
+			else {
+			if (buffer[0] == '-' || buffer[0] == '+')
+			{
+				buffer++;}
+			if (strlen(buffer) != strspn(buffer, "0123456789")){
+				printf("error: data element %s is not a number\n", data_element);
+				error_flag = 1;	
+				continue;
+			}
+			else
+				data_element = atoi(buffer);
+			}
+			if (data_element > MAX_DATA_VALUE || data_element < MIN_DATA_VALUE)
+			{
+				printf("error: data element %s is out of range\n", data_element);
+				error_flag = 1;
+				continue;
+			}
+			
+			data->lines[data->num_of_lines + i].word = encoded_data(data_element);
+		}
+		data->num_of_lines += current_pattern->data->dir.size;
+		DC += current_pattern->data->dir.size;
 		break;
-	  case STRING:
-		data->lines = (WordBin *)realloc(data->lines, sizeof(WordBin) * (data->num_of_lines + strlen(current_pattern->data->dir.string)));
-		for (int i = 0; i < strlen(current_pattern->data->dir.string); i++) {
-		  data->lines[data->num_of_lines + i].word
-  
+	  
+	  case ENRTY:
+		if(exist_in_trie(entries, current_pattern->label)){
+			/* seem to be allowed */
+			continue;
+		}
+		if(exist_in_trie(symbols, current_pattern->label)){
+			Symbol s = (Symbol)exist_in_trie(symbols, current_pattern->label);
+			if (s->type == DATA)
+			{
+				s->type = ENTRY_DATA;
+				Entry e = create_entry(current_pattern->label, s);
+			}
+			else if (s->type == CODE)
+			{
+				s->type = ENTRY_CODE;
+				Entry e = create_entry(current_pattern->label, s);
+			}
+			else 
+			{
+				/* seem to be allowed */
+				continue;
+			}
+		}
+		else
+		{
+			Symbol s = create_symbol(current_pattern->label, 0, ENTRY);
+			Entry e = create_entry(current_pattern->label, s);
+		}	
+			
+	  case EXTERN:
+	  
+	  }
+
+	}
   }
   
-  
-  int error_flag = 0;
 }
   int main() { return 0; }

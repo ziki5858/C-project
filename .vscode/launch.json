@@ -8,7 +8,7 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/pre",
+			"program": "${workspaceFolder}/testing/a",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
@@ -27,7 +27,8 @@
 					"ignoreFailures": true
 				}
 			]
-		}
+		},
+		
 		
 
 	]

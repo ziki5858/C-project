@@ -9,9 +9,9 @@ struct pattern {
   char *label[MAX_LINE_SIZE];
   enum { DIRECTIVE, INSTRUCTION, DEFINE, ERROR } type_line;
   struct {
-    enum { ENRTY, EXTERN, STRING, DATA } directive_type;
-    int *data;
-	char *string;
+    enum { ENRTY, EXTERN, DATA } directive_type;
+    char **data;
+	int size;
   } dir;
   struct {
     enum {
