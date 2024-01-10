@@ -1,13 +1,18 @@
 #include "front.h"
 #include <string.h>
 
+int num_of_patterns;
+int num_of_symbols;
+int num_of_entries;
+int num_of_externals; 
+
+
 struct pattern {
   char *error[MAX_ERROR_SIZE];
   char *label[MAX_LINE_SIZE];
   enum { DIRECTIVE, INSTRUCTION, DEFINE, ERROR } type_line;
   struct {
     enum { ENTRY, EXTERN, STRING, DATA } directive_type;
-    char label[MAX_LABEL_SIZE];
     int *data;
 	char *string;
   } dir;
@@ -30,7 +35,6 @@ struct pattern {
       RTS,
       HLT
     } op_type;
-    char *label[MAX_LABEL_SIZE];
     int num_of_operands;
 	struct {
     enum { IMMEDIATE_NUMBER, IMMEDIATE_CONSTANT, DIRECT, DIRECT_INDEX, REGISTER } op_type;
@@ -42,9 +46,9 @@ struct pattern {
 	  } operands[2];
   } inst;
   struct {
-	char label[MAX_LABEL_SIZE];
 	int value;
   } def;
+  struct code * code;
 };
 
 /* Linked list node representing a pattern */
