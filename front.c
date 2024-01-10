@@ -1,11 +1,12 @@
 #include "front.h"
+#include <string.h>
 
 struct pattern {
   char *error[MAX_ERROR_SIZE];
   char *label[MAX_LINE_SIZE];
   enum { DIRECTIVE, INSTRUCTION, DEFINE, ERROR } type_line;
   struct {
-    enum { ENRTY, EXTERN, STRING, DATA } directive_type;
+    enum { ENTRY, EXTERN, STRING, DATA } directive_type;
     char label[MAX_LABEL_SIZE];
     int *data;
 	char *string;
@@ -32,7 +33,7 @@ struct pattern {
     char *label[MAX_LABEL_SIZE];
     int num_of_operands;
 	struct {
-    enum { IMMEDIATE_NUMBER, IMMEDIATE_CONSANT, DIRECT, DIRECT_INDEX, REGISTER } op_type;
+    enum { IMMEDIATE_NUMBER, IMMEDIATE_CONSTANT, DIRECT, DIRECT_INDEX, REGISTER } op_type;
 	union {
     char op[MAX_LABEL_SIZE];
     int value;
@@ -92,6 +93,94 @@ void categorizeWord(const char *word, struct pattern *data) {
 }
 
 /**
+ * @brief Function to check if a word is a directive and return the directive type.
+ * @param word The word to be checked.
+ * @return A pointer to the DirectiveType enumeration if the word is a directive; otherwise, NULL.
+ * @note The caller is responsible for freeing the memory allocated for the DirectiveType.
+ */
+enum DirectiveType* isDirective(const char *word) {
+    enum DirectiveType *directiveType = malloc(sizeof(enum DirectiveType));
+    if (directiveType == NULL) {
+        // Handle memory allocation failure
+        return NULL;
+    }
+
+    if (strcmp(word, "entry") == 0) {
+        *directiveType = ENTRY;
+    } else if (strcmp(word, "extern") == 0) {
+        *directiveType = EXTERN;
+    } else if (strcmp(word, "string") == 0) {
+        *directiveType = STRING;
+    } else if (strcmp(word, "data") == 0) {
+        *directiveType = DATA;
+    } else {
+        free(directiveType);
+        return NULL;
+    }
+
+    return directiveType;
+}
+
+
+/**
+ * @brief Function to check if a word is an instruction and update the pattern structure.
+ * @param word The word to be checked.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @return The type of the instruction if the word is an instruction; otherwise, 0.
+ */
+enum InstructionType isInstruction(const char *word, struct pattern *data) {
+    // Add conditions for recognizing instruction types
+    if (strcmp(word, "mov") == 0) {
+        data->type_line = INSTRUCTION;
+        data->type.instruction_type = MOV;
+        // Update other properties of the data structure as needed
+        return MOV;
+    } else if (strcmp(word, "cmp") == 0) {
+        data->type_line = INSTRUCTION;
+        data->type.instruction_type = CMP;
+        // Update other properties of the data structure as needed
+        return CMP;
+    } else if (strcmp(word, "add") == 0) {
+        data->type_line = INSTRUCTION;
+        data->type.instruction_type = ADD;
+        // Update other properties of the data structure as needed
+        return ADD;
+    }
+    // Add more conditions as needed
+
+    return 0;  // Not an instruction
+}
+
+
+/**
+ * @brief Function to check if a word is a define and update the pattern structure.
+ * @param word The word to be checked.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @return 1 if the word is a define; otherwise, 0.
+ */
+int isDefine(const char *word, struct pattern *data) {
+    // Add conditions for recognizing define types
+    // For example, you might check if the word starts with "#define"
+    // Update the data structure accordingly
+
+    return 0;  // Not a define
+}
+
+/**
+ * @brief Function to check if a word is an error and update the pattern structure.
+ * @param word The word to be checked.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @return 1 if the word is an error; otherwise, 0.
+ */
+int isError(const char *word, struct pattern *data) {
+    // Add conditions for recognizing error types
+    // For example, you might check if the word is an error keyword
+    // Update the data structure accordingly
+
+    return 0;  // Not an error
+}
+
+/**
  * @brief Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list.
  * @param line The line of assembly language text to be processed.
  * @param head A pointer to the head of the linked list.
@@ -127,5 +216,5 @@ struct Node *processAssemblyText(const char *filename) {
 
     fclose(file);
     return head;
-    /*dont forget to free the linke list*/
+    /*don't forget to free the linked list*/
 }
