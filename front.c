@@ -10,7 +10,6 @@ struct pattern {
   enum { DIRECTIVE, INSTRUCTION, DEFINE, ERROR } type_line;
   struct {
     enum { ENRTY, EXTERN, STRING, DATA } directive_type;
-    char label[MAX_LABEL_SIZE];
     int *data;
 	char *string;
   } dir;
@@ -33,7 +32,6 @@ struct pattern {
       RTS,
       HLT
     } op_type;
-    char *label[MAX_LABEL_SIZE];
     int num_of_operands;
 	struct {
     	enum { IMMEDIATE_NUMBER, IMMEDIATE_CONSANT, DIRECT, DIRECT_INDEX, REGISTER } op_type;
@@ -45,7 +43,6 @@ struct pattern {
 	  } operands[2];
   } inst;
   struct {
-	char label[MAX_LABEL_SIZE];
 	int value;
   } def;
   struct code *code;
