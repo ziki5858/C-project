@@ -36,7 +36,7 @@ struct code {
 
 Trie symbols, constant, externals, entries ;
 int IC = 100, DC = 0;
-Code *code, *data;
+Code *code, data;
 
 Symbol *symbol_table;
 int num_of_symbols = 0;
@@ -112,7 +112,9 @@ void add_IC_to_symbol_table(int IC) {
 
 
 
-void first_round(FILE *fp) {
+void first_round(struct node *head) {
+  struct node *current_pattern = head;
+
   symbols = trie();
   externals = trie();
   entries = trie();
@@ -125,13 +127,41 @@ void first_round(FILE *fp) {
   
   
   code = (Code *)calloc(num_of_patterns,sizeof(Code));
-  data = (Code *)calloc(num_of_patterns,sizeof(Code));
+  data = (Code)calloc(1,sizeof(struct code));
 
   symbol_table = (Symbol *)calloc(num_of_symbols,sizeof(Symbol));
   entry_table = (Entry *)calloc(num_of_entries,sizeof(Entry));
   external_table = (External *)calloc(num_of_externals,sizeof(External));
   
+
+  while (current_pattern) {
+	switch (current_pattern->data->type_line) {
+	case DIRECTIVE:
+	  switch (current_pattern->data->dir.directive_type) {
+	  case DATA:
+		data->lines = (WordBin *)realloc(data->lines, sizeof(WordBin) * (data->num_of_lines + current_pattern->data->dir.data->num_of_operands));
+		for (int i = 0; i < current_pattern->data->dir.data->num_of_operands; i++) {
+		  if (current_pattern->data->dir.data->operands[i].op_type == IMMEDIATE_NUMBER) {
+			data->lines[data->num_of_lines + i].word = current_pattern->data->dir.data->operands[i].operand_value.value;
+		  } else if (current_pattern->data->dir.data->operands[i].op_type == IMMEDIATE_CONSANT) {
+			data->lines[data->num_of_lines + i].word = create_constant(current_pattern->data->dir.data->operands[i].operand_value.op, 0);
+		  } else if (current_pattern->data->dir.data->operands[i].op_type == DIRECT) {
+			data->lines[data->num_of_lines + i].word = create_symbol(current_pattern->data->dir.data->operands[i].operand_value.op, 0, DATA);
+		  } else if (current_pattern->data->dir.data->operands[i].op_type == DIRECT_INDEX) {
+			data->lines[data->num_of_lines + i].word = create_symbol(current_pattern->data->dir.data->operands[i].operand_value.op, 0, DATA);
+		  } else if (current_pattern->data->dir.data->operands[i].op_type == REGISTER) {
+			data->lines[data->num_of_lines + i].word = current_pattern->data->dir.data->operands[i].operand_value.reg;
+		  }
+		}
+		data->num_of_lines += current_pattern->data->dir.data->num_of_operands;
+		DC += current_pattern->data->dir.data->num_of_operands;
+		break;
+	  case STRING:
+		data->lines = (WordBin *)realloc(data->lines, sizeof(WordBin) * (data->num_of_lines + strlen(current_pattern->data->dir.string)));
+		for (int i = 0; i < strlen(current_pattern->data->dir.string); i++) {
+		  data->lines[data->num_of_lines + i].word
   
+  }
   
   
   int error_flag = 0;
