@@ -199,15 +199,15 @@ char *encoded_immidiate_number(int n) {
   return result;
 }
 
-int check_validation_instruction(struct pattern instruction){
+int check_validation_of_operands_num(struct pattern * instruction){
 	int i;
-  if (instruction.inst.num_of_operands == 0){
+  if (instruction->inst.num_of_operands == 0){
 	if (instruction.inst.op_type == RTS || instruction.inst.op_type == HLT)
 	  return 1;
 	else
 	  return 0;
   }
-  if (instruction.inst.num_of_operands == 1){
+  if (instruction->inst.num_of_operands == 1){
 	if (instruction.inst.op_type == NOT || instruction.inst.op_type == CLR ||
 	  instruction.inst.op_type == INC || instruction.inst.op_type == DEC ||
 	  instruction.inst.op_type == JMP || instruction.inst.op_type == BNE ||
@@ -217,7 +217,7 @@ int check_validation_instruction(struct pattern instruction){
 	else
 	  return 0;
   }
-  if (instruction.inst.num_of_operands == 2){
+  if (instruction->inst.num_of_operands == 2){
 	if (instruction.inst.op_type == MOV || instruction.inst.op_type == CMP ||
 	  instruction.inst.op_type == ADD || instruction.inst.op_type == SUB ||
 	  instruction.inst.op_type == LEA)
@@ -227,7 +227,18 @@ int check_validation_instruction(struct pattern instruction){
   }
   return 0;
 
-}
+int check_validation_of_operands_type(struct pattern * instruction){
+	int i = instruction->inst.op_type;
+    if ((i == MOV || (i >= ADD && i <= DEC) || i == RED) && (instruction->inst.operands[0].op_type != IMMEDIATE_NUMBER))
+	  return 1;
+	if ((i == JMP || i == BNE || i == JSR) && (instruction->inst.operands[0].op_type != DIRECT && instruction->inst.operands[0].op_type != REGISTER))
+	  return 1;
+	if ((i == LEA) && ((instruction->inst.operands[1].op_type != REGISTER) && (instruction->inst.operands[1].op_type != IMMEDIATE_NUMBER)))
+	  return 1;
+
+
+
+
 
 
 char *encoded_instruction(struct pattern *instruction) {
@@ -445,6 +456,16 @@ void first_round(struct node *head) {
       break;
 
     case INSTRUCTION:
+		if (!check_validation_of_operands_num(current_pattern->data)){
+			printf("error: invalid number of operands\n");
+			error_flag = 1;
+			continue;
+		}
+		if (!check_validation_of_operands_type(current_pattern->data)){
+			printf("error: invalid type of operands\n");
+			error_flag = 1;
+			continue;
+		}
       if (current_pattern->label[0]) {
         Symbol s = (Symbol)exist_in_trie(symbols, current_pattern->label);
         if (s && s->type == ENRTY) {
