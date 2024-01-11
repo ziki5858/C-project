@@ -27,14 +27,14 @@ struct pattern {
     enum { DIRECTIVE, INSTRUCTION, DEFINE, ERROR } type_line;
     struct {
         enum DirectiveType directive_type;
-        int *data;
-        char *string;
+        char **data;
+        int size;
     } dir;
     struct {
         enum InstructionType op_type;
         int num_of_operands;
         struct {
-            enum { IMMEDIATE_NUMBER, IMMEDIATE_CONSTANT, DIRECT, DIRECT_INDEX, REGISTER } op_type;
+            enum { IMMEDIATE_NUMBER, DIRECT, DIRECT_INDEX, REGISTER } op_type;
             union {
                 char op[MAX_LABEL_SIZE];
                 int value;
@@ -127,12 +127,9 @@ struct Node *createNode(struct pattern data);
  */
 void insertNode(struct Node **head, struct pattern data);
 
-/**
- * @brief Function to categorize a word and populate the pattern data structure.
- * @param word The word to be categorized.
- * @param data A pointer to the pattern data structure to be populated.
- */
-void categorizeWord(const char *word, struct pattern *data);
+
+
+int categorizeWord(const char *word, struct pattern *data);
 
 /**
  * @brief Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list.
@@ -160,6 +157,25 @@ void printLinkedList(struct Node *head);
  */
 void freeLinkedList(struct Node *head);
 
+
+struct Node *processAssemblyFile(const char *filename) {
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        perror("Error opening file");
+        return NULL;
+    }
+
+    struct Node *head = NULL;
+    char buffer[MAX_LINE_SIZE];
+
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        processLine(buffer, &head);
+    }
+
+    fclose(file);
+    return head;
+}
+
 struct Node *createNode(struct pattern data) {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -180,30 +196,31 @@ void insertNode(struct Node **head, struct pattern data) {
     }
 }
 
-void categorizeWord(const char *word, struct pattern *data) {
+int categorizeWord(const char *word, struct pattern *data) {
     enum DirectiveType directiveType = isDirective(word);
     enum InstructionType *instType;
     if (directiveType != -1) {
-        /* It's a directive */
         data->type_line = DIRECTIVE;
         data->dir.directive_type = directiveType;
-        num_of_entries++;  // Increment here if it's ENTRY, you may need to adjust for other directives
+        num_of_entries++;  /* Increment here if it's ENTRY, you may need to adjust for other directives*/
+        /*ENTRY,
+                EXTERN,
+                STRING,
+                DATA*/
+
     } else {
         instType = isInstruction(word, data);
         if (instType != NULL) {
-            /* It's an instruction */
             data->type_line = INSTRUCTION;
-            /* Additional properties may already be updated in isInstruction function */
         } else if (isDefine(word, data)) {
-            /* It's a define */
             data->type_line = DEFINE;
-            /* Additional properties may already be updated in isDefine function */
         } else if (isError(word, data)) {
-            /* It's an error */
             data->type_line = ERROR;
-            /* Additional properties may already be updated in isError function */
+        } else{
+            return 0; /*word not at assembly language table*/
         }
     }
+    return 1;
 }
 
 
@@ -242,6 +259,10 @@ int isDefine(const char *word, struct pattern *data) {
     // Add conditions for recognizing define types
     // For example, you might check if the word starts with "#define"
     // Update the data structure accordingly
+    if (strcmp(word, ".define") == 0) {
+        data->type_line = DEFINE;
+        return 1;  // Indicates that it is a define
+    }
 
     return 0;  // Not a define
 }
@@ -257,15 +278,21 @@ int isError(const char *word, struct pattern *data) {
 
 
 void processLine(const char *line, struct Node **head) {
-    char *token = strtok((char *)line, " \t\n");  // Split by space, tab, and newline
-    while (token != NULL) {
+    int countLine = 0;
+    char *token[50];
+
+   *token = strtok((char *)line, " \t\n");  // Split by space, tab, and newline
+    while (*token != NULL) {
         struct pattern data;
-        categorizeWord(token, &data);
+        categorizeWord(*token, &data);
         insertNode(head, data);
-        token = strtok(NULL, " \t\n");  // Move to the next token
+
+        // Check if the word contains a comma and is a date
+        checkIfDate(token);
+
+        *token = strtok(NULL, " \t\n");  // Move to the next token
     }
 }
-
 
 struct Node *processAssemblyText(const char *filename) {
     FILE *file = fopen(filename, "r");
