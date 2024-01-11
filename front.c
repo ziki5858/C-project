@@ -22,8 +22,8 @@ enum InstructionType {
 
 /** Structure to represent a pattern */
 struct pattern {
-    char *error[MAX_ERROR_SIZE];
-    char *label[MAX_LINE_SIZE];
+    char error[MAX_ERROR_SIZE];
+    char label[MAX_LINE_SIZE];
     enum { DIRECTIVE, INSTRUCTION, DEFINE, ERROR } type_line;
     struct {
         enum DirectiveType directive_type;
@@ -36,7 +36,8 @@ struct pattern {
         struct {
             enum { IMMEDIATE_NUMBER, DIRECT, DIRECT_INDEX, REGISTER } op_type;
             union {
-                char op[MAX_LABEL_SIZE];
+                char symbol[MAX_LABEL_SIZE];
+                char const_num[MAX_LABEL_SIZE];
                 int value;
                 enum { r0, r1, r2, r3, r4, r5, r6, r7 } reg;
             } operand_value;
