@@ -5,6 +5,10 @@
 #define MAX_DATA_VALUE 8191
 #define MIN_DATA_VALUE -8192
 
+extern Trie macro_trie;
+char saved_words[26][6] = {"mov", "cmp", "add", "sub", "lea", "not", "clr", "inc", "dec", "jmp", "bne", "red", "prn", "jsr", "rts", "hlt", "entry", "extern", "r0", "r1", "r2", "r3", "r4", "r5", "r6", "r7"};
+
+
 struct symbol {
   char *label;
   int address;
@@ -37,7 +41,7 @@ struct code {
 };
 
 Trie symbols, constant, externals, entries ;
-int IC = 100, DC = 0;
+int IC = 0, DC = 0;
 Code *code, data;
 
 Symbol *symbol_table;
@@ -71,12 +75,12 @@ Constant create_constant(char *label, int value) {
   return NULL;
 }
 
-External create_external(char *label, int address) {
+External create_external(char *label) {
   External e = (External)malloc(sizeof(struct external));
   e->label = label;
-  e->addresses = (int *)malloc(sizeof(int));
-  e->addresses[0] = address;
-  e->number_of_addresses = 1;
+  e->addresses = (int *)calloc(1, sizeof(int));
+//   e->addresses[0] = address;
+//   e->number_of_addresses = 1;
   if (insert_to_trie(externals, label, e))
     {
 	  external_table[num_of_externals++] = e;
@@ -86,6 +90,10 @@ External create_external(char *label, int address) {
   return NULL;
 }
 
+void insert_address_to_external(External e, int address) {
+  e->addresses = (int *)realloc(e->addresses, sizeof(int) * (e->number_of_addresses + 1));
+  e->addresses[e->number_of_addresses++] = address;
+}
 
 Entry create_entry(Symbol symbol) {
   Entry e = (Entry)malloc(sizeof(struct entry));
@@ -124,6 +132,13 @@ char* encoded_data(int n) {
   return string;
 }
 
+int is_saved_word(char *word) {
+  for (int i = 0; i < 26; i++) {
+	if (strcmp(word, saved_words[i]) == 0)
+	  return 1;
+  }
+  return 0;
+}
 
 
 void first_round(struct node *head) {
@@ -153,6 +168,28 @@ void first_round(struct node *head) {
   
 
   while (current_pattern) {
+	if (current_pattern->data->label[0])
+	{
+		if(exist_in_trie(macro_trie, current_pattern->data->label))
+		{
+			printf("error: label %s already exist as macro\n", current_pattern->data->label);
+			error_flag = 1;
+			continue;
+		}
+		if (is_saved_word(current_pattern->data->label))
+		{
+			printf("error: label %s already exist as saved word\n", current_pattern->data->label);
+			error_flag = 1;
+			continue;
+		}
+		if (exist_in_trie(constant, current_pattern->data->label))
+		{
+			printf("error: label %s already exist as constant\n", current_pattern->data->label);
+			error_flag = 1;
+			continue;
+		}
+		
+	}
 	switch (current_pattern->data->type_line) {
 	case ERROR:
 	  printf("%s\n", current_pattern->data->error);
@@ -221,8 +258,14 @@ void first_round(struct node *head) {
 			/* seem to be allowed */
 			continue;
 		}
-		if(exist_in_trie(symbols, current_pattern->label)){
-			Symbol s = (Symbol)exist_in_trie(symbols, current_pattern->label);
+		if (exist_in_trie(externals, current_pattern->label))
+		{
+			printf("error: symbol %s already exist as external\n", current_pattern->label);
+			error_flag = 1;
+			continue;
+		}
+		if(Symbol s = (Symbol)exist_in_trie(symbols, current_pattern->label)){
+			//Symbol s = (Symbol)exist_in_trie(symbols, current_pattern->label);
 			if (s->type == DATA)
 			{
 				s->type = ENTRY_DATA;
@@ -246,10 +289,56 @@ void first_round(struct node *head) {
 		}	
 			
 	  case EXTERN:
-	  
+	  	if (exist_in_trie(entries, current_pattern->label)) {
+			printf("error: symbol %s already exist as entry\n", current_pattern->label);
+			error_flag = 1;
+			continue;
+		}
+		if(exist_in_trie(externals, current_pattern->label)){
+			/* seem to be allowed */
+			continue;	  
 	  }
+		if (symbols s = exist_in_trie(symbols, current_pattern->label))
+		{
+			if (s->type != EXTERN)
+			{
+				printf("error: symbol %s already exist as symbol\n", current_pattern->label);
+				error_flag = 1;
+				continue;
+			}
+		}
+		else
+		{
+			Symbol s = create_symbol(current_pattern->label, 0, EXTERN);
+			External e = create_external(current_pattern->label);
+		}
+		break;
+	  }
+	  break;
 
-	}
+	case INSTRUCTION:
+	  if(current_pattern->label[0])
+		{
+			Symbol s = (Symbol)exist_in_trie(symbols, current_pattern->label);
+			if (s && s->type == ENRTY)
+			{
+				s->type = ENTRY_CODE;
+				s->address = IC;
+			}
+			else if (!s)
+			{
+				s = create_symbol(current_pattern->label, IC, CODE);
+				if (!s)
+				{	error_flag = 1;
+					printf("error: fail to add symbol %s\n", current_pattern->label);
+				}
+			}
+			else
+			{	error_flag = 1;
+				printf("error: symbol %s already exist\n", current_pattern->label);
+			}
+		}
+	  
   }
   
 }
