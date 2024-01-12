@@ -16,3 +16,4 @@ typedef struct entry *Entry;
 typedef struct code *Code;
 typedef struct word_bin *WordBin;
 
+char *toBinaryString(int n, int num_bits);
