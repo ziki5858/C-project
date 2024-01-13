@@ -7,7 +7,7 @@
 
 extern Code *code;
 extern Code data;
-extern Trie symbols, constant;
+extern Trie symbols, constant, externals;
 extern int IC;
 extern int DC;
 extern int error_flag;
@@ -18,14 +18,20 @@ char **binary_table;
 // int words = IC + DC;
 
 void secondround(struct node *head) {
-	int type_ARE, value, i;
+	int type_ARE, value, i, words, j;
+	Symbol s;
   while (head) {
-    if (head->code) {
+    if (head->data->code) {
       
-      for (i = 0; i < head->data->inst.num_of_operands; i++) {
+
+	  if (head->data->inst.operands[0].op_type == DIRECT || head->data->inst.operands[0].op_type == DIRECT_INDEX
+		  || head->data->inst.operands[1].op_type == DIRECT || head->data->inst.operands[1].op_type == DIRECT_INDEX) {
+     
+	  for (i = 0; i < head->data->inst.num_of_operands; i++, j=0) {
+		
         if ((head->data->inst.operands[i].op_type == DIRECT) ||
             (head->data->inst.operands[i].op_type == DIRECT_INDEX)) {
-          Symbol s = (Symbol)exist_in_trie(
+          s = (Symbol)exist_in_trie(
               symbols, head->data->inst.operands[i].operand_value.symbol);
           if (s) {
 			if (s->type == EXTERN) {
@@ -48,7 +54,7 @@ void secondround(struct node *head) {
             if (i == 1)
               head->data->code->lines[1] = result;
             else {
-              int j = 0;
+              
 			  if (head->data->inst.num_of_operands == 2) {
 				
 					if (head->data->inst.operands[1].op_type == DIRECT_INDEX)
@@ -58,6 +64,8 @@ void secondround(struct node *head) {
 			  }
               head->data->code->lines[1 + j] =
                   result;
+			if(type_ARE == 1){	  
+			insert_address_to_external(exist_in_trie(externals, s->label)), words + 2 + j}  
             }
           } else {
             printf("error: symbol %s not found\n",
@@ -67,7 +75,8 @@ void secondround(struct node *head) {
           }
         }
       }
-      
+		  }
+      words += head->data->code->num_of_lines;
     }
 	head = head->next;
   }
@@ -79,7 +88,7 @@ void validate_entreis(){
 	e = entry_table[0];
 	while (e){
 		if (e->symbol->address == 0){
-			printf("error: entry %s not found\n", e->symbol->label);
+			printf("error: entry %s definition not found\n", e->symbol->label);
 			error_flag = 1;
 		}
 		e = e->next;
@@ -88,31 +97,32 @@ void validate_entreis(){
 
 
 void to_binary_table(){
-	int i,j;
-	char **result = calloc(DC-100, sizeof(char*));
+	int i,j,k;
+	char **result = (char **)calloc(DC-100, sizeof(char*));
 	if (result == NULL){
 		printf("error in allocation memory\n");
 		error_flag = 1;
 		
 	}
-	for (i = 0; i < num_of_codes; i++){
+	for (i = 0,k=0; i < num_of_codes; i++){
 		for (j = 0; j < code[i]->num_of_lines; j++){
-			result[i] = calloc(WIDTH_OF_WORD, sizeof(char));
-			if (result[i] == NULL){
+			result[k] = calloc(WIDTH_OF_WORD, sizeof(char));
+			if (result[k] == NULL){
 				printf("error in allocation memory\n");
 				error_flag = 1;
 				
 			}
-			strcat(result[i], code[i]->lines[j]);
+			strcat(result[k], code[i]->lines[j]);
+			k++;
 		}
 	}
 	for (i = 0; i < data->num_of_lines; i++){
-		result[i + num_of_codes] = calloc(WIDTH_OF_WORD, sizeof(char));
-		if (result[i + num_of_codes] == NULL){
+		result[i + k] = calloc(WIDTH_OF_WORD, sizeof(char));
+		if (result[i + k] == NULL){
 			printf("error in allocation memory\n");
 			error_flag = 1;
 		}
-		strcat(result[i + num_of_codes], data->lines[i]);
+		strcpy(result[i + k], data->lines[i]);
 	}
 	binary_table = result;
 }

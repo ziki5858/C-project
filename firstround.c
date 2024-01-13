@@ -71,8 +71,7 @@ int num_of_entries = 0;
 Symbol create_symbol(char *label, int address, int type, int line_in_file) {
   Symbol s = (Symbol)calloc(1, sizeof(struct symbol));
   if (!s) {
-    printf("error: fail to allocate memory\n");
-    error_flag = 1;
+	print_error_memory(line_in_file);
     return NULL;
   }
   s->label = label;
@@ -83,16 +82,14 @@ Symbol create_symbol(char *label, int address, int type, int line_in_file) {
     symbol_table[num_of_symbols++] = s;
     return s;
   }
-  printf("error: fail to add symbol %s\n", label);
-  error_flag = 1;
+  print_error_msg("fail to add symbol", line_in_file);
   return NULL;
 }
 
 Constant create_constant(char *label, int value, int line_in_file) {
   Constant c = (Constant)calloc(1, sizeof(struct constant));
   if (!c) {
-    printf("error: fail to allocate memory\n");
-    error_flag = 1;
+	print_error_memory(line_in_file);
     return NULL;
   }
   c->label = label;
@@ -100,16 +97,14 @@ Constant create_constant(char *label, int value, int line_in_file) {
   c->line_in_file = line_in_file;
   if (insert_to_trie(constant, label, c))
     return c;
-  printf("error: fail to add constant %s\n", label);
-  error_flag = 1;
+print_error_msg("fail to add constant", line_in_file);
   return NULL;
 }
 
 External create_external(char *label, int line_in_file) {
   External e = (External)calloc(1, sizeof(struct external));
   if (!e) {
-    printf("error: fail to allocate memory\n");
-    error_flag = 1;
+	print_error_memory(line_in_file);
     return NULL;
   }
   e->label = label;
@@ -121,8 +116,7 @@ External create_external(char *label, int line_in_file) {
     external_table[num_of_externals++] = e;
     return e;
   }
-  printf("error: fail to add external %s\n", label);
-  error_flag = 1;
+  print_error_msg("fail to add external", line_in_file);
   return NULL;
 }
 
@@ -140,6 +134,16 @@ Entry create_entry(Symbol symbol) { /*למ הוגדר ככה בסימבול?*/
     return e;
   }
   return NULL;
+}
+
+void print_error_memory(int line) {
+  printf("error: fail to allocate memory in line %d\n", line);
+  error_flag = 1;
+}
+
+void print_error_msg(char *msg, int line) {
+  printf("error: %s in line %d\n", msg, line);
+  error_flag = 1;
 }
 
 void add_IC_to_symbol_table(int IC) {
@@ -199,8 +203,7 @@ char *encoded_immidiate_number(int n) {
   char *base = toBinaryString(n, 12);
   char *result = calloc(WIDTH_OF_WORD, sizeof(char));
   if (!result) {
-    printf("error: fail to allocate memory\n");
-    error_flag = 1;
+	print_error_memory(current_pattern_num);
     return NULL;
   }
   strcat(result, base);
@@ -257,8 +260,7 @@ int check_validation_of_operands_type(struct pattern *instruction) {
 char *encoded_instruction(struct pattern *instruction) {
   char *result = malloc(WIDTH_OF_WORD);
   if (!result) {
-    printf("error: fail to allocate memory\n");
-    error_flag = 1;
+	print_error_memory(current_pattern_num);
     return NULL;
   }
   result[WIDTH_OF_WORD - 1] = '\0';
@@ -294,9 +296,9 @@ int extract_immidiate_number(struct pattern *p, int num_of_operand) {
     if (c)
       return c->value;
     else {
-      printf("error: constant %s not found\n", buffer);
-      error_flag = 1;
-      return 0;
+		print_error_msg("constant not found", current_pattern_num);
+    
+    	return 0;
     }
   } else {
     return p->inst.operands[num_of_operand].operand_value.value;
@@ -358,23 +360,18 @@ void first_round(struct node *head) {
 
       /* check if the label is already exist in the trie of macros */
       if (exist_in_trie(macro_trie, current_pattern->data->label)) {
-        printf("error: label %s already exist as macro\n",
-               current_pattern->data->label);
-        error_flag = 1;
+        print_error_msg("label already exist as macro", current_pattern_num);
         continue;
       }
       /* check if the label is already exist in the table of saved words */
       if (is_saved_word(current_pattern->data->label)) {
-        printf("error: label %s already exist as saved word\n",
-               current_pattern->data->label);
-        error_flag = 1;
+		print_error_msg("label already exist as saved word", current_pattern_num);
         continue;
       }
       /* check if the label is already exist in the trie of consts */
       if (exist_in_trie(constant, current_pattern->data->label)) {
-        printf("error: label %s already exist as constant\n",
-               current_pattern->data->label);
-        error_flag = 1;
+		print_error_msg("label already exist as constant", current_pattern_num);
+       
         continue;
       }
     }
@@ -407,13 +404,11 @@ void first_round(struct node *head) {
             s = create_symbol(current_pattern->label, DC,
                               DATA, current_pattern_num); /* define as data */
             if (!s) {
-              error_flag = 1;
-              printf("error: fail to add symbol %s\n", current_pattern->label);
-            }
+				print_error_msg("fail to add symbol", current_pattern_num);
+                 }
           } else { /* already exist */
-            error_flag = 1;
-            printf("error: symbol %s already exist\n", current_pattern->label);
-          }
+		  	print_error_msg("symbol already exist", current_pattern_num);
+            }
         }
         /* insert the data to the data table */
         data->lines = (WordBin *)realloc(
@@ -432,15 +427,13 @@ void first_round(struct node *head) {
             if (strlen(buffer) !=
                 strspn(buffer,
                        "0123456789")) { /* check if the data is a number */
-              printf("error: data element %s is not a number\n", data_element);
-              error_flag = 1;
-              continue;
+					   print_error_msg("data element is not a number", current_pattern_num);
+               continue;
             } else
               data_element = atoi(buffer) * sign;
           }
           if (data_element > MAX_DATA_VALUE || data_element < MIN_DATA_VALUE) {
-            printf("error: data element %s is out of range\n", data_element);
-            error_flag = 1;
+			print_error_msg("data element is out of range", current_pattern_num);
             continue;
           }
           /* insert the data to the data table */
@@ -458,9 +451,7 @@ void first_round(struct node *head) {
           continue;
         }
         if (exist_in_trie(externals, current_pattern->label)) {
-          printf("error: symbol %s already exist as external\n",
-                 current_pattern->label);
-          error_flag = 1;
+			print_error_msg("symbol already exist as external", current_pattern_num);
           continue;
         }
         if (Symbol s = (Symbol)exist_in_trie(symbols, current_pattern->label)) {
@@ -480,9 +471,7 @@ void first_round(struct node *head) {
 
       case EXTERN:
         if (exist_in_trie(entries, current_pattern->label)) {
-          printf("error: symbol %s already exist as entry\n",
-                 current_pattern->label);
-          error_flag = 1;
+			print_error_msg("symbol already exist as entry", current_pattern_num);
           continue;
         }
         if (exist_in_trie(externals, current_pattern->label)) {
@@ -490,9 +479,7 @@ void first_round(struct node *head) {
           continue;
         }
         if (symbols s = exist_in_trie(symbols, current_pattern->label)) {
-          printf("error: symbol %s already exist as symbol\n",
-                 current_pattern->label);
-          error_flag = 1;
+			print_error_msg("symbol already exist as symbol", current_pattern_num);
           continue;
 
         } else {
@@ -505,9 +492,7 @@ void first_round(struct node *head) {
 
     case DEFINE:
       if (exist_in_trie(symbols, current_pattern->label)) {
-        printf("error: word %s already exist as symbol\n",
-               current_pattern->label);
-        error_flag = 1;
+		print_error_msg("symbol already exist as symbol", current_pattern_num);
         continue;
       }
       Constant c = create_constant(current_pattern->label,
@@ -515,16 +500,15 @@ void first_round(struct node *head) {
       break;
 
     case INSTRUCTION:
-
+	  
+	  current_pattern->data->code = code[num_of_codes];
       /* check the valdiation of the operands type and number */
       if (!check_validation_of_operands_num(current_pattern->data)) {
-        printf("error: invalid number of operands\n");
-        error_flag = 1;
+		print_error_msg("invalid number of operands", current_pattern_num);
         continue;
       }
       if (!check_validation_of_operands_type(current_pattern->data)) {
-        printf("error: invalid type of operands\n");
-        error_flag = 1;
+		print_error_msg("invalid type of operands", current_pattern_num);
         continue;
       }
 
@@ -537,13 +521,11 @@ void first_round(struct node *head) {
         } else if (!s) {
           s = create_symbol(current_pattern->label, IC, CODE, current_pattern_num);
           if (!s) {
-            error_flag = 1;
-            printf("error: fail to add symbol %s\n", current_pattern->label);
+			print_error_msg("fail to add symbol", current_pattern_num);abel);
             continue;
           }
         } else {
-          error_flag = 1;
-          printf("error: symbol %s already exist\n", current_pattern->label);
+			print_error_msg("symbol already exist", current_pattern_num);el);
           continue;
         }
       }
@@ -599,8 +581,7 @@ void first_round(struct node *head) {
                                      sizeof(WordBin) * num_of_word_nedded);
               code[num_of_codes].lines[1].word =
                   encoded_data(0); /*will encoded next round*/
-              current_pattern->data->code =
-                  code[num_of_codes]; /* to be linked*/
+              
             case DIRECT_INDEX:
 
               num_of_word_nedded += 2;
@@ -611,7 +592,7 @@ void first_round(struct node *head) {
                   encoded_data(0); /*will encoded next round*/
               num = extract_immidiate_number(current_pattern->data, 0);
               code[num_of_codes].lines[2].word = encoded_immidiate_number(num);
-              current_pattern->data->code = code[num_of_codes];
+              
             }
         }
         switch (current_pattern->data->inst.operands[0].op_type) {
@@ -643,7 +624,6 @@ void first_round(struct node *head) {
               code[num_of_codes].lines, sizeof(WordBin) * num_of_word_nedded);
           code[num_of_codes].lines[num_of_word_nedded - 1].word =
               encoded_data(0);
-          current_pattern->data->code = code[num_of_codes];
           break;
 
         case DIRECT_INDEX:
@@ -655,7 +635,6 @@ void first_round(struct node *head) {
           num = extract_immidiate_number(current_pattern->data, 0);
           code[num_of_codes].lines[num_of_word_nedded - 1].word =
               encoded_immidiate_number(num);
-          current_pattern->data->code = code[num_of_codes];
           break;
         }
         num_of_codes++;

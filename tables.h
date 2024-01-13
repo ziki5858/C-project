@@ -17,3 +17,4 @@ typedef struct code *Code;
 typedef struct word_bin *WordBin;
 
 char *toBinaryString(int n, int num_bits);
+void insert_address_to_external(External e, int address);
