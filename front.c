@@ -131,7 +131,7 @@ void insertNode(struct Node **head, struct pattern data);
 
 
 
-int categorizeWord(FILE *file, char *word, struct pattern *data);
+int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head);
 /**
  * @brief Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list.
  * @param line The line of assembly language text to be processed.
@@ -162,7 +162,7 @@ int isValidConstantName(const char *name);
 
 int isNumeric(char *str);
 
-int defineFormat(FILE *file, char *word, struct pattern *data);
+int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head);
 
 struct Node *processAssemblyFile(const char *filename) {
     FILE *file = fopen(filename, "r");
@@ -175,8 +175,9 @@ struct Node *processAssemblyFile(const char *filename) {
     char buffer[MAX_LINE_SIZE];
 
     while (fgets(buffer, sizeof(buffer), file) != NULL) {
-        processLine(buffer, &head);
+        processLine(file, &head);
     }
+
 
     fclose(file);
     return head;
@@ -202,7 +203,7 @@ void insertNode(struct Node **head, struct pattern data) {
     }
 }
 
-int categorizeWord(FILE *file, char *word, struct pattern *data) {
+int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
     enum DirectiveType directiveType = isDirective(word);
     enum InstructionType *instType;
 
@@ -217,11 +218,12 @@ int categorizeWord(FILE *file, char *word, struct pattern *data) {
             data->type_line = INSTRUCTION;
         } else if (isDefine(word, data)) {
             // Call the new method to read constant and numeric values
-            if (!defineFormat(file, word, data)) {
+            if (!defineFormat(file, word, data, head)) {
                 data->type_line = ERROR;
                 return 0;  // Propagate error if the method fails
             }
             data->type_line = DEFINE;
+            insertNode(head, *data);
         } else {
             return 0; /* word not at assembly language table */
         }
@@ -236,11 +238,12 @@ void isError(struct pattern *data, const char *errorMessage)
              "Error: %s, File: front.c, Line: %d", errorMessage, lineNumber);
 }
 
-int defineFormat(FILE *file, char *word, struct pattern *data) {
+int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
 
     fscanf(file, "%49s", word);
     if (isValidConstantName(word)) {
         strcpy(data->label, word);
+        insertNode(head, *data);
     } else {
         isError(data, "Invalid constant name");
         return 0;
@@ -258,6 +261,7 @@ int defineFormat(FILE *file, char *word, struct pattern *data) {
 
     if (isNumeric(word)) {
         data->def.value = atoi(word);
+        insertNode(head, *data);
     } else {
         isError(data, "Invalid numeric value");
         return 0;
@@ -360,7 +364,7 @@ void processLine(FILE *file, struct Node **head) {
     lineNumber=0;
     while (fscanf(file, "%49s", word) == 1) {
         struct pattern data;
-        categorizeWord(file,word, &data);
+        categorizeWord(file,word, &data, head);
         insertNode(head, data);
         lineNumber++;
     }
@@ -381,8 +385,7 @@ struct Node *processAssemblyText(const char *filename) {
 
     while (fscanf(file, "%49s", word) == 1) {
         struct pattern data;
-        categorizeWord(file,word, &data);
-        insertNode(&head, data);
+        categorizeWord(file, word, &data, &head);
     }
 
     fclose(file);
@@ -394,9 +397,9 @@ struct Node *processAssemblyText(const char *filename) {
 void printLinkedList(struct Node *head) {
     struct Node *current = head;
     while (current != NULL) {
-        // Print or process the data in each node as needed
-        // Example: printf("Type: %d\n", current->data.type_line);
+        printf("Type: %d\n", current->data.type_line);
         current = current->next;
+
     }
 }
 
