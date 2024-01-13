@@ -1,7 +1,7 @@
 #include "front.h"
 #include <string.h>
 #include <stdlib.h>
-
+#include <ctype.h>
 int num_of_patterns;
 int num_of_symbol;
 int num_of_entries;
@@ -130,14 +130,13 @@ void insertNode(struct Node **head, struct pattern data);
 
 
 
-int categorizeWord(const char *word, struct pattern *data);
-
+int categorizeWord(FILE *file, char *word, struct pattern *data);
 /**
  * @brief Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list.
  * @param line The line of assembly language text to be processed.
  * @param head A pointer to the head of the linked list.
  */
-void processLine(const char *line, struct Node **head);
+void processLine(FILE *file, struct Node **head);
 
 /**
  * @brief Processes an entire file of assembly language text and builds a linked list.
@@ -158,6 +157,9 @@ void printLinkedList(struct Node *head);
  */
 void freeLinkedList(struct Node *head);
 
+int isValidConstantName(const char *name);
+
+int isNumeric(char *str);
 
 struct Node *processAssemblyFile(const char *filename) {
     FILE *file = fopen(filename, "r");
@@ -197,31 +199,78 @@ void insertNode(struct Node **head, struct pattern data) {
     }
 }
 
-int categorizeWord(const char *word, struct pattern *data) {
+int categorizeWord(FILE *file, char *word, struct pattern *data) {
     enum DirectiveType directiveType = isDirective(word);
     enum InstructionType *instType;
+    char *token;
+
     if (directiveType != -1) {
         data->type_line = DIRECTIVE;
         data->dir.directive_type = directiveType;
-        num_of_entries++;  /* Increment here if it's ENTRY, you may need to adjust for other directives*/
-        /*ENTRY,
-                EXTERN,
-                STRING,
-                DATA*/
-
+        num_of_entries++;  /* Increment here if it's ENTRY, you may need to adjust for other directives */
+        /* ENTRY, EXTERN, STRING, DATA */
     } else {
         instType = isInstruction(word, data);
         if (instType != NULL) {
             data->type_line = INSTRUCTION;
         } else if (isDefine(word, data)) {
             data->type_line = DEFINE;
+            fscanf(file, "%49s", word);
+            isValidConstantName(word);
+            DEFINE.
+            fscanf(file, "%49s", word);
+            isNumeric(word);
         } else if (isError(word, data)) {
             data->type_line = ERROR;
-        } else{
-            return 0; /*word not at assembly language table*/
+        } else {
+            return 0; /* word not at assembly language table */
         }
     }
     return 1;
+}
+
+/**
+ * Checks if a given string is numeric.
+ *
+ * @param str The string to be checked.
+ * @return 1 if the string is numeric, 0 otherwise.
+ */
+int isNumeric(char *str) {
+    if (str == NULL || *str == '\0') {
+        return 0;  /* Empty string or NULL is not numeric */
+    }
+
+    while (*str) {
+        if (!isdigit((unsigned char) *str) && *str != '.' && *str != '-') {
+            return 0;  /* Non-numeric character found */
+        }
+        str++;
+    }
+
+    return 1;  /* All characters are numeric */
+}
+
+
+/* Function to check if a string is a valid constant name */
+int isValidConstantName( const char *name) {
+    /* Check if the name is not empty */
+    if (*name == '\0') {
+        return 0; /* Invalid: Empty name */
+    }
+    /* Check if the first character is a letter */
+    if (!isalpha(*name)) {
+        return 0; /* Invalid: Name must start with a letter */
+    }
+    /* Check the remaining characters */
+    while (*name != '\0') {
+        /* Check if each character is alphanumeric or underscore */
+        if (!isalnum(*name) && *name != '_') {
+            return 0; /* Invalid: Name must be alphanumeric or underscore */
+        }
+        name++;
+    }
+
+    return 1; /* Valid constant name */
 }
 
 
@@ -278,22 +327,18 @@ int isError(const char *word, struct pattern *data) {
 }
 
 
-void processLine(const char *line, struct Node **head) {
-    int countLine = 0;
-    char *token[50];
+void processLine(FILE *file, struct Node **head) {
+    char word[50];
 
-   *token = strtok((char *)line, " \t\n");  // Split by space, tab, and newline
-    while (*token != NULL) {
+    while (fscanf(file, "%49s", word) == 1) {
         struct pattern data;
-        categorizeWord(*token, &data);
+        categorizeWord(file,word, &data);
         insertNode(head, data);
-
-        // Check if the word contains a comma and is a date
-        checkIfDate(token);
-
-        *token = strtok(NULL, " \t\n");  // Move to the next token
     }
 }
+
+
+
 
 struct Node *processAssemblyText(const char *filename) {
     FILE *file = fopen(filename, "r");
@@ -303,10 +348,12 @@ struct Node *processAssemblyText(const char *filename) {
     }
 
     struct Node *head = NULL;
-    char buffer[MAX_LINE_SIZE];
+    char word[50];
 
-    while (fgets(buffer, sizeof(buffer), file) != NULL) {
-        processLine(buffer, &head);
+    while (fscanf(file, "%49s", word) == 1) {
+        struct pattern data;
+        categorizeWord(file,word, &data);
+        insertNode(&head, data);
     }
 
     fclose(file);
