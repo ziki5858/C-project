@@ -18,6 +18,7 @@ char saved_words[26][6] = {"mov", "cmp", "add",   "sub",    "lea", "not", "clr",
                            "r3",  "r4",  "r5",    "r6",     "r7"};
 int error_flag = 0;
 int num_of_codes = 0;
+int current_pattern_num = 0;
 
 struct symbol {
   char *label;
@@ -261,9 +262,10 @@ char *encoded_instruction(struct pattern *instruction) {
   for (i = 0; i < 4; i++) {
     result[i + 4] = op_code[i];
   }
-
+/*assumming that the first operand is the target operand
+*/
   for (i = 0; i < instruction->inst.num_of_operands; i++) {
-    char *operand = toBinaryString(instruction->inst.operands[i].op_type, 2);
+    char *operand = toBinaryString(instruction->inst.operands[1-i].op_type, 2);
     for (j = 0; j < 2; j++) {
       result[i * 2 + j + 8] = operand[j];
     }
@@ -496,8 +498,8 @@ void first_round(struct node *head) {
           code[num_of_codes].lines =
               (WordBin *)realloc(code[num_of_codes].lines, sizeof(WordBin) * 2);
           code[num_of_codes].lines[1].word = encoded_registers(
-              current_pattern->data->inst.operands[0].operand_value.reg,
-              current_pattern->data->inst.operands[1].operand_value.reg);
+              current_pattern->data->inst.operands[1].operand_value.reg,
+              current_pattern->data->inst.operands[0].operand_value.reg);
 
         } else if (current_pattern->data->inst.operands[0].op_type ==
                    REGISTER) {
