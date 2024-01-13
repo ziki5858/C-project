@@ -6,6 +6,7 @@ int num_of_patterns;
 int num_of_symbol;
 int num_of_entries;
 int num_of_externals;
+int lineNumber;
 
 /** Enumeration for directive types */
 enum DirectiveType {
@@ -112,7 +113,7 @@ int isDefine(const char *word, struct pattern *data);
  * @param data A pointer to the pattern data structure to be updated.
  * @return 1 if the word is an error; otherwise, 0.
  */
-int isError(const char *word, struct pattern *data);
+void isError(struct pattern *data, const char *errorMessage);
 
 /**
  * @brief Creates a new linked list node with the given data.
@@ -161,6 +162,8 @@ int isValidConstantName(const char *name);
 
 int isNumeric(char *str);
 
+int defineFormat(FILE *file, char *word, struct pattern *data);
+
 struct Node *processAssemblyFile(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
@@ -202,30 +205,64 @@ void insertNode(struct Node **head, struct pattern data) {
 int categorizeWord(FILE *file, char *word, struct pattern *data) {
     enum DirectiveType directiveType = isDirective(word);
     enum InstructionType *instType;
-    char *token;
 
     if (directiveType != -1) {
         data->type_line = DIRECTIVE;
         data->dir.directive_type = directiveType;
-        num_of_entries++;  /* Increment here if it's ENTRY, you may need to adjust for other directives */
+        num_of_entries++;  /* Increment here if it's ENTRY, adjust for other directives */
         /* ENTRY, EXTERN, STRING, DATA */
     } else {
         instType = isInstruction(word, data);
         if (instType != NULL) {
             data->type_line = INSTRUCTION;
         } else if (isDefine(word, data)) {
+            // Call the new method to read constant and numeric values
+            if (!defineFormat(file, word, data)) {
+                data->type_line = ERROR;
+                return 0;  // Propagate error if the method fails
+            }
             data->type_line = DEFINE;
-            fscanf(file, "%49s", word);
-            isValidConstantName(word);
-            DEFINE.
-            fscanf(file, "%49s", word);
-            isNumeric(word);
-        } else if (isError(word, data)) {
-            data->type_line = ERROR;
         } else {
             return 0; /* word not at assembly language table */
         }
     }
+
+    return 1;
+}
+
+void isError(struct pattern *data, const char *errorMessage)
+{
+    snprintf(data->error, sizeof(data->error),
+             "Error: %s, File: front.c, Line: %d", errorMessage, lineNumber);
+}
+
+int defineFormat(FILE *file, char *word, struct pattern *data) {
+
+    fscanf(file, "%49s", word);
+    if (isValidConstantName(word)) {
+        strcpy(data->label, word);
+    } else {
+        isError(data, "Invalid constant name");
+        return 0;
+    }
+
+
+    fscanf(file, "%49s", word);
+
+    if(strcmp(word,"=")!=0){
+        isError(data, "Invalid constant name");
+        return 0;
+    }
+
+    fscanf(file, "%49s", word);
+
+    if (isNumeric(word)) {
+        data->def.value = atoi(word);
+    } else {
+        isError(data, "Invalid numeric value");
+        return 0;
+    }
+
     return 1;
 }
 
@@ -318,22 +355,14 @@ int isDefine(const char *word, struct pattern *data) {
 }
 
 
-int isError(const char *word, struct pattern *data) {
-    // Add conditions for recognizing error types
-    // For example, you might check if the word is an error keyword
-    // Update the data structure accordingly
-
-    return 0;  // Not an error
-}
-
-
 void processLine(FILE *file, struct Node **head) {
     char word[50];
-
+    lineNumber=0;
     while (fscanf(file, "%49s", word) == 1) {
         struct pattern data;
         categorizeWord(file,word, &data);
         insertNode(head, data);
+        lineNumber++;
     }
 }
 
