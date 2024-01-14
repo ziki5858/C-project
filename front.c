@@ -32,15 +32,10 @@ struct Node *processAssemblyText(const char *filename) {
         perror("Error opening file");
         return NULL;
     }
-
     struct Node *head = NULL;
-    char word[50];
-
     processLine(file, &head);
-
     fclose(file);
     return head;
-    freeLinkedList(head);
 }
 
 
@@ -63,7 +58,7 @@ int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **h
         data->type_line = DEFINE;
         if (!defineFormat(file, word, data, head)) {
             data->type_line = ERROR;
-            return 0;  // Propagate error if the method fails
+            return 0;
         }
         insertNode(head, *data);
     }
@@ -90,11 +85,10 @@ int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **h
 void isError(struct pattern *data, const char *errorMessage, struct Node **head)
 {
     data->type_line = ERROR;
-    // Insert data into the linked list
+    /* Insert data into the linked list*/
     insertNode(head, *data);
-    // Update the error message with the line number
+    /*Update the error message with the line number*/
     snprintf(data->error, sizeof(data->error), "Error: %s, File: front.c, Line: %d", errorMessage, lineNumber);
-    // Insert the updated data into the linked list
     insertNode(head, *data);
 }
 
@@ -131,7 +125,7 @@ void freeLinkedList(struct Node *head) {
     while (current != NULL) {
         struct Node *temp = current;
         current = current->next;
-        // Free the allocated memory for the data in each node
+        /* Free the allocated memory for the data in each node*/
         free(temp);
     }
 }

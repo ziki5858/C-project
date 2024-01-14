@@ -4,6 +4,16 @@
 #include "front.h"
 #include "frontMethodDeclarstion.h"
 
+/* Set to store entry labels */
+struct LabelSet {
+    char labels[MAX_LABEL_SIZE][MAX_LINE_SIZE];
+    int count;
+};
+
+/* Initialize the label set */
+struct LabelSet entryLabelSet = { .count = 0 };
+
+/* Function to handle the formatting of directives in the assembly code */
 int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
     if (isValidLabel(word)) {
         fscanf(file, "%49s", word);
@@ -14,11 +24,19 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
         }
     }
 
-    // Separate cases for other directives
+    /* Separate cases for other directives */
     if (strcmp(word, ".entry") == 0) {
-        return 1;
+        fscanf(file, "%49s", word);
+        if (isValidLabel(word)) {
+            strcpy(data->label, word);
+            insertNode(head, *data);
+            return 1;
+        } else {
+            isError(data, "Error: Invalid label name", head);
+            return 0;
+        }
     } else if (strcmp(word, ".extern") == 0) {
-        return 1;
+        handleEntryDirective(file, data, head);
     } else if (strcmp(word, ".string") == 0) {
         return handleStringDirective(file, data, head);
     } else if (strcmp(word, ".data") == 0) {
@@ -26,9 +44,9 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
     } else {
         return 0;  /* Not a directive */
     }
-
 }
 
+/* Function to handle the .string directive */
 int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) {
     data->dir.directive_type = STRING;
     insertNode(head, *data);
@@ -40,6 +58,7 @@ int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) 
     return 1;
 }
 
+/* Function to handle the .data directive */
 int handleDataDirective(FILE *file, struct pattern *data, struct Node **head) {
     char input[100];
     int size;
@@ -66,11 +85,13 @@ int handleDataDirective(FILE *file, struct pattern *data, struct Node **head) {
 
     return 1;
 }
+
+/* Function to process numeric arguments in the .data directive */
 int processNumericArguments(char *input, struct pattern *data, struct Node **head) {
     int size = 0;
     char *token = strtok(input, "[^,]");
 
-    // Allocate memory for the array of strings
+    /* Allocate memory for the array of strings */
     data->dir.data = (char **)calloc(size, sizeof(char *));
 
     while (token != NULL) {
@@ -84,31 +105,31 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
             return 0;
         }
 
-        // Allocate memory for the current string and copy the token
+        /* Allocate memory for the current string and copy the token */
         data->dir.data[size] = strdup(token);
 
-        // Check if memory allocation was successful
+        /* Check if memory allocation was successful */
         if (data->dir.data[size] == NULL) {
             isError(data, "Error: Memory allocation failed", head);
-            // Clean up previously allocated strings
+            /* Clean up previously allocated strings */
             for (int i = 0; i < size; i++) {
                 free(data->dir.data[i]);
             }
-            // Free the array itself
+            /* Free the array itself */
             free(data->dir.data);
             return 0;  // Indicate error
         }
 
         size++;
-        // Resize the array of strings
+        /* Resize the array of strings */
         data->dir.data = realloc(data->dir.data, size * sizeof(char *));
         if (data->dir.data == NULL) {
             isError(data, "Error: Memory allocation failed", head);
-            // Clean up previously allocated strings
+            /* Clean up previously allocated strings */
             for (int i = 0; i < size - 1; i++) {
                 free(data->dir.data[i]);
             }
-            // Free the array itself
+            /* Free the array itself */
             free(data->dir.data);
             return 0; // Indicate error
         }
@@ -121,6 +142,7 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
     return 1;
 }
 
+/* Function to check if the last character of a string is a specific character */
 int checkLastCharacter(const char input[], char errorChar) {
     /* Check if the last character is a comma */
     size_t length = strlen(input);
@@ -134,17 +156,17 @@ int checkLastCharacter(const char input[], char errorChar) {
     return 1;
 }
 
-
+/* Function to handle missing arguments in the .data directive */
 int miss(int requireComma) {
     int missing;
     missing = getchar();
 
     if (missing == '\n') {
-        return 0; /* No extraneous text or missing comma*/
+        return 0; /* No extraneous text or missing comma */
     }
 
     if (requireComma && missing != ',') {
-        /* Handle extraneous text (clear the input buffer)*/
+        /* Handle extraneous text (clear the input buffer) */
         while (getchar() != '\n');
         return 0;
     }
@@ -152,9 +174,10 @@ int miss(int requireComma) {
     return 1;
 }
 
+/* Function to count characters in a string */
 int countChars(const char *str) {
-    int count = 1;/*for the \0 at the end of string by task instruction*/
-    // Iterate through each character until the null terminator is reached
+    int count = 1; /* For the \0 at the end of the string by task instruction */
+    /* Iterate through each character until the null terminator is reached */
     while (*str != '\0') {
         count++;
         str++;
@@ -162,34 +185,78 @@ int countChars(const char *str) {
     return count;
 }
 
+/* Function to check if a label is valid */
 int isValidLabel(const char *name) {
-    // Check if the name is not empty
+    /* Check if the name is not empty */
     if (*name == '\0') {
         return 0; // Invalid: Empty name
     }
 
-    // Check if the first character is a letter
+    /* Check if the first character is a letter */
     if (!isalpha(*name)) {
-        return 0; // Invalid: Name must start with a letter
+        return 0;
     }
 
-    // Check the remaining characters
+    /* Check the remaining characters */
     name++;
 
-    // Check for alphanumeric or underscore, up to 30 characters
+    /* Check for alphanumeric or underscore, up to 30 characters */
     int count = 1;
     while (*name != '\0' && count <= 30) {
         if (!isalnum(*name) && *name != '_') {
-            return 0; // Invalid: Name must be alphanumeric or underscore
+            return 0;
         }
         name++;
         count++;
     }
 
-    // Check if the last character is ':'
+    /* Check if the last character is ':' */
     if (*(name - 1) != ':') {
-        return 0; // Invalid: Label definition must end with ':'
+        return 0;
     }
 
-    return 1; // Valid label
+    return 1;
+}
+
+/* Function to add a label to the set */
+void addToEntryLabelSet(const char *label) {
+    if (entryLabelSet.count < MAX_LABEL_SIZE) {
+        strcpy(entryLabelSet.labels[entryLabelSet.count], label);
+        entryLabelSet.count++;
+    }
+}
+
+/* Function to check if a label is in the set */
+int isEntryLabel(const char *label) {
+    for (int i = 0; i < entryLabelSet.count; i++) {
+        if (strcmp(entryLabelSet.labels[i], label) == 0) {
+            return 1; // Found in the set
+        }
+    }
+    return 0; // Not found in the set
+}
+
+/* Function to handle the .entry directive */
+int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
+    fscanf(file, "%49s", data->label);
+
+    /* Check if the label is already used as .entry */
+    if (isEntryLabel(data->label)) {
+        isError(data, "Error: Label already used as .entry", head);
+        return 0;
+    }
+
+    /* Check if the label is valid */
+    if (isValidLabel(data->label)) {
+        strcpy(data->label, data->label);
+        insertNode(head, *data);
+
+        /* Add the label to the entry label set */
+        addToEntryLabelSet(data->label);
+
+        return 1;
+    } else {
+        isError(data, "Error: Invalid label name", head);
+        return 0;
+    }
 }

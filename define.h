@@ -2,7 +2,6 @@
 #include <string.h>
 #include "ctype.h"
 #include "front.h"
-#include "frontMethodDeclarstion.h"
 
 int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
     fscanf(file, "%49s", word);
