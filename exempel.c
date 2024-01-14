@@ -1,6 +1,6 @@
 #include "front.h"
 
-struct pattern p[10];
+struct pattern *p[10];
 p[0].type_line = INSTRUCTION;
 p[0].inst.op_type = MOV;
 p[0].inst.num_of_operands = 2;
