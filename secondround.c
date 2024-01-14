@@ -18,32 +18,45 @@ char **binary_table;
 // int words = IC + DC;
 
 void secondround(struct node *head) {
+	int type_ARE, value, i;
   while (head) {
     if (head->code) {
-      int i;
+      
       for (i = 0; i < head->data->inst.num_of_operands; i++) {
         if ((head->data->inst.operands[i].op_type == DIRECT) ||
             (head->data->inst.operands[i].op_type == DIRECT_INDEX)) {
           Symbol s = (Symbol)exist_in_trie(
               symbols, head->data->inst.operands[i].operand_value.symbol);
           if (s) {
-            int type_ARE = (s->type == EXTERN) ? 1 : 2;
-            int value = s->address;
+			if (s->type == EXTERN) {
+				type_ARE = 1;
+				value = 0;
+				
+			}
+			else {
+				type_ARE = 2;
+				value = s->address;
+			}
             char *result = calloc(WIDTH_OF_WORD, sizeof(char));
             if (result == NULL) {
               printf("error in allocation memory\n");
               error_flag = 1;
               return;
             }
-            strcat(result, toBinaryString(value, 12));
-            strcat(result, toBinaryString(type_ARE, 3));
-            if (i == 0)
+            strcpy(result, toBinaryString(value, 12));
+            strcat(result, toBinaryString(type_ARE, 2));
+            if (i == 1)
               head->data->code->lines[1] = result;
             else {
-              int j = (head->data->inst.operands[1].op_type == DIRECT_INDEX)
-                          ? 1
-                          : 0;
-              head->data->code->lines[head->data->code->num_of_lines - j] =
+              int j = 0;
+			  if (head->data->inst.num_of_operands == 2) {
+				
+					if (head->data->inst.operands[1].op_type == DIRECT_INDEX)
+                          j = 2;
+					else 
+						  j = 1;
+			  }
+              head->data->code->lines[1 + j] =
                   result;
             }
           } else {
@@ -71,6 +84,7 @@ void validate_entreis(){
 		}
 		e = e->next;
 	}
+}
 
 
 void to_binary_table(){
