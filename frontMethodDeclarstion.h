@@ -47,7 +47,8 @@ struct pattern {
     // Union to store different types of patterns
     union {
         enum DirectiveType directive_type; /**< Type of directive pattern */
-        char **data;                        /**< Data for certain directive patterns */
+        char **data;
+		char * string;                        /**< Data for certain directive patterns */
         int size;
     } dir;
 
