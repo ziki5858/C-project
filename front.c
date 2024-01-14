@@ -1,6 +1,7 @@
 #include "front.h"
 #include "directive.h"
 #include "define.h"
+#include "instruction.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -52,8 +53,6 @@ void processLine(FILE *file, struct Node **head) {
 
 
 int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
-    enum InstructionType *instType;
-
     if(strcmp(word, ".define") == 0){
         data->type_line = DEFINE;
         if (!defineFormat(file, word, data, head)) {
@@ -65,13 +64,11 @@ int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **h
     else if (directiveFormat(file, word, data, head)) {
         data->type_line = DIRECTIVE;
         insertNode(head, *data);
-        num_of_entries++;  /* Increment here if it's ENTRY, adjust for other directives */
-        /* ENTRY, EXTERN, STRING, DATA */
     }
     else {
-        instType = isInstruction(word, data);
-        if (instType != NULL) {
+        if (isInstruction(file,word, data, head)) {
             data->type_line = INSTRUCTION;
+            insertNode(head, *data);
         }
         else {
             return 0; /* word not at assembly language table */
@@ -94,20 +91,7 @@ void isError(struct pattern *data, const char *errorMessage, struct Node **head)
 
 
 
-enum InstructionType* isInstruction(const char *word, struct pattern *data) {
-    /* Iterate through the array to find a match */
-    for (int i = 0; instructionMappings[i].name != NULL; ++i) {
-        if (strcmp(word, instructionMappings[i].name) == 0) {
-            /* It's an instruction */
-            data->type_line = INSTRUCTION;
-            data->inst.op_type = instructionMappings[i].type;
-            /* Update other properties of the data structure as needed */
-            return &(data->inst.op_type);
-        }
-    }
-    /* Not an instruction */
-    return NULL;
-}
+
 
 
 
@@ -129,6 +113,9 @@ void freeLinkedList(struct Node *head) {
         free(temp);
     }
 }
+
+
+
 
 int main() {
     // Replace "your_input_file.asm" with the actual file name you want to process

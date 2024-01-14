@@ -118,13 +118,6 @@ const struct InstructionMapping {
  */
 int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head);
 
-/**
- * @brief Checks if a word is an instruction and updates the pattern structure.
- * @param word The word to be checked.
- * @param data A pointer to the pattern data structure to be updated.
- * @return A pointer to the InstructionType if the word is an instruction; otherwise, NULL.
- */
-enum InstructionType* isInstruction(const char *word, struct pattern *data);
 
 /**
  * @brief Function to check if a word is an error and update the pattern structure.
@@ -275,3 +268,49 @@ int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head);
  * @return 1 if the categorization is successful; otherwise, 0.
  */
 int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head);
+
+
+/**
+ * @brief Checks if a word is an instruction and updates the pattern structure.
+ * @param file The file pointer to the input assembly file.
+ * @param word The word to be checked.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @param head A pointer to the head of the linked list.
+ * @return 1 if the word is an instruction; otherwise, 0.
+ */
+int isInstruction(FILE *file, const char *word, struct pattern *data, struct Node **head);
+
+/**
+ * @brief Handles processing of instructions without operands.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @param head A pointer to the head of the linked list.
+ * @return 1 if processing is successful; otherwise, 0.
+ */
+int processNoOperands(struct pattern *data, struct Node **head, int  i);
+
+/**
+ * @brief Handles processing of instructions with one operand.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @param head A pointer to the head of the linked list.
+ * @return 1 if processing is successful; otherwise, 0.
+ */
+int processOneOperand(FILE  *file, struct pattern *data, struct Node **head, int  i);
+
+/**
+ * @brief Handles processing of instructions with two operands.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @param head A pointer to the head of the linked list.
+ * @return 1 if processing is successful; otherwise, 0.
+ */
+int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head, int  i);
+
+
+/**
+ * @brief Handles processing of operands for instructions.
+ * @param file The file pointer to the input assembly file.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @param head A pointer to the head of the linked list.
+ * @param operandCount The expected count of operands.
+ * @return 1 if operand processing is successful; otherwise, 0.
+ */
+int processOperands(FILE *file, struct pattern *data, struct Node **head, int operandCount);

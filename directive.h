@@ -26,6 +26,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
 
     /* Separate cases for other directives */
     if (strcmp(word, ".entry") == 0) {
+        num_of_entries++;
         fscanf(file, "%49s", word);
         if (isValidLabel(word)) {
             strcpy(data->label, word);
@@ -36,14 +37,14 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
             return 0;
         }
     } else if (strcmp(word, ".extern") == 0) {
+        num_of_externals++;
         handleEntryDirective(file, data, head);
     } else if (strcmp(word, ".string") == 0) {
         return handleStringDirective(file, data, head);
     } else if (strcmp(word, ".data") == 0) {
         return handleDataDirective(file, data, head);
-    } else {
-        return 0;  /* Not a directive */
     }
+    return 0;  /* Not a directive */
 }
 
 /* Function to handle the .string directive */
