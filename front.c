@@ -89,8 +89,7 @@ const struct InstructionMapping {
  * @param word The word to be checked.
  * @return The DirectiveType enumeration if the word is a directive; otherwise, -1.
  */
-enum DirectiveType isDirective(const char *word);
-
+int  directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head);
 /**
  * @brief Checks if a word is an instruction and updates the pattern structure.
  * @param word The word to be checked.
@@ -100,20 +99,12 @@ enum DirectiveType isDirective(const char *word);
 enum InstructionType* isInstruction(const char *word, struct pattern *data);
 
 /**
- * @brief Function to check if a word is a define and update the pattern structure.
- * @param word The word to be checked.
- * @param data A pointer to the pattern data structure to be updated.
- * @return 1 if the word is a define; otherwise, 0.
- */
-int isDefine(const char *word, struct pattern *data);
-
-/**
  * @brief Function to check if a word is an error and update the pattern structure.
  * @param word The word to be checked.
  * @param data A pointer to the pattern data structure to be updated.
  * @return 1 if the word is an error; otherwise, 0.
  */
-void isError(struct pattern *data, const char *errorMessage);
+void isError(struct pattern *data, const char *errorMessage,struct Node **head);
 
 /**
  * @brief Creates a new linked list node with the given data.
@@ -164,6 +155,20 @@ int isNumeric(char *str);
 
 int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head);
 
+int isValidLabel(const char *name);
+
+int countChars(const char *str);
+
+int miss(int requireComma);
+
+int checkLastCharacter(const char input[], char errorChar);
+
+int processNumericArguments(char *input, struct pattern *data, struct Node **head) ;
+
+int handleStringDirective(FILE *file, struct pattern *data, struct Node **head);
+
+int handleDataDirective(FILE *file, struct pattern *data, struct Node **head);
+
 struct Node *processAssemblyFile(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
@@ -204,27 +209,28 @@ void insertNode(struct Node **head, struct pattern data) {
 }
 
 int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
-    enum DirectiveType directiveType = isDirective(word);
     enum InstructionType *instType;
 
-    if (directiveType != -1) {
+    if(strcmp(word, ".define") == 0){
+        data->type_line = DEFINE;
+        if (!defineFormat(file, word, data, head)) {
+            data->type_line = ERROR;
+            return 0;  // Propagate error if the method fails
+        }
+        insertNode(head, *data);
+    }
+    else if (directiveFormat(file, word, data, head)) {
         data->type_line = DIRECTIVE;
-        data->dir.directive_type = directiveType;
+        insertNode(head, *data);
         num_of_entries++;  /* Increment here if it's ENTRY, adjust for other directives */
         /* ENTRY, EXTERN, STRING, DATA */
-    } else {
+    }
+    else {
         instType = isInstruction(word, data);
         if (instType != NULL) {
             data->type_line = INSTRUCTION;
-        } else if (isDefine(word, data)) {
-            // Call the new method to read constant and numeric values
-            if (!defineFormat(file, word, data, head)) {
-                data->type_line = ERROR;
-                return 0;  // Propagate error if the method fails
-            }
-            data->type_line = DEFINE;
-            insertNode(head, *data);
-        } else {
+        }
+        else {
             return 0; /* word not at assembly language table */
         }
     }
@@ -232,11 +238,17 @@ int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **h
     return 1;
 }
 
-void isError(struct pattern *data, const char *errorMessage)
+void isError(struct pattern *data, const char *errorMessage, struct Node **head)
 {
-    snprintf(data->error, sizeof(data->error),
-             "Error: %s, File: front.c, Line: %d", errorMessage, lineNumber);
+    data->type_line = ERROR;
+    // Insert data into the linked list
+    insertNode(head, *data);
+    // Update the error message with the line number
+    snprintf(data->error, sizeof(data->error), "Error: %s, File: front.c, Line: %d", errorMessage, lineNumber);
+    // Insert the updated data into the linked list
+    insertNode(head, *data);
 }
+
 
 int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
 
@@ -245,7 +257,7 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
         strcpy(data->label, word);
         insertNode(head, *data);
     } else {
-        isError(data, "Invalid constant name");
+        isError(data, "Invalid constant name",head);
         return 0;
     }
 
@@ -253,7 +265,7 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
     fscanf(file, "%49s", word);
 
     if(strcmp(word,"=")!=0){
-        isError(data, "Invalid constant name");
+        isError(data, "Invalid constant name",head);
         return 0;
     }
 
@@ -263,7 +275,7 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
         data->def.value = atoi(word);
         insertNode(head, *data);
     } else {
-        isError(data, "Invalid numeric value");
+        isError(data, "Invalid numeric value",head);
         return 0;
     }
 
@@ -315,19 +327,173 @@ int isValidConstantName( const char *name) {
 }
 
 
-enum DirectiveType isDirective(const char *word) {
-    if (strcmp(word, "entry") == 0) {
-        return ENTRY;
-    } else if (strcmp(word, "extern") == 0) {
-        return EXTERN;
-    } else if (strcmp(word, "string") == 0) {
-        return STRING;
-    } else if (strcmp(word, "data") == 0) {
-        return DATA;
-    } else {
-        return -1;  /* Not a directive */
+int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
+    if (isValidLabel(word)) {
+        fscanf(file, "%49s", word);
+        if (strcmp(word, ".string") == 0) {
+            return handleStringDirective(file, data, head);
+        } else if (strcmp(word, ".data") == 0) {
+            return handleDataDirective(file, data, head);
+        }
     }
+
+    // Separate cases for other directives
+    if (strcmp(word, ".entry") == 0) {
+        return 1;
+    } else if (strcmp(word, ".extern") == 0) {
+        return 1;
+    } else if (strcmp(word, ".string") == 0) {
+        return handleStringDirective(file, data, head);
+    } else if (strcmp(word, ".data") == 0) {
+        return handleDataDirective(file, data, head);
+    } else {
+        return 0;  /* Not a directive */
+    }
+
 }
+
+int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) {
+    data->dir.directive_type = STRING;
+    insertNode(head, *data);
+    fscanf(file, "%49s", data->label);
+    data->dir.data = (char **)strdup(data->label);
+    insertNode(head, *data);
+    data->dir.size = countChars(data->label);
+    insertNode(head, *data);
+    return 1;
+}
+
+int handleDataDirective(FILE *file, struct pattern *data, struct Node **head) {
+    char input[100];
+    int size;
+    data->dir.directive_type = DATA;
+    insertNode(head, *data);
+
+    fgets(input, sizeof(input), stdin);
+    input[strcspn(input, "\n")] = '\0';
+
+    if (checkLastCharacter(input, ',') != 0) {
+        isError(data, "Error: Extraneous text after end of command", head);
+        return 0;
+    }
+
+    if (!miss(0)) {
+        isError(data, "Error: missing arguments.", head);
+        return 0;
+    }
+
+    size = processNumericArguments(input, data, head);
+    if (size == -1) {
+        return 0;
+    }
+
+    data->dir.size = size;
+    insertNode(head, *data);
+    return 1;
+}
+
+int processNumericArguments(char *input, struct pattern *data, struct Node **head) {
+    int size = 0;
+    char *token = strtok(input, "[^,]");
+
+    while (token != NULL) {
+        if (*token == '\0') {
+            isError(data, "Error: Missing argument.",head);
+            return -1;  // Indicate error
+        }
+
+        if (!isNumeric(token)) {
+            isError(data, "Error: Argument is not a real number",head);
+            return -1;  // Indicate error
+        }
+
+        size++;
+        token = strtok(NULL, "[^,]");
+    }
+
+    return size;
+}
+
+int checkLastCharacter(const char input[], char errorChar) {
+    /* Check if the last character is a comma */
+    size_t length = strlen(input);
+
+    if (length > 0) {
+        char lastChar = input[length - 1];
+        if (lastChar == errorChar) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+
+/**
+ * Checks if there is any extraneous text after a valid command.
+ *
+ * @param requireComma If set to 1, checks if a comma is missing after the command.
+ * @return 0 if extraneous text or a missing comma is found, 1 otherwise.
+ */
+int miss(int requireComma) {
+    int missing;
+    missing = getchar();
+
+    if (missing == '\n') {
+        return 0; /* No extraneous text or missing comma*/
+    }
+
+    if (requireComma && missing != ',') {
+        /* Handle extraneous text (clear the input buffer)*/
+        while (getchar() != '\n');
+        return 0;
+    }
+
+    return 1;
+}
+
+int countChars(const char *str) {
+    int count = 1;/*for the \0 at the end of string by task instruction*/
+    // Iterate through each character until the null terminator is reached
+    while (*str != '\0') {
+        count++;
+        str++;
+    }
+    return count;
+}
+
+
+int isValidLabel(const char *name) {
+    // Check if the name is not empty
+    if (*name == '\0') {
+        return 0; // Invalid: Empty name
+    }
+
+    // Check if the first character is a letter
+    if (!isalpha(*name)) {
+        return 0; // Invalid: Name must start with a letter
+    }
+
+    // Check the remaining characters
+    name++;
+
+    // Check for alphanumeric or underscore, up to 30 characters
+    int count = 1;
+    while (*name != '\0' && count <= 30) {
+        if (!isalnum(*name) && *name != '_') {
+            return 0; // Invalid: Name must be alphanumeric or underscore
+        }
+        name++;
+        count++;
+    }
+
+    // Check if the last character is ':'
+    if (*(name - 1) != ':') {
+        return 0; // Invalid: Label definition must end with ':'
+    }
+
+    return 1; // Valid label
+}
+
 
 
 enum InstructionType* isInstruction(const char *word, struct pattern *data) {
@@ -345,18 +511,6 @@ enum InstructionType* isInstruction(const char *word, struct pattern *data) {
     return NULL;
 }
 
-
-int isDefine(const char *word, struct pattern *data) {
-    // Add conditions for recognizing define types
-    // For example, you might check if the word starts with "#define"
-    // Update the data structure accordingly
-    if (strcmp(word, ".define") == 0) {
-        data->type_line = DEFINE;
-        return 1;  // Indicates that it is a define
-    }
-
-    return 0;  // Not a define
-}
 
 
 void processLine(FILE *file, struct Node **head) {
