@@ -3,15 +3,53 @@
 #include "ctype.h"
 #include "front.h"
 
+struct {
+    enum InstructionType op_type;        /**< Type of instruction pattern */
+    int num_of_operands;                 /**< Number of operands */
+    struct {
+        enum { IMMEDIATE_NUMBER/*start with #*/, DIRECT, DIRECT_INDEX/*varibale with []*/, REGISTER/*r...r7*/ } op_type; /**< Type of operand */
+        union {
+            char symbol[MAX_LABEL_SIZE]; /**< Operand value as symbol */
+            char const_num[MAX_LABEL_SIZE]; /**< Operand value as constant number */
+            int value; /**< Operand value as immediate number */
+            enum { r0, r1, r2, r3, r4, r5, r6, r7 } reg; /**< Operand value as register */
+        } operand_value;
+    } operands[2]; /**< Array to store operands */
+} inst;
+
 
 int processOperands(FILE *file, struct pattern *data, struct Node **head, int operandCount) {
+    char word[50];
     for (int i = 0; i < operandCount; i++) {
-        if (fscanf(file, "%49s", data->label) != 1) {
+        if (fscanf(file, "%49s", word) != 1) {
+
             isError(data, "Error: Missing operand", head);
             return 0;
         }
-
-        // Add code here to handle the operand
+        if (word[0] == '#') {
+            data->type_line = IMMEDIATE_NUMBER;
+            insertNode(head, *data);
+            data->inst.operands[i].operand_value.value = atoi(word + 1);
+            insertNode(head, *data);
+        } else if(word[strlen(word) - 1] == ']'){
+            data->type_line = DIRECT_INDEX;
+            insertNode(head, *data);
+            strcpy(data->inst.operands[i].operand_value.symbol, word+1);
+            insertNode(head, *data);
+        } else if(word[0] == 'r' && word[1] >= '0' && word[1] <= '7'){
+            data->type_line = REGISTER;
+            insertNode(head, *data);
+            data->inst.operands[i].operand_value.reg = word[1] - '0';
+            insertNode(head, *data);
+        } else if(isValidLabel(word)){
+            data->type_line = DIRECT;
+            insertNode(head, *data);
+            strcpy(data->inst.operands[i].operand_value.symbol, word);
+            insertNode(head, *data);
+        } else {
+            isError(data, "Error: Invalid operand", head);
+            return 0;
+        }
         insertNode(head, *data);
     }
     return 1;
@@ -55,8 +93,10 @@ int processNoOperands(struct pattern *data, struct Node **head, int  i) {
 }
 
 int isInstruction(FILE *file, const char *word, struct pattern *data, struct Node **head) {
+    int i;
+
     /* Iterate through the array to find a match */
-    for (int i = 0; instructionMappings[i].name != NULL; ++i) {
+    for (i = 0; instructionMappings[i].name != NULL; ++i) {
         if (strcmp(word, instructionMappings[i].name) == 0) {
             /* It's an instruction with two operands */
             if (strcmp(word, "MOV") == 0 || strcmp(word, "CMP") == 0 || strcmp(word, "ADD") == 0 ||

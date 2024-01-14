@@ -56,7 +56,7 @@ struct pattern {
         enum InstructionType op_type;        /**< Type of instruction pattern */
         int num_of_operands;                 /**< Number of operands */
         struct {
-            enum { IMMEDIATE_NUMBER, DIRECT, DIRECT_INDEX, REGISTER } op_type; /**< Type of operand */
+            enum { IMMEDIATE_NUMBER/*start with #*/, DIRECT, DIRECT_INDEX/*varibale with []*/, REGISTER/*r...r7*/ } op_type; /**< Type of operand */
             union {
                 char symbol[MAX_LABEL_SIZE]; /**< Operand value as symbol */
                 char const_num[MAX_LABEL_SIZE]; /**< Operand value as constant number */

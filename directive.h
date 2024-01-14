@@ -56,7 +56,7 @@ int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) 
     data->dir.directive_type = STRING;
     insertNode(head, *data);
     fscanf(file, "%49s", data->label);
-    data->dir.data = (char **)strdup(data->label);
+    data->dir.string = (char *) strdup(data->label);
     insertNode(head, *data);
     data->dir.size = countChars(data->label);
     insertNode(head, *data);
