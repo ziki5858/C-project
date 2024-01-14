@@ -10,4 +10,3 @@ struct pattern;
 
 struct node;
 struct code;
-node *create_stracts(char *file_name);

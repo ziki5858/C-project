@@ -1,192 +1,8 @@
 #include "front.h"
+#include "frontMethodDeclarstion.h"
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-int num_of_patterns;
-int num_of_symbol;
-int num_of_entries;
-int num_of_externals;
-int lineNumber;
-
-/** Enumeration for directive types */
-enum DirectiveType {
-    ENTRY,
-    EXTERN,
-    STRING,
-    DATA
-};
-
-/** Enumeration for instruction types */
-enum InstructionType {
-    MOV, CMP, ADD, SUB, LEA, NOT, CLR, INC, DEC, JMP, BNE, RED, PRN, JSR, RTS, HLT
-};
-
-/** Structure to represent a pattern */
-struct pattern {
-    char error[MAX_ERROR_SIZE];
-    char label[MAX_LINE_SIZE];
-    enum { DIRECTIVE, INSTRUCTION, DEFINE, ERROR } type_line;
-    struct {
-        enum DirectiveType directive_type;
-        char **data;
-        int size;
-    } dir;
-    struct {
-        enum InstructionType op_type;
-        int num_of_operands;
-        struct {
-            enum { IMMEDIATE_NUMBER, DIRECT, DIRECT_INDEX, REGISTER } op_type;
-            union {
-                char symbol[MAX_LABEL_SIZE];
-                char const_num[MAX_LABEL_SIZE];
-                int value;
-                enum { r0, r1, r2, r3, r4, r5, r6, r7 } reg;
-            } operand_value;
-        } operands[2];
-    } inst;
-    struct {
-        int value;
-    } def;
-    struct code *code;
-};
-
-
-/** Linked list node representing a pattern */
-struct Node {
-    struct pattern data;  /**< Data containing information about the assembly language pattern */
-    struct Node *next;    /**< Pointer to the next node in the linked list */
-};
-
-/**
- * @var instructionMappings
- * @brief Array to map instruction names to their corresponding enum values.
- */
-const struct InstructionMapping {
-    const char *name;            /**< Name of the instruction */
-    enum InstructionType type;   /**< Corresponding enum value */
-} instructionMappings[] = {
-        {"mov", MOV},
-        {"cmp", CMP},
-        {"add", ADD},
-        {"sub", SUB},
-        {"lea", LEA},
-        {"not", NOT},
-        {"clr", CLR},
-        {"inc", INC},
-        {"dec", DEC},
-        {"jmp", JMP},
-        {"bne", BNE},
-        {"red", RED},
-        {"prn", PRN},
-        {"jsr", JSR},
-        {"rts", RTS},
-        {"hlt", HLT},
-        {NULL, (enum InstructionType)0}  /* Sentinel value for the end of the array */
-};
-
-/**
- * @brief Function to check if a word is a directive and return the directive type.
- * @param word The word to be checked.
- * @return The DirectiveType enumeration if the word is a directive; otherwise, -1.
- */
-int  directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head);
-/**
- * @brief Checks if a word is an instruction and updates the pattern structure.
- * @param word The word to be checked.
- * @param data A pointer to the pattern data structure to be updated.
- * @return A pointer to the InstructionType if the word is an instruction; otherwise, NULL.
- */
-enum InstructionType* isInstruction(const char *word, struct pattern *data);
-
-/**
- * @brief Function to check if a word is an error and update the pattern structure.
- * @param word The word to be checked.
- * @param data A pointer to the pattern data structure to be updated.
- * @return 1 if the word is an error; otherwise, 0.
- */
-void isError(struct pattern *data, const char *errorMessage,struct Node **head);
-
-/**
- * @brief Creates a new linked list node with the given data.
- * @param data The pattern data to be stored in the node.
- * @return A pointer to the newly created node.
- */
-struct Node *createNode(struct pattern data);
-
-/**
- * @brief Inserts a new node at the end of the linked list.
- * @param head A pointer to the head of the linked list.
- * @param data The pattern data to be stored in the new node.
- */
-void insertNode(struct Node **head, struct pattern data);
-
-
-
-int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head);
-/**
- * @brief Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list.
- * @param line The line of assembly language text to be processed.
- * @param head A pointer to the head of the linked list.
- */
-void processLine(FILE *file, struct Node **head);
-
-/**
- * @brief Processes an entire file of assembly language text and builds a linked list.
- * @param filename The name of the file to be processed.
- * @return A pointer to the head of the linked list.
- */
-struct Node *processAssemblyText(const char *filename);
-
-/**
- * @brief Prints the content of the linked list.
- * @param head A pointer to the head of the linked list.
- */
-void printLinkedList(struct Node *head);
-
-/**
- * @brief Frees the memory allocated for the linked list.
- * @param head A pointer to the head of the linked list.
- */
-void freeLinkedList(struct Node *head);
-
-int isValidConstantName(const char *name);
-
-int isNumeric(char *str);
-
-int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head);
-
-int isValidLabel(const char *name);
-
-int countChars(const char *str);
-
-int miss(int requireComma);
-
-int checkLastCharacter(const char input[], char errorChar);
-
-int processNumericArguments(char *input, struct pattern *data, struct Node **head) ;
-
-int handleStringDirective(FILE *file, struct pattern *data, struct Node **head);
-
-int handleDataDirective(FILE *file, struct pattern *data, struct Node **head);
-
-struct Node *processAssemblyFile(const char *filename) {
-    FILE *file = fopen(filename, "r");
-    if (file == NULL) {
-        perror("Error opening file");
-        return NULL;
-    }
-
-    struct Node *head = NULL;
-    char buffer[MAX_LINE_SIZE];
-
-    while (fgets(buffer, sizeof(buffer), file) != NULL) {
-        processLine(file, &head);
-    }
-
-
-    fclose(file);
-    return head;
-}
 
 struct Node *createNode(struct pattern data) {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
@@ -207,6 +23,37 @@ void insertNode(struct Node **head, struct pattern data) {
         temp->next = newNode;
     }
 }
+
+
+struct Node *processAssemblyText(const char *filename) {
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        perror("Error opening file");
+        return NULL;
+    }
+
+    struct Node *head = NULL;
+    char word[50];
+
+    processLine(file, &head);
+
+    fclose(file);
+    return head;
+    freeLinkedList(head);
+}
+
+
+void processLine(FILE *file, struct Node **head) {
+    char word[50];
+    lineNumber=0;
+    while (fscanf(file, "%49s", word) == 1) {
+        struct pattern data;
+        categorizeWord(file,word, &data, head);
+        insertNode(head, data);
+        lineNumber++;
+    }
+}
+
 
 int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
     enum InstructionType *instType;
@@ -238,20 +85,9 @@ int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **h
     return 1;
 }
 
-void isError(struct pattern *data, const char *errorMessage, struct Node **head)
-{
-    data->type_line = ERROR;
-    // Insert data into the linked list
-    insertNode(head, *data);
-    // Update the error message with the line number
-    snprintf(data->error, sizeof(data->error), "Error: %s, File: front.c, Line: %d", errorMessage, lineNumber);
-    // Insert the updated data into the linked list
-    insertNode(head, *data);
-}
 
 
 int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
-
     fscanf(file, "%49s", word);
     if (isValidConstantName(word)) {
         strcpy(data->label, word);
@@ -263,14 +99,12 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
 
 
     fscanf(file, "%49s", word);
-
     if(strcmp(word,"=")!=0){
         isError(data, "Invalid constant name",head);
         return 0;
     }
 
     fscanf(file, "%49s", word);
-
     if (isNumeric(word)) {
         data->def.value = atoi(word);
         insertNode(head, *data);
@@ -282,12 +116,7 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
     return 1;
 }
 
-/**
- * Checks if a given string is numeric.
- *
- * @param str The string to be checked.
- * @return 1 if the string is numeric, 0 otherwise.
- */
+
 int isNumeric(char *str) {
     if (str == NULL || *str == '\0') {
         return 0;  /* Empty string or NULL is not numeric */
@@ -322,7 +151,6 @@ int isValidConstantName( const char *name) {
         }
         name++;
     }
-
     return 1; /* Valid constant name */
 }
 
@@ -387,9 +215,22 @@ int handleDataDirective(FILE *file, struct pattern *data, struct Node **head) {
         return 0;
     }
 
+    data->dir.data = (char **)calloc(size,  sizeof(int*));
+    //need to insert at a loop the numbers to the array
     data->dir.size = size;
     insertNode(head, *data);
     return 1;
+}
+
+void isError(struct pattern *data, const char *errorMessage, struct Node **head)
+{
+    data->type_line = ERROR;
+    // Insert data into the linked list
+    insertNode(head, *data);
+    // Update the error message with the line number
+    snprintf(data->error, sizeof(data->error), "Error: %s, File: front.c, Line: %d", errorMessage, lineNumber);
+    // Insert the updated data into the linked list
+    insertNode(head, *data);
 }
 
 int processNumericArguments(char *input, struct pattern *data, struct Node **head) {
@@ -406,11 +247,9 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
             isError(data, "Error: Argument is not a real number",head);
             return -1;  // Indicate error
         }
-
         size++;
         token = strtok(NULL, "[^,]");
     }
-
     return size;
 }
 
@@ -428,12 +267,6 @@ int checkLastCharacter(const char input[], char errorChar) {
 }
 
 
-/**
- * Checks if there is any extraneous text after a valid command.
- *
- * @param requireComma If set to 1, checks if a comma is missing after the command.
- * @return 0 if extraneous text or a missing comma is found, 1 otherwise.
- */
 int miss(int requireComma) {
     int missing;
     missing = getchar();
@@ -513,40 +346,6 @@ enum InstructionType* isInstruction(const char *word, struct pattern *data) {
 
 
 
-void processLine(FILE *file, struct Node **head) {
-    char word[50];
-    lineNumber=0;
-    while (fscanf(file, "%49s", word) == 1) {
-        struct pattern data;
-        categorizeWord(file,word, &data, head);
-        insertNode(head, data);
-        lineNumber++;
-    }
-}
-
-
-
-
-struct Node *processAssemblyText(const char *filename) {
-    FILE *file = fopen(filename, "r");
-    if (file == NULL) {
-        perror("Error opening file");
-        return NULL;
-    }
-
-    struct Node *head = NULL;
-    char word[50];
-
-    while (fscanf(file, "%49s", word) == 1) {
-        struct pattern data;
-        categorizeWord(file, word, &data, &head);
-    }
-
-    fclose(file);
-    return head;
-
-    // Don't forget to free the linked list
-}
 
 void printLinkedList(struct Node *head) {
     struct Node *current = head;
