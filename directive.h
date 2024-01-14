@@ -27,6 +27,8 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
     /* Separate cases for other directives */
     if (strcmp(word, ".entry") == 0) {
         num_of_entries++;
+        data->dir.directive_type = ENTRY;
+
         fscanf(file, "%49s", word);
         if (isValidLabel(word)) {
             strcpy(data->label, word);
@@ -38,6 +40,8 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
         }
     } else if (strcmp(word, ".extern") == 0) {
         num_of_externals++;
+        data->dir.directive_type = EXTERN;
+
         handleEntryDirective(file, data, head);
     } else if (strcmp(word, ".string") == 0) {
         return handleStringDirective(file, data, head);

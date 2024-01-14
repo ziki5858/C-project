@@ -9,7 +9,7 @@
 
 #include "front.h"
 
-// Global variables
+/* Global variables*/
 int num_of_patterns;
 int num_of_symbol;
 int num_of_entries;
