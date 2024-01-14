@@ -48,6 +48,7 @@ struct pattern {
     union {
         enum DirectiveType directive_type; /**< Type of directive pattern */
         char **data;                        /**< Data for certain directive patterns */
+        int size;
     } dir;
 
     struct {
@@ -264,3 +265,13 @@ void addToEntryLabelSet(const char *label);
  * @return 1 if the processing is successful; otherwise, 0.
  */
 int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head);
+
+/**
+ * @brief Categorizes a word based on its type and updates the pattern structure.
+ * @param file Pointer to the file being processed.
+ * @param word The word to be categorized.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @param head A pointer to the head of the linked list.
+ * @return 1 if the categorization is successful; otherwise, 0.
+ */
+int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head);
