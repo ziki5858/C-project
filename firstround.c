@@ -218,17 +218,17 @@ int check_validation_of_operands_num(struct pattern *instruction) {
 int check_validation_of_operands_type(struct pattern *instruction) {
   int i = instruction->inst.op_type;
   if ((i == MOV || (i >= ADD && i <= DEC) || i == RED) &&
-      (instruction->inst.operands[0].op_type != IMMEDIATE_NUMBER))
-    return 1;
+      (instruction->inst.operands[0].op_type == IMMEDIATE_NUMBER))
+    return 0;
   if ((i == JMP || i == BNE || i == JSR) &&
-      (instruction->inst.operands[0].op_type != DIRECT &&
-       instruction->inst.operands[0].op_type != REGISTER))
-    return 1;
+      (instruction->inst.operands[0].op_type == DIRECT_INDEX ||
+       instruction->inst.operands[0].op_type == IMMEDIATE_NUMBER))
+    return 0;
   if ((i == LEA) &&
-      ((instruction->inst.operands[1].op_type != REGISTER) &&
-       (instruction->inst.operands[1].op_type != IMMEDIATE_NUMBER)))
-    return 1;
-  return 0;
+      ((instruction->inst.operands[1].op_type == REGISTER) ||
+       (instruction->inst.operands[1].op_type == IMMEDIATE_NUMBER)))
+    return 0;
+  return 1;
 }
 
 char *encoded_instruction(struct pattern *instruction) {
@@ -265,7 +265,7 @@ char *encoded_instruction(struct pattern *instruction) {
 
 int extract_immidiate_number(struct pattern *p, int num_of_operand) {
   char *buffer = p->inst.operands[num_of_operand].operand_value.const_num;
-  if (buffer[0]) {
+  if (isalpha(buffer[0])) {
     Constant c = (Constant)exist_in_trie(constant, buffer);
     if (c)
       return c->value;
@@ -327,13 +327,14 @@ void handle_lable_error(struct pattern *p) {
 }
 
 void handle_lable_define(struct pattern *p, char *type, int counter) {
-  int type_of_op = (strcmp(type, "data")) ? 1 : 0;
+  int type_of_op = (strcmp(type, "data")==0) ? 1 : 0;
+
   Symbol s = (Symbol)exist_in_trie(symbols, p->label);
-  if (s && s->type == ENTRY) { /* define as entry without data */
+  if (s && s->type == S_ENTRY) { /* define as entry without data */
     s->type = (type_of_op) ? ENTRY_DATA : ENTRY_CODE;
     s->address = (type_of_op) ? DC : IC;
   } else if (!s) {
-    s = create_symbol(p->label, counter, strcmp(type, "data") ? S_DATA : CODE,
+    s = create_symbol(p->label, counter, (type_of_op) ? S_DATA : CODE,
                       current_pattern_num); /* define as data */
     if (!s) {
       print_error_msg("fail to add symbol", current_pattern_num);
@@ -508,7 +509,7 @@ void first_round(struct node *head) {
         for (i = 0; i < current_pattern->data->dir.size; i++) {
           buffer = current_pattern->data->dir.data[i];
 
-          if (exist_in_trie(constant, buffer)) { /* if the data is a constant */
+          if (isalpha(buffer[0]) && exist_in_trie(constant, buffer)) { /* if the data is a constant */
             data_element = ((Constant)exist_in_trie(constant, buffer))->value;
           } else { /* if the data is a number */
             if (buffer[0] == '-' || buffer[0] == '+') { /* ignore the sign */

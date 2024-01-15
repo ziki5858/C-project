@@ -40,7 +40,7 @@ void translator() {
   printf("convert of 11001100000011: %s\n", convert("11001100000011"));
   binary_table_translated = calloc(IC + DC, sizeof(char *));
   for (i = 0; i < IC + DC; i++) {
-    binary_table_translated[i] = calloc(WIDTH_OF_WORD / 2 + 1, sizeof(char));
+    binary_table_translated[i] = calloc(8, sizeof(char));
     strcpy(binary_table_translated[i], convert(binary_table[i]));
     printf("%s\n", binary_table_translated[i]);
   }
