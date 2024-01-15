@@ -2,16 +2,17 @@
 #include "tables.h"
 #include "trie/trie.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #define WIDTH_OF_WORD 15 /*14?????????????*/
 #define MAX_DATA_VALUE 8191
 #define MIN_DATA_VALUE -8192
 
 extern int num_of_patterns; /* אולי מהקדם אסמבלר?*/
-extern int num_of_symbols;
-extern int num_of_entries;
-extern int num_of_externals;
 
-extern Trie macro_trie;
+
+Trie macro_trie;
+// extern Trie macro_trie;
 char saved_words[26][6] = {"mov", "cmp", "add",   "sub",    "lea", "not", "clr",
                            "inc", "dec", "jmp",   "bne",    "red", "prn", "jsr",
                            "rts", "hlt", "entry", "extern", "r0",  "r1",  "r2",
@@ -20,66 +21,36 @@ int error_flag = 0;
 int num_of_codes = 0;
 int current_pattern_num = 0;
 
-struct symbol {
-  char *label;
-  int address;
-  enum { CODE, DATA, EXTERN, ENTRY, ENTRY_CODE, ENTRY_DATA } type;
-  int line_in_file;
-};
-
-struct constant {
-  char *label;
-  int value;
-  int line_in_file;
-};
-
-struct external {
-  char *label;
-  int *addresses;
-  int number_of_addresses;
-  int line_in_file;
-};
-
-struct entry {
-  Symbol symbol;
-  int line_in_file;
-};
-
-struct word_bin {
-  char word[WIDTH_OF_WORD]; /**/
-};
-
-struct code {
-  int num_of_lines;
-  WordBin *lines;
-  int line_in_file;
-};
-
 Trie symbols, constant, externals, entries; /*אולי להוסיף עץ בשם לבהירות*/
 int IC = 0, DC = 0;
 Code *code, data;
 
 Symbol *symbol_table;
-int num_of_symbols = 0;
+int num_of_symbols_in_table = 0;
 
 External *external_table;
-int num_of_externals = 0;
+int num_of_externals_in_table = 0;
 
 Entry *entry_table;
-int num_of_entries = 0;
+int num_of_entries_in_table = 0;
 
 Symbol create_symbol(char *label, int address, int type, int line_in_file) {
   Symbol s = (Symbol)calloc(1, sizeof(struct symbol));
   if (!s) {
-	print_error_memory(line_in_file);
+    print_error_memory(line_in_file);
     return NULL;
   }
-  s->label = label;
+strcpy(s->label,label);
   s->address = address;
   s->type = type;
   s->line_in_file = line_in_file;
+  printf("label: %s\n", s->label);
+  printf("address: %d\n", s->address);
+  printf("type: %d\n", s->type);
+  printf("line_in_file: %d\n", s->line_in_file);
   if (insert_to_trie(symbols, label, s)) {
-    symbol_table[num_of_symbols++] = s;
+    (symbol_table[num_of_symbols_in_table]) = s;
+	num_of_symbols_in_table++;
     return s;
   }
   print_error_msg("fail to add symbol", line_in_file);
@@ -89,7 +60,7 @@ Symbol create_symbol(char *label, int address, int type, int line_in_file) {
 Constant create_constant(char *label, int value, int line_in_file) {
   Constant c = (Constant)calloc(1, sizeof(struct constant));
   if (!c) {
-	print_error_memory(line_in_file);
+    print_error_memory(line_in_file);
     return NULL;
   }
   c->label = label;
@@ -97,14 +68,14 @@ Constant create_constant(char *label, int value, int line_in_file) {
   c->line_in_file = line_in_file;
   if (insert_to_trie(constant, label, c))
     return c;
-print_error_msg("fail to add constant", line_in_file);
+  print_error_msg("fail to add constant", line_in_file);
   return NULL;
 }
 
 External create_external(char *label, int line_in_file) {
   External e = (External)calloc(1, sizeof(struct external));
   if (!e) {
-	print_error_memory(line_in_file);
+    print_error_memory(line_in_file);
     return NULL;
   }
   e->label = label;
@@ -113,7 +84,7 @@ External create_external(char *label, int line_in_file) {
   //   e->addresses[0] = address;
   //   e->number_of_addresses = 1;
   if (insert_to_trie(externals, label, e)) {
-    external_table[num_of_externals++] = e;
+    external_table[num_of_externals_in_table++] = e;
     return e;
   }
   print_error_msg("fail to add external", line_in_file);
@@ -123,14 +94,16 @@ External create_external(char *label, int line_in_file) {
 void insert_address_to_external(External e, int address) {
   e->addresses =
       (int *)realloc(e->addresses, sizeof(int) * (e->number_of_addresses + 1));
-  e->addresses[e->number_of_addresses++] = address;
+  e->addresses[e->number_of_addresses] = address;
+  e->number_of_addresses++;
 }
 
-Entry create_entry(Symbol symbol) { /*למ הוגדר ככה בסימבול?*/
+Entry create_entry(Symbol symbol, int line_in_file) { /*למ הוגדר ככה בסימבול?*/
   Entry e = (Entry)calloc(1, sizeof(struct entry));
   e->symbol = symbol;
+  e->line_in_file = line_in_file;
   if (insert_to_trie(entries, symbol->label, e)) {
-    entry_table[num_of_entries++] = e;
+    entry_table[num_of_entries_in_table++] = e;
     return e;
   }
   return NULL;
@@ -151,7 +124,7 @@ void add_IC_to_symbol_table(int IC) {
   Symbol s;
   for (i = 0; i < num_of_symbols; i++) {
     s = symbol_table[i];
-    if (s->type == DATA || s->type == ENTRY_DATA)
+    if (s->type == S_DATA || s->type == ENTRY_DATA)
       s->address += (IC + 100);
   }
 }
@@ -203,7 +176,7 @@ char *encoded_immidiate_number(int n) {
   char *base = toBinaryString(n, 12);
   char *result = calloc(WIDTH_OF_WORD, sizeof(char));
   if (!result) {
-	print_error_memory(current_pattern_num);
+    print_error_memory(current_pattern_num);
     return NULL;
   }
   strcat(result, base);
@@ -255,12 +228,13 @@ int check_validation_of_operands_type(struct pattern *instruction) {
       ((instruction->inst.operands[1].op_type != REGISTER) &&
        (instruction->inst.operands[1].op_type != IMMEDIATE_NUMBER)))
     return 1;
+  return 0;
 }
 
 char *encoded_instruction(struct pattern *instruction) {
   char *result = malloc(WIDTH_OF_WORD);
   if (!result) {
-	print_error_memory(current_pattern_num);
+    print_error_memory(current_pattern_num);
     return NULL;
   }
   result[WIDTH_OF_WORD - 1] = '\0';
@@ -296,9 +270,9 @@ int extract_immidiate_number(struct pattern *p, int num_of_operand) {
     if (c)
       return c->value;
     else {
-		print_error_msg("constant not found", current_pattern_num);
-    
-    	return 0;
+      print_error_msg("constant not found", current_pattern_num);
+
+      return 0;
     }
   } else {
     return p->inst.operands[num_of_operand].operand_value.value;
@@ -325,13 +299,123 @@ int determaine_sign(char *buffer) {
   }
 }
 
+int containsOnlyDigits(const char *str) {
+  while (*str) {
+    if (!isdigit(*str)) {
+      return 0; // Not a digit
+    }
+    str++;
+  }
+  return 1; // All characters are digits
+}
+
+void handle_lable_error(struct pattern *p) {
+  if (p->label[0]) {
+    if (exist_in_trie(macro_trie, p->label)) {
+      print_error_msg("label already exist as macro", current_pattern_num);
+      return;
+    }
+    if (is_saved_word(p->label)) {
+      print_error_msg("label already exist as saved word", current_pattern_num);
+      return;
+    }
+    if (exist_in_trie(constant, p->label)) {
+      print_error_msg("label already exist as constant", current_pattern_num);
+      return;
+    }
+  }
+}
+
+void handle_lable_define(struct pattern *p, char *type, int counter) {
+  int type_of_op = (strcmp(type, "data")) ? 1 : 0;
+  Symbol s = (Symbol)exist_in_trie(symbols, p->label);
+  if (s && s->type == ENTRY) { /* define as entry without data */
+    s->type = (type_of_op) ? ENTRY_DATA : ENTRY_CODE;
+    s->address = (type_of_op) ? DC : IC;
+  } else if (!s) {
+    s = create_symbol(p->label, counter, strcmp(type, "data") ? S_DATA : CODE,
+                      current_pattern_num); /* define as data */
+    if (!s) {
+      print_error_msg("fail to add symbol", current_pattern_num);
+    }
+  } else { /* already exist */
+    print_error_msg("symbol already exist", current_pattern_num);
+  }
+}
+
+void allocate_memory_for_instructions(struct pattern *ins, Code *code_i) {
+  int amount;
+  WordBin *temp;
+  *code_i = (Code)calloc(1, sizeof(struct code));
+  if (!code_i) {
+    print_error_memory(current_pattern_num);
+    return;
+  }
+  if (ins->inst.num_of_operands == 0) {
+    amount = 1;
+  } else if (ins->inst.num_of_operands >= 1) {
+    if (ins->inst.operands[0].op_type == DIRECT_INDEX) {
+      amount = 3;
+    } else {
+      amount = 2;
+    }
+  }
+  if (ins->inst.num_of_operands == 2) {
+    if (ins->inst.operands[1].op_type == DIRECT_INDEX) {
+      amount += 2;
+    } else if (!((ins->inst.operands[1].op_type == REGISTER) &&
+               (ins->inst.operands[0].op_type == REGISTER))) {
+      amount += 1;
+    }
+  }
+  temp = (WordBin *)calloc(amount, sizeof(WordBin));
+  if (!temp) {
+    print_error_memory(current_pattern_num);
+    return;
+  }
+  (*code_i)->lines = temp;
+ (*code_i)->num_of_lines = amount;
+ (*code_i)->line_in_file = current_pattern_num;
+
+  for (int i = 0; i < amount; i++) {
+    (*code_i)->lines[i] = (WordBin)calloc(1, sizeof(struct word_bin));
+    if (!(*code_i)->lines[i]) {
+      print_error_memory(current_pattern_num);
+      return;
+    }
+  }
+}
+
+
+void allocate_memory_for_data(struct pattern * data_i){
+	int i, exist, new;
+	WordBin *temp;
+	exist = data->num_of_lines;
+	new = data_i->dir.size;
+	temp = (WordBin *)realloc(data->lines, sizeof(WordBin) * (exist + new));
+	if (!temp) {
+		print_error_memory(current_pattern_num);
+		return;
+	}
+	data->lines = temp;
+	for (i = 0; i < new; i++) {
+		data->lines[exist + i] = (WordBin)calloc(1, sizeof(struct word_bin));
+		if (!data->lines[exist + i]) {
+			print_error_memory(current_pattern_num);
+			return;
+		}
+	}
+}
+
 void first_round(struct node *head) {
   struct node *current_pattern = head;
 
-  char buffer[MAX_LINE_SIZE];
+  char *buffer;
   int data_element;
-  int sign = 1;
+  int sign = 1, i, char_index, num;
+  Symbol s;
 
+  buffer = (char *)calloc(MAX_LINE_SIZE, sizeof(char));
   /*
   initialize the tries
   */
@@ -339,6 +423,7 @@ void first_round(struct node *head) {
   externals = trie();
   entries = trie();
   constant = trie();
+  macro_trie = trie();
 
   /* initialize the code and data tables */
   code = (Code *)calloc(num_of_patterns, sizeof(Code));
@@ -349,31 +434,35 @@ void first_round(struct node *head) {
   entry_table = (Entry *)calloc(num_of_entries, sizeof(Entry));
   external_table = (External *)calloc(num_of_externals, sizeof(External));
 
-  while (current_pattern) {
-	current_pattern_num++;
+  // while (current_pattern) {
+  for (current_pattern_num = 1; current_pattern_num <= num_of_patterns;
+       current_pattern = current_pattern->next, current_pattern_num++) {
     /*
     dealing with labels
     check if the label is already exist in the tries
 
     */
     if (current_pattern->data->label[0]) {
+      handle_lable_error(current_pattern->data);
 
-      /* check if the label is already exist in the trie of macros */
-      if (exist_in_trie(macro_trie, current_pattern->data->label)) {
-        print_error_msg("label already exist as macro", current_pattern_num);
-        continue;
-      }
-      /* check if the label is already exist in the table of saved words */
-      if (is_saved_word(current_pattern->data->label)) {
-		print_error_msg("label already exist as saved word", current_pattern_num);
-        continue;
-      }
-      /* check if the label is already exist in the trie of consts */
-      if (exist_in_trie(constant, current_pattern->data->label)) {
-		print_error_msg("label already exist as constant", current_pattern_num);
-       
-        continue;
-      }
+      //   /* check if the label is already exist in the trie of macros */
+      //   if (exist_in_trie(macro_trie, current_pattern->data->label)) {
+      //     print_error_msg("label already exist as macro",
+      //     current_pattern_num); continue;
+      //   }
+      //   /* check if the label is already exist in the table of saved words */
+      //   if (is_saved_word(current_pattern->data->label)) {
+      //     print_error_msg("label already exist as saved word",
+      //                     current_pattern_num);
+      //     continue;
+      //   }
+      //   /* check if the label is already exist in the trie of consts */
+      //   if (exist_in_trie(constant, current_pattern->data->label)) {
+      //     print_error_msg("label already exist as constant",
+      //     current_pattern_num);
+
+      //     continue;
+      //   }
     }
     /* check the type of the line */
     switch (current_pattern->data->type_line) {
@@ -393,28 +482,30 @@ void first_round(struct node *head) {
       case DATA:
 
         /* check if there is a label */
-        if (current_pattern->label[0]) {
+        if (current_pattern->data->label[0]) {
+          handle_lable_define(current_pattern->data, "data", DC);
 
-          /* check if the label is already exist in the trie of symbols */
-          Symbol s = (Symbol)exist_in_trie(symbols, current_pattern->label);
-          if (s && s->type == ENRTY) { /* define as entry without data */
-            s->type = ENTRY_DATA;
-            s->address = DC;
-          } else if (!s) {
-            s = create_symbol(current_pattern->label, DC,
-                              DATA, current_pattern_num); /* define as data */
-            if (!s) {
-				print_error_msg("fail to add symbol", current_pattern_num);
-                 }
-          } else { /* already exist */
-		  	print_error_msg("symbol already exist", current_pattern_num);
-            }
+          //   /* check if the label is already exist in the trie of symbols */
+          //   s = (Symbol)exist_in_trie(symbols, current_pattern->data->label);
+          //   if (s && s->type == ENTRY) { /* define as entry without data */
+          //     s->type = ENTRY_DATA;
+          //     s->address = DC;
+          //   } else if (!s) {
+          //     s = create_symbol(current_pattern->data->label, DC, S_DATA,
+          //                       current_pattern_num); /* define as data */
+          //     if (!s) {
+          //       print_error_msg("fail to add symbol", current_pattern_num);
+          //     }
+          //   } else { /* already exist */
+          //     print_error_msg("symbol already exist", current_pattern_num);
+          //   }
         }
         /* insert the data to the data table */
-        data->lines = (WordBin *)realloc(
-            data->lines, sizeof(WordBin) * (data->num_of_lines +
-                                            current_pattern->data->dir.size));
-        for (int i = 0; i < current_pattern->data->dir.size; i++) {
+        // data->lines = (WordBin *)realloc(
+        //     data->lines, sizeof(WordBin) * (data->num_of_lines +
+        //                                     current_pattern->data->dir.size));
+		allocate_memory_for_data(current_pattern->data);
+        for (i = 0; i < current_pattern->data->dir.size; i++) {
           buffer = current_pattern->data->dir.data[i];
 
           if (exist_in_trie(constant, buffer)) { /* if the data is a constant */
@@ -424,39 +515,74 @@ void first_round(struct node *head) {
               sign = determaine_sign(buffer); /* determaine the sign */
               buffer++;
             }
-            if (strlen(buffer) !=
-                strspn(buffer,
-                       "0123456789")) { /* check if the data is a number */
-					   print_error_msg("data element is not a number", current_pattern_num);
-               continue;
+            if (!containsOnlyDigits(
+                    &buffer[0])) { /* check if the data is a number */
+              print_error_msg("data element is not a number",
+                              current_pattern_num);
+              continue;
             } else
               data_element = atoi(buffer) * sign;
           }
           if (data_element > MAX_DATA_VALUE || data_element < MIN_DATA_VALUE) {
-			print_error_msg("data element is out of range", current_pattern_num);
+            print_error_msg("data element is out of range",
+                            current_pattern_num);
             continue;
           }
           /* insert the data to the data table */
-          data->lines[data->num_of_lines + i].word =
-              encoded_data(data_element); /* -> */
+          strcpy(data->lines[data->num_of_lines + i]->word,
+                 encoded_data(data_element)); /* -> */
         }
         data->num_of_lines += current_pattern->data->dir.size;
-		data->line_in_file = current_pattern_num;
+        // data->line_in_file = current_pattern_num;
         DC += current_pattern->data->dir.size;
         break;
 
-      case ENRTY: /*אולי להשמיט את בדיקת התווית במקרה כזה*/
-        if (exist_in_trie(entries, current_pattern->label)) {
+      case STRING:
+
+        if (current_pattern->data->label[0]) {
+          handle_lable_define(current_pattern->data, "data", DC);
+          //   s = (Symbol)exist_in_trie(symbols, current_pattern->data->label);
+          //   if (s && s->type == ENTRY) { /* define as entry without data */
+          //     s->type = ENTRY_DATA;
+          //     s->address = DC;
+          //   } else if (!s) {
+          //     s = create_symbol(current_pattern->data->label, DC, S_DATA,
+          //                       current_pattern_num); /* define as data */
+          //     if (!s) {
+          //       print_error_msg("fail to add symbol", current_pattern_num);
+          //     }
+          //   } else { /* already exist */
+          //     print_error_msg("symbol already exist", current_pattern_num);
+          //   }
+        }
+        /* insert the data to the data table */
+        // data->lines = (WordBin *)realloc(
+        //     data->lines, sizeof(WordBin) * (data->num_of_lines +
+        //                                     current_pattern->data->dir.size));
+		allocate_memory_for_data(current_pattern->data);
+        for (i = 0; i < current_pattern->data->dir.size; i++) {
+          char_index = current_pattern->data->dir.string[i];
+          strcpy(data->lines[data->num_of_lines + i]->word,
+                 encoded_data(char_index));
+        }
+        data->num_of_lines += current_pattern->data->dir.size;
+        DC += current_pattern->data->dir.size;
+        break;
+
+      case ENTRY: /*אולי להשמיט את בדיקת התווית במקרה כזה*/
+        if (exist_in_trie(entries, current_pattern->data->label)) {
           /* seem to be allowed */
           continue;
         }
-        if (exist_in_trie(externals, current_pattern->label)) {
-			print_error_msg("symbol already exist as external", current_pattern_num);
+        if (exist_in_trie(externals, current_pattern->data->label)) {
+          print_error_msg("symbol already exist as external",
+                          current_pattern_num);
           continue;
         }
-        if (Symbol s = (Symbol)exist_in_trie(symbols, current_pattern->label)) {
+        if ((s = (Symbol)exist_in_trie(symbols,
+                                       current_pattern->data->label))) {
           // Symbol s = (Symbol)exist_in_trie(symbols,
-          // current_pattern->label);
+          // current_pattern->data->label);
           if (s->type == DATA || s->type == CODE) {
             s->type = (s->type == DATA) ? ENTRY_DATA : ENTRY_CODE;
             create_entry(s, current_pattern_num);
@@ -465,78 +591,92 @@ void first_round(struct node *head) {
             continue;
           }
         } else { /* symbol not found */
-          Symbol s = create_symbol(current_pattern->label, 0, ENTRY, current_pattern_num);
+          s = create_symbol(current_pattern->data->label, 0, S_ENTRY,
+                            current_pattern_num);
           create_entry(s, current_pattern_num);
         }
+		break;
 
       case EXTERN:
-        if (exist_in_trie(entries, current_pattern->label)) {
-			print_error_msg("symbol already exist as entry", current_pattern_num);
+        if (exist_in_trie(entries, current_pattern->data->label)) {
+          print_error_msg("symbol already exist as entry", current_pattern_num);
           continue;
         }
-        if (exist_in_trie(externals, current_pattern->label)) {
+        if (exist_in_trie(externals, current_pattern->data->label)) {
           /* seem to be allowed */
           continue;
         }
-        if (symbols s = exist_in_trie(symbols, current_pattern->label)) {
-			print_error_msg("symbol already exist as symbol", current_pattern_num);
+        if ((s = exist_in_trie(symbols, current_pattern->data->label))) {
+          print_error_msg("symbol already exist as symbol",
+                          current_pattern_num);
           continue;
 
         } else {
-          Symbol s = create_symbol(current_pattern->label, 0, EXTERN, current_pattern_num);
-          create_external(current_pattern->label, current_pattern_num);
+          s = create_symbol(current_pattern->data->label, 0, S_EXTERN,
+                            current_pattern_num);
+          create_external(current_pattern->data->label, current_pattern_num);
         }
         break;
       }
       break;
 
     case DEFINE:
-      if (exist_in_trie(symbols, current_pattern->label)) {
-		print_error_msg("symbol already exist as symbol", current_pattern_num);
+      if (exist_in_trie(symbols, current_pattern->data->label)) {
+        print_error_msg("symbol already exist as symbol", current_pattern_num);
         continue;
       }
-      Constant c = create_constant(current_pattern->label,
-                                   current_pattern->data->def.value);
+      Constant c = create_constant(current_pattern->data->label,
+                                   current_pattern->data->def.value,
+                                   current_pattern_num);
       break;
 
     case INSTRUCTION:
-	  
-	  current_pattern->data->code = code[num_of_codes];
+
+      current_pattern->data->code = code[num_of_codes];
       /* check the valdiation of the operands type and number */
       if (!check_validation_of_operands_num(current_pattern->data)) {
-		print_error_msg("invalid number of operands", current_pattern_num);
+        print_error_msg("invalid number of operands", current_pattern_num);
         continue;
       }
       if (!check_validation_of_operands_type(current_pattern->data)) {
-		print_error_msg("invalid type of operands", current_pattern_num);
+        print_error_msg("invalid type of operands", current_pattern_num);
         continue;
       }
 
       /* check if there is a label */
-      if (current_pattern->label[0]) {
-        Symbol s = (Symbol)exist_in_trie(symbols, current_pattern->label);
-        if (s && s->type == ENRTY) {
-          s->type = ENTRY_CODE;
-          s->address = IC;
-        } else if (!s) {
-          s = create_symbol(current_pattern->label, IC, CODE, current_pattern_num);
-          if (!s) {
-			print_error_msg("fail to add symbol", current_pattern_num);abel);
-            continue;
-          }
-        } else {
-			print_error_msg("symbol already exist", current_pattern_num);el);
-          continue;
-        }
-      }
-
+	  if (current_pattern->data->label[0]) {
+	        handle_lable_define(current_pattern->data, "code", IC);
+	  }
+	  //   if (current_pattern->data->label[0]) {
+      //     Symbol s = (Symbol)exist_in_trie(symbols,
+      //     current_pattern->data->label); if (s && s->type == ENTRY) {
+      //       s->type = ENTRY_CODE;
+      //       s->address = IC;
+      //     } else if (!s) {
+      //       s = create_symbol(current_pattern->data->label, IC, CODE,
+      //                         current_pattern_num);
+      //       if (!s) {
+      //         print_error_msg("fail to add symbol", current_pattern_num);
+      //         continue;
+      //       }
+      //     } else {
+      //       print_error_msg("symbol already exist", current_pattern_num);
+      //       continue;
+      //     }
+      // }
+      allocate_memory_for_instructions(current_pattern->data,
+                                       &(code[num_of_codes]));
       int num_of_word_nedded = 1;
+      // Code codes = (Code)calloc(1, sizeof(struct code));
+      //   code[num_of_codes] = codes;
 
-      code[num_of_codes].lines = (WordBin *)calloc(1, sizeof(WordBin));
-      code[num_of_codes].lines[0].word =
-          encoded_instruction(current_pattern->data);
-      code[num_of_codes].num_of_lines = 1;
-	  code[num_of_codes].line_in_file = current_pattern_num;
+      //   code[num_of_codes]->lines = (WordBin*)calloc(1, sizeof(WordBin));
+      //   code[num_of_codes]->lines[0] = (WordBin)calloc(1, sizeof(struct
+      //   word_bin));
+      strcpy(code[num_of_codes]->lines[0]->word,
+             encoded_instruction(current_pattern->data));
+      //   code[num_of_codes]->num_of_lines = 1;
+      //   code[num_of_codes]->line_in_file = current_pattern_num;
 
       /* check if there ara operands */
       if (current_pattern->data->inst.num_of_operands >= 1) {
@@ -548,51 +688,72 @@ void first_round(struct node *head) {
               (current_pattern->data->inst.operands[1].op_type ==
                REGISTER)) { /*tow registers*/
             num_of_word_nedded += 1;
-            code[num_of_codes].lines = (WordBin *)realloc(
-                code[num_of_codes].lines, sizeof(WordBin) * num_of_word_nedded);
-            code[num_of_codes].lines[1].word = encoded_registers(
-                current_pattern->data->inst.operands[1].operand_value.reg,
-                current_pattern->data->inst.operands[0].operand_value.reg);
+            // code[num_of_codes]->lines = (WordBin *)realloc(
+            //     code[num_of_codes]->lines, sizeof(WordBin) *
+            //     num_of_word_nedded);
+            // 	code[num_of_codes]->lines[1] = (WordBin)calloc(1, sizeof(struct
+            // word_bin));
+            strcpy(
+                code[num_of_codes]->lines[1]->word,
+                encoded_registers(
+                    current_pattern->data->inst.operands[1].operand_value.reg,
+                    current_pattern->data->inst.operands[0].operand_value.reg));
 
           } else
             switch (current_pattern->data->inst.operands[1].op_type) {
             case REGISTER:
               /*only the sorsce operand is register*/
               num_of_word_nedded += 1;
-              code[num_of_codes].lines =
-                  (WordBin *)realloc(code[num_of_codes].lines,
-                                     sizeof(WordBin) * num_of_word_nedded);
-              code[num_of_codes].lines[1].word = encoded_registers(
-                  current_pattern->data->inst.operands[1].operand_value.reg, 0);
-
+              //   code[num_of_codes]->lines =
+              //       (WordBin *)realloc(code[num_of_codes]->lines,
+              //                          sizeof(WordBin) * num_of_word_nedded);
+              // code[num_of_codes]->lines[1] = (WordBin)calloc(1, sizeof(struct
+              // word_bin));
+              strcpy(
+                  code[num_of_codes]->lines[1]->word,
+                  encoded_registers(
+                      current_pattern->data->inst.operands[1].operand_value.reg,
+                      0));
+              break;
             case IMMEDIATE_NUMBER:
               num_of_word_nedded += 1;
               int num;
               num = extract_immidiate_number(current_pattern->data, 1);
-              code[num_of_codes].lines =
-                  (WordBin *)realloc(code[num_of_codes].lines,
-                                     sizeof(WordBin) * num_of_word_nedded);
-              code[num_of_codes].lines[1].word = encoded_immidiate_number(num);
-
+              //   code[num_of_codes]->lines =
+              //       (WordBin *)realloc(code[num_of_codes]->lines,
+              //                          sizeof(WordBin) * num_of_word_nedded);
+              // 	code[num_of_codes]->lines[1] = (WordBin)calloc(1,
+              // sizeof(struct word_bin));
+              strcpy(code[num_of_codes]->lines[1]->word,
+                     encoded_immidiate_number(num));
+              break;
             case DIRECT:
               num_of_word_nedded += 1;
-              code[num_of_codes].lines =
-                  (WordBin *)realloc(code[num_of_codes].lines,
-                                     sizeof(WordBin) * num_of_word_nedded);
-              code[num_of_codes].lines[1].word =
-                  encoded_data(0); /*will encoded next round*/
-              
+              //   code[num_of_codes]->lines =
+              //       (WordBin *)realloc(code[num_of_codes]->lines,
+              //                          sizeof(WordBin) * num_of_word_nedded);
+              // code[num_of_codes]->lines[1] = (WordBin)calloc(1, sizeof(struct
+              // word_bin));
+              strcpy(code[num_of_codes]->lines[1]->word,
+                     encoded_data(0)); /*will encoded next round*/
+              break;
             case DIRECT_INDEX:
 
               num_of_word_nedded += 2;
-              code[num_of_codes].lines =
-                  (WordBin *)realloc(code[num_of_codes].lines,
-                                     sizeof(WordBin) * num_of_word_nedded);
-              code[num_of_codes].lines[1].word =
-                  encoded_data(0); /*will encoded next round*/
+              //   code[num_of_codes]->lines =
+              //       (WordBin *)realloc(code[num_of_codes]->lines,
+              //                          sizeof(WordBin) * num_of_word_nedded);
+              // code[num_of_codes]->lines[1] = (WordBin)calloc(1, sizeof(struct
+              // word_bin));
+              strcpy(code[num_of_codes]->lines[1]->word,
+                     encoded_data(0)); /*will encoded next round*/
               num = extract_immidiate_number(current_pattern->data, 0);
-              code[num_of_codes].lines[2].word = encoded_immidiate_number(num);
-              
+              // code[num_of_codes]->lines[2] = (WordBin)calloc(1, sizeof(struct
+              // word_bin));
+
+              strcpy(code[num_of_codes]->lines[2]->word,
+                     encoded_immidiate_number(num));
+              break;
             }
         }
         switch (current_pattern->data->inst.operands[0].op_type) {
@@ -600,51 +761,61 @@ void first_round(struct node *head) {
           if ((current_pattern->data->inst.num_of_operands == 2) &&
               (current_pattern->data->inst.operands[1].op_type != REGISTER)) {
             num_of_word_nedded += 1;
-            code[num_of_codes].lines = (WordBin *)realloc(
-                code[num_of_codes].lines, sizeof(WordBin) * num_of_word_nedded);
-            code[num_of_codes].lines[num_of_word_nedded - 1].word =
-                encoded_registers(
-                    0,
-                    current_pattern->data->inst.operands[0].operand_value.reg);
+            // code[num_of_codes]->lines = (WordBin *)realloc(
+            //     code[num_of_codes]->lines, sizeof(WordBin) *
+            //     num_of_word_nedded);
+            // code[num_of_codes]->lines[num_of_word_nedded-1] =
+            // (WordBin)calloc(1, sizeof(struct word_bin));
+            strcpy(code[num_of_codes]->lines[num_of_word_nedded - 1]->word,
+                   encoded_registers(0, current_pattern->data->inst.operands[0]
+                                            .operand_value.reg));
           }
           break;
 
         case IMMEDIATE_NUMBER:
           num_of_word_nedded += 1;
-          code[num_of_codes].lines = (WordBin *)realloc(
-              code[num_of_codes].lines, sizeof(WordBin) * num_of_word_nedded);
+          //   code[num_of_codes]->lines = (WordBin *)realloc(
+          //       code[num_of_codes]->lines, sizeof(WordBin) *
+          //       num_of_word_nedded);
+          // code[num_of_codes]->lines[num_of_word_nedded-1] =
+          // (WordBin)calloc(1, sizeof(struct word_bin));
           num = extract_immidiate_number(current_pattern->data, 0);
-          code[num_of_codes].lines[num_of_word_nedded - 1].word =
-              encoded_immidiate_number(num);
+          strcpy(code[num_of_codes]->lines[num_of_word_nedded - 1]->word,
+                 encoded_immidiate_number(num));
           break;
 
         case DIRECT:
           num_of_word_nedded += 1;
-          code[num_of_codes].lines = (WordBin *)realloc(
-              code[num_of_codes].lines, sizeof(WordBin) * num_of_word_nedded);
-          code[num_of_codes].lines[num_of_word_nedded - 1].word =
-              encoded_data(0);
+          //   code[num_of_codes]->lines = (WordBin *)realloc(
+          //       code[num_of_codes]->lines, sizeof(WordBin) *
+          //       num_of_word_nedded);
+          //   code[num_of_codes]->lines[num_of_word_nedded - 1] =
+          //   (WordBin)calloc(1, sizeof(struct word_bin));
+          strcpy(code[num_of_codes]->lines[num_of_word_nedded - 1]->word,
+                 encoded_data(0));
           break;
 
         case DIRECT_INDEX:
           num_of_word_nedded += 2;
-          code[num_of_codes].lines = (WordBin *)realloc(
-              code[num_of_codes].lines, sizeof(WordBin) * num_of_word_nedded);
-          code[num_of_codes].lines[num_of_word_nedded - 2].word =
-              encoded_data(0);
+          //   code[num_of_codes]->lines = (WordBin *)realloc(
+          //       code[num_of_codes]->lines, sizeof(WordBin) *
+          //       num_of_word_nedded);
+          // code[num_of_codes]->lines[num_of_word_nedded-2] =
+          // (WordBin)calloc(1, sizeof(struct word_bin));
+          // code[num_of_codes]->lines[num_of_word_nedded-1] =
+          // (WordBin)calloc(1, sizeof(struct word_bin));
+          strcpy(code[num_of_codes]->lines[num_of_word_nedded - 2]->word,
+                 encoded_data(0));
           num = extract_immidiate_number(current_pattern->data, 0);
-          code[num_of_codes].lines[num_of_word_nedded - 1].word =
-              encoded_immidiate_number(num);
+          strcpy(code[num_of_codes]->lines[num_of_word_nedded - 1]->word,
+                 encoded_immidiate_number(num));
           break;
         }
-        num_of_codes++;
-        IC += num_of_word_nedded;
-        break;
       }
+      num_of_codes++;
+      IC += num_of_word_nedded;
     }
-    current_pattern = current_pattern->next;
+    // current_pattern = current_pattern->next;
   }
   add_IC_to_symbol_table(IC);
 }
-
-int main() { return 0; }

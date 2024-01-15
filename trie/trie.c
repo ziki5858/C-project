@@ -36,7 +36,7 @@ Trie trie() {
     return calloc(1,sizeof(struct trie));
 }
 
-const char *insert_to_trie(Trie trie, const char *string, void * end_of_string_pointer) {
+const char * insert_to_trie(Trie trie, const char *string, void * end_of_string_pointer) {
     const char * temp = string;
     TrieNode* iterator = &trie->next[(*string) - TRIE_BASE_CHAR];
     while(1) {
