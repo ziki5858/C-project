@@ -39,7 +39,7 @@ struct pattern {
     int num_of_operands;
 	struct {
     	enum { IMMEDIATE_NUMBER, DIRECT, DIRECT_INDEX, REGISTER } op_type;
-		union {
+		struct {
     		char symbol[MAX_LABEL_SIZE];
 			char const_num[MAX_LABEL_SIZE];
     		int value;
@@ -52,6 +52,55 @@ struct pattern {
   } def;
   struct code *code;
 };
+
+// struct pattern {
+//   char label[MAX_LINE_SIZE];
+//   enum { DIRECTIVE, INSTRUCTION, DEFINE, ERROR } type_line;
+//   union {
+//     char error[MAX_ERROR_SIZE];
+
+//     struct {
+//       enum { ENTRY, EXTERN, STRING, DATA } directive_type;
+//       char data[40][MAX_LINE_SIZE];
+//       char string[MAX_LINE_SIZE];
+//       int size;
+//     } dir;
+//     struct {
+//       enum {
+//         MOV,
+//         CMP,
+//         ADD,
+//         SUB,
+//         LEA,
+//         NOT,
+//         CLR,
+//         INC,
+//         DEC,
+//         JMP,
+//         BNE,
+//         RED,
+//         PRN,
+//         JSR,
+//         RTS,
+//         HLT
+//       } op_type;
+//       int num_of_operands;
+//       struct {
+//         enum { IMMEDIATE_NUMBER, DIRECT, DIRECT_INDEX, REGISTER } op_type;
+//         struct {
+//           char symbol[MAX_LABEL_SIZE];
+//           char const_num[MAX_LABEL_SIZE];
+//           int value;
+//           enum { r0, r1, r2, r3, r4, r5, r6, r7 } reg;
+//         } operand_value;
+//       } operands[2];
+//       struct code *code;
+//     } inst;
+//     struct {
+//       int value;
+//     } def;
+//   };
+// };
 
 struct node {
   struct pattern *data;
@@ -107,6 +156,8 @@ extern int num_of_symbols;
 extern int num_of_patterns;
 extern External *external_table;
 extern Entry *entry_table;
+extern Symbol *symbol_table_of_entries;
+
 
 
 void first_round(struct node *head);

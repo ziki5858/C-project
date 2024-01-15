@@ -28,7 +28,7 @@ char *convert(char *word) {
 
     result[i] = signs[num];
   }
-
+  free(part);
   result[7] = '\0';
   return result;
 }
@@ -37,11 +37,13 @@ void translator() {
   int i;
   printf("IC: %d\n", IC);
   printf("DC: %d\n", DC);
-  printf("convert of 11001100000011: %s\n", convert("11001100000011"));
   binary_table_translated = calloc(IC + DC, sizeof(char *));
   for (i = 0; i < IC + DC; i++) {
-    binary_table_translated[i] = calloc(8, sizeof(char));
-    strcpy(binary_table_translated[i], convert(binary_table[i]));
+    binary_table_translated[i] = convert(binary_table[i]);
+    // binary_table_translated[i] = calloc(8, sizeof(char));
+    // strcpy(binary_table_translated[i], convert(binary_table[i]));
+    printf("line: %d\n", i);
+    printf("%s\n", binary_table[i]);
     printf("%s\n", binary_table_translated[i]);
   }
 }
@@ -70,8 +72,8 @@ void to_files(char *file_name) {
   if (num_of_entries > 0) {
     ent = fopen(ent_name, "w");
     for (i = 0; i < num_of_entries; i++) {
-      fprintf(ent, "%s %7d\n", entry_table[i]->symbol->label,
-              entry_table[i]->symbol->address);
+      fprintf(ent, "%s %7d\n", symbol_table_of_entries[i]->label,
+              symbol_table_of_entries[i]->address);
     }
     fclose(ent);
   }
@@ -80,10 +82,13 @@ void to_files(char *file_name) {
     ext = fopen(ext_name, "w");
     for (i = 0; i < num_of_externals; i++) {
       for (j = 0; j < external_table[i]->number_of_addresses; j++) {
-        fprintf(ext, "%s %7d\n", external_table[i]->label,
-                external_table[i]->addresses[j]);
+        fprintf(ext, "%s\t%d\n", external_table[i]->label,
+                external_table[i]->addresses[j] + 100);
       }
     }
-    fclose(ext);
   }
+  fclose(ext);
+  free(ext_name);
+  free(ent_name);
+  free(ob_name);
 }

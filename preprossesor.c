@@ -22,7 +22,7 @@
 #define EXT_AFTER ".am"
 
 typedef struct macro * Macro ;
-
+int num_of_patterns;
 
 /**
  * @brief struct for macro, contains the name of the macro, the value of the macro and the number of lines in the macro
@@ -223,6 +223,7 @@ int preprocess(char *name_of_file){
 	FILE *ptr_original;
 	FILE *ptr_preprocessed;
 
+
 	char line[MAX_LINE_LENGTH];
 	char *temp;
 	char *temp_original;
@@ -282,7 +283,12 @@ int preprocess(char *name_of_file){
 		free(temp_original);
 	}
 
-	
+	/* count the lines in the preprocessed file	*/
+	int count = 0;
+	rewind(ptr_preprocessed);
+	while (fgets(line, MAX_LINE_LENGTH, ptr_preprocessed) != NULL)
+		count++;
+	num_of_patterns = count;
 	return 0;
 }
 

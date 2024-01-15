@@ -33,7 +33,7 @@ void validate_entreis() {
 }
 void secondround(struct node *head) {
   validate_entreis();
-  int type_ARE, value, i, words, j;
+  int type_ARE, value, i, words =0, j = 0;
   Symbol s;
   while (head) {
     if (head->data->code) {
@@ -64,8 +64,12 @@ void secondround(struct node *head) {
                 error_flag = 1;
                 return;
               }
-              strcpy(result, toBinaryString(value, 12));
-              strcat(result, toBinaryString(type_ARE, 2));
+			  char *temp_res = toBinaryString(value, 12);
+              strcpy(result, temp_res);
+			  free(temp_res);
+			  temp_res = toBinaryString(type_ARE, 2);
+              strcat(result, temp_res);
+			  free(temp_res);
               if (i == 1)
                 strcpy((char *)head->data->code->lines[1], result);
               else {
@@ -80,9 +84,10 @@ void secondround(struct node *head) {
                 strcpy((char *)head->data->code->lines[1 + j], result);
                 if (type_ARE == 1) {
                   insert_address_to_external(exist_in_trie(externals, s->label),
-                                             words + 2 + j);
+                                             words + 1 + j);
                 }
               }
+			  free(result);
             } else {
               printf("error: symbol %s not found\n",
                      head->data->inst.operands[i].operand_value.symbol);
