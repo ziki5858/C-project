@@ -44,10 +44,10 @@ struct Node *processAssemblyText(const char *filename) {
 
 
 void processLine(FILE *file, struct Node **head) {
-    char word[50];
+    char word[MAX_LINE_SIZE];
     lineNumber=0;
 
-    while (fscanf(file, "%49s", word) == 1) {
+    while (fscanf(file, "%s", word) == 1) {
         struct pattern data;
         categorizeWord(file,word, &data, head);
         lineNumber++;
@@ -56,10 +56,10 @@ void processLine(FILE *file, struct Node **head) {
 
 
 int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
-    if(strcmp(word, ".define") == 0){
+    if(strcmp(word, ".define") == 0){/*No need to check for label because language doesn't support label for define*/
         data->type_line = DEFINE;
         if (!defineFormat(file, word, data, head)) {
-            data->type_line = ERROR;
+            isError(data, "Error: define format isn't valid", head);
             return 0;
         }
     }
@@ -76,6 +76,7 @@ int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **h
         }
     }
     insertNode(head, *data);
+    printLinkedList(*head);
     return 1;
 }
 

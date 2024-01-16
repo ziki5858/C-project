@@ -15,8 +15,8 @@ struct LabelSet entryLabelSet = { .count = 0 };
 
 /* Function to handle the formatting of directives in the assembly code */
 int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
-    if (isValidLabel(word)) {
-        fscanf(file, "%49s", word);
+    if (isValidLabel(word,data)) {
+        fscanf(file, "%s", word);
         if (strcmp(word, ".string") == 0) {
             return handleStringDirective(file, data, head);
         } else if (strcmp(word, ".data") == 0) {
@@ -30,7 +30,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
         data->choice.dir.directive_type = ENTRY;
 
         fscanf(file, "%49s", word);
-        if (isValidLabel(word)) {
+        if (isValidLabel(word,data)) {
             strcpy(data->label, word);
             return 1;
         } else {
@@ -186,7 +186,7 @@ int countChars(const char *str) {
 }
 
 /* Function to check if a label is valid */
-int isValidLabel( char *name) {
+int isValidLabel(char *name,struct pattern *data ) {
     /* Check if the name is not empty */
     if (*name == '\0') {
         return 0; // Invalid: Empty name
@@ -212,7 +212,8 @@ int isValidLabel( char *name) {
         name++;
         count++;
     }
-
+    strcpy(data->label,name);
+    num_of_symbol++;
     return 1;
 }
 
@@ -235,7 +236,7 @@ int isEntryLabel(const char *label) {
 int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
     char tempLabel[MAX_LABEL_SIZE];
 
-    if (fscanf(file, "%49s", tempLabel) == 1) {
+    if (fscanf(file, "%s", tempLabel) == 1) {
         /* Check if the label is already used as .entry */
         if (isEntryLabel(tempLabel)) {
             isError(data, "Error: Label already used as .entry", head);
@@ -243,12 +244,11 @@ int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
         }
 
         /* Check if the label is valid */
-        if (isValidLabel(tempLabel)) {
+        if (isValidLabel(tempLabel,data)) {
             strcpy(tempLabel, data->label);
             num_of_symbol++;
             /* Add the label to the entry label set */
             addToEntryLabelSet(data->label);
-            printLinkedList(*head);
             return 1;
         } else {
             isError(data, "Error: Invalid label name", head);

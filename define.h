@@ -4,22 +4,22 @@
 #include "front.h"
 
 int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
-    fscanf(file, "%49s", word);
+    fscanf(file, "%s", word);
     if (isValidConstantName(word)) {
         strcpy(data->label, word);
+        num_of_symbol++;
     } else {
-        isError(data, "Invalid constant name",head);
+        isError(data, "Error: Invalid constant name",head);
         return 0;
     }
 
-
-    fscanf(file, "%49s", word);
+    fscanf(file, "%s", word);
     if(strcmp(word,"=")!=0){
-        isError(data, "Invalid constant name",head);
+        isError(data, "Error: Invalid symbol, need to be =",head);
         return 0;
     }
 
-    fscanf(file, "%49s", word);
+    fscanf(file, "%s", word);
     if (isNumeric(word)) {
         data->choice.def.value = atoi(word);
     } else {
