@@ -89,12 +89,6 @@ void isError(struct pattern *data, const char *errorMessage, struct Node **head)
     insertNode(head, *data);
 }
 
-
-
-
-
-
-
 void printLinkedList(struct Node *head) {
     struct Node *current = head;
     while (current != NULL) {
@@ -113,7 +107,6 @@ void freeLinkedList(struct Node *head) {
         free(temp);
     }
 }
-
 
 
 

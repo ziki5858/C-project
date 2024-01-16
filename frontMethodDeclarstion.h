@@ -9,7 +9,7 @@
 
 #include "front.h"
 
-// Global variables
+/* Global variables*/
 int num_of_patterns;
 int num_of_symbol;
 int num_of_entries;
@@ -59,8 +59,13 @@ struct pattern {
         enum InstructionType op_type;        /**< Type of instruction pattern */
         int num_of_operands;                 /**< Number of operands */
         struct {
+<<<<<<< HEAD
             enum { IMMEDIATE_NUMBER, DIRECT, DIRECT_INDEX, REGISTER } op_type; /**< Type of operand */
             struct {
+=======
+            enum { IMMEDIATE_NUMBER/*start with #*/, DIRECT, DIRECT_INDEX/*varibale with []*/, REGISTER/*r...r7*/ } op_type; /**< Type of operand */
+            union {
+>>>>>>> c018ac752cb636b09ff0feaf29ac5c88908acec9
                 char symbol[MAX_LABEL_SIZE]; /**< Operand value as symbol */
                 char const_num[MAX_LABEL_SIZE]; /**< Operand value as constant number */
                 int value; /**< Operand value as immediate number */
@@ -227,7 +232,7 @@ int isNumeric(char *str);
  * @param name The label to be checked.
  * @return 1 if the label is valid; otherwise, 0.
  */
-int isValidLabel(const char *name);
+int isValidLabel( char *name);
 
 /**
  * @brief Function to count characters in a string.

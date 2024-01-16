@@ -27,6 +27,8 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
     /* Separate cases for other directives */
     if (strcmp(word, ".entry") == 0) {
         num_of_entries++;
+        data->dir.directive_type = ENTRY;
+
         fscanf(file, "%49s", word);
         if (isValidLabel(word)) {
             strcpy(data->label, word);
@@ -38,6 +40,8 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
         }
     } else if (strcmp(word, ".extern") == 0) {
         num_of_externals++;
+        data->dir.directive_type = EXTERN;
+
         handleEntryDirective(file, data, head);
     } else if (strcmp(word, ".string") == 0) {
         return handleStringDirective(file, data, head);
@@ -52,7 +56,7 @@ int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) 
     data->dir.directive_type = STRING;
     insertNode(head, *data);
     fscanf(file, "%49s", data->label);
-    data->dir.data = (char **)strdup(data->label);
+    data->dir.string = (char *) strdup(data->label);
     insertNode(head, *data);
     data->dir.size = countChars(data->label);
     insertNode(head, *data);
@@ -187,7 +191,7 @@ int countChars(const char *str) {
 }
 
 /* Function to check if a label is valid */
-int isValidLabel(const char *name) {
+int isValidLabel( char *name) {
     /* Check if the name is not empty */
     if (*name == '\0') {
         return 0; // Invalid: Empty name
@@ -198,22 +202,20 @@ int isValidLabel(const char *name) {
         return 0;
     }
 
-    /* Check the remaining characters */
-    name++;
-
     /* Check for alphanumeric or underscore, up to 30 characters */
-    int count = 1;
-    while (*name != '\0' && count <= 30) {
+    int count = 0;
+
+    while (*name != '\0' && count <= MAX_LABEL_SIZE) {
+        if (strlen(name) > 0 && name[strlen(name) - 1] == ':') {
+            // Check if the last character is ':'
+            name[strlen(name) - 1] = '\0'; // Remove the last character
+        }
+
         if (!isalnum(*name) && *name != '_') {
             return 0;
         }
         name++;
         count++;
-    }
-
-    /* Check if the last character is ':' */
-    if (*(name - 1) != ':') {
-        return 0;
     }
 
     return 1;

@@ -5,13 +5,37 @@
 
 
 int processOperands(FILE *file, struct pattern *data, struct Node **head, int operandCount) {
+    char word[50];
     for (int i = 0; i < operandCount; i++) {
-        if (fscanf(file, "%49s", data->label) != 1) {
+        if (fscanf(file, "%49s", word) != 1) {
+
             isError(data, "Error: Missing operand", head);
             return 0;
         }
-
-        // Add code here to handle the operand
+        if (word[0] == '#') {
+            data->type_line = IMMEDIATE_NUMBER;
+            insertNode(head, *data);
+            data->inst.operands[i].operand_value.value = atoi(word + 1);
+            insertNode(head, *data);
+        } else if(word[strlen(word) - 1] == ']'){
+            data->type_line = DIRECT_INDEX;
+            insertNode(head, *data);
+            strcpy(data->inst.operands[i].operand_value.symbol, word+1);
+            insertNode(head, *data);
+        } else if(word[0] == 'r' && word[1] >= '0' && word[1] <= '7'){
+            data->type_line = REGISTER;
+            insertNode(head, *data);
+            data->inst.operands[i].operand_value.reg = word[1] - '0';
+            insertNode(head, *data);
+        } else if(isValidLabel(word)){
+            data->type_line = DIRECT;
+            insertNode(head, *data);
+            strcpy(data->inst.operands[i].operand_value.symbol, word);
+            insertNode(head, *data);
+        } else {
+            isError(data, "Error: Invalid operand", head);
+            return 0;
+        }
         insertNode(head, *data);
     }
     return 1;
@@ -55,8 +79,11 @@ int processNoOperands(struct pattern *data, struct Node **head, int  i) {
 }
 
 int isInstruction(FILE *file, const char *word, struct pattern *data, struct Node **head) {
-    /* Iterate through the array to find a match */
-    for (int i = 0; instructionMappings[i].name != NULL; ++i) {
+    int i;
+   /*There is no need to check if the word is a valid label because it is already checked in categorizeWord*/
+
+   /* Iterate through the array to find a match */
+    for (i = 0; instructionMappings[i].name != NULL; ++i) {
         if (strcmp(word, instructionMappings[i].name) == 0) {
             /* It's an instruction with two operands */
             if (strcmp(word, "MOV") == 0 || strcmp(word, "CMP") == 0 || strcmp(word, "ADD") == 0 ||
