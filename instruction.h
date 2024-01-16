@@ -8,26 +8,47 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
     char word[50];
     for (int i = 0; i < operandCount; i++) {
         if (fscanf(file, "%s", word) != 1) {
-
             isError(data, "Error: Missing operand", head);
             return 0;
         }
-        if (word[0] == '#') {
-            data->type_line = IMMEDIATE_NUMBER;
-            data->choice.inst.operands[i].operand_value.value = atoi(word + 1);
-        } else if(word[strlen(word) - 1] == ']'){// shold insert for the 4 check, problam is strlen word and not line
-            data->type_line = DIRECT_INDEX;
-            strcpy(data->choice.inst.operands[i].operand_value.symbol, word+1);
-        } else if(word[0] == 'r' && word[1] >= '0' && word[1] <= '7'){
-            data->type_line = REGISTER;
-            data->choice.inst.operands[i].operand_value.reg = word[1] - '0';
-        } else if(isValidLabel(word, data)){
-            data->type_line = DIRECT;
-            strcpy(data->choice.inst.operands[i].operand_value.symbol, word);
-        } else {
-            isError(data, "Error: Invalid operand", head);
-            return 0;
+        if(word[0] == 'r' && word[1] >= '0' && word[1] <= '7') {
+            data->choice.inst.operands[operandCount-1-i].op_type = REGISTER;
+            data->choice.inst.operands[operandCount-1-i].operand_value.reg = word[1] - '0';/* pass the destiny first
+            * there for start to insert from the operand 1 and then -0*/
+            continue;
         }
+
+        /*here need to contine*/
+        fscanf(file, "%s", word);
+        if (word[strlen(word) - 1] == ']') {
+            data->choice.inst.operands[operandCount - 1 - i].op_type = DIRECT_INDEX;
+            char word2[50];
+            strcpy(word2, word);  /* Make a copy of the original word*/
+            char *token = strtok(word, "[^ [ ]");
+            strcpy(data->choice.inst.operands[operandCount - 1 - i].operand_value.symbol, token);
+
+            // Process word2 similarly to get the content inside square brackets
+            token = strtok(word2, "[^ [ ]");
+            strcpy(data->choice.inst.operands[operandCount - 1 - i].operand_value.const_num, token);
+            continue;
+        }
+        fseek(file, -strlen(word), SEEK_CUR);
+
+
+
+        if (word[0] == '#') {
+             data->choice.inst.operands[operandCount-1-i].op_type = IMMEDIATE_NUMBER;
+             data->choice.inst.operands[operandCount-1-i].operand_value.value = atoi(word + 1);
+             continue;
+        }
+
+         if(isValidLabel(word, data)){
+             data->choice.inst.operands[operandCount-1-i].op_type = DIRECT;
+            strcpy(data->choice.inst.operands[operandCount-1-i].operand_value.symbol, word);
+            continue;
+         }
+        isError(data, "Error: Invalid operand", head);
+        return 0;
     }
     return 1;
 }
@@ -36,7 +57,6 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
 int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head, int  i) {
     data->type_line = INSTRUCTION;
     data->choice.inst.op_type = instructionMappings[i].type;
-
     if (!processOperands(file, data, head, 2)) {
         return 0;
     }
