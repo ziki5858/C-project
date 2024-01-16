@@ -15,22 +15,22 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
         if (word[0] == '#') {
             data->type_line = IMMEDIATE_NUMBER;
             insertNode(head, *data);
-            data->inst.operands[i].operand_value.value = atoi(word + 1);
+            data->choice.inst.operands[i].operand_value.value = atoi(word + 1);
             insertNode(head, *data);
         } else if(word[strlen(word) - 1] == ']'){
             data->type_line = DIRECT_INDEX;
             insertNode(head, *data);
-            strcpy(data->inst.operands[i].operand_value.symbol, word+1);
+            strcpy(data->choice.inst.operands[i].operand_value.symbol, word+1);
             insertNode(head, *data);
         } else if(word[0] == 'r' && word[1] >= '0' && word[1] <= '7'){
             data->type_line = REGISTER;
             insertNode(head, *data);
-            data->inst.operands[i].operand_value.reg = word[1] - '0';
+            data->choice.inst.operands[i].operand_value.reg = word[1] - '0';
             insertNode(head, *data);
         } else if(isValidLabel(word)){
             data->type_line = DIRECT;
             insertNode(head, *data);
-            strcpy(data->inst.operands[i].operand_value.symbol, word);
+            strcpy(data->choice.inst.operands[i].operand_value.symbol, word);
             insertNode(head, *data);
         } else {
             isError(data, "Error: Invalid operand", head);
@@ -45,7 +45,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
 int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head, int  i) {
     data->type_line = INSTRUCTION;
     insertNode(head, *data);
-    data->inst.op_type = instructionMappings[i].type;
+    data->choice.inst.op_type = instructionMappings[i].type;
     insertNode(head, *data);
 
     if (!processOperands(file, data, head, 2)) {
@@ -59,7 +59,7 @@ int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head, in
 int processOneOperand(FILE  *file, struct pattern *data, struct Node **head, int  i) {
     data->type_line = INSTRUCTION;
     insertNode(head, *data);
-    data->inst.op_type = instructionMappings[i].type;
+    data->choice.inst.op_type = instructionMappings[i].type;
     insertNode(head, *data);
 
     if (!processOperands(file, data, head, 1)) {
@@ -72,7 +72,7 @@ int processOneOperand(FILE  *file, struct pattern *data, struct Node **head, int
 int processNoOperands(struct pattern *data, struct Node **head, int  i) {
     data->type_line = INSTRUCTION;
     insertNode(head, *data);
-    data->inst.op_type = instructionMappings[i].type;
+    data->choice.inst.op_type = instructionMappings[i].type;
     insertNode(head, *data);
     /* Update other properties of the data structure as needed */
     return 1;

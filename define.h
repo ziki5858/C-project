@@ -22,7 +22,7 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
 
     fscanf(file, "%49s", word);
     if (isNumeric(word)) {
-        data->def.value = atoi(word);
+        data->choice.def.value = atoi(word);
         insertNode(head, *data);
     } else {
         isError(data, "Invalid numeric value",head);

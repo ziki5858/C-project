@@ -1,0 +1,135 @@
+// .entry LIST
+  s[0].type_line = DIRECTIVE;
+  s[0].dir.directive_type = ENTRY;
+  strcpy(s[0].label, "LIST");
+
+  // .extern W
+  s[1].type_line = DIRECTIVE;
+  s[1].dir.directive_type = EXTERN;
+  strcpy(s[1].label, "W");
+
+  // .define sz = 2
+  s[2].type_line = DEFINE;
+  s[2].def.value = 2;
+  strcpy(s[2].label, "sz");
+
+  // MAIN: mov r3, LIST[sz]
+  s[3].type_line = INSTRUCTION;
+  s[3].inst.op_type = MOV;
+  s[3].inst.num_of_operands = 2;
+  s[3].inst.operands[0].op_type = DIRECT_INDEX;
+  strcpy(s[3].inst.operands[0].operand_value.symbol, "LIST");
+  strcpy(s[3].inst.operands[0].operand_value.const_num, "sz");
+  s[3].inst.operands[1].op_type = REGISTER;
+  s[3].inst.operands[1].operand_value.reg = r3;
+  strcpy(s[3].label, "MAIN");
+
+  // LOOP: jmp W
+  s[4].type_line = INSTRUCTION;
+  s[4].inst.op_type = JMP;
+  s[4].inst.num_of_operands = 1;
+  s[4].inst.operands[0].op_type = DIRECT;
+  strcpy(s[4].inst.operands[0].operand_value.symbol, "W");
+  strcpy(s[4].label, "LOOP");
+
+  // prn #-5
+  s[5].type_line = INSTRUCTION;
+  s[5].inst.op_type = PRN;
+  s[5].inst.num_of_operands = 1;
+  s[5].inst.operands[0].op_type = IMMEDIATE_NUMBER;
+  s[5].inst.operands[0].operand_value.value = -5;
+
+  // mov STR[5], STR[2]
+  s[6].type_line = INSTRUCTION;
+  s[6].inst.op_type = MOV;
+  s[6].inst.num_of_operands = 2;
+  s[6].inst.operands[0].op_type = DIRECT_INDEX;
+  strcpy(s[6].inst.operands[0].operand_value.symbol, "STR");
+  s[6].inst.operands[0].operand_value.value = 2;
+  s[6].inst.operands[1].op_type = DIRECT_INDEX;
+  strcpy(s[6].inst.operands[1].operand_value.symbol, "STR");
+  s[6].inst.operands[1].operand_value.value = 5;
+
+  // sub r1, r4
+  s[7].type_line = INSTRUCTION;
+  s[7].inst.op_type = SUB;
+  s[7].inst.num_of_operands = 2;
+  s[7].inst.operands[0].op_type = REGISTER;
+  s[7].inst.operands[0].operand_value.reg = r4;
+  s[7].inst.operands[1].op_type = REGISTER;
+  s[7].inst.operands[1].operand_value.reg = r1;
+
+  // cmp K, #sz
+  s[8].type_line = INSTRUCTION;
+  s[8].inst.op_type = CMP;
+  s[8].inst.num_of_operands = 2;
+  s[8].inst.operands[0].op_type = IMMEDIATE_NUMBER;
+  strcpy(s[8].inst.operands[0].operand_value.const_num, "sz");
+  s[8].inst.operands[1].op_type = DIRECT;
+  strcpy(s[8].inst.operands[1].operand_value.symbol, "K");
+
+  // bne W
+  s[9].type_line = INSTRUCTION;
+  s[9].inst.op_type = BNE;
+  s[9].inst.num_of_operands = 1;
+  s[9].inst.operands[0].op_type = DIRECT;
+  strcpy(s[9].inst.operands[0].operand_value.symbol, "W");
+
+  // L1: inc L3
+  s[10].type_line = INSTRUCTION;
+  s[10].inst.op_type = INC;
+  s[10].inst.num_of_operands = 1;
+  s[10].inst.operands[0].op_type = DIRECT;
+  strcpy(s[10].inst.operands[0].operand_value.symbol, "L3");
+  strcpy(s[10].label, "L1");
+
+  // .entry LOOP
+  s[11].type_line = DIRECTIVE;
+  s[11].dir.directive_type = ENTRY;
+  strcpy(s[11].label, "LOOP");
+
+  // bne LOOP
+  s[12].type_line = INSTRUCTION;
+  s[12].inst.op_type = BNE;
+  s[12].inst.num_of_operands = 1;
+  s[12].inst.operands[0].op_type = DIRECT;
+  strcpy(s[12].inst.operands[0].operand_value.symbol, "LOOP");
+
+  // END: hlt
+  s[13].type_line = INSTRUCTION;
+  s[13].inst.op_type = HLT;
+  s[13].inst.num_of_operands = 0;
+  strcpy(s[13].label, "END");
+
+  // .define len = 4
+  s[14].type_line = DEFINE;
+  s[14].def.value = 4;
+  strcpy(s[14].label, "len");
+
+  // STR: .string “abcdef”
+  s[15].type_line = DIRECTIVE;
+  s[15].dir.directive_type = STRING;
+  strcpy(s[15].dir.string, "abcdef");
+  strcpy(s[15].label, "STR");
+  s[15].dir.size = 7;
+
+  // LIST: .data 6, -9, len
+  s[16].type_line = DIRECTIVE;
+  s[16].dir.directive_type = DATA;
+  s[16].dir.size = 3;
+  strcpy(s[16].dir.data[0], "6");
+  strcpy(s[16].dir.data[1], "-9");
+  strcpy(s[16].dir.data[2], "len");
+  strcpy(s[16].label, "LIST");
+
+  // K: .data 22
+  s[17].type_line = DIRECTIVE;
+  s[17].dir.directive_type = DATA;
+  s[17].dir.size = 1;
+  strcpy(s[17].dir.data[0], "22");
+  strcpy(s[17].label, "K");
+
+  // .extern L3
+  s[18].type_line = DIRECTIVE;
+  s[18].dir.directive_type = EXTERN;
+  strcpy(s[18].label, "L3");

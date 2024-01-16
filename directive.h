@@ -27,7 +27,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
     /* Separate cases for other directives */
     if (strcmp(word, ".entry") == 0) {
         num_of_entries++;
-        data->dir.directive_type = ENTRY;
+        data->choice.dir.directive_type = ENTRY;
 
         fscanf(file, "%49s", word);
         if (isValidLabel(word)) {
@@ -40,7 +40,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
         }
     } else if (strcmp(word, ".extern") == 0) {
         num_of_externals++;
-        data->dir.directive_type = EXTERN;
+        data->choice.dir.directive_type = EXTERN;
 
         handleEntryDirective(file, data, head);
     } else if (strcmp(word, ".string") == 0) {
@@ -53,12 +53,12 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
 
 /* Function to handle the .string directive */
 int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) {
-    data->dir.directive_type = STRING;
+    data->choice.dir.directive_type = STRING;
     insertNode(head, *data);
     fscanf(file, "%49s", data->label);
-    data->dir.string = (char *) strdup(data->label);
+    data->choice.dir.string = (char *) strdup(data->label);
     insertNode(head, *data);
-    data->dir.size = countChars(data->label);
+    data->choice.dir.size = countChars(data->label);
     insertNode(head, *data);
     return 1;
 }
@@ -67,7 +67,7 @@ int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) 
 int handleDataDirective(FILE *file, struct pattern *data, struct Node **head) {
     char input[100];
     int size;
-    data->dir.directive_type = DATA;
+    data->choice.dir.directive_type = DATA;
     insertNode(head, *data);
 
     fgets(input, sizeof(input), stdin);
@@ -97,7 +97,7 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
     char *token = strtok(input, "[^,]");
 
     /* Allocate memory for the array of strings */
-    data->dir.data = (char **)calloc(size, sizeof(char *));
+    data->choice.dir.data = (char **)calloc(size, sizeof(char *));
 
     while (token != NULL) {
         if (*token == '\0') {
@@ -111,38 +111,38 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
         }
 
         /* Allocate memory for the current string and copy the token */
-        data->dir.data[size] = strdup(token);
+        data->choice.dir.data[size] = strdup(token);
 
         /* Check if memory allocation was successful */
-        if (data->dir.data[size] == NULL) {
+        if (data->choice.dir.data[size] == NULL) {
             isError(data, "Error: Memory allocation failed", head);
             /* Clean up previously allocated strings */
             for (int i = 0; i < size; i++) {
-                free(data->dir.data[i]);
+                free(data->choice.dir.data[i]);
             }
             /* Free the array itself */
-            free(data->dir.data);
+            free(data->choice.dir.data);
             return 0;  // Indicate error
         }
 
         size++;
         /* Resize the array of strings */
-        data->dir.data = realloc(data->dir.data, size * sizeof(char *));
-        if (data->dir.data == NULL) {
+        data->choice.dir.data = realloc(data->choice.dir.data, size * sizeof(char *));
+        if (data->choice.dir.data == NULL) {
             isError(data, "Error: Memory allocation failed", head);
             /* Clean up previously allocated strings */
             for (int i = 0; i < size - 1; i++) {
-                free(data->dir.data[i]);
+                free(data->choice.dir.data[i]);
             }
             /* Free the array itself */
-            free(data->dir.data);
+            free(data->choice.dir.data);
             return 0; // Indicate error
         }
 
         token = strtok(NULL, "[^,]");
     }
     insertNode(head, *data);
-    data->dir.size = size;
+    data->choice.dir.size = size;
     insertNode(head, *data);
     return 1;
 }

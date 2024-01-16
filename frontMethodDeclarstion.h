@@ -74,44 +74,7 @@ struct pattern {
         int value; /**< Value for define pattern */
     } def;
 	} choice;
-
-    
 };
-
-// struct pattern {
-//     char error[MAX_ERROR_SIZE]; /**< Error message, if any */
-//     char label[MAX_LINE_SIZE];  /**< Label associated with the pattern */
-//     enum { DIRECTIVE, INSTRUCTION, DEFINE, ERROR } type_line; /**< Type of the pattern */
-
-//     // Union to store different types of patterns
-//     struct {
-//         enum DirectiveType directive_type; /**< Type of directive pattern */
-//         char **data;
-// 		char * string;                        /**< Data for certain directive patterns */
-//         int size;
-//     } dir;
-
-//     struct {
-//         enum InstructionType op_type;        /**< Type of instruction pattern */
-//         int num_of_operands;                 /**< Number of operands */
-//         struct {
-//             enum { IMMEDIATE_NUMBER, DIRECT, DIRECT_INDEX, REGISTER } op_type; /**< Type of operand */
-//             struct {
-//                 char symbol[MAX_LABEL_SIZE]; /**< Operand value as symbol */
-//                 char const_num[MAX_LABEL_SIZE]; /**< Operand value as constant number */
-//                 int value; /**< Operand value as immediate number */
-//                 enum { r0, r1, r2, r3, r4, r5, r6, r7 } reg; /**< Operand value as register */
-//             } operand_value;
-//         } operands[2]; /**< Array to store operands */
-//     } inst;
-
-//     struct {
-//         int value; /**< Value for define pattern */
-//     } def;
-
-//     struct code *code; /**< Code associated with the pattern */
-// };
-
 
 /**
  * @struct Node
