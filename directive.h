@@ -191,7 +191,7 @@ int countChars(const char *str) {
 }
 
 /* Function to check if a label is valid */
-int isValidLabel(const char *name) {
+int isValidLabel( char *name) {
     /* Check if the name is not empty */
     if (*name == '\0') {
         return 0; // Invalid: Empty name
@@ -202,22 +202,20 @@ int isValidLabel(const char *name) {
         return 0;
     }
 
-    /* Check the remaining characters */
-    name++;
-
     /* Check for alphanumeric or underscore, up to 30 characters */
-    int count = 1;
-    while (*name != '\0' && count <= 30) {
+    int count = 0;
+
+    while (*name != '\0' && count <= MAX_LABEL_SIZE) {
+        if (strlen(name) > 0 && name[strlen(name) - 1] == ':') {
+            // Check if the last character is ':'
+            name[strlen(name) - 1] = '\0'; // Remove the last character
+        }
+
         if (!isalnum(*name) && *name != '_') {
             return 0;
         }
         name++;
         count++;
-    }
-
-    /* Check if the last character is ':' */
-    if (*(name - 1) != ':') {
-        return 0;
     }
 
     return 1;

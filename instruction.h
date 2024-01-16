@@ -3,20 +3,6 @@
 #include "ctype.h"
 #include "front.h"
 
-struct {
-    enum InstructionType op_type;        /**< Type of instruction pattern */
-    int num_of_operands;                 /**< Number of operands */
-    struct {
-        enum { IMMEDIATE_NUMBER/*start with #*/, DIRECT, DIRECT_INDEX/*varibale with []*/, REGISTER/*r...r7*/ } op_type; /**< Type of operand */
-        union {
-            char symbol[MAX_LABEL_SIZE]; /**< Operand value as symbol */
-            char const_num[MAX_LABEL_SIZE]; /**< Operand value as constant number */
-            int value; /**< Operand value as immediate number */
-            enum { r0, r1, r2, r3, r4, r5, r6, r7 } reg; /**< Operand value as register */
-        } operand_value;
-    } operands[2]; /**< Array to store operands */
-} inst;
-
 
 int processOperands(FILE *file, struct pattern *data, struct Node **head, int operandCount) {
     char word[50];
@@ -94,8 +80,9 @@ int processNoOperands(struct pattern *data, struct Node **head, int  i) {
 
 int isInstruction(FILE *file, const char *word, struct pattern *data, struct Node **head) {
     int i;
+   /*There is no need to check if the word is a valid label because it is already checked in categorizeWord*/
 
-    /* Iterate through the array to find a match */
+   /* Iterate through the array to find a match */
     for (i = 0; instructionMappings[i].name != NULL; ++i) {
         if (strcmp(word, instructionMappings[i].name) == 0) {
             /* It's an instruction with two operands */

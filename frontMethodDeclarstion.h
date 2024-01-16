@@ -187,7 +187,7 @@ int isNumeric(char *str);
  * @param name The label to be checked.
  * @return 1 if the label is valid; otherwise, 0.
  */
-int isValidLabel(const char *name);
+int isValidLabel( char *name);
 
 /**
  * @brief Function to count characters in a string.
