@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+
+
 struct Node *createNode(struct pattern data) {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -13,8 +15,10 @@ struct Node *createNode(struct pattern data) {
     return newNode;
 }
 
+
 void insertNode(struct Node **head, struct pattern data) {
     struct Node *newNode = createNode(data);
+
     if (*head == NULL) {
         *head = newNode;
     } else {
@@ -25,7 +29,6 @@ void insertNode(struct Node **head, struct pattern data) {
         temp->next = newNode;
     }
 }
-
 
 struct Node *processAssemblyText(const char *filename) {
     FILE *file = fopen(filename, "r");
@@ -43,10 +46,10 @@ struct Node *processAssemblyText(const char *filename) {
 void processLine(FILE *file, struct Node **head) {
     char word[50];
     lineNumber=0;
+
     while (fscanf(file, "%49s", word) == 1) {
         struct pattern data;
         categorizeWord(file,word, &data, head);
-        insertNode(head, data);
         lineNumber++;
     }
 }
@@ -59,22 +62,20 @@ int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **h
             data->type_line = ERROR;
             return 0;
         }
-        insertNode(head, *data);
     }
     else if (directiveFormat(file, word, data, head)) {
         data->type_line = DIRECTIVE;
-        insertNode(head, *data);
     }
     else {
-        if (isInstruction(file,word, data, head)) {
+        if (instructionFormat(file,word, data, head)) {
             data->type_line = INSTRUCTION;
-            insertNode(head, *data);
         }
         else {
-            return 0; /* word not at assembly language table */
+            isError(data, "Error: word not at assembly language table", head);
+            return 0;
         }
     }
-
+    insertNode(head, *data);
     return 1;
 }
 
@@ -85,7 +86,7 @@ void isError(struct pattern *data, const char *errorMessage, struct Node **head)
     /* Insert data into the linked list*/
     insertNode(head, *data);
     /*Update the error message with the line number*/
-    snprintf(data->error, sizeof(data->error), "Error: %s, File: front.c, Line: %d", errorMessage, lineNumber);
+    snprintf(data->choice.error, sizeof(data->choice.error), "Error: %s, File: front.c, Line: %d", errorMessage, lineNumber);
     insertNode(head, *data);
 }
 
@@ -112,7 +113,7 @@ void freeLinkedList(struct Node *head) {
 
 int main() {
     // Replace "your_input_file.asm" with the actual file name you want to process
-    const char *filename = "code.am";
+    const char *filename = "exampleCheck";
 
     // Process the assembly text and build a linked list
     struct Node *head = processAssemblyText(filename);

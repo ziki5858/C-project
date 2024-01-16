@@ -32,17 +32,18 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
         fscanf(file, "%49s", word);
         if (isValidLabel(word)) {
             strcpy(data->label, word);
-            insertNode(head, *data);
             return 1;
         } else {
             isError(data, "Error: Invalid label name", head);
             return 0;
         }
+
+
     } else if (strcmp(word, ".extern") == 0) {
         num_of_externals++;
         data->choice.dir.directive_type = EXTERN;
+       return handleEntryDirective(file, data, head);
 
-        handleEntryDirective(file, data, head);
     } else if (strcmp(word, ".string") == 0) {
         return handleStringDirective(file, data, head);
     } else if (strcmp(word, ".data") == 0) {
@@ -54,12 +55,9 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
 /* Function to handle the .string directive */
 int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) {
     data->choice.dir.directive_type = STRING;
-    insertNode(head, *data);
     fscanf(file, "%49s", data->label);
     data->choice.dir.string = (char *) strdup(data->label);
-    insertNode(head, *data);
     data->choice.dir.size = countChars(data->label);
-    insertNode(head, *data);
     return 1;
 }
 
@@ -68,7 +66,6 @@ int handleDataDirective(FILE *file, struct pattern *data, struct Node **head) {
     char input[100];
     int size;
     data->choice.dir.directive_type = DATA;
-    insertNode(head, *data);
 
     fgets(input, sizeof(input), stdin);
     input[strcspn(input, "\n")] = '\0';
@@ -141,9 +138,7 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
 
         token = strtok(NULL, "[^,]");
     }
-    insertNode(head, *data);
     data->choice.dir.size = size;
-    insertNode(head, *data);
     return 1;
 }
 
@@ -223,10 +218,8 @@ int isValidLabel( char *name) {
 
 /* Function to add a label to the set */
 void addToEntryLabelSet(const char *label) {
-    if (entryLabelSet.count < MAX_LABEL_SIZE) {
         strcpy(entryLabelSet.labels[entryLabelSet.count], label);
         entryLabelSet.count++;
-    }
 }
 
 /* Function to check if a label is in the set */
@@ -239,27 +232,31 @@ int isEntryLabel(const char *label) {
     return 0; // Not found in the set
 }
 
-/* Function to handle the .entry directive */
 int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
-    fscanf(file, "%49s", data->label);
+    char tempLabel[MAX_LABEL_SIZE];
 
-    /* Check if the label is already used as .entry */
-    if (isEntryLabel(data->label)) {
-        isError(data, "Error: Label already used as .entry", head);
-        return 0;
-    }
+    if (fscanf(file, "%49s", tempLabel) == 1) {
+        /* Check if the label is already used as .entry */
+        if (isEntryLabel(tempLabel)) {
+            isError(data, "Error: Label already used as .entry", head);
+            return 0;
+        }
 
-    /* Check if the label is valid */
-    if (isValidLabel(data->label)) {
-        strcpy(data->label, data->label);
-        insertNode(head, *data);
-
-        /* Add the label to the entry label set */
-        addToEntryLabelSet(data->label);
-
-        return 1;
+        /* Check if the label is valid */
+        if (isValidLabel(tempLabel)) {
+            strcpy(tempLabel, data->label);
+            num_of_symbol++;
+            /* Add the label to the entry label set */
+            addToEntryLabelSet(data->label);
+            printLinkedList(*head);
+            return 1;
+        } else {
+            isError(data, "Error: Invalid label name", head);
+            return 0;
+        }
     } else {
-        isError(data, "Error: Invalid label name", head);
+        /* Handle fscanf failure */
+        isError(data, "Error: Unable to read label from file", head);
         return 0;
     }
 }

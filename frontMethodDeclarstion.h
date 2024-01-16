@@ -282,7 +282,7 @@ int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **h
  * @param head A pointer to the head of the linked list.
  * @return 1 if the word is an instruction; otherwise, 0.
  */
-int isInstruction(FILE *file, const char *word, struct pattern *data, struct Node **head);
+int instructionFormat(FILE *file, const char *word, struct pattern *data, struct Node **head);
 
 /**
  * @brief Handles processing of instructions without operands.

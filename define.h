@@ -7,7 +7,6 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
     fscanf(file, "%49s", word);
     if (isValidConstantName(word)) {
         strcpy(data->label, word);
-        insertNode(head, *data);
     } else {
         isError(data, "Invalid constant name",head);
         return 0;
@@ -23,7 +22,6 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
     fscanf(file, "%49s", word);
     if (isNumeric(word)) {
         data->choice.def.value = atoi(word);
-        insertNode(head, *data);
     } else {
         isError(data, "Invalid numeric value",head);
         return 0;

@@ -14,29 +14,20 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
         }
         if (word[0] == '#') {
             data->type_line = IMMEDIATE_NUMBER;
-            insertNode(head, *data);
             data->choice.inst.operands[i].operand_value.value = atoi(word + 1);
-            insertNode(head, *data);
         } else if(word[strlen(word) - 1] == ']'){
             data->type_line = DIRECT_INDEX;
-            insertNode(head, *data);
             strcpy(data->choice.inst.operands[i].operand_value.symbol, word+1);
-            insertNode(head, *data);
         } else if(word[0] == 'r' && word[1] >= '0' && word[1] <= '7'){
             data->type_line = REGISTER;
-            insertNode(head, *data);
             data->choice.inst.operands[i].operand_value.reg = word[1] - '0';
-            insertNode(head, *data);
         } else if(isValidLabel(word)){
             data->type_line = DIRECT;
-            insertNode(head, *data);
             strcpy(data->choice.inst.operands[i].operand_value.symbol, word);
-            insertNode(head, *data);
         } else {
             isError(data, "Error: Invalid operand", head);
             return 0;
         }
-        insertNode(head, *data);
     }
     return 1;
 }
@@ -44,9 +35,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
 
 int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head, int  i) {
     data->type_line = INSTRUCTION;
-    insertNode(head, *data);
     data->choice.inst.op_type = instructionMappings[i].type;
-    insertNode(head, *data);
 
     if (!processOperands(file, data, head, 2)) {
         return 0;
@@ -58,9 +47,7 @@ int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head, in
 
 int processOneOperand(FILE  *file, struct pattern *data, struct Node **head, int  i) {
     data->type_line = INSTRUCTION;
-    insertNode(head, *data);
     data->choice.inst.op_type = instructionMappings[i].type;
-    insertNode(head, *data);
 
     if (!processOperands(file, data, head, 1)) {
         return 0;
@@ -71,14 +58,13 @@ int processOneOperand(FILE  *file, struct pattern *data, struct Node **head, int
 
 int processNoOperands(struct pattern *data, struct Node **head, int  i) {
     data->type_line = INSTRUCTION;
-    insertNode(head, *data);
     data->choice.inst.op_type = instructionMappings[i].type;
-    insertNode(head, *data);
+
     /* Update other properties of the data structure as needed */
     return 1;
 }
 
-int isInstruction(FILE *file, const char *word, struct pattern *data, struct Node **head) {
+int instructionFormat(FILE *file, const char *word, struct pattern *data, struct Node **head) {
     int i;
    /*There is no need to check if the word is a valid label because it is already checked in categorizeWord*/
 
@@ -102,7 +88,6 @@ int isInstruction(FILE *file, const char *word, struct pattern *data, struct Nod
             } else {
                 /* Invalid instruction name */
                 data->type_line = ERROR;
-                insertNode(head, *data);
                 isError(data, "Invalid instruction name", head);
                 return 0;
             }
