@@ -217,9 +217,11 @@ int isNumeric(char *str);
 /**
  * @brief Function to check if a label is valid.
  * @param name The label to be checked.
+ * @param data Pointer to the data structure where the label is stored if valid.
+ * @param needColon Flag indicating whether the label requires a colon at the end.
  * @return 1 if the label is valid; otherwise, 0.
  */
-int isValidLabel(char *name,struct pattern *data );
+int isValidLabel(char *name,struct pattern *data, int needColon );
 
 /**
  * @brief Function to count characters in a string.
@@ -233,7 +235,7 @@ int countChars(const char *str);
  * @param requireComma Flag indicating if a comma is required.
  * @return 0 if there is no extraneous text or missing comma; otherwise, 1.
  */
-int miss(int requireComma);
+int miss(int requireComma, FILE *file);
 
 /**
  * @brief Function to check if the last character of a string is a specific character.
@@ -259,13 +261,12 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
  * @param head A pointer to the head of the linked list.
  * @return 1 if the processing is successful; otherwise, 0.
  */
-int handleStringDirective(FILE *file, struct pattern *data, struct Node **head);
+int handleStringDirective(FILE *file, struct pattern *data);
 
 /**
  * @brief Function to handle the .data directive.
  * @param file Pointer to the file being processed.
  * @param data A pointer to the pattern data structure to be updated.
- * @param head A pointer to the head of the linked list.
  * @return 1 if the processing is successful; otherwise, 0.
  */
 int handleDataDirective(FILE *file, struct pattern *data, struct Node **head);
@@ -316,10 +317,9 @@ int instructionFormat(FILE *file, const char *word, struct pattern *data, struct
 /**
  * @brief Handles processing of instructions without operands.
  * @param data A pointer to the pattern data structure to be updated.
- * @param head A pointer to the head of the linked list.
  * @return 1 if processing is successful; otherwise, 0.
  */
-int processNoOperands(struct pattern *data, struct Node **head, int  i);
+int processNoOperands(struct pattern *data);
 
 /**
  * @brief Handles processing of instructions with one operand.
@@ -327,7 +327,7 @@ int processNoOperands(struct pattern *data, struct Node **head, int  i);
  * @param head A pointer to the head of the linked list.
  * @return 1 if processing is successful; otherwise, 0.
  */
-int processOneOperand(FILE  *file, struct pattern *data, struct Node **head, int  i);
+int processOneOperand(FILE  *file, struct pattern *data, struct Node **head);
 
 /**
  * @brief Handles processing of instructions with two operands.
@@ -335,7 +335,7 @@ int processOneOperand(FILE  *file, struct pattern *data, struct Node **head, int
  * @param head A pointer to the head of the linked list.
  * @return 1 if processing is successful; otherwise, 0.
  */
-int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head, int  i);
+int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head);
 
 
 /**

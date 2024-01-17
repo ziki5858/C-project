@@ -15,10 +15,10 @@ struct LabelSet entryLabelSet = { .count = 0 };
 
 /* Function to handle the formatting of directives in the assembly code */
 int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
-    if (isValidLabel(word,data)) {
+    if (isValidLabel(word,data,0)) {
         fscanf(file, "%s", word);
         if (strcmp(word, ".string") == 0) {
-            return handleStringDirective(file, data, head);
+            return handleStringDirective(file, data);
         } else if (strcmp(word, ".data") == 0) {
             return handleDataDirective(file, data, head);
         }
@@ -30,7 +30,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
         data->choice.dir.directive_type = ENTRY;
 
         fscanf(file, "%49s", word);
-        if (isValidLabel(word,data)) {
+        if (isValidLabel(word,data,1)) {
             strcpy(data->label, word);
             return 1;
         } else {
@@ -45,7 +45,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
        return handleEntryDirective(file, data, head);
 
     } else if (strcmp(word, ".string") == 0) {
-        return handleStringDirective(file, data, head);
+        return handleStringDirective(file, data);
     } else if (strcmp(word, ".data") == 0) {
         return handleDataDirective(file, data, head);
     }
@@ -53,29 +53,29 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
 }
 
 /* Function to handle the .string directive */
-int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) {
+int handleStringDirective(FILE *file, struct pattern *data) {
+    char word[MAX_LINE_SIZE];
     data->choice.dir.directive_type = STRING;
-    fscanf(file, "%49s", data->label);
-    data->choice.dir.string = (char *) strdup(data->label);
-    data->choice.dir.size = countChars(data->label);
+    fscanf(file, "%s", word);
+    data->choice.dir.string = (char *) strdup(word);
+    data->choice.dir.size = countChars(word);
     return 1;
 }
 
 /* Function to handle the .data directive */
 int handleDataDirective(FILE *file, struct pattern *data, struct Node **head) {
-    char input[100];
+    char input[MAX_LINE_SIZE];
     int size;
     data->choice.dir.directive_type = DATA;
 
-    fgets(input, sizeof(input), stdin);
+    fgets(input, sizeof(input), file);
     input[strcspn(input, "\n")] = '\0';
 
-    if (checkLastCharacter(input, ',') != 0) {
+    if (checkLastCharacter(input, ',') == 0) {
         isError(data, "Error: Extraneous text after end of command", head);
         return 0;
     }
-
-    if (!miss(0)) {
+    if (!miss(0,file)) {
         isError(data, "Error: missing arguments.", head);
         return 0;
     }
@@ -153,13 +153,13 @@ int checkLastCharacter(const char input[], char errorChar) {
             return 0;
         }
     }
-    return 1;
+    return 1;/* Last character is not a comma */
 }
 
 /* Function to handle missing arguments in the .data directive */
-int miss(int requireComma) {
+int miss(int requireComma, FILE *file) {
     int missing;
-    missing = getchar();
+    missing = fgetc(file);
 
     if (missing == '\n') {
         return 0; /* No extraneous text or missing comma */
@@ -167,7 +167,7 @@ int miss(int requireComma) {
 
     if (requireComma && missing != ',') {
         /* Handle extraneous text (clear the input buffer) */
-        while (getchar() != '\n');
+        while (fgetc(file) != '\n');
         return 0;
     }
 
@@ -185,7 +185,7 @@ int countChars(const char *str) {
     return count;
 }
 
-int isValidLabel(char *name, struct pattern *data) {
+int isValidLabel(char *name, struct pattern *data, int needColon) {
     /* Check if the name is not empty */
     if (*name == '\0') {
         return 0; // Invalid: Empty name
@@ -200,11 +200,13 @@ int isValidLabel(char *name, struct pattern *data) {
     int count = 0;
     char *lastChar = name + strlen(name) - 1;
 
-    // Check if the last character is ':'
-    if (*lastChar == ':') {
-        *lastChar = '\0'; // Remove the last character
-    } else{
-        return 0;
+    if(needColon!=1) {
+        /* Check if the last character is ':'*/
+        if (*lastChar == ':') {
+            *lastChar = '\0'; // Remove the last character
+        } else {
+            return 0;
+        }
     }
 
     while (*name != '\0' && count <= MAX_LABEL_SIZE) {
@@ -250,7 +252,7 @@ int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
         }
 
         /* Check if the label is valid */
-        if (isValidLabel(tempLabel,data)) {
+        if (isValidLabel(tempLabel,data,0)) {
             strcpy(tempLabel, data->label);
             num_of_symbol++;
             /* Add the label to the entry label set */

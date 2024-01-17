@@ -30,7 +30,8 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
     return 1;
 }
 
-
+/* for .data 6,-8
+ * think 6 is " 6" with space therFore not numeric*/
 int isNumeric(char *str) {
     if (str == NULL || *str == '\0') {
         return 0;  /* Empty string or NULL is not numeric */
