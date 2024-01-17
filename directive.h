@@ -80,7 +80,7 @@ int handleDataDirective(FILE *file, struct pattern *data, struct Node **head) {
         return 0;
     }
 
-    size = processNumericArguments(input, data, head);
+    size = processNumericArguments(input+1/*For undle the space at first num*/, data, head);
     if (size == -1) {
         return 0;
     }
@@ -95,7 +95,10 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
 
     /* Allocate memory for the array of strings */
     data->choice.dir.data = (char **)calloc(size, sizeof(char *));
-
+    if (data->choice.dir.data == NULL) {
+        isError(data, "Error: Memory allocation failed", head);
+        return 0;
+    }
     while (token != NULL) {
         if (*token == '\0') {
             isError(data, "Error: Missing argument.", head);
