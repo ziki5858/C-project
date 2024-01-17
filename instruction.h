@@ -5,7 +5,7 @@
 
 
 int processOperands(FILE *file, struct pattern *data, struct Node **head, int operandCount) {
-    char word[50];
+    char word[MAX_LINE_SIZE];
     for (int i = 0; i < operandCount; i++) {
         if (fscanf(file, "%s", word) != 1) {
             isError(data, "Error: Missing operand", head);
@@ -52,6 +52,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
 int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head, int  i) {
     data->type_line = INSTRUCTION;
     data->choice.inst.op_type = instructionMappings[i].type;
+    data->choice.inst.num_of_operands=2;
     if (!processOperands(file, data, head, 2)) {
         return 0;
     }
@@ -63,7 +64,7 @@ int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head, in
 int processOneOperand(FILE  *file, struct pattern *data, struct Node **head, int  i) {
     data->type_line = INSTRUCTION;
     data->choice.inst.op_type = instructionMappings[i].type;
-
+    data->choice.inst.num_of_operands=1;
     if (!processOperands(file, data, head, 1)) {
         return 0;
     }
@@ -74,6 +75,7 @@ int processOneOperand(FILE  *file, struct pattern *data, struct Node **head, int
 int processNoOperands(struct pattern *data, struct Node **head, int  i) {
     data->type_line = INSTRUCTION;
     data->choice.inst.op_type = instructionMappings[i].type;
+    data->choice.inst.num_of_operands=0;
 
     /* Update other properties of the data structure as needed */
     return 1;

@@ -185,8 +185,7 @@ int countChars(const char *str) {
     return count;
 }
 
-/* Function to check if a label is valid */
-int isValidLabel(char *name,struct pattern *data ) {
+int isValidLabel(char *name, struct pattern *data) {
     /* Check if the name is not empty */
     if (*name == '\0') {
         return 0; // Invalid: Empty name
@@ -199,23 +198,30 @@ int isValidLabel(char *name,struct pattern *data ) {
 
     /* Check for alphanumeric or underscore, up to 30 characters */
     int count = 0;
+    char *lastChar = name + strlen(name) - 1;
+
+    // Check if the last character is ':'
+    if (*lastChar == ':') {
+        *lastChar = '\0'; // Remove the last character
+    } else{
+        return 0;
+    }
 
     while (*name != '\0' && count <= MAX_LABEL_SIZE) {
-        if (strlen(name) > 0 && name[strlen(name) - 1] == ':') {
-            // Check if the last character is ':'
-            name[strlen(name) - 1] = '\0'; // Remove the last character
-        }
-
-        if (!isalnum(*name) && *name != '_') {
+        if (!isalnum(*name) && *name != '_'&&!isupper(*name)) {
             return 0;
         }
         name++;
         count++;
     }
-    strcpy(data->label,name);
+
+    // Copy the modified label to the data structure
+    strcpy(data->label, lastChar);
     num_of_symbol++;
     return 1;
 }
+
+
 
 /* Function to add a label to the set */
 void addToEntryLabelSet(const char *label) {
