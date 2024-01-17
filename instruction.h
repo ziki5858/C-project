@@ -18,21 +18,16 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
             continue;
         }
 
-        /*here need to contine*/
-        fscanf(file, "%s", word);
         if (word[strlen(word) - 1] == ']') {
             data->choice.inst.operands[operandCount - 1 - i].op_type = DIRECT_INDEX;
-            char word2[50];
-            strcpy(word2, word);  /* Make a copy of the original word*/
             char *token = strtok(word, "[^ [ ]");
             strcpy(data->choice.inst.operands[operandCount - 1 - i].operand_value.symbol, token);
-
-            // Process word2 similarly to get the content inside square brackets
-            token = strtok(word2, "[^ [ ]");
+            fseek(file, -strlen(word), SEEK_CUR);
+            fscanf(file, "%s", word);
+            token = strtok(word, "[]");
             strcpy(data->choice.inst.operands[operandCount - 1 - i].operand_value.const_num, token);
             continue;
         }
-        fseek(file, -strlen(word), SEEK_CUR);
 
 
 

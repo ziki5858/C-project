@@ -85,7 +85,7 @@ void isError(struct pattern *data, const char *errorMessage, struct Node **head)
 {
     data->type_line = ERROR;
     /* Insert data into the linked list*/
-f    insertNode(head, *data);
+    insertNode(head, *data);
     /*Update the error message with the line number*/
     snprintf(data->choice.error, sizeof(data->choice.error), "Error: %s, File: front.c, Line: %d", errorMessage, lineNumber);
     insertNode(head, *data);
