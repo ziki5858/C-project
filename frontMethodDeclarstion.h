@@ -36,6 +36,17 @@ enum InstructionType {
     MOV, CMP, ADD, SUB, LEA, NOT, CLR, INC, DEC, JMP, BNE, RED, PRN, JSR, RTS, HLT
 };
 
+enum Register {
+    r0,
+    r1,
+    r2,
+    r3,
+    r4,
+    r5,
+    r6,
+    r7,
+};
+
 /**
  * @struct pattern
  * @brief Structure to represent a pattern in assembly language.
@@ -64,7 +75,7 @@ struct pattern {
                 char symbol[MAX_LABEL_SIZE]; /**< Operand value as symbol */
                 char const_num[MAX_LABEL_SIZE]; /**< Operand value as constant number */
                 int value; /**< Operand value as immediate number */
-                enum { r0, r1, r2, r3, r4, r5, r6, r7 } reg; /**< Operand value as register */
+                enum Register reg; /**< Operand value as register */
             } operand_value;
         } operands[2]; /**< Array to store operands */
 		struct code *code; /**< Code associated with the pattern */
@@ -111,6 +122,24 @@ const struct InstructionMapping {
         {"hlt", HLT},
         {NULL, (enum InstructionType)0}  /* Sentinel value for the end of the array */
 };
+
+const struct RegisterMapping {
+    const char *name;          /**< Name of the register */
+    enum Register reg;         /**< Corresponding enum value */
+} registerMappings[] = {
+        {"r0", r0},
+        {"r1", r1},
+        {"r2", r2},
+        {"r3", r3},
+        {"r4", r4},
+        {"r5", r5},
+        {"r6", r6},
+        {"r7", r7},
+        {NULL, (enum Register)0}   /* Sentinel value for the end of the array */
+};
+
+
+
 
 /**
  * @brief Function to check if a word is a directive and return the directive type.
@@ -318,3 +347,4 @@ int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head, in
  * @return 1 if operand processing is successful; otherwise, 0.
  */
 int processOperands(FILE *file, struct pattern *data, struct Node **head, int operandCount);
+
