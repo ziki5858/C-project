@@ -20,33 +20,38 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
     }
 
     fscanf(file, "%s", word);
-    if (isNumeric(word)) {
-        data->choice.def.value = atoi(word);
-    } else {
-        isError(data, "Invalid numeric value",head);
+    if (!isNumeric(word)) {
+        isError(data, "Invalid numeric value", head);
         return 0;
+    }
+    data->choice.def.value = atoi(word);
+    return 1;
+}
+
+int isNumeric(char *str) {
+    if (str == NULL || *str == '\0') {
+        return 0; /* Not numeric if the string is empty or NULL*/
+    }
+
+    int length = strlen(str);
+    int startIndex = 0;
+
+    while (str[startIndex] == ' ' && startIndex < length) {
+        startIndex++;
+    }
+    /* Check for an optional sign at the beginning*/
+    if (str[startIndex] == '-' || str[startIndex] == '+') {
+        startIndex ++;
+    }
+
+    for (int i = startIndex; i < length; i++) {
+        if (!isdigit(str[i])) {
+            return 0; /* Non-digit character found*/
+        }
     }
 
     return 1;
 }
-
-/* for .data 6,-8
- * think 6 is " 6" with space therFore not numeric*/
-int isNumeric(char *str) {
-    if (str == NULL || *str == '\0') {
-        return 0;  /* Empty string or NULL is not numeric */
-    }
-
-    while (*str) {
-        if (!isdigit((unsigned char) *str) && *str != '.' && *str != '-') {
-            return 0;  /* Non-numeric character found */
-        }
-        str++;
-    }
-
-    return 1;  /* All characters are numeric */
-}
-
 
 /* Function to check if a string is a valid constant name */
 int isValidConstantName( const char *name) {

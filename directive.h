@@ -20,7 +20,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
         if (strcmp(word, ".string") == 0) {
             return handleStringDirective(file, data);
         } else if (strcmp(word, ".data") == 0) {
-            return handleDataDirective(file, data, head);
+            return handleDataDirective(file,word, data, head);
         }
     }
 
@@ -29,15 +29,14 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
         num_of_entries++;
         data->choice.dir.directive_type = ENTRY;
 
-        fscanf(file, "%49s", word);
+        fscanf(file, "%s", word);
         if (isValidLabel(word,data,1)) {
-            strcpy(data->label, word);
+            addToEntryLabelSet(data->label);
             return 1;
         } else {
             isError(data, "Error: Invalid label name", head);
             return 0;
         }
-
 
     } else if (strcmp(word, ".extern") == 0) {
         num_of_externals++;
@@ -47,7 +46,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
     } else if (strcmp(word, ".string") == 0) {
         return handleStringDirective(file, data);
     } else if (strcmp(word, ".data") == 0) {
-        return handleDataDirective(file, data, head);
+        return handleDataDirective(file,word, data, head);
     }
     return 0;  /* Not a directive */
 }
@@ -63,85 +62,106 @@ int handleStringDirective(FILE *file, struct pattern *data) {
 }
 
 /* Function to handle the .data directive */
-int handleDataDirective(FILE *file, struct pattern *data, struct Node **head) {
-    char input[MAX_LINE_SIZE];
-    int size;
+int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Node **head) {
+    char *token;
     data->choice.dir.directive_type = DATA;
 
-    fgets(input, sizeof(input), file);
-    input[strcspn(input, "\n")] = '\0';
+    fscanf(file, "%s", word);
+    int len = strlen(word);
 
-    if (checkLastCharacter(input, ',') == 0) {
-        isError(data, "Error: Extraneous text after end of command", head);
-        return 0;
+    if(getc(file)!='\n'){
+        if (len > 0 && word[len - 1] != ',') {
+            isError(data, "Error: Missing comma", head);
+            return 0;
+        }
     }
-    if (!miss(0,file)) {
-        isError(data, "Error: missing arguments.", head);
-        return 0;
-    }
+    fseek(file, ftell(file) - 1, SEEK_SET);
 
-    size = processNumericArguments(input+1/*For undle the space at first num*/, data, head);
-    if (size == -1) {
-        return 0;
+
+
+    token = strtok(word, " ,");
+
+    while (token != NULL) {
+        if (checkLastCharacter(token, ',') == 0) {
+            isError(data, "Error: Extraneous text after end of command", head);
+            return 0;
+        }
+
+        if (!processNumericArguments(token,word, data, head)) {
+            return 0;
+        } else{
+            if(getc(file)=='\n')
+                break;
+            else
+                fseek(file, ftell(file) - 1, SEEK_SET);
+        }
+
+        fscanf(file, "%s", word);
+        int len = strlen(word);
+        if (len > 0 && word[len - 1] != ',') {
+            if(getc(file)=='\n')
+                break;
+            isError(data, "Error: Missing comma", head);
+            return 0;
+        }
+        token = strtok(word, " ,");
     }
 
     return 1;
 }
 
 /* Function to process numeric arguments in the .data directive */
-int processNumericArguments(char *input, struct pattern *data, struct Node **head) {
-    int size = 0;
-    char *token = strtok(input, "[^,]");
+int processNumericArguments(char *input, char *word, struct pattern *data, struct Node **head) {
 
     /* Allocate memory for the array of strings */
-    data->choice.dir.data = (char **)calloc(size, sizeof(char *));
-    if (data->choice.dir.data == NULL) {
-        isError(data, "Error: Memory allocation failed", head);
+    data->choice.dir.data = NULL;
+
+    if (word == NULL) {
+        isError(data, "Error: No numeric arguments found", head);
         return 0;
     }
-    while (token != NULL) {
-        if (*token == '\0') {
-            isError(data, "Error: Missing argument.", head);
-            return 0;
-        }
 
-        if (!isNumeric(token)) {
-            isError(data, "Error: Argument is not a real number", head);
-            return 0;
-        }
-
-        /* Allocate memory for the current string and copy the token */
-        data->choice.dir.data[size] = strdup(token);
-
-        /* Check if memory allocation was successful */
-        if (data->choice.dir.data[size] == NULL) {
-            isError(data, "Error: Memory allocation failed", head);
-            /* Clean up previously allocated strings */
-            for (int i = 0; i < size; i++) {
-                free(data->choice.dir.data[i]);
-            }
-            /* Free the array itself */
-            free(data->choice.dir.data);
-            return 0;  // Indicate error
-        }
-
-        size++;
-        /* Resize the array of strings */
-        data->choice.dir.data = realloc(data->choice.dir.data, size * sizeof(char *));
-        if (data->choice.dir.data == NULL) {
-            isError(data, "Error: Memory allocation failed", head);
-            /* Clean up previously allocated strings */
-            for (int i = 0; i < size - 1; i++) {
-                free(data->choice.dir.data[i]);
-            }
-            /* Free the array itself */
-            free(data->choice.dir.data);
-            return 0; // Indicate error
-        }
-
-        token = strtok(NULL, "[^,]");
+    if (*word == '\0') {
+        isError(data, "Error: Missing argument.", head);
+        return 0;
     }
-    data->choice.dir.size = size;
+
+    /* Check if the token is a valid number or constant*/
+    if (!isNumeric(word) && isEntryLabel(word)) {
+        isError(data, "Error: Argument is not a real number", head);
+        return 0;
+    }
+
+    /* Resize the array of strings */
+    char **temp = realloc(data->choice.dir.data, ( data->choice.dir.size + 1) * sizeof(char *));
+    if (temp == NULL) {
+        isError(data, "Error: Memory allocation failed", head);
+        /* Clean up previously allocated strings */
+        for (int i = 0; i <  data->choice.dir.size; i++) {
+            free(data->choice.dir.data[i]);
+        }
+        /* Free the array itself */
+        free(data->choice.dir.data);
+        return 0; // Indicate error
+    }
+    data->choice.dir.data = temp;
+
+    /* Allocate memory for the current string and copy the token */
+    data->choice.dir.data[ data->choice.dir.size] = strdup(word);
+
+    /* Check if memory allocation was successful */
+    if (data->choice.dir.data[ data->choice.dir.size] == NULL) {
+        isError(data, "Error: Memory allocation failed", head);
+        /* Clean up previously allocated strings */
+        for (int i = 0; i <=  data->choice.dir.size; i++) {
+            free(data->choice.dir.data[i]);
+        }
+        /* Free the array itself */
+        free(data->choice.dir.data);
+        return 0;  // Indicate error
+    }
+    data->choice.dir.size =  data->choice.dir.size++;
+
     return 1;
 }
 
@@ -255,7 +275,7 @@ int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
         }
 
         /* Check if the label is valid */
-        if (isValidLabel(tempLabel,data,0)) {
+        if (isValidLabel(tempLabel,data,1)) {
             strcpy(tempLabel, data->label);
             num_of_symbol++;
             /* Add the label to the entry label set */

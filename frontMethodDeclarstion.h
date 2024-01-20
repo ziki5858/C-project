@@ -252,7 +252,7 @@ int checkLastCharacter(const char input[], char errorChar);
  * @param head A pointer to the head of the linked list.
  * @return 1 if the processing is successful; otherwise, 0.
  */
-int processNumericArguments(char *input, struct pattern *data, struct Node **head);
+int processNumericArguments(char *input, char *word, struct pattern *data, struct Node **head);
 
 /**
  * @brief Function to handle the .string directive.
@@ -269,7 +269,7 @@ int handleStringDirective(FILE *file, struct pattern *data);
  * @param data A pointer to the pattern data structure to be updated.
  * @return 1 if the processing is successful; otherwise, 0.
  */
-int handleDataDirective(FILE *file, struct pattern *data, struct Node **head);
+int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Node **head);
 
 /**
  * @brief Function to check if a label is already used as .entry.

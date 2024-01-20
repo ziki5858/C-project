@@ -56,6 +56,7 @@ void processLine(FILE *file, struct Node **head) {
 
 
 int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
+
     if(strcmp(word, ".define") == 0){/*No need to check for label because language doesn't support label for define*/
         data->type_line = DEFINE;
         if (!defineFormat(file, word, data, head)) {
