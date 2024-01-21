@@ -1,8 +1,5 @@
-#include <stdio.h>
-#include <string.h>
-#include "ctype.h"
-#include "front.h"
 
+#include "headeMethods.h"
 
 int processOperands(FILE *file, struct pattern *data, struct Node **head, int operandCount) {
     char word[MAX_LINE_SIZE];
@@ -35,8 +32,8 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
 
             /* Map the register string to the corresponding enum value */
             for (y = 0; registerMappings[y].name != NULL; ++y) {
-                if (operandCount-i==2&& strcmp(token, registerMappings[y].name) == 0||
-                operandCount-i==1&& strcmp(word, registerMappings[y].name) == 0) {
+                if ((operandCount-i==2)&& strcmp(token, registerMappings[y].name) == 0||
+                        (operandCount-i==1)&& strcmp(word, registerMappings[y].name) == 0) {
                     data->choice.inst.operands[operandCount - 1 - y].operand_value.reg = registerMappings[y].reg;
                     con=1;
                     break;
@@ -58,7 +55,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
             /* Set operand type to DIRECT_INDEX */
             data->choice.inst.operands[operandCount - 1 - i].op_type = DIRECT_INDEX;
             /* Tokenize the word to extract content inside square brackets */
-            char *token = strtok(word, "[^ [ ]");
+            token = strtok(word, "[^ [ ]");
             strcpy(data->choice.inst.operands[operandCount - 1 - i].operand_value.symbol, token);
             /* Move the file pointer back to the start of the word */
             fseek(file, -strlen(word), SEEK_CUR);
@@ -73,15 +70,15 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
             data->choice.inst.operands[operandCount-1-i].op_type = IMMEDIATE_NUMBER;
             /* Convert the string after '#' to an integer and assign it to the operand */
             data->choice.inst.operands[operandCount-1-i].operand_value.value = atoi(word + 1);
-             continue;
+            continue;
         }
 
-         if(operandCount-i==2&& isValidLabel(token,data,1)||operandCount-i==1&& isValidLabel(word, data,1/*no need at ':' check*/)){
-             data->choice.inst.operands[operandCount-1-i].op_type = DIRECT;
-             /* Assign the word as the symbol for the operand */
-             strcpy(data->choice.inst.operands[operandCount-1-i].operand_value.symbol, word);
+        if((operandCount-i==2)&& isValidLabel(token,data,1)||(operandCount-i==1)&& isValidLabel(word, data,1/*no need at ':' check*/)){
+            data->choice.inst.operands[operandCount-1-i].op_type = DIRECT;
+            /* Assign the word as the symbol for the operand */
+            strcpy(data->choice.inst.operands[operandCount-1-i].operand_value.symbol, word);
             continue;
-         }
+        }
         /* If none of the conditions are met, the operand is invalid */
         isError(data, "Error: Invalid operand","instruction.h", head);
         return 0;
@@ -130,13 +127,13 @@ int instructionFormat(FILE *file, const char *word, struct pattern *data, struct
 
             /* It's an instruction with two operands */
             if (i >= 0 && i < 5) {
-                    return processTwoOperands(file, data, head);
+                return processTwoOperands(file, data, head);
             }
-            /* It's an instruction with one operand */
+                /* It's an instruction with one operand */
             else if (i >= 5 && i < 15) {
                 return processOneOperand(file, data, head);
             }
-            /* It's an instruction without operands */
+                /* It's an instruction without operands */
             else if (i >= 15 && i < 18) {
                 return processNoOperands(data);
             } else {

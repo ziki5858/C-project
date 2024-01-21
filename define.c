@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <string.h>
+
 #include "ctype.h"
-#include "front.h"
+#include "headeMethods.h"
 
 int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
     fscanf(file, "%s", word);
@@ -29,12 +28,13 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
 }
 
 int isNumeric(char *str) {
+    int length = strlen(str);
+    int startIndex = 0;
+    int i;
+
     if (str == NULL || *str == '\0') {
         return 0; /* Not numeric if the string is empty or NULL*/
     }
-
-    int length = strlen(str);
-    int startIndex = 0;
 
     while (str[startIndex] == ' ' && startIndex < length) {
         startIndex++;
@@ -44,7 +44,7 @@ int isNumeric(char *str) {
         startIndex ++;
     }
 
-    for (int i = startIndex; i < length; i++) {
+    for (i = startIndex; i < length; i++) {
         if (!isdigit(str[i])) {
             return 0; /* Non-digit character found*/
         }

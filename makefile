@@ -1,2 +1,13 @@
-pre: preprossesor.c trie/trie.c
-	gcc  preprossesor.c trie/trie.c -o pre -g
+CFLAGS = -fsanitize=address -g
+front: front.o define.o instrucstion.o directive.o
+	gcc $(CFLAGS) -o front front.o define.o instrucstion.o directive.o
+front.o: front.c
+	gcc $(CFLAGS) -c front.c
+define.o: define.c
+	gcc $(CFLAGS) -c define.c
+instrucstion.o: instrucstion.c
+	gcc $(CFLAGS) -c instrucstion.c
+directive.o: directive.c
+	gcc $(CFLAGS) -c directive.c
+clean:
+	rm -f *.o front

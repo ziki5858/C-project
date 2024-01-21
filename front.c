@@ -1,11 +1,12 @@
-#include "front.h"
-#include "directive.h"
-#include "define.h"
-#include "instruction.h"
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
 
+#include "headeMethods.h"
+/* Global variables*/
+int num_of_patterns;
+int num_of_symbol;
+int num_of_entries;
+int num_of_externals;
+int num_of_constants;
+int lineNumber;
 
 struct Node *createNode(struct pattern data) {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
@@ -30,12 +31,12 @@ void insertNode(struct Node **head, struct pattern data) {
 }
 
 struct Node *processAssemblyText(const char *filename) {
+    struct Node *head = NULL;
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         perror("Error opening file");
         return NULL;
     }
-    struct Node *head = NULL;
     processLine(file, &head);
     fclose(file);
     return head;
@@ -127,16 +128,12 @@ void freeLinkedList(struct Node *head) {
 
 
 int main() {
-    // Replace "your_input_file.asm" with the actual file name you want to process
     const char *filename = "exampleCheck";
 
-    // Process the assembly text and build a linked list
     struct Node *head = processAssemblyText(filename);
 
-    // Print the linked list for verification
     printLinkedList(head);
 
-    // Free the allocated memory for the linked list
     freeLinkedList(head);
 
     return 0;

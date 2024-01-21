@@ -6,16 +6,23 @@
  *  @note
  *  Additional notes or considerations, if any.
  */
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-#include "front.h"
+#define MAX_ERROR_SIZE 300
+#define MAX_LINE_SIZE 81
+#define MAX_LABEL_SIZE 31
+struct pattern;
+struct code;
 
 /* Global variables*/
-int num_of_patterns;
-int num_of_symbol;
-int num_of_entries;
-int num_of_externals;
-int num_of_constants;
-int lineNumber;
+extern int num_of_patterns;
+extern int num_of_symbol;
+extern int num_of_entries;
+extern int num_of_externals;
+extern int num_of_constants;
+extern int lineNumber;
 
 /**
  * @enum DirectiveType
@@ -44,7 +51,7 @@ enum Register {
     r4,
     r5,
     r6,
-    r7,
+    r7
 };
 
 /**
@@ -58,7 +65,7 @@ struct pattern {
 	
 	union {
 	char error[MAX_ERROR_SIZE];
-    // Union to store different types of patterns
+    /* Union to store different types of patterns*/
     struct {
         enum DirectiveType directive_type; /**< Type of directive pattern */
         char **data;
@@ -151,6 +158,15 @@ const struct RegisterMapping {
  */
 int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head);
 
+/**
+ * @brief Function to check if a word is a define and update the pattern structure.
+ * @param file Pointer to the file being processed.
+ * @param word The word to be checked.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @param head A pointer to the head of the linked list.
+ * @return 1 if the word is a define; otherwise, -1.
+ */
+int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head);
 
 /**
  * @brief Function to check if a word is an error and update the pattern structure.

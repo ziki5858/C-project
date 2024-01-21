@@ -1,8 +1,5 @@
-#include <stdio.h>
-#include <string.h>
 #include "ctype.h"
-#include "front.h"
-#include "frontMethodDeclarstion.h"
+#include "headeMethods.h"
 
 /* Set to store entry labels */
 struct LabelSet {
@@ -11,7 +8,7 @@ struct LabelSet {
 };
 
 /* Initialize the label set */
-struct LabelSet entryLabelSet = { .count = 0 };
+struct LabelSet entryLabelSet = { 0 };
 
 /* Function to handle the formatting of directives in the assembly code */
 int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
@@ -39,7 +36,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
 
     } else if (strcmp(word, ".extern") == 0) {
         data->choice.dir.directive_type = EXTERN;
-       return handleEntryDirective(file, data, head);
+        return handleEntryDirective(file, data, head);
 
     } else if (strcmp(word, ".string") == 0) {
         return handleStringDirective(file, data);
@@ -248,8 +245,8 @@ int isValidLabel(char *name, struct pattern *data, int needColon) {
 
 /* Function to add a label to the set */
 void addToEntryLabelSet(const char *label) {
-        strcpy(entryLabelSet.labels[entryLabelSet.count], label);
-        entryLabelSet.count++;
+    strcpy(entryLabelSet.labels[entryLabelSet.count], label);
+    entryLabelSet.count++;
 }
 
 /* Function to check if a label is in the set */
