@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "ctype.h"
 
 #define MAX_ERROR_SIZE 300
 #define MAX_LINE_SIZE 81
@@ -109,42 +110,17 @@ struct Node {
  */
 const struct InstructionMapping {
     const char *name;            /**< Name of the instruction */
-    enum InstructionType type;   /**< Corresponding enum value */
-} instructionMappings[] = {
-        {"mov", MOV},
-        {"cmp", CMP},
-        {"add", ADD},
-        {"sub", SUB},
-        {"lea", LEA},
-        {"not", NOT},
-        {"clr", CLR},
-        {"inc", INC},
-        {"dec", DEC},
-        {"jmp", JMP},
-        {"bne", BNE},
-        {"red", RED},
-        {"prn", PRN},
-        {"jsr", JSR},
-        {"rts", RTS},
-        {"hlt", HLT},
-        {NULL, (enum InstructionType)0}  /* Sentinel value for the end of the array */
+    enum InstructionType type;/**< Corresponding enum value */
 };
+extern const struct InstructionMapping instructionMappings[];
+
 
 const struct RegisterMapping {
     const char *name;          /**< Name of the register */
     enum Register reg;         /**< Corresponding enum value */
-} registerMappings[] = {
-        {"r0", r0},
-        {"r1", r1},
-        {"r2", r2},
-        {"r3", r3},
-        {"r4", r4},
-        {"r5", r5},
-        {"r6", r6},
-        {"r7", r7},
-        {NULL, (enum Register)0}   /* Sentinel value for the end of the array */
 };
 
+extern const struct RegisterMapping registerMappings[];
 
 
 

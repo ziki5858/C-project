@@ -1,4 +1,3 @@
-#include "ctype.h"
 #include "headeMethods.h"
 
 /* Set to store entry labels */

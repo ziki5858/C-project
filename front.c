@@ -8,6 +8,38 @@ int num_of_externals;
 int num_of_constants;
 int lineNumber;
 
+const struct InstructionMapping instructionMappings[] = {
+    {"mov", MOV},
+    {"cmp", CMP},
+    {"add", ADD},
+    {"sub", SUB},
+    {"lea", LEA},
+    {"not", NOT},
+    {"clr", CLR},
+    {"inc", INC},
+    {"dec", DEC},
+    {"jmp", JMP},
+    {"bne", BNE},
+    {"red", RED},
+    {"prn", PRN},
+    {"jsr", JSR},
+    {"rts", RTS},
+    {"hlt", HLT},
+    {NULL, (enum InstructionType)0}  /* Sentinel value for the end of the array */
+};
+
+const struct RegisterMapping registerMappings[] = {
+{"r0", r0},
+{"r1", r1},
+{"r2", r2},
+{"r3", r3},
+{"r4", r4},
+{"r5", r5},
+{"r6", r6},
+{"r7", r7},
+{NULL, (enum Register)0}   /* Sentinel value for the end of the array */
+};
+
 struct Node *createNode(struct pattern data) {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->data = data;

@@ -1,5 +1,4 @@
 
-#include "ctype.h"
 #include "headeMethods.h"
 
 int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
