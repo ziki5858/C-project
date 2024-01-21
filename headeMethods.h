@@ -108,14 +108,14 @@ struct Node {
  * @struct InstructionMapping
  * @brief Structure to map instruction names to their corresponding enum values.
  */
-const struct InstructionMapping {
+struct InstructionMapping {
     const char *name;            /**< Name of the instruction */
     enum InstructionType type;/**< Corresponding enum value */
 };
 extern const struct InstructionMapping instructionMappings[];
 
 
-const struct RegisterMapping {
+struct RegisterMapping {
     const char *name;          /**< Name of the register */
     enum Register reg;         /**< Corresponding enum value */
 };
