@@ -156,10 +156,10 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
  * @brief Function to check if a word is an error and update the pattern structure.
  * @param data A pointer to the pattern data structure to be updated.
  * @param errorMessage The error message to be associated with the pattern.
+ * @param filename The name of the file being processed.
  * @param head A pointer to the head of the linked list.
  */
-void isError(struct pattern *data, const char *errorMessage, struct Node **head);
-
+void isError(struct pattern *data, const char *errorMessage, const char *filename, struct Node **head);
 /**
  * @brief Creates a new linked list node with the given data.
  * @param data The pattern data to be stored in the node.

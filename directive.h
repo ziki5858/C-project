@@ -26,20 +26,18 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
 
     /* Separate cases for other directives */
     if (strcmp(word, ".entry") == 0) {
-        num_of_entries++;
-        data->choice.dir.directive_type = ENTRY;
-
         fscanf(file, "%s", word);
         if (isValidLabel(word,data,1)) {
+            num_of_entries++;
+            data->choice.dir.directive_type = ENTRY;
             addToEntryLabelSet(data->label);
             return 1;
         } else {
-            isError(data, "Error: Invalid label name", head);
-            return 0;
+            isError(data, "Error: Invalid label name at .entry","directive.h", head);
+            return -1;/*-1 means that it is a directive type but arguments are not valid*/
         }
 
     } else if (strcmp(word, ".extern") == 0) {
-        num_of_externals++;
         data->choice.dir.directive_type = EXTERN;
        return handleEntryDirective(file, data, head);
 
@@ -71,7 +69,7 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
 
     if(getc(file)!='\n'){
         if (len > 0 && word[len - 1] != ',') {
-            isError(data, "Error: Missing comma", head);
+            isError(data, "Error: Missing comma","directive.h", head);
             return 0;
         }
     }
@@ -83,7 +81,7 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
 
     while (token != NULL) {
         if (checkLastCharacter(token, ',') == 0) {
-            isError(data, "Error: Extraneous text after end of command", head);
+            isError(data, "Error: Extraneous text after end of command","directive.h", head);
             return 0;
         }
 
@@ -101,7 +99,7 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
         if (len > 0 && word[len - 1] != ',') {
             if(getc(file)=='\n')
                 break;
-            isError(data, "Error: Missing comma", head);
+            isError(data, "Error: Missing comma","directive.h", head);
             return 0;
         }
         token = strtok(word, " ,");
@@ -117,25 +115,25 @@ int processNumericArguments(char *input, char *word, struct pattern *data, struc
     data->choice.dir.data = NULL;
 
     if (word == NULL) {
-        isError(data, "Error: No numeric arguments found", head);
+        isError(data, "Error: No numeric arguments found","directive.h", head);
         return 0;
     }
 
     if (*word == '\0') {
-        isError(data, "Error: Missing argument.", head);
+        isError(data, "Error: Missing argument.","directive.h", head);
         return 0;
     }
 
     /* Check if the token is a valid number or constant*/
     if (!isNumeric(word) && isEntryLabel(word)) {
-        isError(data, "Error: Argument is not a real number", head);
+        isError(data, "Error: Argument is not a real number","directive.h", head);
         return 0;
     }
 
     /* Resize the array of strings */
     char **temp = realloc(data->choice.dir.data, ( data->choice.dir.size + 1) * sizeof(char *));
     if (temp == NULL) {
-        isError(data, "Error: Memory allocation failed", head);
+        isError(data, "Error: Memory allocation failed","directive.h", head);
         /* Clean up previously allocated strings */
         for (int i = 0; i <  data->choice.dir.size; i++) {
             free(data->choice.dir.data[i]);
@@ -151,7 +149,7 @@ int processNumericArguments(char *input, char *word, struct pattern *data, struc
 
     /* Check if memory allocation was successful */
     if (data->choice.dir.data[ data->choice.dir.size] == NULL) {
-        isError(data, "Error: Memory allocation failed", head);
+        isError(data, "Error: Memory allocation failed","directive.h", head);
         /* Clean up previously allocated strings */
         for (int i = 0; i <=  data->choice.dir.size; i++) {
             free(data->choice.dir.data[i]);
@@ -266,12 +264,26 @@ int isEntryLabel(const char *label) {
 
 int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
     char tempLabel[MAX_LABEL_SIZE];
+    int nextChar;
+    // Check if the next character is a newline
+    do {
+        nextChar = fgetc(file);
+    } while (nextChar != EOF && (nextChar == ' ' || nextChar == '\t'));
+
+    // If the next character is not a newline, put it back to the stream
+    if (nextChar != EOF && nextChar != '\n') {
+        ungetc(nextChar, file);
+    } else {
+        // Break if the next character is a newline
+        isError(data, "Error: no argument at .entry","directive.h", head);
+        return -1;
+    }
 
     if (fscanf(file, "%s", tempLabel) == 1) {
         /* Check if the label is already used as .entry */
         if (isEntryLabel(tempLabel)) {
-            isError(data, "Error: Label already used as .entry", head);
-            return 0;
+            isError(data, "Error: Label already used as .entry","directive.h", head);
+            return -1;/*case -1 means that it is a directive type but arguments are not valid*/
         }
 
         /* Check if the label is valid */
@@ -280,14 +292,15 @@ int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
             num_of_symbol++;
             /* Add the label to the entry label set */
             addToEntryLabelSet(data->label);
+            num_of_externals++;
             return 1;
         } else {
-            isError(data, "Error: Invalid label name", head);
-            return 0;
+            isError(data, "Error: Invalid label name","directive.h", head);
+            return -1;
         }
     } else {
         /* Handle fscanf failure */
-        isError(data, "Error: Unable to read label from file", head);
-        return 0;
+        isError(data, "Error: Unable to read label from file","directive.h", head);
+        return -1;
     }
 }

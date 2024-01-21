@@ -9,20 +9,20 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
         strcpy(data->label, word);
         num_of_symbol++;
     } else {
-        isError(data, "Error: Invalid constant name",head);
-        return 0;
+        isError(data, "Error: Invalid constant name","define.h",head);
+        return -1;
     }
 
     fscanf(file, "%s", word);
     if(strcmp(word,"=")!=0){
-        isError(data, "Error: Invalid symbol, need to be =",head);
-        return 0;
+        isError(data, "Error: Invalid symbol, need to be =","define.h",head);
+        return -1;
     }
 
     fscanf(file, "%s", word);
     if (!isNumeric(word)) {
-        isError(data, "Invalid numeric value", head);
-        return 0;
+        isError(data, "Invalid numeric value","define.h", head);
+        return -1;
     }
     data->choice.def.value = atoi(word);
     return 1;

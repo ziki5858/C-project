@@ -7,7 +7,6 @@
 #include <stdio.h>
 
 
-
 struct Node *createNode(struct pattern data) {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -56,39 +55,53 @@ void processLine(FILE *file, struct Node **head) {
 
 
 int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
+    int return_value;
 
     if(strcmp(word, ".define") == 0){/*No need to check for label because language doesn't support label for define*/
+        return_value= defineFormat(file, word, data, head);
         data->type_line = DEFINE;
-        if (!defineFormat(file, word, data, head)) {
-            isError(data, "Error: define format isn't valid", head);
+        if (return_value == -1) {
             return 0;
         }
+        else if(return_value == 1) {
+            insertNode(head, *data);
+            return 1;
+        }
     }
-    else if (directiveFormat(file, word, data, head)) {
+
+    return_value= directiveFormat(file, word, data, head);
+    if (return_value == 1) {
         data->type_line = DIRECTIVE;
+        insertNode(head, *data);
+        return 1;
     }
+    else if (return_value == -1) {
+        return 0;
+    }
+
     else {
-        if (instructionFormat(file,word, data, head)) {
+        return_value= instructionFormat(file, word, data, head);
+        if (return_value == 1) {
             data->type_line = INSTRUCTION;
+            insertNode(head, *data);
+            return 1;
+        } else if (return_value == -1) {
+            return 0;
         }
         else {
-            isError(data, "Error: word not at assembly language table", head);
+            isError(data, "Error: word not at assembly language table","front.c", head);
             return 0;
         }
     }
-    insertNode(head, *data);
-    printLinkedList(*head);
-    return 1;
+
 }
 
 
-void isError(struct pattern *data, const char *errorMessage, struct Node **head)
+void isError(struct pattern *data, const char *errorMessage, const char *filename, struct Node **head)
 {
     data->type_line = ERROR;
-    /* Insert data into the linked list*/
-    insertNode(head, *data);
-    /*Update the error message with the line number*/
-    snprintf(data->choice.error, sizeof(data->choice.error), "Error: %s, File: front.c, Line: %d", errorMessage, lineNumber);
+    /*Update the error message with the line number and filename*/
+    snprintf(data->choice.error, sizeof(data->choice.error), "Error: %s, File: %s, Line: %d", errorMessage, filename, lineNumber);
     insertNode(head, *data);
 }
 

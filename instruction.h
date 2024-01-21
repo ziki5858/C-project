@@ -4,8 +4,6 @@
 #include "front.h"
 
 
-
-
 int processOperands(FILE *file, struct pattern *data, struct Node **head, int operandCount) {
     char word[MAX_LINE_SIZE];
     char *token;
@@ -15,7 +13,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
     for (i = 0; i < operandCount; i++) {
         /* Read the next word from the file */
         if (fscanf(file, "%s", word) != 1) {
-            isError(data, "Error: Missing operand", head);
+            isError(data, "Error: Missing operand","instruction.h", head);
             return 0;
         }
 
@@ -24,7 +22,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
         {
             int len = strlen(word);
             if (len > 0 && word[len - 1] != ',') {
-                isError(data, "Error: Missing comma", head);
+                isError(data, "Error: Missing comma","instruction.h", head);
                 return 0;
             }
             token = strtok(word, " ,");
@@ -43,7 +41,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
                     con=1;
                     break;
                 } else if(y==7){
-                    isError(data, "Error: Invalid register", head);
+                    isError(data, "Error: Invalid register","instruction.h", head);
                     return 0;
                 }
             }
@@ -85,7 +83,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
             continue;
          }
         /* If none of the conditions are met, the operand is invalid */
-        isError(data, "Error: Invalid operand", head);
+        isError(data, "Error: Invalid operand","instruction.h", head);
         return 0;
     }
     return 1;     /* All operands processed successfully */
@@ -144,7 +142,7 @@ int instructionFormat(FILE *file, const char *word, struct pattern *data, struct
             } else {
                 /* Invalid instruction name */
                 data->type_line = ERROR;
-                isError(data, "Invalid instruction name", head);
+                isError(data, "Invalid instruction name","instruction.h", head);
                 return 0;
             }
         }
