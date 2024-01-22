@@ -1,0 +1,11 @@
+<map id="instructionFormat" name="instructionFormat">
+<area shape="rect" id="node1" title="Checks if a word is an instruction and updates the pattern structure." alt="" coords="5,61,143,87"/>
+<area shape="rect" id="node2" href="$front_8c.html#a497d412bc5a4b29e959da8d58c6e7f44" title="Function to check if a word is an error and update the pattern structure." alt="" coords="598,10,662,37"/>
+<area shape="rect" id="node5" href="$instrucstion_8c.html#a4ca2c34a863fc17db10031bfe5ccf0b0" title="Handles processing of instructions without operands." alt="" coords="194,35,346,62"/>
+<area shape="rect" id="node6" href="$instrucstion_8c.html#ab3b600e768927750f73f08907f410181" title="Handles processing of instructions with one operand." alt="" coords="193,86,347,113"/>
+<area shape="rect" id="node9" href="$instrucstion_8c.html#a3a9b245c491e5d371d975156a60f32e6" title="Handles processing of instructions with two operands." alt="" coords="191,137,349,163"/>
+<area shape="rect" id="node3" href="$front_8c.html#a2aea10f08082ec4cf48434ea86c023ac" title="Inserts a new node at the end of the linked list." alt="" coords="728,10,821,37"/>
+<area shape="rect" id="node4" href="$front_8c.html#a50bf4aac153ee7424cba502accb069de" title="Creates a new linked list node with the given data." alt="" coords="869,10,967,37"/>
+<area shape="rect" id="node7" href="$instrucstion_8c.html#aa5aebcb22236185a42e088063d0030e7" title="Handles processing of operands for instructions." alt="" coords="397,86,532,113"/>
+<area shape="rect" id="node8" href="$directive_8c.html#a7fb05dea6f2c00d6630a34a63bed4333" title="Function to check if a label is valid." alt="" coords="580,86,680,113"/>
+</map>

@@ -1,0 +1,625 @@
+\hypertarget{front_8c}{}\doxysection{front.\+c File Reference}
+\label{front_8c}\index{front.c@{front.c}}
+{\ttfamily \#include \char`\"{}heade\+Methods.\+h\char`\"{}}\newline
+Include dependency graph for front.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{front_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structNode}{Node}} $\ast$ \mbox{\hyperlink{front_8c_a50bf4aac153ee7424cba502accb069de}{create\+Node}} (struct \mbox{\hyperlink{structpattern}{pattern}} data)
+\begin{DoxyCompactList}\small\item\em Creates a new linked list node with the given data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{front_8c_a2aea10f08082ec4cf48434ea86c023ac}{insert\+Node}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head, struct \mbox{\hyperlink{structpattern}{pattern}} data)
+\begin{DoxyCompactList}\small\item\em Inserts a new node at the end of the linked list. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNode}{Node}} $\ast$ \mbox{\hyperlink{front_8c_a2bc68f82a4715dc30ae2c450eeb1e629}{process\+Assembly\+Text}} (const char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Processes an entire file of assembly language text and builds a linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{front_8c_ac26aaf7e0131a5ccdb4c14ae928aa87d}{process\+Line}} (FILE $\ast$file, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{front_8c_aefa918d3cc0fdd2c816db056bcdeaeed}{categorize\+Word}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Categorizes a word based on its type and updates the pattern structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{is\+Error}} (struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, const char $\ast$error\+Message, const char $\ast$filename, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is an error and update the pattern structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{front_8c_ae072285661c15dacd16395e5dbb2943e}{print\+Linked\+List}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Prints the content of the linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{front_8c_ab643077dedf9357003496c8e64187c46}{free\+Linked\+List}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Frees the memory allocated for the linked list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{front_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{front_8c_a4d446a347bb50b9a831c9d6f355373e9}{num\+\_\+of\+\_\+patterns}}
+\item 
+int \mbox{\hyperlink{front_8c_aebb8c667f62ceaa6c41ba28e1832c46b}{num\+\_\+of\+\_\+symbol}}
+\item 
+int \mbox{\hyperlink{front_8c_a085b57d9ed0b3d5392eb3dcffe1b2301}{num\+\_\+of\+\_\+entries}}
+\item 
+int \mbox{\hyperlink{front_8c_aef398d61da8585441be8052f91c005d9}{num\+\_\+of\+\_\+externals}}
+\item 
+int \mbox{\hyperlink{front_8c_a5ab8d71be5fa7d6cc6c7d7f498a814c6}{num\+\_\+of\+\_\+constants}}
+\item 
+int \mbox{\hyperlink{front_8c_a44bf2f6ee91a35522c07c779325d3ef0}{line\+Number}}
+\item 
+const struct \mbox{\hyperlink{structInstructionMapping}{Instruction\+Mapping}} \mbox{\hyperlink{front_8c_a3c4d69d58e5f21876f589033c2f2b8a0}{instruction\+Mappings}} \mbox{[}$\,$\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structRegisterMapping}{Register\+Mapping}} \mbox{\hyperlink{front_8c_a46fc27e049a0166b0d291695ee10e462}{register\+Mappings}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{front_8c_aefa918d3cc0fdd2c816db056bcdeaeed}\label{front_8c_aefa918d3cc0fdd2c816db056bcdeaeed}} 
+\index{front.c@{front.c}!categorizeWord@{categorizeWord}}
+\index{categorizeWord@{categorizeWord}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{categorizeWord()}{categorizeWord()}}
+{\footnotesize\ttfamily int categorize\+Word (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Categorizes a word based on its type and updates the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be categorized. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the categorization is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{90                                                                                      \{}
+\DoxyCodeLine{91     \textcolor{keywordtype}{int} return\_value;}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \textcolor{keywordflow}{if}(strcmp(word, \textcolor{stringliteral}{"{}.define"{}}) == 0)\{\textcolor{comment}{/*No need to check for label because language doesn't support label for define*/}}
+\DoxyCodeLine{94         return\_value= \mbox{\hyperlink{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3}{defineFormat}}(file, word, data, head);}
+\DoxyCodeLine{95         data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = DEFINE;}
+\DoxyCodeLine{96         \textcolor{keywordflow}{if} (return\_value == -\/1) \{}
+\DoxyCodeLine{97             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{98         \}}
+\DoxyCodeLine{99         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(return\_value == 1) \{}
+\DoxyCodeLine{100             \mbox{\hyperlink{front_8c_a2aea10f08082ec4cf48434ea86c023ac}{insertNode}}(head, *data);}
+\DoxyCodeLine{101             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{102         \}}
+\DoxyCodeLine{103     \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105     return\_value= \mbox{\hyperlink{directive_8c_ae5ec285c69a731057cf0c53c79537eee}{directiveFormat}}(file, word, data, head);}
+\DoxyCodeLine{106     \textcolor{keywordflow}{if} (return\_value == 1) \{}
+\DoxyCodeLine{107         data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = DIRECTIVE;}
+\DoxyCodeLine{108         \mbox{\hyperlink{front_8c_a2aea10f08082ec4cf48434ea86c023ac}{insertNode}}(head, *data);}
+\DoxyCodeLine{109         \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{110     \}}
+\DoxyCodeLine{111     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (return\_value == -\/1) \{}
+\DoxyCodeLine{112         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{113     \}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{116         return\_value= \mbox{\hyperlink{headeMethods_8h_a26e39fc2d91733521827b73be3588d13}{instructionFormat}}(file, word, data, head);}
+\DoxyCodeLine{117         \textcolor{keywordflow}{if} (return\_value == 1) \{}
+\DoxyCodeLine{118             data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = INSTRUCTION;}
+\DoxyCodeLine{119             \mbox{\hyperlink{front_8c_a2aea10f08082ec4cf48434ea86c023ac}{insertNode}}(head, *data);}
+\DoxyCodeLine{120             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{121         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (return\_value == -\/1) \{}
+\DoxyCodeLine{122             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{123         \}}
+\DoxyCodeLine{124         \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{125             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: word not at assembly language table"{}},\textcolor{stringliteral}{"{}front.c"{}}, head);}
+\DoxyCodeLine{126             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{127         \}}
+\DoxyCodeLine{128     \}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{front_8c_aefa918d3cc0fdd2c816db056bcdeaeed_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{front_8c_aefa918d3cc0fdd2c816db056bcdeaeed_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{front_8c_a50bf4aac153ee7424cba502accb069de}\label{front_8c_a50bf4aac153ee7424cba502accb069de}} 
+\index{front.c@{front.c}!createNode@{createNode}}
+\index{createNode@{createNode}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{createNode()}{createNode()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structNode}{Node}}$\ast$ create\+Node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpattern}{pattern}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Creates a new linked list node with the given data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The pattern data to be stored in the node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created node. 
+\end{DoxyReturn}
+
+
+Definition at line 43 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43                                              \{}
+\DoxyCodeLine{44     \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *newNode = (\textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *)malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structNode}{Node}}));}
+\DoxyCodeLine{45     newNode-\/>\mbox{\hyperlink{structNode_a78356ba739483ce3547999ba52abcca2}{data}} = \mbox{\hyperlink{structNode_a78356ba739483ce3547999ba52abcca2}{data}};}
+\DoxyCodeLine{46     newNode-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}} = NULL;}
+\DoxyCodeLine{47     \textcolor{keywordflow}{return} newNode;}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{front_8c_a50bf4aac153ee7424cba502accb069de_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{front_8c_ab643077dedf9357003496c8e64187c46}\label{front_8c_ab643077dedf9357003496c8e64187c46}} 
+\index{front.c@{front.c}!freeLinkedList@{freeLinkedList}}
+\index{freeLinkedList@{freeLinkedList}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{freeLinkedList()}{freeLinkedList()}}
+{\footnotesize\ttfamily void free\+Linked\+List (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Frees the memory allocated for the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 150 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{150                                        \{}
+\DoxyCodeLine{151     \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *current = head;}
+\DoxyCodeLine{152     \textcolor{keywordflow}{while} (current != NULL) \{}
+\DoxyCodeLine{153         \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *temp = current;}
+\DoxyCodeLine{154         current = current-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}};}
+\DoxyCodeLine{155         \textcolor{comment}{/* Free the allocated memory for the data in each node*/}}
+\DoxyCodeLine{156         free(temp);}
+\DoxyCodeLine{157     \}}
+\DoxyCodeLine{158 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{front_8c_ab643077dedf9357003496c8e64187c46_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{front_8c_a2aea10f08082ec4cf48434ea86c023ac}\label{front_8c_a2aea10f08082ec4cf48434ea86c023ac}} 
+\index{front.c@{front.c}!insertNode@{insertNode}}
+\index{insertNode@{insertNode}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{insertNode()}{insertNode()}}
+{\footnotesize\ttfamily void insert\+Node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Inserts a new node at the end of the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+{\em data} & The pattern data to be stored in the new node. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{51                                                          \{}
+\DoxyCodeLine{52     \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *newNode = \mbox{\hyperlink{front_8c_a50bf4aac153ee7424cba502accb069de}{createNode}}(\mbox{\hyperlink{structNode_a78356ba739483ce3547999ba52abcca2}{data}});}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{keywordflow}{if} (*head == NULL) \{}
+\DoxyCodeLine{55         *head = newNode;}
+\DoxyCodeLine{56     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{57         \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *temp = *head;}
+\DoxyCodeLine{58         \textcolor{keywordflow}{while} (temp-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}} != NULL) \{}
+\DoxyCodeLine{59             temp = temp-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}};}
+\DoxyCodeLine{60         \}}
+\DoxyCodeLine{61         temp-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}} = newNode;}
+\DoxyCodeLine{62     \}}
+\DoxyCodeLine{63 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{front_8c_a2aea10f08082ec4cf48434ea86c023ac_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{front_8c_a2aea10f08082ec4cf48434ea86c023ac_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}\label{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}} 
+\index{front.c@{front.c}!isError@{isError}}
+\index{isError@{isError}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{isError()}{isError()}}
+{\footnotesize\ttfamily void is\+Error (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{const char $\ast$}]{error\+Message,  }\item[{const char $\ast$}]{filename,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is an error and update the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em error\+Message} & The error message to be associated with the pattern. \\
+\hline
+{\em filename} & The name of the file being processed. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 133 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{134 \{}
+\DoxyCodeLine{135     data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = ERROR;}
+\DoxyCodeLine{136     \textcolor{comment}{/*Update the error message with the line number and filename*/}}
+\DoxyCodeLine{137     snprintf(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_aeefc0d49f64e618d25fe2dcc65d52d18}{error}}, \textcolor{keyword}{sizeof}(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_aeefc0d49f64e618d25fe2dcc65d52d18}{error}}), \textcolor{stringliteral}{"{}Error: \%s, File: \%s, Line: \%d"{}}, errorMessage, filename, \mbox{\hyperlink{front_8c_a44bf2f6ee91a35522c07c779325d3ef0}{lineNumber}});}
+\DoxyCodeLine{138     \mbox{\hyperlink{front_8c_a2aea10f08082ec4cf48434ea86c023ac}{insertNode}}(head, *data);}
+\DoxyCodeLine{139 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{front_8c_a497d412bc5a4b29e959da8d58c6e7f44_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{front_8c_a497d412bc5a4b29e959da8d58c6e7f44_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{front_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{front_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{front.c@{front.c}!main@{main}}
+\index{main@{main}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 162 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{162            \{}
+\DoxyCodeLine{163     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *filename = \textcolor{stringliteral}{"{}exampleCheck"{}};}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165     \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *head = \mbox{\hyperlink{front_8c_a2bc68f82a4715dc30ae2c450eeb1e629}{processAssemblyText}}(filename);}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     \mbox{\hyperlink{front_8c_ae072285661c15dacd16395e5dbb2943e}{printLinkedList}}(head);}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     \mbox{\hyperlink{front_8c_ab643077dedf9357003496c8e64187c46}{freeLinkedList}}(head);}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{172 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{front_8c_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{front_8c_ae072285661c15dacd16395e5dbb2943e}\label{front_8c_ae072285661c15dacd16395e5dbb2943e}} 
+\index{front.c@{front.c}!printLinkedList@{printLinkedList}}
+\index{printLinkedList@{printLinkedList}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{printLinkedList()}{printLinkedList()}}
+{\footnotesize\ttfamily void print\+Linked\+List (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Prints the content of the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 141 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{141                                         \{}
+\DoxyCodeLine{142     \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *current = head;}
+\DoxyCodeLine{143     \textcolor{keywordflow}{while} (current != NULL) \{}
+\DoxyCodeLine{144         printf(\textcolor{stringliteral}{"{}Type: \%d\(\backslash\)n"{}}, current-\/>\mbox{\hyperlink{structNode_a78356ba739483ce3547999ba52abcca2}{data}}.\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}});}
+\DoxyCodeLine{145         current = current-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}};}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147     \}}
+\DoxyCodeLine{148 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{front_8c_ae072285661c15dacd16395e5dbb2943e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{front_8c_a2bc68f82a4715dc30ae2c450eeb1e629}\label{front_8c_a2bc68f82a4715dc30ae2c450eeb1e629}} 
+\index{front.c@{front.c}!processAssemblyText@{processAssemblyText}}
+\index{processAssemblyText@{processAssemblyText}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{processAssemblyText()}{processAssemblyText()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structNode}{Node}}$\ast$ process\+Assembly\+Text (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Processes an entire file of assembly language text and builds a linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file to be processed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the head of the linked list. 
+\end{DoxyReturn}
+
+
+Definition at line 65 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{65                                                        \{}
+\DoxyCodeLine{66     \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *head = NULL;}
+\DoxyCodeLine{67     FILE *file = fopen(filename, \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{68     \textcolor{keywordflow}{if} (file == NULL) \{}
+\DoxyCodeLine{69         perror(\textcolor{stringliteral}{"{}Error opening file"{}});}
+\DoxyCodeLine{70         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{71     \}}
+\DoxyCodeLine{72     \mbox{\hyperlink{front_8c_ac26aaf7e0131a5ccdb4c14ae928aa87d}{processLine}}(file, \&head);}
+\DoxyCodeLine{73     fclose(file);}
+\DoxyCodeLine{74     \textcolor{keywordflow}{return} head;}
+\DoxyCodeLine{75 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{front_8c_a2bc68f82a4715dc30ae2c450eeb1e629_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{front_8c_a2bc68f82a4715dc30ae2c450eeb1e629_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{front_8c_ac26aaf7e0131a5ccdb4c14ae928aa87d}\label{front_8c_ac26aaf7e0131a5ccdb4c14ae928aa87d}} 
+\index{front.c@{front.c}!processLine@{processLine}}
+\index{processLine@{processLine}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{processLine()}{processLine()}}
+{\footnotesize\ttfamily void process\+Line (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 78 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{78                                                  \{}
+\DoxyCodeLine{79     \textcolor{keywordtype}{char} word[\mbox{\hyperlink{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}{MAX\_LINE\_SIZE}}];}
+\DoxyCodeLine{80     \mbox{\hyperlink{front_8c_a44bf2f6ee91a35522c07c779325d3ef0}{lineNumber}}=0;}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \textcolor{keywordflow}{while} (fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word) == 1) \{}
+\DoxyCodeLine{83         \textcolor{keyword}{struct }\mbox{\hyperlink{structpattern}{pattern}} \mbox{\hyperlink{structpattern_af6468fd0202f29193c73908fd6f7a902}{data}};}
+\DoxyCodeLine{84         \mbox{\hyperlink{front_8c_aefa918d3cc0fdd2c816db056bcdeaeed}{categorizeWord}}(file,word, \&\mbox{\hyperlink{structpattern_af6468fd0202f29193c73908fd6f7a902}{data}}, head);}
+\DoxyCodeLine{85         \mbox{\hyperlink{front_8c_a44bf2f6ee91a35522c07c779325d3ef0}{lineNumber}}++;}
+\DoxyCodeLine{86     \}}
+\DoxyCodeLine{87 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{front_8c_ac26aaf7e0131a5ccdb4c14ae928aa87d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{front_8c_ac26aaf7e0131a5ccdb4c14ae928aa87d_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{front_8c_a3c4d69d58e5f21876f589033c2f2b8a0}\label{front_8c_a3c4d69d58e5f21876f589033c2f2b8a0}} 
+\index{front.c@{front.c}!instructionMappings@{instructionMappings}}
+\index{instructionMappings@{instructionMappings}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{instructionMappings}{instructionMappings}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structInstructionMapping}{Instruction\+Mapping}} instruction\+Mappings\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}mov"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}{MOV}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}cmp"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}{CMP}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}add"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}{ADD}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}sub"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}{SUB}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}lea"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}{LEA}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}not"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}{NOT}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}clr"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}{CLR}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}inc"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}{INC}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}dec"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}{DEC}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}jmp"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}{JMP}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}bne"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}{BNE}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}red"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}{RED}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}prn"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}{PRN}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}jsr"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}{JSR}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}rts"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}{RTS}}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}hlt"{}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}{HLT}}\},}
+\DoxyCodeLine{    \{NULL, (\textcolor{keyword}{enum} \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}{InstructionType}})0\}  }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 9 of file front.\+c.
+
+\mbox{\Hypertarget{front_8c_a44bf2f6ee91a35522c07c779325d3ef0}\label{front_8c_a44bf2f6ee91a35522c07c779325d3ef0}} 
+\index{front.c@{front.c}!lineNumber@{lineNumber}}
+\index{lineNumber@{lineNumber}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{lineNumber}{lineNumber}}
+{\footnotesize\ttfamily int line\+Number}
+
+
+
+Definition at line 9 of file front.\+c.
+
+\mbox{\Hypertarget{front_8c_a5ab8d71be5fa7d6cc6c7d7f498a814c6}\label{front_8c_a5ab8d71be5fa7d6cc6c7d7f498a814c6}} 
+\index{front.c@{front.c}!num\_of\_constants@{num\_of\_constants}}
+\index{num\_of\_constants@{num\_of\_constants}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{num\_of\_constants}{num\_of\_constants}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+constants}
+
+
+
+Definition at line 8 of file front.\+c.
+
+\mbox{\Hypertarget{front_8c_a085b57d9ed0b3d5392eb3dcffe1b2301}\label{front_8c_a085b57d9ed0b3d5392eb3dcffe1b2301}} 
+\index{front.c@{front.c}!num\_of\_entries@{num\_of\_entries}}
+\index{num\_of\_entries@{num\_of\_entries}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{num\_of\_entries}{num\_of\_entries}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+entries}
+
+
+
+Definition at line 6 of file front.\+c.
+
+\mbox{\Hypertarget{front_8c_aef398d61da8585441be8052f91c005d9}\label{front_8c_aef398d61da8585441be8052f91c005d9}} 
+\index{front.c@{front.c}!num\_of\_externals@{num\_of\_externals}}
+\index{num\_of\_externals@{num\_of\_externals}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{num\_of\_externals}{num\_of\_externals}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+externals}
+
+
+
+Definition at line 7 of file front.\+c.
+
+\mbox{\Hypertarget{front_8c_a4d446a347bb50b9a831c9d6f355373e9}\label{front_8c_a4d446a347bb50b9a831c9d6f355373e9}} 
+\index{front.c@{front.c}!num\_of\_patterns@{num\_of\_patterns}}
+\index{num\_of\_patterns@{num\_of\_patterns}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{num\_of\_patterns}{num\_of\_patterns}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+patterns}
+
+
+
+Definition at line 4 of file front.\+c.
+
+\mbox{\Hypertarget{front_8c_aebb8c667f62ceaa6c41ba28e1832c46b}\label{front_8c_aebb8c667f62ceaa6c41ba28e1832c46b}} 
+\index{front.c@{front.c}!num\_of\_symbol@{num\_of\_symbol}}
+\index{num\_of\_symbol@{num\_of\_symbol}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{num\_of\_symbol}{num\_of\_symbol}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+symbol}
+
+
+
+Definition at line 5 of file front.\+c.
+
+\mbox{\Hypertarget{front_8c_a46fc27e049a0166b0d291695ee10e462}\label{front_8c_a46fc27e049a0166b0d291695ee10e462}} 
+\index{front.c@{front.c}!registerMappings@{registerMappings}}
+\index{registerMappings@{registerMappings}!front.c@{front.c}}
+\doxysubsubsection{\texorpdfstring{registerMappings}{registerMappings}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structRegisterMapping}{Register\+Mapping}} register\+Mappings\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{\{\textcolor{stringliteral}{"{}r0"{}}, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}{r0}}\},}
+\DoxyCodeLine{\{\textcolor{stringliteral}{"{}r1"{}}, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}{r1}}\},}
+\DoxyCodeLine{\{\textcolor{stringliteral}{"{}r2"{}}, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}{r2}}\},}
+\DoxyCodeLine{\{\textcolor{stringliteral}{"{}r3"{}}, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}{r3}}\},}
+\DoxyCodeLine{\{\textcolor{stringliteral}{"{}r4"{}}, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}{r4}}\},}
+\DoxyCodeLine{\{\textcolor{stringliteral}{"{}r5"{}}, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}{r5}}\},}
+\DoxyCodeLine{\{\textcolor{stringliteral}{"{}r6"{}}, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}{r6}}\},}
+\DoxyCodeLine{\{\textcolor{stringliteral}{"{}r7"{}}, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}{r7}}\},}
+\DoxyCodeLine{\{NULL, (\textcolor{keyword}{enum} \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1b}{Register}})0\}   }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 9 of file front.\+c.
+

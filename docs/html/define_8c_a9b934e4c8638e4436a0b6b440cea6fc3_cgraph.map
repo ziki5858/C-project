@@ -1,0 +1,8 @@
+<map id="defineFormat" name="defineFormat">
+<area shape="rect" id="node1" title="Function to check if a word is a define and update the pattern structure." alt="" coords="5,56,113,83"/>
+<area shape="rect" id="node2" href="$front_8c.html#a497d412bc5a4b29e959da8d58c6e7f44" title="Function to check if a word is an error and update the pattern structure." alt="" coords="211,5,275,32"/>
+<area shape="rect" id="node5" href="$define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a word is numeric." alt="" coords="199,56,287,83"/>
+<area shape="rect" id="node6" href="$define_8c.html#aa0b3977cf0af0a66723704d8ca22fa37" title="Function to check if a word is a valid constant name." alt="" coords="161,107,324,133"/>
+<area shape="rect" id="node3" href="$front_8c.html#a2aea10f08082ec4cf48434ea86c023ac" title="Inserts a new node at the end of the linked list." alt="" coords="372,5,465,32"/>
+<area shape="rect" id="node4" href="$front_8c.html#a50bf4aac153ee7424cba502accb069de" title="Creates a new linked list node with the given data." alt="" coords="513,5,611,32"/>
+</map>

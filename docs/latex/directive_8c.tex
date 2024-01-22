@@ -1,0 +1,761 @@
+\hypertarget{directive_8c}{}\doxysection{directive.\+c File Reference}
+\label{directive_8c}\index{directive.c@{directive.c}}
+{\ttfamily \#include \char`\"{}heade\+Methods.\+h\char`\"{}}\newline
+Include dependency graph for directive.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{directive_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structLabelSet}{Label\+Set}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{directive_8c_ae5ec285c69a731057cf0c53c79537eee}{directive\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is a directive and return the directive type. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a9923983ba7de99890cc241f1705c63ca}{handle\+String\+Directive}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Function to handle the .string directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}{handle\+Data\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to handle the .data directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_ab18a754930025706c9fad49b18fa3c33}{process\+Numeric\+Arguments}} (char $\ast$input, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to process numeric arguments in a data directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a4209c81388b14c5650d72bc2e92a5f91}{check\+Last\+Character}} (const char input\mbox{[}$\,$\mbox{]}, char error\+Char)
+\begin{DoxyCompactList}\small\item\em Function to check if the last character of a string is a specific character. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a1408df37404e85648b10016972c24ff9}{miss}} (int require\+Comma, FILE $\ast$file)
+\begin{DoxyCompactList}\small\item\em Function to check for missing elements in a data directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a03a5ad42233f6ad7e6824e1eaff30e2f}{count\+Chars}} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Function to count characters in a string. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}{is\+Valid\+Label}} (char $\ast$name, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, int need\+Colon)
+\begin{DoxyCompactList}\small\item\em Function to check if a label is valid. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b}{add\+To\+Entry\+Label\+Set}} (const char $\ast$label)
+\begin{DoxyCompactList}\small\item\em Function to add a label to the .entry label set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc}{is\+Entry\+Label}} (const char $\ast$label)
+\begin{DoxyCompactList}\small\item\em Function to check if a label is already used as .entry. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_ad0ef680cc59967d4e23e35dd0f42db52}{handle\+Entry\+Directive}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to handle the .entry directive. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structLabelSet}{Label\+Set}} \mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entry\+Label\+Set}} = \{ 0 \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b}\label{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b}} 
+\index{directive.c@{directive.c}!addToEntryLabelSet@{addToEntryLabelSet}}
+\index{addToEntryLabelSet@{addToEntryLabelSet}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{addToEntryLabelSet()}{addToEntryLabelSet()}}
+{\footnotesize\ttfamily void add\+To\+Entry\+Label\+Set (\begin{DoxyParamCaption}\item[{const char $\ast$}]{label }\end{DoxyParamCaption})}
+
+
+
+Function to add a label to the .entry label set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & The label to be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 246 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{246                                            \{}
+\DoxyCodeLine{247     strcpy(\mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entryLabelSet}}.\mbox{\hyperlink{structLabelSet_a7666ddbdbd2767085a4fbd5d44968ff8}{labels}}[\mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entryLabelSet}}.\mbox{\hyperlink{structLabelSet_a3eddafb9465992fab9622a50dc6a4c4d}{count}}], label);}
+\DoxyCodeLine{248     \mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entryLabelSet}}.\mbox{\hyperlink{structLabelSet_a3eddafb9465992fab9622a50dc6a4c4d}{count}}++;}
+\DoxyCodeLine{249 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a4209c81388b14c5650d72bc2e92a5f91}\label{directive_8c_a4209c81388b14c5650d72bc2e92a5f91}} 
+\index{directive.c@{directive.c}!checkLastCharacter@{checkLastCharacter}}
+\index{checkLastCharacter@{checkLastCharacter}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{checkLastCharacter()}{checkLastCharacter()}}
+{\footnotesize\ttfamily int check\+Last\+Character (\begin{DoxyParamCaption}\item[{const char}]{input\mbox{[}$\,$\mbox{]},  }\item[{char}]{error\+Char }\end{DoxyParamCaption})}
+
+
+
+Function to check if the last character of a string is a specific character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The string to be checked. \\
+\hline
+{\em error\+Char} & The specific character to check for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the last character is the specified character; otherwise, 1. 
+\end{DoxyReturn}
+
+
+Definition at line 163 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{163                                                            \{}
+\DoxyCodeLine{164     \textcolor{comment}{/* Check if the last character is a comma */}}
+\DoxyCodeLine{165     \textcolor{keywordtype}{size\_t} length = strlen(input);}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     \textcolor{keywordflow}{if} (length > 0) \{}
+\DoxyCodeLine{168         \textcolor{keywordtype}{char} lastChar = input[length -\/ 1];}
+\DoxyCodeLine{169         \textcolor{keywordflow}{if} (lastChar == errorChar) \{}
+\DoxyCodeLine{170             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{171         \}}
+\DoxyCodeLine{172     \}}
+\DoxyCodeLine{173     \textcolor{keywordflow}{return} 1;\textcolor{comment}{/* Last character is not a comma */}}
+\DoxyCodeLine{174 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a4209c81388b14c5650d72bc2e92a5f91_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a03a5ad42233f6ad7e6824e1eaff30e2f}\label{directive_8c_a03a5ad42233f6ad7e6824e1eaff30e2f}} 
+\index{directive.c@{directive.c}!countChars@{countChars}}
+\index{countChars@{countChars}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{countChars()}{countChars()}}
+{\footnotesize\ttfamily int count\+Chars (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Function to count characters in a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to be processed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of characters in the string. 
+\end{DoxyReturn}
+
+
+Definition at line 195 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{195                                 \{}
+\DoxyCodeLine{196     \textcolor{keywordtype}{int} count = 1; \textcolor{comment}{/* For the \(\backslash\)0 at the end of the string by task instruction */}}
+\DoxyCodeLine{197     \textcolor{comment}{/* Iterate through each character until the null terminator is reached */}}
+\DoxyCodeLine{198     \textcolor{keywordflow}{while} (*str != \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{199         count++;}
+\DoxyCodeLine{200         str++;}
+\DoxyCodeLine{201     \}}
+\DoxyCodeLine{202     \textcolor{keywordflow}{return} count;}
+\DoxyCodeLine{203 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a03a5ad42233f6ad7e6824e1eaff30e2f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_ae5ec285c69a731057cf0c53c79537eee}\label{directive_8c_ae5ec285c69a731057cf0c53c79537eee}} 
+\index{directive.c@{directive.c}!directiveFormat@{directiveFormat}}
+\index{directiveFormat@{directiveFormat}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{directiveFormat()}{directiveFormat()}}
+{\footnotesize\ttfamily int directive\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is a directive and return the directive type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Directive\+Type enumeration if the word is a directive; otherwise, -\/1. 
+\end{DoxyReturn}
+
+
+Definition at line 13 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{13                                                                                       \{}
+\DoxyCodeLine{14     \textcolor{keywordflow}{if} (\mbox{\hyperlink{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}{isValidLabel}}(word,data,0)) \{}
+\DoxyCodeLine{15         fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{16         \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.string"{}}) == 0) \{}
+\DoxyCodeLine{17             \textcolor{keywordflow}{return} \mbox{\hyperlink{directive_8c_a9923983ba7de99890cc241f1705c63ca}{handleStringDirective}}(file, data);}
+\DoxyCodeLine{18         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.data"{}}) == 0) \{}
+\DoxyCodeLine{19             \textcolor{keywordflow}{return} \mbox{\hyperlink{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}{handleDataDirective}}(file,word, data, head);}
+\DoxyCodeLine{20         \}}
+\DoxyCodeLine{21     \}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{comment}{/* Separate cases for other directives */}}
+\DoxyCodeLine{24     \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.entry"{}}) == 0) \{}
+\DoxyCodeLine{25         fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{26         \textcolor{keywordflow}{if} (\mbox{\hyperlink{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}{isValidLabel}}(word,data,1)) \{}
+\DoxyCodeLine{27             \mbox{\hyperlink{front_8c_a085b57d9ed0b3d5392eb3dcffe1b2301}{num\_of\_entries}}++;}
+\DoxyCodeLine{28             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.directive\_type = \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}{ENTRY}};}
+\DoxyCodeLine{29             \mbox{\hyperlink{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b}{addToEntryLabelSet}}(data-\/>\mbox{\hyperlink{structpattern_a0f278562150729ca1f3637b08eeeec91}{label}});}
+\DoxyCodeLine{30             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{31         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{32             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid label name at .entry"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{33             \textcolor{keywordflow}{return} -\/1;\textcolor{comment}{/*-\/1 means that it is a directive type but arguments are not valid*/}}
+\DoxyCodeLine{34         \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.extern"{}}) == 0) \{}
+\DoxyCodeLine{37         data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.directive\_type = \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}{EXTERN}};}
+\DoxyCodeLine{38         \textcolor{keywordflow}{return} \mbox{\hyperlink{directive_8c_ad0ef680cc59967d4e23e35dd0f42db52}{handleEntryDirective}}(file, data, head);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.string"{}}) == 0) \{}
+\DoxyCodeLine{41         \textcolor{keywordflow}{return} \mbox{\hyperlink{directive_8c_a9923983ba7de99890cc241f1705c63ca}{handleStringDirective}}(file, data);}
+\DoxyCodeLine{42     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.data"{}}) == 0) \{}
+\DoxyCodeLine{43         \textcolor{keywordflow}{return} \mbox{\hyperlink{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}{handleDataDirective}}(file,word, data, head);}
+\DoxyCodeLine{44     \}}
+\DoxyCodeLine{45     \textcolor{keywordflow}{return} 0;  \textcolor{comment}{/* Not a directive */}}
+\DoxyCodeLine{46 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ae5ec285c69a731057cf0c53c79537eee_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ae5ec285c69a731057cf0c53c79537eee_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}\label{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}} 
+\index{directive.c@{directive.c}!handleDataDirective@{handleDataDirective}}
+\index{handleDataDirective@{handleDataDirective}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{handleDataDirective()}{handleDataDirective()}}
+{\footnotesize\ttfamily int handle\+Data\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to handle the .data directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59                                                                                           \{}
+\DoxyCodeLine{60     \textcolor{keywordtype}{char} *token;}
+\DoxyCodeLine{61     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.directive\_type = \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}{DATA}};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{64     \textcolor{keywordtype}{int} len = strlen(word);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{keywordflow}{if}(getc(file)!=\textcolor{charliteral}{'\(\backslash\)n'})\{}
+\DoxyCodeLine{67         \textcolor{keywordflow}{if} (len > 0 \&\& word[len -\/ 1] != \textcolor{charliteral}{','}) \{}
+\DoxyCodeLine{68             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Missing comma"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{69             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{70         \}}
+\DoxyCodeLine{71     \}}
+\DoxyCodeLine{72     fseek(file, ftell(file) -\/ 1, SEEK\_SET);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     token = strtok(word, \textcolor{stringliteral}{"{} ,"{}});}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \textcolor{keywordflow}{while} (token != NULL) \{}
+\DoxyCodeLine{79         \textcolor{keywordflow}{if} (\mbox{\hyperlink{directive_8c_a4209c81388b14c5650d72bc2e92a5f91}{checkLastCharacter}}(token, \textcolor{charliteral}{','}) == 0) \{}
+\DoxyCodeLine{80             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Extraneous text after end of command"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{81             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{82         \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{directive_8c_ab18a754930025706c9fad49b18fa3c33}{processNumericArguments}}(token,word, data, head)) \{}
+\DoxyCodeLine{85             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{86         \} \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{87             \textcolor{keywordflow}{if}(getc(file)==\textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{88                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{89             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{90                 fseek(file, ftell(file) -\/ 1, SEEK\_SET);}
+\DoxyCodeLine{91         \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93         fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{94         \textcolor{keywordtype}{int} len = strlen(word);}
+\DoxyCodeLine{95         \textcolor{keywordflow}{if} (len > 0 \&\& word[len -\/ 1] != \textcolor{charliteral}{','}) \{}
+\DoxyCodeLine{96             \textcolor{keywordflow}{if}(getc(file)==\textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{97                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{98             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Missing comma"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{99             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{100         \}}
+\DoxyCodeLine{101         token = strtok(word, \textcolor{stringliteral}{"{} ,"{}});}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{105 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_ad0ef680cc59967d4e23e35dd0f42db52}\label{directive_8c_ad0ef680cc59967d4e23e35dd0f42db52}} 
+\index{directive.c@{directive.c}!handleEntryDirective@{handleEntryDirective}}
+\index{handleEntryDirective@{handleEntryDirective}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{handleEntryDirective()}{handleEntryDirective()}}
+{\footnotesize\ttfamily int handle\+Entry\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to handle the .entry directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 261 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{261                                                                                \{}
+\DoxyCodeLine{262     \textcolor{keywordtype}{char} tempLabel[\mbox{\hyperlink{headeMethods_8h_a96127aad3b7750628d041f17c8490726}{MAX\_LABEL\_SIZE}}];}
+\DoxyCodeLine{263     \textcolor{keywordtype}{int} nextChar;}
+\DoxyCodeLine{264     \textcolor{comment}{// Check if the next character is a newline}}
+\DoxyCodeLine{265     \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{266         nextChar = fgetc(file);}
+\DoxyCodeLine{267     \} \textcolor{keywordflow}{while} (nextChar != EOF \&\& (nextChar == \textcolor{charliteral}{' '} || nextChar == \textcolor{charliteral}{'\(\backslash\)t'}));}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269     \textcolor{comment}{// If the next character is not a newline, put it back to the stream}}
+\DoxyCodeLine{270     \textcolor{keywordflow}{if} (nextChar != EOF \&\& nextChar != \textcolor{charliteral}{'\(\backslash\)n'}) \{}
+\DoxyCodeLine{271         ungetc(nextChar, file);}
+\DoxyCodeLine{272     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{273         \textcolor{comment}{// Break if the next character is a newline}}
+\DoxyCodeLine{274         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: no argument at .entry"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{275         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{276     \}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278     \textcolor{keywordflow}{if} (fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, tempLabel) == 1) \{}
+\DoxyCodeLine{279         \textcolor{comment}{/* Check if the label is already used as .entry */}}
+\DoxyCodeLine{280         \textcolor{keywordflow}{if} (\mbox{\hyperlink{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc}{isEntryLabel}}(tempLabel)) \{}
+\DoxyCodeLine{281             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Label already used as .entry"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{282             \textcolor{keywordflow}{return} -\/1;\textcolor{comment}{/*case -\/1 means that it is a directive type but arguments are not valid*/}}
+\DoxyCodeLine{283         \}}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285         \textcolor{comment}{/* Check if the label is valid */}}
+\DoxyCodeLine{286         \textcolor{keywordflow}{if} (\mbox{\hyperlink{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}{isValidLabel}}(tempLabel,data,1)) \{}
+\DoxyCodeLine{287             strcpy(tempLabel, data-\/>\mbox{\hyperlink{structpattern_a0f278562150729ca1f3637b08eeeec91}{label}});}
+\DoxyCodeLine{288             \mbox{\hyperlink{front_8c_aebb8c667f62ceaa6c41ba28e1832c46b}{num\_of\_symbol}}++;}
+\DoxyCodeLine{289             \textcolor{comment}{/* Add the label to the entry label set */}}
+\DoxyCodeLine{290             \mbox{\hyperlink{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b}{addToEntryLabelSet}}(data-\/>\mbox{\hyperlink{structpattern_a0f278562150729ca1f3637b08eeeec91}{label}});}
+\DoxyCodeLine{291             \mbox{\hyperlink{front_8c_aef398d61da8585441be8052f91c005d9}{num\_of\_externals}}++;}
+\DoxyCodeLine{292             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{293         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{294             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid label name"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{295             \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{296         \}}
+\DoxyCodeLine{297     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{298         \textcolor{comment}{/* Handle fscanf failure */}}
+\DoxyCodeLine{299         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Unable to read label from file"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{300         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{301     \}}
+\DoxyCodeLine{302 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ad0ef680cc59967d4e23e35dd0f42db52_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ad0ef680cc59967d4e23e35dd0f42db52_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a9923983ba7de99890cc241f1705c63ca}\label{directive_8c_a9923983ba7de99890cc241f1705c63ca}} 
+\index{directive.c@{directive.c}!handleStringDirective@{handleStringDirective}}
+\index{handleStringDirective@{handleStringDirective}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{handleStringDirective()}{handleStringDirective()}}
+{\footnotesize\ttfamily int handle\+String\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Function to handle the .string directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 49 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{49                                                             \{}
+\DoxyCodeLine{50     \textcolor{keywordtype}{char} word[\mbox{\hyperlink{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}{MAX\_LINE\_SIZE}}];}
+\DoxyCodeLine{51     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.directive\_type = \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}{STRING}};}
+\DoxyCodeLine{52     fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{53     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.string = (\textcolor{keywordtype}{char} *) strdup(word);}
+\DoxyCodeLine{54     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size = \mbox{\hyperlink{directive_8c_a03a5ad42233f6ad7e6824e1eaff30e2f}{countChars}}(word);}
+\DoxyCodeLine{55     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{directive_8c_a9923983ba7de99890cc241f1705c63ca_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a9923983ba7de99890cc241f1705c63ca_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc}\label{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc}} 
+\index{directive.c@{directive.c}!isEntryLabel@{isEntryLabel}}
+\index{isEntryLabel@{isEntryLabel}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{isEntryLabel()}{isEntryLabel()}}
+{\footnotesize\ttfamily int is\+Entry\+Label (\begin{DoxyParamCaption}\item[{const char $\ast$}]{label }\end{DoxyParamCaption})}
+
+
+
+Function to check if a label is already used as .entry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & The label to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the label is used as .entry; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 252 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{252                                     \{}
+\DoxyCodeLine{253     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entryLabelSet}}.\mbox{\hyperlink{structLabelSet_a3eddafb9465992fab9622a50dc6a4c4d}{count}}; i++) \{}
+\DoxyCodeLine{254         \textcolor{keywordflow}{if} (strcmp(\mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entryLabelSet}}.\mbox{\hyperlink{structLabelSet_a7666ddbdbd2767085a4fbd5d44968ff8}{labels}}[i], label) == 0) \{}
+\DoxyCodeLine{255             \textcolor{keywordflow}{return} 1; \textcolor{comment}{// Found in the set}}
+\DoxyCodeLine{256         \}}
+\DoxyCodeLine{257     \}}
+\DoxyCodeLine{258     \textcolor{keywordflow}{return} 0; \textcolor{comment}{// Not found in the set}}
+\DoxyCodeLine{259 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}\label{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}} 
+\index{directive.c@{directive.c}!isValidLabel@{isValidLabel}}
+\index{isValidLabel@{isValidLabel}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{isValidLabel()}{isValidLabel()}}
+{\footnotesize\ttfamily int is\+Valid\+Label (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{need\+Colon }\end{DoxyParamCaption})}
+
+
+
+Function to check if a label is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The label to be checked. \\
+\hline
+{\em data} & Pointer to the data structure where the label is stored if valid. \\
+\hline
+{\em need\+Colon} & Flag indicating whether the label requires a colon at the end. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the label is valid; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 205 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{205                                                                   \{}
+\DoxyCodeLine{206     \textcolor{comment}{/* Check if the name is not empty */}}
+\DoxyCodeLine{207     \textcolor{keywordflow}{if} (*name == \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{208         \textcolor{keywordflow}{return} 0; \textcolor{comment}{// Invalid: Empty name}}
+\DoxyCodeLine{209     \}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211     \textcolor{comment}{/* Check if the first character is a letter */}}
+\DoxyCodeLine{212     \textcolor{keywordflow}{if} (!isalpha(*name)) \{}
+\DoxyCodeLine{213         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{214     \}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216     \textcolor{comment}{/* Check for alphanumeric or underscore, up to 30 characters */}}
+\DoxyCodeLine{217     \textcolor{keywordtype}{int} count = 0;}
+\DoxyCodeLine{218     \textcolor{keywordtype}{char} *lastChar = name + strlen(name) -\/ 1;}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220     \textcolor{keywordflow}{if}(needColon!=1) \{}
+\DoxyCodeLine{221         \textcolor{comment}{/* Check if the last character is ':'*/}}
+\DoxyCodeLine{222         \textcolor{keywordflow}{if} (*lastChar == \textcolor{charliteral}{':'}) \{}
+\DoxyCodeLine{223             *lastChar = \textcolor{charliteral}{'\(\backslash\)0'}; \textcolor{comment}{// Remove the last character}}
+\DoxyCodeLine{224         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{225             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{226         \}}
+\DoxyCodeLine{227     \}}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229     \textcolor{keywordflow}{while} (*name != \textcolor{charliteral}{'\(\backslash\)0'} \&\& count <= \mbox{\hyperlink{headeMethods_8h_a96127aad3b7750628d041f17c8490726}{MAX\_LABEL\_SIZE}}) \{}
+\DoxyCodeLine{230         \textcolor{keywordflow}{if} (!isalnum(*name) \&\& *name != \textcolor{charliteral}{'\_'}\&\&!isupper(*name)) \{}
+\DoxyCodeLine{231             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{232         \}}
+\DoxyCodeLine{233         name++;}
+\DoxyCodeLine{234         count++;}
+\DoxyCodeLine{235     \}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237     \textcolor{comment}{// Copy the modified label to the data structure}}
+\DoxyCodeLine{238     strcpy(data-\/>\mbox{\hyperlink{structpattern_a0f278562150729ca1f3637b08eeeec91}{label}}, lastChar);}
+\DoxyCodeLine{239     \mbox{\hyperlink{front_8c_aebb8c667f62ceaa6c41ba28e1832c46b}{num\_of\_symbol}}++;}
+\DoxyCodeLine{240     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{241 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a1408df37404e85648b10016972c24ff9}\label{directive_8c_a1408df37404e85648b10016972c24ff9}} 
+\index{directive.c@{directive.c}!miss@{miss}}
+\index{miss@{miss}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{miss()}{miss()}}
+{\footnotesize\ttfamily int miss (\begin{DoxyParamCaption}\item[{int}]{require\+Comma,  }\item[{FILE $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+Function to check for missing elements in a data directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em require\+Comma} & Flag indicating if a comma is required. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if there is no extraneous text or missing comma; otherwise, 1. 
+\end{DoxyReturn}
+
+
+Definition at line 177 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{177                                        \{}
+\DoxyCodeLine{178     \textcolor{keywordtype}{int} missing;}
+\DoxyCodeLine{179     missing = fgetc(file);}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181     \textcolor{keywordflow}{if} (missing == \textcolor{charliteral}{'\(\backslash\)n'}) \{}
+\DoxyCodeLine{182         \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* No extraneous text or missing comma */}}
+\DoxyCodeLine{183     \}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185     \textcolor{keywordflow}{if} (requireComma \&\& missing != \textcolor{charliteral}{','}) \{}
+\DoxyCodeLine{186         \textcolor{comment}{/* Handle extraneous text (clear the input buffer) */}}
+\DoxyCodeLine{187         \textcolor{keywordflow}{while} (fgetc(file) != \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{188         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{189     \}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{192 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{directive_8c_ab18a754930025706c9fad49b18fa3c33}\label{directive_8c_ab18a754930025706c9fad49b18fa3c33}} 
+\index{directive.c@{directive.c}!processNumericArguments@{processNumericArguments}}
+\index{processNumericArguments@{processNumericArguments}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{processNumericArguments()}{processNumericArguments()}}
+{\footnotesize\ttfamily int process\+Numeric\+Arguments (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to process numeric arguments in a data directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input string containing numeric arguments. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{108                                                                                                \{}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110     \textcolor{comment}{/* Allocate memory for the array of strings */}}
+\DoxyCodeLine{111     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data = NULL;}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113     \textcolor{keywordflow}{if} (word == NULL) \{}
+\DoxyCodeLine{114         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: No numeric arguments found"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{115         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{116     \}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118     \textcolor{keywordflow}{if} (*word == \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{119         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Missing argument."{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{120         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{121     \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{comment}{/* Check if the token is a valid number or constant*/}}
+\DoxyCodeLine{124     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{define_8c_a529fe24170a61c22c810022e539206c3}{isNumeric}}(word) \&\& \mbox{\hyperlink{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc}{isEntryLabel}}(word)) \{}
+\DoxyCodeLine{125         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Argument is not a real number"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{126         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{127     \}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129     \textcolor{comment}{/* Resize the array of strings */}}
+\DoxyCodeLine{130     \textcolor{keywordtype}{char} **temp = realloc(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data, ( data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size + 1) * \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} *));}
+\DoxyCodeLine{131     \textcolor{keywordflow}{if} (temp == NULL) \{}
+\DoxyCodeLine{132         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Memory allocation failed"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{133         \textcolor{comment}{/* Clean up previously allocated strings */}}
+\DoxyCodeLine{134         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i <  data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size; i++) \{}
+\DoxyCodeLine{135             free(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data[i]);}
+\DoxyCodeLine{136         \}}
+\DoxyCodeLine{137         \textcolor{comment}{/* Free the array itself */}}
+\DoxyCodeLine{138         free(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data);}
+\DoxyCodeLine{139         \textcolor{keywordflow}{return} 0; \textcolor{comment}{// Indicate error}}
+\DoxyCodeLine{140     \}}
+\DoxyCodeLine{141     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data = temp;}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143     \textcolor{comment}{/* Allocate memory for the current string and copy the token */}}
+\DoxyCodeLine{144     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data[ data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size] = strdup(word);}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146     \textcolor{comment}{/* Check if memory allocation was successful */}}
+\DoxyCodeLine{147     \textcolor{keywordflow}{if} (data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data[ data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size] == NULL) \{}
+\DoxyCodeLine{148         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Memory allocation failed"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{149         \textcolor{comment}{/* Clean up previously allocated strings */}}
+\DoxyCodeLine{150         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i <=  data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size; i++) \{}
+\DoxyCodeLine{151             free(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data[i]);}
+\DoxyCodeLine{152         \}}
+\DoxyCodeLine{153         \textcolor{comment}{/* Free the array itself */}}
+\DoxyCodeLine{154         free(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data);}
+\DoxyCodeLine{155         \textcolor{keywordflow}{return} 0;  \textcolor{comment}{// Indicate error}}
+\DoxyCodeLine{156     \}}
+\DoxyCodeLine{157     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size =  data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size++;}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{160 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ab18a754930025706c9fad49b18fa3c33_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ab18a754930025706c9fad49b18fa3c33_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{directive_8c_aa795197fca18171ad741914750ca0dd1}\label{directive_8c_aa795197fca18171ad741914750ca0dd1}} 
+\index{directive.c@{directive.c}!entryLabelSet@{entryLabelSet}}
+\index{entryLabelSet@{entryLabelSet}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{entryLabelSet}{entryLabelSet}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structLabelSet}{Label\+Set}} entry\+Label\+Set = \{ 0 \}}
+
+
+
+Definition at line 1 of file directive.\+c.
+

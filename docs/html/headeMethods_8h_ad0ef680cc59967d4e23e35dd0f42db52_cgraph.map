@@ -1,0 +1,9 @@
+<map id="handleEntryDirective" name="handleEntryDirective">
+<area shape="rect" id="node1" title="Function to handle the .entry directive." alt="" coords="5,81,164,108"/>
+<area shape="rect" id="node2" href="$directive_8c.html#a5d78273d4feb195d7706ce9d6d7c004b" title="Function to add a label to the .entry label set." alt="" coords="212,5,363,32"/>
+<area shape="rect" id="node3" href="$directive_8c.html#a1076c92ff396fe7c35841d34e32fdcbc" title="Function to check if a label is already used as .entry." alt="" coords="236,56,339,83"/>
+<area shape="rect" id="node4" href="$front_8c.html#a497d412bc5a4b29e959da8d58c6e7f44" title="Function to check if a word is an error and update the pattern structure." alt="" coords="255,107,319,133"/>
+<area shape="rect" id="node7" href="$directive_8c.html#a7fb05dea6f2c00d6630a34a63bed4333" title="Function to check if a label is valid." alt="" coords="237,157,337,184"/>
+<area shape="rect" id="node5" href="$front_8c.html#a2aea10f08082ec4cf48434ea86c023ac" title="Inserts a new node at the end of the linked list." alt="" coords="411,107,504,133"/>
+<area shape="rect" id="node6" href="$front_8c.html#a50bf4aac153ee7424cba502accb069de" title="Creates a new linked list node with the given data." alt="" coords="552,107,649,133"/>
+</map>

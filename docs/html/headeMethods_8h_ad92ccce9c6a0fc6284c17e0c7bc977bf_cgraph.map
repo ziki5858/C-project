@@ -1,0 +1,10 @@
+<map id="handleDataDirective" name="handleDataDirective">
+<area shape="rect" id="node1" title="Function to handle the .data directive." alt="" coords="5,56,161,83"/>
+<area shape="rect" id="node2" href="$directive_8c.html#a4209c81388b14c5650d72bc2e92a5f91" title="Function to check if the last character of a string is a specific character." alt="" coords="233,5,384,32"/>
+<area shape="rect" id="node3" href="$front_8c.html#a497d412bc5a4b29e959da8d58c6e7f44" title="Function to check if a word is an error and update the pattern structure." alt="" coords="475,56,539,83"/>
+<area shape="rect" id="node6" href="$directive_8c.html#ab18a754930025706c9fad49b18fa3c33" title="Function to process numeric arguments in a data directive." alt="" coords="209,107,408,133"/>
+<area shape="rect" id="node4" href="$front_8c.html#a2aea10f08082ec4cf48434ea86c023ac" title="Inserts a new node at the end of the linked list." alt="" coords="607,56,700,83"/>
+<area shape="rect" id="node5" href="$front_8c.html#a50bf4aac153ee7424cba502accb069de" title="Creates a new linked list node with the given data." alt="" coords="748,56,845,83"/>
+<area shape="rect" id="node7" href="$directive_8c.html#a1076c92ff396fe7c35841d34e32fdcbc" title="Function to check if a label is already used as .entry." alt="" coords="456,107,559,133"/>
+<area shape="rect" id="node8" href="$define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a word is numeric." alt="" coords="463,157,551,184"/>
+</map>

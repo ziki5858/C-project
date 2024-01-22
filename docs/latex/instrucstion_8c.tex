@@ -1,0 +1,385 @@
+\hypertarget{instrucstion_8c}{}\doxysection{instrucstion.\+c File Reference}
+\label{instrucstion_8c}\index{instrucstion.c@{instrucstion.c}}
+{\ttfamily \#include \char`\"{}heade\+Methods.\+h\char`\"{}}\newline
+Include dependency graph for instrucstion.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{instrucstion_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}{process\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head, int operand\+Count)
+\begin{DoxyCompactList}\small\item\em Handles processing of operands for instructions. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6}{process\+Two\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions with two operands. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_ab3b600e768927750f73f08907f410181}{process\+One\+Operand}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions with one operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0}{process\+No\+Operands}} (struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions without operands. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_a26e39fc2d91733521827b73be3588d13}{instruction\+Format}} (FILE $\ast$file, const char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Checks if a word is an instruction and updates the pattern structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{instrucstion_8c_a26e39fc2d91733521827b73be3588d13}\label{instrucstion_8c_a26e39fc2d91733521827b73be3588d13}} 
+\index{instrucstion.c@{instrucstion.c}!instructionFormat@{instructionFormat}}
+\index{instructionFormat@{instructionFormat}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{instructionFormat()}{instructionFormat()}}
+{\footnotesize\ttfamily int instruction\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{const char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Checks if a word is an instruction and updates the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The file pointer to the input assembly file. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is an instruction; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 119 of file instrucstion.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{119                                                                                               \{}
+\DoxyCodeLine{120     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{121     \textcolor{comment}{/* There is no need to check if the word is a valid label because it is already checked in categorizeWord */}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{comment}{/* Iterate through the array to find a match */}}
+\DoxyCodeLine{124     \textcolor{keywordflow}{for} (i = 0; \mbox{\hyperlink{front_8c_a3c4d69d58e5f21876f589033c2f2b8a0}{instructionMappings}}[i].\mbox{\hyperlink{structInstructionMapping_a428fdca99b441e0064f28aabfc13ae34}{name}} != NULL; ++i) \{}
+\DoxyCodeLine{125         \textcolor{keywordflow}{if} (strcmp(word, \mbox{\hyperlink{front_8c_a3c4d69d58e5f21876f589033c2f2b8a0}{instructionMappings}}[i].name) == 0) \{}
+\DoxyCodeLine{126             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.op\_type = \mbox{\hyperlink{front_8c_a3c4d69d58e5f21876f589033c2f2b8a0}{instructionMappings}}[i].\mbox{\hyperlink{structInstructionMapping_abffb5718c01835f7998f122f3e93a3c6}{type}};}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128             \textcolor{comment}{/* It's an instruction with two operands */}}
+\DoxyCodeLine{129             \textcolor{keywordflow}{if} (i >= 0 \&\& i < 5) \{}
+\DoxyCodeLine{130                 \textcolor{keywordflow}{return} \mbox{\hyperlink{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6}{processTwoOperands}}(file, data, head);}
+\DoxyCodeLine{131             \}}
+\DoxyCodeLine{132                 \textcolor{comment}{/* It's an instruction with one operand */}}
+\DoxyCodeLine{133             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (i >= 5 \&\& i < 15) \{}
+\DoxyCodeLine{134                 \textcolor{keywordflow}{return} \mbox{\hyperlink{instrucstion_8c_ab3b600e768927750f73f08907f410181}{processOneOperand}}(file, data, head);}
+\DoxyCodeLine{135             \}}
+\DoxyCodeLine{136                 \textcolor{comment}{/* It's an instruction without operands */}}
+\DoxyCodeLine{137             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (i >= 15 \&\& i < 18) \{}
+\DoxyCodeLine{138                 \textcolor{keywordflow}{return} \mbox{\hyperlink{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0}{processNoOperands}}(data);}
+\DoxyCodeLine{139             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{140                 \textcolor{comment}{/* Invalid instruction name */}}
+\DoxyCodeLine{141                 data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = ERROR;}
+\DoxyCodeLine{142                 \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Invalid instruction name"{}},\textcolor{stringliteral}{"{}instruction.h"{}}, head);}
+\DoxyCodeLine{143                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{144             \}}
+\DoxyCodeLine{145         \}}
+\DoxyCodeLine{146     \}}
+\DoxyCodeLine{147     \textcolor{comment}{/* Not an instruction */}}
+\DoxyCodeLine{148     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{149 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a26e39fc2d91733521827b73be3588d13_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a26e39fc2d91733521827b73be3588d13_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0}\label{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0}} 
+\index{instrucstion.c@{instrucstion.c}!processNoOperands@{processNoOperands}}
+\index{processNoOperands@{processNoOperands}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{processNoOperands()}{processNoOperands()}}
+{\footnotesize\ttfamily int process\+No\+Operands (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions without operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 111 of file instrucstion.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{111                                             \{}
+\DoxyCodeLine{112     data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = INSTRUCTION;}
+\DoxyCodeLine{113     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.num\_of\_operands=0;}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{comment}{/* Update other properties of the data structure as needed */}}
+\DoxyCodeLine{116     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{117 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_ab3b600e768927750f73f08907f410181}\label{instrucstion_8c_ab3b600e768927750f73f08907f410181}} 
+\index{instrucstion.c@{instrucstion.c}!processOneOperand@{processOneOperand}}
+\index{processOneOperand@{processOneOperand}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{processOneOperand()}{processOneOperand()}}
+{\footnotesize\ttfamily int process\+One\+Operand (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions with one operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 101 of file instrucstion.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{101                                                                              \{}
+\DoxyCodeLine{102     data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = INSTRUCTION;}
+\DoxyCodeLine{103     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.num\_of\_operands=1;}
+\DoxyCodeLine{104     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}{processOperands}}(file, data, head, 1)) \{}
+\DoxyCodeLine{105         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{106     \}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{109 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_ab3b600e768927750f73f08907f410181_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_ab3b600e768927750f73f08907f410181_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}\label{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}} 
+\index{instrucstion.c@{instrucstion.c}!processOperands@{processOperands}}
+\index{processOperands@{processOperands}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{processOperands()}{processOperands()}}
+{\footnotesize\ttfamily int process\+Operands (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head,  }\item[{int}]{operand\+Count }\end{DoxyParamCaption})}
+
+
+
+Handles processing of operands for instructions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The file pointer to the input assembly file. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if operand processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 4 of file instrucstion.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{4                                                                                             \{}
+\DoxyCodeLine{5     \textcolor{keywordtype}{char} word[\mbox{\hyperlink{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}{MAX\_LINE\_SIZE}}];}
+\DoxyCodeLine{6     \textcolor{keywordtype}{char} *token;}
+\DoxyCodeLine{7     \textcolor{keywordtype}{int} con=0;}
+\DoxyCodeLine{8     \textcolor{keywordtype}{int} i,y;}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10     \textcolor{keywordflow}{for} (i = 0; i < operandCount; i++) \{}
+\DoxyCodeLine{11         \textcolor{comment}{/* Read the next word from the file */}}
+\DoxyCodeLine{12         \textcolor{keywordflow}{if} (fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word) != 1) \{}
+\DoxyCodeLine{13             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Missing operand"{}},\textcolor{stringliteral}{"{}instruction.h"{}}, head);}
+\DoxyCodeLine{14             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{15         \}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17         \textcolor{comment}{/* For two operands, check if there's a comma after first operand */}}
+\DoxyCodeLine{18         \textcolor{keywordflow}{if}(operandCount-\/i==2)}
+\DoxyCodeLine{19         \{}
+\DoxyCodeLine{20             \textcolor{keywordtype}{int} len = strlen(word);}
+\DoxyCodeLine{21             \textcolor{keywordflow}{if} (len > 0 \&\& word[len -\/ 1] != \textcolor{charliteral}{','}) \{}
+\DoxyCodeLine{22                 \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Missing comma"{}},\textcolor{stringliteral}{"{}instruction.h"{}}, head);}
+\DoxyCodeLine{23                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{24             \}}
+\DoxyCodeLine{25             token = strtok(word, \textcolor{stringliteral}{"{} ,"{}});}
+\DoxyCodeLine{26         \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28         \textcolor{comment}{/* Check if the word is a register (starts with 'r' and has a digit following it) */}}
+\DoxyCodeLine{29         \textcolor{keywordflow}{if}(word[0] == \textcolor{charliteral}{'r'} \&\& word[1] >= \textcolor{charliteral}{'0'} \&\& word[1] <= \textcolor{charliteral}{'7'}) \{}
+\DoxyCodeLine{30             \textcolor{comment}{/* Set operand type to REGISTER */}}
+\DoxyCodeLine{31             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount-\/1-\/i].op\_type = REGISTER;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33             \textcolor{comment}{/* Map the register string to the corresponding enum value */}}
+\DoxyCodeLine{34             \textcolor{keywordflow}{for} (y = 0; \mbox{\hyperlink{front_8c_a46fc27e049a0166b0d291695ee10e462}{registerMappings}}[y].\mbox{\hyperlink{structRegisterMapping_a5939f9fdd9fd4a901ae52f5eadc0293f}{name}} != NULL; ++y) \{}
+\DoxyCodeLine{35                 \textcolor{keywordflow}{if} ((operandCount-\/i==2)\&\& strcmp(token, \mbox{\hyperlink{front_8c_a46fc27e049a0166b0d291695ee10e462}{registerMappings}}[y].name) == 0||}
+\DoxyCodeLine{36                         (operandCount-\/i==1)\&\& strcmp(word, \mbox{\hyperlink{front_8c_a46fc27e049a0166b0d291695ee10e462}{registerMappings}}[y].name) == 0) \{}
+\DoxyCodeLine{37                     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount -\/ 1 -\/ y].operand\_value.reg = \mbox{\hyperlink{front_8c_a46fc27e049a0166b0d291695ee10e462}{registerMappings}}[y].\mbox{\hyperlink{structRegisterMapping_ae252c24666766f4198870028dab8a616}{reg}};}
+\DoxyCodeLine{38                     con=1;}
+\DoxyCodeLine{39                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{40                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(y==7)\{}
+\DoxyCodeLine{41                     \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid register"{}},\textcolor{stringliteral}{"{}instruction.h"{}}, head);}
+\DoxyCodeLine{42                     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{43                 \}}
+\DoxyCodeLine{44             \}}
+\DoxyCodeLine{45             \textcolor{comment}{/* Continue to the next iteration if the register was processed */}}
+\DoxyCodeLine{46             \textcolor{keywordflow}{if}(con==1)\{}
+\DoxyCodeLine{47                 con=0;}
+\DoxyCodeLine{48                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{49             \}}
+\DoxyCodeLine{50         \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52         \textcolor{comment}{/*-\/1 for ] at one operand and -\/2 for two operands to do the,}}
+\DoxyCodeLine{53 \textcolor{comment}{            * separate the operands but only for the first operands*/}}
+\DoxyCodeLine{54         \textcolor{keywordflow}{if} (word[strlen(word) -\/ operandCount-\/i] == \textcolor{charliteral}{']'}) \{ \textcolor{comment}{/* Check if the word ends with ']' for direct indexing */}}
+\DoxyCodeLine{55             \textcolor{comment}{/* Set operand type to DIRECT\_INDEX */}}
+\DoxyCodeLine{56             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount -\/ 1 -\/ i].op\_type = DIRECT\_INDEX;}
+\DoxyCodeLine{57             \textcolor{comment}{/* Tokenize the word to extract content inside square brackets */}}
+\DoxyCodeLine{58             token = strtok(word, \textcolor{stringliteral}{"{}[\string^ [ ]"{}});}
+\DoxyCodeLine{59             strcpy(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount -\/ 1 -\/ i].operand\_value.symbol, token);}
+\DoxyCodeLine{60             \textcolor{comment}{/* Move the file pointer back to the start of the word */}}
+\DoxyCodeLine{61             fseek(file, -\/strlen(word), SEEK\_CUR);}
+\DoxyCodeLine{62             \textcolor{comment}{/* Read the next word after the square brackets */}}
+\DoxyCodeLine{63             fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{64             token = strtok(word, \textcolor{stringliteral}{"{}[]"{}});}
+\DoxyCodeLine{65             strcpy(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount -\/ 1 -\/ i].operand\_value.const\_num, token);}
+\DoxyCodeLine{66             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{67         \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69         \textcolor{keywordflow}{if} (word[0] == \textcolor{charliteral}{'\#'}) \{  \textcolor{comment}{/* Check if the word starts with '\#' for immediate numbers */}}
+\DoxyCodeLine{70             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount-\/1-\/i].op\_type = IMMEDIATE\_NUMBER;}
+\DoxyCodeLine{71             \textcolor{comment}{/* Convert the string after '\#' to an integer and assign it to the operand */}}
+\DoxyCodeLine{72             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount-\/1-\/i].operand\_value.value = atoi(word + 1);}
+\DoxyCodeLine{73             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{74         \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76         \textcolor{keywordflow}{if}((operandCount-\/i==2)\&\& \mbox{\hyperlink{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}{isValidLabel}}(token,data,1)||(operandCount-\/i==1)\&\& \mbox{\hyperlink{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}{isValidLabel}}(word, data,1\textcolor{comment}{/*no need at ':' check*/}))\{}
+\DoxyCodeLine{77             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount-\/1-\/i].op\_type = DIRECT;}
+\DoxyCodeLine{78             \textcolor{comment}{/* Assign the word as the symbol for the operand */}}
+\DoxyCodeLine{79             strcpy(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount-\/1-\/i].operand\_value.symbol, word);}
+\DoxyCodeLine{80             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{81         \}}
+\DoxyCodeLine{82         \textcolor{comment}{/* If none of the conditions are met, the operand is invalid */}}
+\DoxyCodeLine{83         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid operand"{}},\textcolor{stringliteral}{"{}instruction.h"{}}, head);}
+\DoxyCodeLine{84         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{85     \}}
+\DoxyCodeLine{86     \textcolor{keywordflow}{return} 1;     \textcolor{comment}{/* All operands processed successfully */}}
+\DoxyCodeLine{87 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6}\label{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6}} 
+\index{instrucstion.c@{instrucstion.c}!processTwoOperands@{processTwoOperands}}
+\index{processTwoOperands@{processTwoOperands}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{processTwoOperands()}{processTwoOperands()}}
+{\footnotesize\ttfamily int process\+Two\+Operands (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions with two operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file instrucstion.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{90                                                                               \{}
+\DoxyCodeLine{91     data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = INSTRUCTION;}
+\DoxyCodeLine{92     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.num\_of\_operands=2;}
+\DoxyCodeLine{93     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}{processOperands}}(file, data, head, 2)) \{}
+\DoxyCodeLine{94         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{95     \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{98 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6_icgraph}
+\end{center}
+\end{figure}

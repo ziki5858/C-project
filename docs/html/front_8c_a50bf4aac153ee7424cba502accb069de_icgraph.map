@@ -1,0 +1,18 @@
+<map id="createNode" name="createNode">
+<area shape="rect" id="node1" title="Creates a new linked list node with the given data." alt="" coords="1528,93,1625,120"/>
+<area shape="rect" id="node2" href="$front_8c.html#a2aea10f08082ec4cf48434ea86c023ac" title="Inserts a new node at the end of the linked list." alt="" coords="1387,93,1480,120"/>
+<area shape="rect" id="node3" href="$front_8c.html#aefa918d3cc0fdd2c816db056bcdeaeed" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="465,93,588,120"/>
+<area shape="rect" id="node7" href="$front_8c.html#a497d412bc5a4b29e959da8d58c6e7f44" title="Function to check if a word is an error and update the pattern structure." alt="" coords="1275,195,1339,221"/>
+<area shape="rect" id="node4" href="$front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="319,93,417,120"/>
+<area shape="rect" id="node5" href="$front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="108,93,271,120"/>
+<area shape="rect" id="node6" href="$front_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,93,60,120"/>
+<area shape="rect" id="node8" href="$define_8c.html#a9b934e4c8638e4436a0b6b440cea6fc3" title="Function to check if a word is a define and update the pattern structure." alt="" coords="651,93,759,120"/>
+<area shape="rect" id="node9" href="$directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="642,169,767,196"/>
+<area shape="rect" id="node10" href="$directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf" title="Function to handle the .data directive." alt="" coords="823,195,979,221"/>
+<area shape="rect" id="node11" href="$directive_8c.html#ad0ef680cc59967d4e23e35dd0f42db52" title="Function to handle the .entry directive." alt="" coords="1048,296,1207,323"/>
+<area shape="rect" id="node12" href="$headeMethods_8h.html#a26e39fc2d91733521827b73be3588d13" title="Checks if a word is an instruction and updates the pattern structure." alt="" coords="636,372,773,399"/>
+<area shape="rect" id="node13" href="$directive_8c.html#ab18a754930025706c9fad49b18fa3c33" title="Function to process numeric arguments in a data directive." alt="" coords="1028,245,1227,272"/>
+<area shape="rect" id="node14" href="$headeMethods_8h.html#aa5aebcb22236185a42e088063d0030e7" title="Handles processing of operands for instructions." alt="" coords="1060,397,1195,424"/>
+<area shape="rect" id="node15" href="$headeMethods_8h.html#ab3b600e768927750f73f08907f410181" title="Handles processing of instructions with one operand." alt="" coords="824,397,977,424"/>
+<area shape="rect" id="node16" href="$headeMethods_8h.html#a3a9b245c491e5d371d975156a60f32e6" title="Handles processing of instructions with two operands." alt="" coords="821,448,980,475"/>
+</map>

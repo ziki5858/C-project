@@ -1,0 +1,2143 @@
+\hypertarget{headeMethods_8h}{}\doxysection{heade\+Methods.\+h File Reference}
+\label{headeMethods_8h}\index{headeMethods.h@{headeMethods.h}}
+
+
+Brief description of the purpose of the file.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}ctype.\+h\char`\"{}}\newline
+Include dependency graph for heade\+Methods.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{headeMethods_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpattern}{pattern}}
+\begin{DoxyCompactList}\small\item\em Structure to represent a pattern in assembly language. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNode}{Node}}
+\begin{DoxyCompactList}\small\item\em Linked list node representing a pattern. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structInstructionMapping}{Instruction\+Mapping}}
+\begin{DoxyCompactList}\small\item\em Structure to map instruction names to their corresponding enum values. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structRegisterMapping}{Register\+Mapping}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{headeMethods_8h_a65c89d1d0a1292b0cb20a62e33f99902}{MAX\+\_\+\+ERROR\+\_\+\+SIZE}}~300
+\item 
+\#define \mbox{\hyperlink{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}{MAX\+\_\+\+LINE\+\_\+\+SIZE}}~81
+\item 
+\#define \mbox{\hyperlink{headeMethods_8h_a96127aad3b7750628d041f17c8490726}{MAX\+\_\+\+LABEL\+\_\+\+SIZE}}~31
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ced}{Directive\+Type}} \{ \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}{ENTRY}}
+, \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}{EXTERN}}
+, \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}{STRING}}
+, \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}{DATA}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration for directive types. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}{Instruction\+Type}} \{ \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}{MOV}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}{CMP}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}{ADD}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}{SUB}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}{LEA}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}{NOT}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}{CLR}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}{INC}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}{DEC}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}{JMP}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}{BNE}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}{RED}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}{PRN}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}{JSR}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}{RTS}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}{HLT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration for instruction types. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1b}{Register}} \{ \newline
+\mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}{r0}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}{r1}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}{r2}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}{r3}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}{r4}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}{r5}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}{r6}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}{r7}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_ae5ec285c69a731057cf0c53c79537eee}{directive\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is a directive and return the directive type. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a9b934e4c8638e4436a0b6b440cea6fc3}{define\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is a define and update the pattern structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{headeMethods_8h_a497d412bc5a4b29e959da8d58c6e7f44}{is\+Error}} (struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, const char $\ast$error\+Message, const char $\ast$filename, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is an error and update the pattern structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNode}{Node}} $\ast$ \mbox{\hyperlink{headeMethods_8h_a50bf4aac153ee7424cba502accb069de}{create\+Node}} (struct \mbox{\hyperlink{structpattern}{pattern}} data)
+\begin{DoxyCompactList}\small\item\em Creates a new linked list node with the given data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{headeMethods_8h_a2aea10f08082ec4cf48434ea86c023ac}{insert\+Node}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head, struct \mbox{\hyperlink{structpattern}{pattern}} data)
+\begin{DoxyCompactList}\small\item\em Inserts a new node at the end of the linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{headeMethods_8h_ac26aaf7e0131a5ccdb4c14ae928aa87d}{process\+Line}} (FILE $\ast$file, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNode}{Node}} $\ast$ \mbox{\hyperlink{headeMethods_8h_a2bc68f82a4715dc30ae2c450eeb1e629}{process\+Assembly\+Text}} (const char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Processes an entire file of assembly language text and builds a linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{headeMethods_8h_ae072285661c15dacd16395e5dbb2943e}{print\+Linked\+List}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Prints the content of the linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{headeMethods_8h_ab643077dedf9357003496c8e64187c46}{free\+Linked\+List}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Frees the memory allocated for the linked list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_aa0b3977cf0af0a66723704d8ca22fa37}{is\+Valid\+Constant\+Name}} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is a valid constant name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a529fe24170a61c22c810022e539206c3}{is\+Numeric}} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is numeric. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a7fb05dea6f2c00d6630a34a63bed4333}{is\+Valid\+Label}} (char $\ast$name, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, int need\+Colon)
+\begin{DoxyCompactList}\small\item\em Function to check if a label is valid. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a03a5ad42233f6ad7e6824e1eaff30e2f}{count\+Chars}} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Function to count characters in a string. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a1408df37404e85648b10016972c24ff9}{miss}} (int require\+Comma, FILE $\ast$file)
+\begin{DoxyCompactList}\small\item\em Function to check for missing elements in a data directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a4209c81388b14c5650d72bc2e92a5f91}{check\+Last\+Character}} (const char input\mbox{[}$\,$\mbox{]}, char error\+Char)
+\begin{DoxyCompactList}\small\item\em Function to check if the last character of a string is a specific character. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_ab18a754930025706c9fad49b18fa3c33}{process\+Numeric\+Arguments}} (char $\ast$input, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to process numeric arguments in a data directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a9923983ba7de99890cc241f1705c63ca}{handle\+String\+Directive}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Function to handle the .string directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_ad92ccce9c6a0fc6284c17e0c7bc977bf}{handle\+Data\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to handle the .data directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a1076c92ff396fe7c35841d34e32fdcbc}{is\+Entry\+Label}} (const char $\ast$label)
+\begin{DoxyCompactList}\small\item\em Function to check if a label is already used as .entry. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{headeMethods_8h_a5d78273d4feb195d7706ce9d6d7c004b}{add\+To\+Entry\+Label\+Set}} (const char $\ast$label)
+\begin{DoxyCompactList}\small\item\em Function to add a label to the .entry label set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_ad0ef680cc59967d4e23e35dd0f42db52}{handle\+Entry\+Directive}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to handle the .entry directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_aefa918d3cc0fdd2c816db056bcdeaeed}{categorize\+Word}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Categorizes a word based on its type and updates the pattern structure. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a26e39fc2d91733521827b73be3588d13}{instruction\+Format}} (FILE $\ast$file, const char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Checks if a word is an instruction and updates the pattern structure. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a4ca2c34a863fc17db10031bfe5ccf0b0}{process\+No\+Operands}} (struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions without operands. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_ab3b600e768927750f73f08907f410181}{process\+One\+Operand}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions with one operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a3a9b245c491e5d371d975156a60f32e6}{process\+Two\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions with two operands. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_aa5aebcb22236185a42e088063d0030e7}{process\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head, int operand\+Count)
+\begin{DoxyCompactList}\small\item\em Handles processing of operands for instructions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_a4d446a347bb50b9a831c9d6f355373e9}{num\+\_\+of\+\_\+patterns}}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_aebb8c667f62ceaa6c41ba28e1832c46b}{num\+\_\+of\+\_\+symbol}}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_a085b57d9ed0b3d5392eb3dcffe1b2301}{num\+\_\+of\+\_\+entries}}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_aef398d61da8585441be8052f91c005d9}{num\+\_\+of\+\_\+externals}}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_a5ab8d71be5fa7d6cc6c7d7f498a814c6}{num\+\_\+of\+\_\+constants}}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_a44bf2f6ee91a35522c07c779325d3ef0}{line\+Number}}
+\item 
+const struct \mbox{\hyperlink{structInstructionMapping}{Instruction\+Mapping}} \mbox{\hyperlink{headeMethods_8h_a3c4d69d58e5f21876f589033c2f2b8a0}{instruction\+Mappings}} \mbox{[}$\,$\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structRegisterMapping}{Register\+Mapping}} \mbox{\hyperlink{headeMethods_8h_a46fc27e049a0166b0d291695ee10e462}{register\+Mappings}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Brief description of the purpose of the file. 
+
+Detailed description of the purpose and contents of the file.
+
+\begin{DoxyNote}{Note}
+Additional notes or considerations, if any. 
+\end{DoxyNote}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{headeMethods_8h_a65c89d1d0a1292b0cb20a62e33f99902}\label{headeMethods_8h_a65c89d1d0a1292b0cb20a62e33f99902}} 
+\index{headeMethods.h@{headeMethods.h}!MAX\_ERROR\_SIZE@{MAX\_ERROR\_SIZE}}
+\index{MAX\_ERROR\_SIZE@{MAX\_ERROR\_SIZE}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_ERROR\_SIZE}{MAX\_ERROR\_SIZE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+ERROR\+\_\+\+SIZE~300}
+
+
+
+Definition at line 14 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_a96127aad3b7750628d041f17c8490726}\label{headeMethods_8h_a96127aad3b7750628d041f17c8490726}} 
+\index{headeMethods.h@{headeMethods.h}!MAX\_LABEL\_SIZE@{MAX\_LABEL\_SIZE}}
+\index{MAX\_LABEL\_SIZE@{MAX\_LABEL\_SIZE}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LABEL\_SIZE}{MAX\_LABEL\_SIZE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+LABEL\+\_\+\+SIZE~31}
+
+
+
+Definition at line 16 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}\label{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}} 
+\index{headeMethods.h@{headeMethods.h}!MAX\_LINE\_SIZE@{MAX\_LINE\_SIZE}}
+\index{MAX\_LINE\_SIZE@{MAX\_LINE\_SIZE}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LINE\_SIZE}{MAX\_LINE\_SIZE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+LINE\+\_\+\+SIZE~81}
+
+
+
+Definition at line 15 of file heade\+Methods.\+h.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ced}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ced}} 
+\index{headeMethods.h@{headeMethods.h}!DirectiveType@{DirectiveType}}
+\index{DirectiveType@{DirectiveType}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{DirectiveType}{DirectiveType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ced}{Directive\+Type}}}
+
+
+
+Enumeration for directive types. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENTRY@{ENTRY}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!ENTRY@{ENTRY}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}} 
+ENTRY&Entry directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXTERN@{EXTERN}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!EXTERN@{EXTERN}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}} 
+EXTERN&Extern directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!STRING@{STRING}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}} 
+STRING&String directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA@{DATA}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!DATA@{DATA}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}} 
+DATA&Data directive \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 32 of file heade\+Methods.\+h.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{32                    \{}
+\DoxyCodeLine{33     \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}{ENTRY}}, }
+\DoxyCodeLine{34     \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}{EXTERN}}, }
+\DoxyCodeLine{35     \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}{STRING}}, }
+\DoxyCodeLine{36     \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}{DATA}}    }
+\DoxyCodeLine{37 \};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}} 
+\index{headeMethods.h@{headeMethods.h}!InstructionType@{InstructionType}}
+\index{InstructionType@{InstructionType}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{InstructionType}{InstructionType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}{Instruction\+Type}}}
+
+
+
+Enumeration for instruction types. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOV@{MOV}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!MOV@{MOV}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}} 
+MOV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CMP@{CMP}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!CMP@{CMP}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}} 
+CMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ADD@{ADD}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!ADD@{ADD}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}} 
+ADD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUB@{SUB}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!SUB@{SUB}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}} 
+SUB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEA@{LEA}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!LEA@{LEA}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}} 
+LEA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT@{NOT}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!NOT@{NOT}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}} 
+NOT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLR@{CLR}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!CLR@{CLR}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}} 
+CLR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INC@{INC}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!INC@{INC}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}} 
+INC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEC@{DEC}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!DEC@{DEC}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}} 
+DEC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JMP@{JMP}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!JMP@{JMP}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}} 
+JMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BNE@{BNE}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!BNE@{BNE}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}} 
+BNE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RED@{RED}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!RED@{RED}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}} 
+RED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRN@{PRN}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!PRN@{PRN}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}} 
+PRN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JSR@{JSR}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!JSR@{JSR}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}} 
+JSR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RTS@{RTS}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!RTS@{RTS}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}} 
+RTS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HLT@{HLT}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!HLT@{HLT}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}} 
+HLT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 43 of file heade\+Methods.\+h.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43                      \{}
+\DoxyCodeLine{44     \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}{MOV}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}{CMP}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}{ADD}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}{SUB}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}{LEA}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}{NOT}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}{CLR}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}{INC}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}{DEC}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}{JMP}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}{BNE}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}{RED}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}{PRN}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}{JSR}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}{RTS}}, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}{HLT}}}
+\DoxyCodeLine{45 \};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1b}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1b}} 
+\index{headeMethods.h@{headeMethods.h}!Register@{Register}}
+\index{Register@{Register}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{Register}{Register}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1b}{Register}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r0@{r0}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r0@{r0}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}} 
+r0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r1@{r1}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r1@{r1}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}} 
+r1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r2@{r2}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r2@{r2}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}} 
+r2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r3@{r3}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r3@{r3}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}} 
+r3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r4@{r4}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r4@{r4}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}} 
+r4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r5@{r5}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r5@{r5}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}} 
+r5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r6@{r6}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r6@{r6}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}} 
+r6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r7@{r7}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r7@{r7}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}} 
+r7&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 47 of file heade\+Methods.\+h.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{47               \{}
+\DoxyCodeLine{48     \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}{r0}},}
+\DoxyCodeLine{49     \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}{r1}},}
+\DoxyCodeLine{50     \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}{r2}},}
+\DoxyCodeLine{51     \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}{r3}},}
+\DoxyCodeLine{52     \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}{r4}},}
+\DoxyCodeLine{53     \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}{r5}},}
+\DoxyCodeLine{54     \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}{r6}},}
+\DoxyCodeLine{55     \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}{r7}}}
+\DoxyCodeLine{56 \};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{headeMethods_8h_a5d78273d4feb195d7706ce9d6d7c004b}\label{headeMethods_8h_a5d78273d4feb195d7706ce9d6d7c004b}} 
+\index{headeMethods.h@{headeMethods.h}!addToEntryLabelSet@{addToEntryLabelSet}}
+\index{addToEntryLabelSet@{addToEntryLabelSet}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{addToEntryLabelSet()}{addToEntryLabelSet()}}
+{\footnotesize\ttfamily void add\+To\+Entry\+Label\+Set (\begin{DoxyParamCaption}\item[{const char $\ast$}]{label }\end{DoxyParamCaption})}
+
+
+
+Function to add a label to the .entry label set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & The label to be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 246 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{246                                            \{}
+\DoxyCodeLine{247     strcpy(\mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entryLabelSet}}.\mbox{\hyperlink{structLabelSet_a7666ddbdbd2767085a4fbd5d44968ff8}{labels}}[\mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entryLabelSet}}.\mbox{\hyperlink{structLabelSet_a3eddafb9465992fab9622a50dc6a4c4d}{count}}], label);}
+\DoxyCodeLine{248     \mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entryLabelSet}}.\mbox{\hyperlink{structLabelSet_a3eddafb9465992fab9622a50dc6a4c4d}{count}}++;}
+\DoxyCodeLine{249 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a5d78273d4feb195d7706ce9d6d7c004b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_aefa918d3cc0fdd2c816db056bcdeaeed}\label{headeMethods_8h_aefa918d3cc0fdd2c816db056bcdeaeed}} 
+\index{headeMethods.h@{headeMethods.h}!categorizeWord@{categorizeWord}}
+\index{categorizeWord@{categorizeWord}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{categorizeWord()}{categorizeWord()}}
+{\footnotesize\ttfamily int categorize\+Word (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Categorizes a word based on its type and updates the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be categorized. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the categorization is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{90                                                                                      \{}
+\DoxyCodeLine{91     \textcolor{keywordtype}{int} return\_value;}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \textcolor{keywordflow}{if}(strcmp(word, \textcolor{stringliteral}{"{}.define"{}}) == 0)\{\textcolor{comment}{/*No need to check for label because language doesn't support label for define*/}}
+\DoxyCodeLine{94         return\_value= \mbox{\hyperlink{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3}{defineFormat}}(file, word, data, head);}
+\DoxyCodeLine{95         data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = DEFINE;}
+\DoxyCodeLine{96         \textcolor{keywordflow}{if} (return\_value == -\/1) \{}
+\DoxyCodeLine{97             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{98         \}}
+\DoxyCodeLine{99         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(return\_value == 1) \{}
+\DoxyCodeLine{100             \mbox{\hyperlink{front_8c_a2aea10f08082ec4cf48434ea86c023ac}{insertNode}}(head, *data);}
+\DoxyCodeLine{101             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{102         \}}
+\DoxyCodeLine{103     \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105     return\_value= \mbox{\hyperlink{directive_8c_ae5ec285c69a731057cf0c53c79537eee}{directiveFormat}}(file, word, data, head);}
+\DoxyCodeLine{106     \textcolor{keywordflow}{if} (return\_value == 1) \{}
+\DoxyCodeLine{107         data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = DIRECTIVE;}
+\DoxyCodeLine{108         \mbox{\hyperlink{front_8c_a2aea10f08082ec4cf48434ea86c023ac}{insertNode}}(head, *data);}
+\DoxyCodeLine{109         \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{110     \}}
+\DoxyCodeLine{111     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (return\_value == -\/1) \{}
+\DoxyCodeLine{112         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{113     \}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{116         return\_value= \mbox{\hyperlink{headeMethods_8h_a26e39fc2d91733521827b73be3588d13}{instructionFormat}}(file, word, data, head);}
+\DoxyCodeLine{117         \textcolor{keywordflow}{if} (return\_value == 1) \{}
+\DoxyCodeLine{118             data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = INSTRUCTION;}
+\DoxyCodeLine{119             \mbox{\hyperlink{front_8c_a2aea10f08082ec4cf48434ea86c023ac}{insertNode}}(head, *data);}
+\DoxyCodeLine{120             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{121         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (return\_value == -\/1) \{}
+\DoxyCodeLine{122             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{123         \}}
+\DoxyCodeLine{124         \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{125             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: word not at assembly language table"{}},\textcolor{stringliteral}{"{}front.c"{}}, head);}
+\DoxyCodeLine{126             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{127         \}}
+\DoxyCodeLine{128     \}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_aefa918d3cc0fdd2c816db056bcdeaeed_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_aefa918d3cc0fdd2c816db056bcdeaeed_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a4209c81388b14c5650d72bc2e92a5f91}\label{headeMethods_8h_a4209c81388b14c5650d72bc2e92a5f91}} 
+\index{headeMethods.h@{headeMethods.h}!checkLastCharacter@{checkLastCharacter}}
+\index{checkLastCharacter@{checkLastCharacter}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{checkLastCharacter()}{checkLastCharacter()}}
+{\footnotesize\ttfamily int check\+Last\+Character (\begin{DoxyParamCaption}\item[{const char}]{input\mbox{[}$\,$\mbox{]},  }\item[{char}]{error\+Char }\end{DoxyParamCaption})}
+
+
+
+Function to check if the last character of a string is a specific character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The string to be checked. \\
+\hline
+{\em error\+Char} & The specific character to check for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the last character is the specified character; otherwise, 1. 
+\end{DoxyReturn}
+
+
+Definition at line 163 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{163                                                            \{}
+\DoxyCodeLine{164     \textcolor{comment}{/* Check if the last character is a comma */}}
+\DoxyCodeLine{165     \textcolor{keywordtype}{size\_t} length = strlen(input);}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     \textcolor{keywordflow}{if} (length > 0) \{}
+\DoxyCodeLine{168         \textcolor{keywordtype}{char} lastChar = input[length -\/ 1];}
+\DoxyCodeLine{169         \textcolor{keywordflow}{if} (lastChar == errorChar) \{}
+\DoxyCodeLine{170             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{171         \}}
+\DoxyCodeLine{172     \}}
+\DoxyCodeLine{173     \textcolor{keywordflow}{return} 1;\textcolor{comment}{/* Last character is not a comma */}}
+\DoxyCodeLine{174 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a4209c81388b14c5650d72bc2e92a5f91_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a03a5ad42233f6ad7e6824e1eaff30e2f}\label{headeMethods_8h_a03a5ad42233f6ad7e6824e1eaff30e2f}} 
+\index{headeMethods.h@{headeMethods.h}!countChars@{countChars}}
+\index{countChars@{countChars}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{countChars()}{countChars()}}
+{\footnotesize\ttfamily int count\+Chars (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Function to count characters in a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to be processed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of characters in the string. 
+\end{DoxyReturn}
+
+
+Definition at line 195 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{195                                 \{}
+\DoxyCodeLine{196     \textcolor{keywordtype}{int} count = 1; \textcolor{comment}{/* For the \(\backslash\)0 at the end of the string by task instruction */}}
+\DoxyCodeLine{197     \textcolor{comment}{/* Iterate through each character until the null terminator is reached */}}
+\DoxyCodeLine{198     \textcolor{keywordflow}{while} (*str != \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{199         count++;}
+\DoxyCodeLine{200         str++;}
+\DoxyCodeLine{201     \}}
+\DoxyCodeLine{202     \textcolor{keywordflow}{return} count;}
+\DoxyCodeLine{203 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a03a5ad42233f6ad7e6824e1eaff30e2f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a50bf4aac153ee7424cba502accb069de}\label{headeMethods_8h_a50bf4aac153ee7424cba502accb069de}} 
+\index{headeMethods.h@{headeMethods.h}!createNode@{createNode}}
+\index{createNode@{createNode}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{createNode()}{createNode()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structNode}{Node}}$\ast$ create\+Node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpattern}{pattern}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Creates a new linked list node with the given data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The pattern data to be stored in the node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created node. 
+\end{DoxyReturn}
+
+
+Definition at line 43 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43                                              \{}
+\DoxyCodeLine{44     \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *newNode = (\textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *)malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structNode}{Node}}));}
+\DoxyCodeLine{45     newNode-\/>\mbox{\hyperlink{structNode_a78356ba739483ce3547999ba52abcca2}{data}} = \mbox{\hyperlink{structNode_a78356ba739483ce3547999ba52abcca2}{data}};}
+\DoxyCodeLine{46     newNode-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}} = NULL;}
+\DoxyCodeLine{47     \textcolor{keywordflow}{return} newNode;}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a50bf4aac153ee7424cba502accb069de_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a9b934e4c8638e4436a0b6b440cea6fc3}\label{headeMethods_8h_a9b934e4c8638e4436a0b6b440cea6fc3}} 
+\index{headeMethods.h@{headeMethods.h}!defineFormat@{defineFormat}}
+\index{defineFormat@{defineFormat}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{defineFormat()}{defineFormat()}}
+{\footnotesize\ttfamily int define\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is a define and update the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is a define; otherwise, -\/1. 
+\end{DoxyReturn}
+
+
+Definition at line 4 of file define.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{4                                                                                    \{}
+\DoxyCodeLine{5     fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{6     \textcolor{keywordflow}{if} (\mbox{\hyperlink{define_8c_aa0b3977cf0af0a66723704d8ca22fa37}{isValidConstantName}}(word)) \{}
+\DoxyCodeLine{7         strcpy(data-\/>\mbox{\hyperlink{structpattern_a0f278562150729ca1f3637b08eeeec91}{label}}, word);}
+\DoxyCodeLine{8         \mbox{\hyperlink{front_8c_aebb8c667f62ceaa6c41ba28e1832c46b}{num\_of\_symbol}}++;}
+\DoxyCodeLine{9     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{10         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid constant name"{}},\textcolor{stringliteral}{"{}define.h"{}},head);}
+\DoxyCodeLine{11         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{12     \}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14     fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{15     \textcolor{keywordflow}{if}(strcmp(word,\textcolor{stringliteral}{"{}="{}})!=0)\{}
+\DoxyCodeLine{16         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid symbol, need to be ="{}},\textcolor{stringliteral}{"{}define.h"{}},head);}
+\DoxyCodeLine{17         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{18     \}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{21     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{define_8c_a529fe24170a61c22c810022e539206c3}{isNumeric}}(word)) \{}
+\DoxyCodeLine{22         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Invalid numeric value"{}},\textcolor{stringliteral}{"{}define.h"{}}, head);}
+\DoxyCodeLine{23         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{24     \}}
+\DoxyCodeLine{25     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a294a79a375e516b24663916b3c524c7a}{def}}.value = atoi(word);}
+\DoxyCodeLine{26     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{27 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a9b934e4c8638e4436a0b6b440cea6fc3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a9b934e4c8638e4436a0b6b440cea6fc3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ae5ec285c69a731057cf0c53c79537eee}\label{headeMethods_8h_ae5ec285c69a731057cf0c53c79537eee}} 
+\index{headeMethods.h@{headeMethods.h}!directiveFormat@{directiveFormat}}
+\index{directiveFormat@{directiveFormat}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{directiveFormat()}{directiveFormat()}}
+{\footnotesize\ttfamily int directive\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is a directive and return the directive type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Directive\+Type enumeration if the word is a directive; otherwise, -\/1. 
+\end{DoxyReturn}
+
+
+Definition at line 13 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{13                                                                                       \{}
+\DoxyCodeLine{14     \textcolor{keywordflow}{if} (\mbox{\hyperlink{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}{isValidLabel}}(word,data,0)) \{}
+\DoxyCodeLine{15         fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{16         \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.string"{}}) == 0) \{}
+\DoxyCodeLine{17             \textcolor{keywordflow}{return} \mbox{\hyperlink{directive_8c_a9923983ba7de99890cc241f1705c63ca}{handleStringDirective}}(file, data);}
+\DoxyCodeLine{18         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.data"{}}) == 0) \{}
+\DoxyCodeLine{19             \textcolor{keywordflow}{return} \mbox{\hyperlink{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}{handleDataDirective}}(file,word, data, head);}
+\DoxyCodeLine{20         \}}
+\DoxyCodeLine{21     \}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{comment}{/* Separate cases for other directives */}}
+\DoxyCodeLine{24     \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.entry"{}}) == 0) \{}
+\DoxyCodeLine{25         fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{26         \textcolor{keywordflow}{if} (\mbox{\hyperlink{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}{isValidLabel}}(word,data,1)) \{}
+\DoxyCodeLine{27             \mbox{\hyperlink{front_8c_a085b57d9ed0b3d5392eb3dcffe1b2301}{num\_of\_entries}}++;}
+\DoxyCodeLine{28             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.directive\_type = \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}{ENTRY}};}
+\DoxyCodeLine{29             \mbox{\hyperlink{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b}{addToEntryLabelSet}}(data-\/>\mbox{\hyperlink{structpattern_a0f278562150729ca1f3637b08eeeec91}{label}});}
+\DoxyCodeLine{30             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{31         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{32             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid label name at .entry"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{33             \textcolor{keywordflow}{return} -\/1;\textcolor{comment}{/*-\/1 means that it is a directive type but arguments are not valid*/}}
+\DoxyCodeLine{34         \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.extern"{}}) == 0) \{}
+\DoxyCodeLine{37         data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.directive\_type = \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}{EXTERN}};}
+\DoxyCodeLine{38         \textcolor{keywordflow}{return} \mbox{\hyperlink{directive_8c_ad0ef680cc59967d4e23e35dd0f42db52}{handleEntryDirective}}(file, data, head);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.string"{}}) == 0) \{}
+\DoxyCodeLine{41         \textcolor{keywordflow}{return} \mbox{\hyperlink{directive_8c_a9923983ba7de99890cc241f1705c63ca}{handleStringDirective}}(file, data);}
+\DoxyCodeLine{42     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(word, \textcolor{stringliteral}{"{}.data"{}}) == 0) \{}
+\DoxyCodeLine{43         \textcolor{keywordflow}{return} \mbox{\hyperlink{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}{handleDataDirective}}(file,word, data, head);}
+\DoxyCodeLine{44     \}}
+\DoxyCodeLine{45     \textcolor{keywordflow}{return} 0;  \textcolor{comment}{/* Not a directive */}}
+\DoxyCodeLine{46 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ae5ec285c69a731057cf0c53c79537eee_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ae5ec285c69a731057cf0c53c79537eee_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ab643077dedf9357003496c8e64187c46}\label{headeMethods_8h_ab643077dedf9357003496c8e64187c46}} 
+\index{headeMethods.h@{headeMethods.h}!freeLinkedList@{freeLinkedList}}
+\index{freeLinkedList@{freeLinkedList}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{freeLinkedList()}{freeLinkedList()}}
+{\footnotesize\ttfamily void free\+Linked\+List (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Frees the memory allocated for the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 150 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{150                                        \{}
+\DoxyCodeLine{151     \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *current = head;}
+\DoxyCodeLine{152     \textcolor{keywordflow}{while} (current != NULL) \{}
+\DoxyCodeLine{153         \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *temp = current;}
+\DoxyCodeLine{154         current = current-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}};}
+\DoxyCodeLine{155         \textcolor{comment}{/* Free the allocated memory for the data in each node*/}}
+\DoxyCodeLine{156         free(temp);}
+\DoxyCodeLine{157     \}}
+\DoxyCodeLine{158 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{headeMethods_8h_ab643077dedf9357003496c8e64187c46_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ad92ccce9c6a0fc6284c17e0c7bc977bf}\label{headeMethods_8h_ad92ccce9c6a0fc6284c17e0c7bc977bf}} 
+\index{headeMethods.h@{headeMethods.h}!handleDataDirective@{handleDataDirective}}
+\index{handleDataDirective@{handleDataDirective}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{handleDataDirective()}{handleDataDirective()}}
+{\footnotesize\ttfamily int handle\+Data\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to handle the .data directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59                                                                                           \{}
+\DoxyCodeLine{60     \textcolor{keywordtype}{char} *token;}
+\DoxyCodeLine{61     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.directive\_type = \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}{DATA}};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{64     \textcolor{keywordtype}{int} len = strlen(word);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{keywordflow}{if}(getc(file)!=\textcolor{charliteral}{'\(\backslash\)n'})\{}
+\DoxyCodeLine{67         \textcolor{keywordflow}{if} (len > 0 \&\& word[len -\/ 1] != \textcolor{charliteral}{','}) \{}
+\DoxyCodeLine{68             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Missing comma"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{69             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{70         \}}
+\DoxyCodeLine{71     \}}
+\DoxyCodeLine{72     fseek(file, ftell(file) -\/ 1, SEEK\_SET);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     token = strtok(word, \textcolor{stringliteral}{"{} ,"{}});}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \textcolor{keywordflow}{while} (token != NULL) \{}
+\DoxyCodeLine{79         \textcolor{keywordflow}{if} (\mbox{\hyperlink{directive_8c_a4209c81388b14c5650d72bc2e92a5f91}{checkLastCharacter}}(token, \textcolor{charliteral}{','}) == 0) \{}
+\DoxyCodeLine{80             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Extraneous text after end of command"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{81             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{82         \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{directive_8c_ab18a754930025706c9fad49b18fa3c33}{processNumericArguments}}(token,word, data, head)) \{}
+\DoxyCodeLine{85             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{86         \} \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{87             \textcolor{keywordflow}{if}(getc(file)==\textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{88                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{89             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{90                 fseek(file, ftell(file) -\/ 1, SEEK\_SET);}
+\DoxyCodeLine{91         \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93         fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{94         \textcolor{keywordtype}{int} len = strlen(word);}
+\DoxyCodeLine{95         \textcolor{keywordflow}{if} (len > 0 \&\& word[len -\/ 1] != \textcolor{charliteral}{','}) \{}
+\DoxyCodeLine{96             \textcolor{keywordflow}{if}(getc(file)==\textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{97                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{98             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Missing comma"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{99             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{100         \}}
+\DoxyCodeLine{101         token = strtok(word, \textcolor{stringliteral}{"{} ,"{}});}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{105 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ad92ccce9c6a0fc6284c17e0c7bc977bf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ad92ccce9c6a0fc6284c17e0c7bc977bf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ad0ef680cc59967d4e23e35dd0f42db52}\label{headeMethods_8h_ad0ef680cc59967d4e23e35dd0f42db52}} 
+\index{headeMethods.h@{headeMethods.h}!handleEntryDirective@{handleEntryDirective}}
+\index{handleEntryDirective@{handleEntryDirective}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{handleEntryDirective()}{handleEntryDirective()}}
+{\footnotesize\ttfamily int handle\+Entry\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to handle the .entry directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 261 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{261                                                                                \{}
+\DoxyCodeLine{262     \textcolor{keywordtype}{char} tempLabel[\mbox{\hyperlink{headeMethods_8h_a96127aad3b7750628d041f17c8490726}{MAX\_LABEL\_SIZE}}];}
+\DoxyCodeLine{263     \textcolor{keywordtype}{int} nextChar;}
+\DoxyCodeLine{264     \textcolor{comment}{// Check if the next character is a newline}}
+\DoxyCodeLine{265     \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{266         nextChar = fgetc(file);}
+\DoxyCodeLine{267     \} \textcolor{keywordflow}{while} (nextChar != EOF \&\& (nextChar == \textcolor{charliteral}{' '} || nextChar == \textcolor{charliteral}{'\(\backslash\)t'}));}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269     \textcolor{comment}{// If the next character is not a newline, put it back to the stream}}
+\DoxyCodeLine{270     \textcolor{keywordflow}{if} (nextChar != EOF \&\& nextChar != \textcolor{charliteral}{'\(\backslash\)n'}) \{}
+\DoxyCodeLine{271         ungetc(nextChar, file);}
+\DoxyCodeLine{272     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{273         \textcolor{comment}{// Break if the next character is a newline}}
+\DoxyCodeLine{274         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: no argument at .entry"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{275         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{276     \}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278     \textcolor{keywordflow}{if} (fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, tempLabel) == 1) \{}
+\DoxyCodeLine{279         \textcolor{comment}{/* Check if the label is already used as .entry */}}
+\DoxyCodeLine{280         \textcolor{keywordflow}{if} (\mbox{\hyperlink{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc}{isEntryLabel}}(tempLabel)) \{}
+\DoxyCodeLine{281             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Label already used as .entry"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{282             \textcolor{keywordflow}{return} -\/1;\textcolor{comment}{/*case -\/1 means that it is a directive type but arguments are not valid*/}}
+\DoxyCodeLine{283         \}}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285         \textcolor{comment}{/* Check if the label is valid */}}
+\DoxyCodeLine{286         \textcolor{keywordflow}{if} (\mbox{\hyperlink{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}{isValidLabel}}(tempLabel,data,1)) \{}
+\DoxyCodeLine{287             strcpy(tempLabel, data-\/>\mbox{\hyperlink{structpattern_a0f278562150729ca1f3637b08eeeec91}{label}});}
+\DoxyCodeLine{288             \mbox{\hyperlink{front_8c_aebb8c667f62ceaa6c41ba28e1832c46b}{num\_of\_symbol}}++;}
+\DoxyCodeLine{289             \textcolor{comment}{/* Add the label to the entry label set */}}
+\DoxyCodeLine{290             \mbox{\hyperlink{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b}{addToEntryLabelSet}}(data-\/>\mbox{\hyperlink{structpattern_a0f278562150729ca1f3637b08eeeec91}{label}});}
+\DoxyCodeLine{291             \mbox{\hyperlink{front_8c_aef398d61da8585441be8052f91c005d9}{num\_of\_externals}}++;}
+\DoxyCodeLine{292             \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{293         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{294             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid label name"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{295             \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{296         \}}
+\DoxyCodeLine{297     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{298         \textcolor{comment}{/* Handle fscanf failure */}}
+\DoxyCodeLine{299         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Unable to read label from file"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{300         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{301     \}}
+\DoxyCodeLine{302 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ad0ef680cc59967d4e23e35dd0f42db52_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ad0ef680cc59967d4e23e35dd0f42db52_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a9923983ba7de99890cc241f1705c63ca}\label{headeMethods_8h_a9923983ba7de99890cc241f1705c63ca}} 
+\index{headeMethods.h@{headeMethods.h}!handleStringDirective@{handleStringDirective}}
+\index{handleStringDirective@{handleStringDirective}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{handleStringDirective()}{handleStringDirective()}}
+{\footnotesize\ttfamily int handle\+String\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Function to handle the .string directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 49 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{49                                                             \{}
+\DoxyCodeLine{50     \textcolor{keywordtype}{char} word[\mbox{\hyperlink{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}{MAX\_LINE\_SIZE}}];}
+\DoxyCodeLine{51     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.directive\_type = \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}{STRING}};}
+\DoxyCodeLine{52     fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{53     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.string = (\textcolor{keywordtype}{char} *) strdup(word);}
+\DoxyCodeLine{54     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size = \mbox{\hyperlink{directive_8c_a03a5ad42233f6ad7e6824e1eaff30e2f}{countChars}}(word);}
+\DoxyCodeLine{55     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{headeMethods_8h_a9923983ba7de99890cc241f1705c63ca_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a9923983ba7de99890cc241f1705c63ca_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a2aea10f08082ec4cf48434ea86c023ac}\label{headeMethods_8h_a2aea10f08082ec4cf48434ea86c023ac}} 
+\index{headeMethods.h@{headeMethods.h}!insertNode@{insertNode}}
+\index{insertNode@{insertNode}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{insertNode()}{insertNode()}}
+{\footnotesize\ttfamily void insert\+Node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Inserts a new node at the end of the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+{\em data} & The pattern data to be stored in the new node. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{51                                                          \{}
+\DoxyCodeLine{52     \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *newNode = \mbox{\hyperlink{front_8c_a50bf4aac153ee7424cba502accb069de}{createNode}}(\mbox{\hyperlink{structNode_a78356ba739483ce3547999ba52abcca2}{data}});}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{keywordflow}{if} (*head == NULL) \{}
+\DoxyCodeLine{55         *head = newNode;}
+\DoxyCodeLine{56     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{57         \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *temp = *head;}
+\DoxyCodeLine{58         \textcolor{keywordflow}{while} (temp-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}} != NULL) \{}
+\DoxyCodeLine{59             temp = temp-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}};}
+\DoxyCodeLine{60         \}}
+\DoxyCodeLine{61         temp-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}} = newNode;}
+\DoxyCodeLine{62     \}}
+\DoxyCodeLine{63 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{headeMethods_8h_a2aea10f08082ec4cf48434ea86c023ac_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a2aea10f08082ec4cf48434ea86c023ac_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a26e39fc2d91733521827b73be3588d13}\label{headeMethods_8h_a26e39fc2d91733521827b73be3588d13}} 
+\index{headeMethods.h@{headeMethods.h}!instructionFormat@{instructionFormat}}
+\index{instructionFormat@{instructionFormat}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{instructionFormat()}{instructionFormat()}}
+{\footnotesize\ttfamily int instruction\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{const char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Checks if a word is an instruction and updates the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The file pointer to the input assembly file. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is an instruction; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 119 of file instrucstion.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{119                                                                                               \{}
+\DoxyCodeLine{120     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{121     \textcolor{comment}{/* There is no need to check if the word is a valid label because it is already checked in categorizeWord */}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{comment}{/* Iterate through the array to find a match */}}
+\DoxyCodeLine{124     \textcolor{keywordflow}{for} (i = 0; \mbox{\hyperlink{front_8c_a3c4d69d58e5f21876f589033c2f2b8a0}{instructionMappings}}[i].\mbox{\hyperlink{structInstructionMapping_a428fdca99b441e0064f28aabfc13ae34}{name}} != NULL; ++i) \{}
+\DoxyCodeLine{125         \textcolor{keywordflow}{if} (strcmp(word, \mbox{\hyperlink{front_8c_a3c4d69d58e5f21876f589033c2f2b8a0}{instructionMappings}}[i].name) == 0) \{}
+\DoxyCodeLine{126             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.op\_type = \mbox{\hyperlink{front_8c_a3c4d69d58e5f21876f589033c2f2b8a0}{instructionMappings}}[i].\mbox{\hyperlink{structInstructionMapping_abffb5718c01835f7998f122f3e93a3c6}{type}};}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128             \textcolor{comment}{/* It's an instruction with two operands */}}
+\DoxyCodeLine{129             \textcolor{keywordflow}{if} (i >= 0 \&\& i < 5) \{}
+\DoxyCodeLine{130                 \textcolor{keywordflow}{return} \mbox{\hyperlink{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6}{processTwoOperands}}(file, data, head);}
+\DoxyCodeLine{131             \}}
+\DoxyCodeLine{132                 \textcolor{comment}{/* It's an instruction with one operand */}}
+\DoxyCodeLine{133             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (i >= 5 \&\& i < 15) \{}
+\DoxyCodeLine{134                 \textcolor{keywordflow}{return} \mbox{\hyperlink{instrucstion_8c_ab3b600e768927750f73f08907f410181}{processOneOperand}}(file, data, head);}
+\DoxyCodeLine{135             \}}
+\DoxyCodeLine{136                 \textcolor{comment}{/* It's an instruction without operands */}}
+\DoxyCodeLine{137             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (i >= 15 \&\& i < 18) \{}
+\DoxyCodeLine{138                 \textcolor{keywordflow}{return} \mbox{\hyperlink{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0}{processNoOperands}}(data);}
+\DoxyCodeLine{139             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{140                 \textcolor{comment}{/* Invalid instruction name */}}
+\DoxyCodeLine{141                 data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = ERROR;}
+\DoxyCodeLine{142                 \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Invalid instruction name"{}},\textcolor{stringliteral}{"{}instruction.h"{}}, head);}
+\DoxyCodeLine{143                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{144             \}}
+\DoxyCodeLine{145         \}}
+\DoxyCodeLine{146     \}}
+\DoxyCodeLine{147     \textcolor{comment}{/* Not an instruction */}}
+\DoxyCodeLine{148     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{149 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a26e39fc2d91733521827b73be3588d13_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a26e39fc2d91733521827b73be3588d13_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a1076c92ff396fe7c35841d34e32fdcbc}\label{headeMethods_8h_a1076c92ff396fe7c35841d34e32fdcbc}} 
+\index{headeMethods.h@{headeMethods.h}!isEntryLabel@{isEntryLabel}}
+\index{isEntryLabel@{isEntryLabel}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{isEntryLabel()}{isEntryLabel()}}
+{\footnotesize\ttfamily int is\+Entry\+Label (\begin{DoxyParamCaption}\item[{const char $\ast$}]{label }\end{DoxyParamCaption})}
+
+
+
+Function to check if a label is already used as .entry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & The label to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the label is used as .entry; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 252 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{252                                     \{}
+\DoxyCodeLine{253     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entryLabelSet}}.\mbox{\hyperlink{structLabelSet_a3eddafb9465992fab9622a50dc6a4c4d}{count}}; i++) \{}
+\DoxyCodeLine{254         \textcolor{keywordflow}{if} (strcmp(\mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entryLabelSet}}.\mbox{\hyperlink{structLabelSet_a7666ddbdbd2767085a4fbd5d44968ff8}{labels}}[i], label) == 0) \{}
+\DoxyCodeLine{255             \textcolor{keywordflow}{return} 1; \textcolor{comment}{// Found in the set}}
+\DoxyCodeLine{256         \}}
+\DoxyCodeLine{257     \}}
+\DoxyCodeLine{258     \textcolor{keywordflow}{return} 0; \textcolor{comment}{// Not found in the set}}
+\DoxyCodeLine{259 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a1076c92ff396fe7c35841d34e32fdcbc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a497d412bc5a4b29e959da8d58c6e7f44}\label{headeMethods_8h_a497d412bc5a4b29e959da8d58c6e7f44}} 
+\index{headeMethods.h@{headeMethods.h}!isError@{isError}}
+\index{isError@{isError}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{isError()}{isError()}}
+{\footnotesize\ttfamily void is\+Error (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{const char $\ast$}]{error\+Message,  }\item[{const char $\ast$}]{filename,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is an error and update the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em error\+Message} & The error message to be associated with the pattern. \\
+\hline
+{\em filename} & The name of the file being processed. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 133 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{134 \{}
+\DoxyCodeLine{135     data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = ERROR;}
+\DoxyCodeLine{136     \textcolor{comment}{/*Update the error message with the line number and filename*/}}
+\DoxyCodeLine{137     snprintf(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_aeefc0d49f64e618d25fe2dcc65d52d18}{error}}, \textcolor{keyword}{sizeof}(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_aeefc0d49f64e618d25fe2dcc65d52d18}{error}}), \textcolor{stringliteral}{"{}Error: \%s, File: \%s, Line: \%d"{}}, errorMessage, filename, \mbox{\hyperlink{front_8c_a44bf2f6ee91a35522c07c779325d3ef0}{lineNumber}});}
+\DoxyCodeLine{138     \mbox{\hyperlink{front_8c_a2aea10f08082ec4cf48434ea86c023ac}{insertNode}}(head, *data);}
+\DoxyCodeLine{139 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{headeMethods_8h_a497d412bc5a4b29e959da8d58c6e7f44_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a497d412bc5a4b29e959da8d58c6e7f44_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a529fe24170a61c22c810022e539206c3}\label{headeMethods_8h_a529fe24170a61c22c810022e539206c3}} 
+\index{headeMethods.h@{headeMethods.h}!isNumeric@{isNumeric}}
+\index{isNumeric@{isNumeric}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{isNumeric()}{isNumeric()}}
+{\footnotesize\ttfamily int is\+Numeric (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is numeric. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The word to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is numeric; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file define.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29                          \{}
+\DoxyCodeLine{30     \textcolor{keywordtype}{int} length = strlen(str);}
+\DoxyCodeLine{31     \textcolor{keywordtype}{int} startIndex = 0;}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \textcolor{keywordflow}{if} (str == NULL || *str == \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{35         \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* Not numeric if the string is empty or NULL*/}}
+\DoxyCodeLine{36     \}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{keywordflow}{while} (str[startIndex] == \textcolor{charliteral}{' '} \&\& startIndex < length) \{}
+\DoxyCodeLine{39         startIndex++;}
+\DoxyCodeLine{40     \}}
+\DoxyCodeLine{41     \textcolor{comment}{/* Check for an optional sign at the beginning*/}}
+\DoxyCodeLine{42     \textcolor{keywordflow}{if} (str[startIndex] == \textcolor{charliteral}{'-\/'} || str[startIndex] == \textcolor{charliteral}{'+'}) \{}
+\DoxyCodeLine{43         startIndex ++;}
+\DoxyCodeLine{44     \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keywordflow}{for} (i = startIndex; i < length; i++) \{}
+\DoxyCodeLine{47         \textcolor{keywordflow}{if} (!isdigit(str[i])) \{}
+\DoxyCodeLine{48             \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* Non-\/digit character found*/}}
+\DoxyCodeLine{49         \}}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{53 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a529fe24170a61c22c810022e539206c3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_aa0b3977cf0af0a66723704d8ca22fa37}\label{headeMethods_8h_aa0b3977cf0af0a66723704d8ca22fa37}} 
+\index{headeMethods.h@{headeMethods.h}!isValidConstantName@{isValidConstantName}}
+\index{isValidConstantName@{isValidConstantName}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{isValidConstantName()}{isValidConstantName()}}
+{\footnotesize\ttfamily int is\+Valid\+Constant\+Name (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is a valid constant name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The word to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is a valid constant name; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file define.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{56                                            \{}
+\DoxyCodeLine{57     \textcolor{comment}{/* Check if the name is not empty */}}
+\DoxyCodeLine{58     \textcolor{keywordflow}{if} (*name == \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{59         \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* Invalid: Empty name */}}
+\DoxyCodeLine{60     \}}
+\DoxyCodeLine{61     \textcolor{comment}{/* Check if the first character is a letter */}}
+\DoxyCodeLine{62     \textcolor{keywordflow}{if} (!isalpha(*name)) \{}
+\DoxyCodeLine{63         \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* Invalid: Name must start with a letter */}}
+\DoxyCodeLine{64     \}}
+\DoxyCodeLine{65     \textcolor{comment}{/* Check the remaining characters */}}
+\DoxyCodeLine{66     \textcolor{keywordflow}{while} (*name != \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{67         \textcolor{comment}{/* Check if each character is alphanumeric or underscore */}}
+\DoxyCodeLine{68         \textcolor{keywordflow}{if} (!isalnum(*name) \&\& *name != \textcolor{charliteral}{'\_'}) \{}
+\DoxyCodeLine{69             \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* Invalid: Name must be alphanumeric or underscore */}}
+\DoxyCodeLine{70         \}}
+\DoxyCodeLine{71         name++;}
+\DoxyCodeLine{72     \}}
+\DoxyCodeLine{73     \textcolor{keywordflow}{return} 1; \textcolor{comment}{/* Valid constant name */}}
+\DoxyCodeLine{74 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_aa0b3977cf0af0a66723704d8ca22fa37_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a7fb05dea6f2c00d6630a34a63bed4333}\label{headeMethods_8h_a7fb05dea6f2c00d6630a34a63bed4333}} 
+\index{headeMethods.h@{headeMethods.h}!isValidLabel@{isValidLabel}}
+\index{isValidLabel@{isValidLabel}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{isValidLabel()}{isValidLabel()}}
+{\footnotesize\ttfamily int is\+Valid\+Label (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{need\+Colon }\end{DoxyParamCaption})}
+
+
+
+Function to check if a label is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The label to be checked. \\
+\hline
+{\em data} & Pointer to the data structure where the label is stored if valid. \\
+\hline
+{\em need\+Colon} & Flag indicating whether the label requires a colon at the end. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the label is valid; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 205 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{205                                                                   \{}
+\DoxyCodeLine{206     \textcolor{comment}{/* Check if the name is not empty */}}
+\DoxyCodeLine{207     \textcolor{keywordflow}{if} (*name == \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{208         \textcolor{keywordflow}{return} 0; \textcolor{comment}{// Invalid: Empty name}}
+\DoxyCodeLine{209     \}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211     \textcolor{comment}{/* Check if the first character is a letter */}}
+\DoxyCodeLine{212     \textcolor{keywordflow}{if} (!isalpha(*name)) \{}
+\DoxyCodeLine{213         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{214     \}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216     \textcolor{comment}{/* Check for alphanumeric or underscore, up to 30 characters */}}
+\DoxyCodeLine{217     \textcolor{keywordtype}{int} count = 0;}
+\DoxyCodeLine{218     \textcolor{keywordtype}{char} *lastChar = name + strlen(name) -\/ 1;}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220     \textcolor{keywordflow}{if}(needColon!=1) \{}
+\DoxyCodeLine{221         \textcolor{comment}{/* Check if the last character is ':'*/}}
+\DoxyCodeLine{222         \textcolor{keywordflow}{if} (*lastChar == \textcolor{charliteral}{':'}) \{}
+\DoxyCodeLine{223             *lastChar = \textcolor{charliteral}{'\(\backslash\)0'}; \textcolor{comment}{// Remove the last character}}
+\DoxyCodeLine{224         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{225             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{226         \}}
+\DoxyCodeLine{227     \}}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229     \textcolor{keywordflow}{while} (*name != \textcolor{charliteral}{'\(\backslash\)0'} \&\& count <= \mbox{\hyperlink{headeMethods_8h_a96127aad3b7750628d041f17c8490726}{MAX\_LABEL\_SIZE}}) \{}
+\DoxyCodeLine{230         \textcolor{keywordflow}{if} (!isalnum(*name) \&\& *name != \textcolor{charliteral}{'\_'}\&\&!isupper(*name)) \{}
+\DoxyCodeLine{231             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{232         \}}
+\DoxyCodeLine{233         name++;}
+\DoxyCodeLine{234         count++;}
+\DoxyCodeLine{235     \}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237     \textcolor{comment}{// Copy the modified label to the data structure}}
+\DoxyCodeLine{238     strcpy(data-\/>\mbox{\hyperlink{structpattern_a0f278562150729ca1f3637b08eeeec91}{label}}, lastChar);}
+\DoxyCodeLine{239     \mbox{\hyperlink{front_8c_aebb8c667f62ceaa6c41ba28e1832c46b}{num\_of\_symbol}}++;}
+\DoxyCodeLine{240     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{241 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a7fb05dea6f2c00d6630a34a63bed4333_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a1408df37404e85648b10016972c24ff9}\label{headeMethods_8h_a1408df37404e85648b10016972c24ff9}} 
+\index{headeMethods.h@{headeMethods.h}!miss@{miss}}
+\index{miss@{miss}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{miss()}{miss()}}
+{\footnotesize\ttfamily int miss (\begin{DoxyParamCaption}\item[{int}]{require\+Comma,  }\item[{FILE $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+Function to check for missing elements in a data directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em require\+Comma} & Flag indicating if a comma is required. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if there is no extraneous text or missing comma; otherwise, 1. 
+\end{DoxyReturn}
+
+
+Definition at line 177 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{177                                        \{}
+\DoxyCodeLine{178     \textcolor{keywordtype}{int} missing;}
+\DoxyCodeLine{179     missing = fgetc(file);}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181     \textcolor{keywordflow}{if} (missing == \textcolor{charliteral}{'\(\backslash\)n'}) \{}
+\DoxyCodeLine{182         \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* No extraneous text or missing comma */}}
+\DoxyCodeLine{183     \}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185     \textcolor{keywordflow}{if} (requireComma \&\& missing != \textcolor{charliteral}{','}) \{}
+\DoxyCodeLine{186         \textcolor{comment}{/* Handle extraneous text (clear the input buffer) */}}
+\DoxyCodeLine{187         \textcolor{keywordflow}{while} (fgetc(file) != \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{188         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{189     \}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{192 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{headeMethods_8h_ae072285661c15dacd16395e5dbb2943e}\label{headeMethods_8h_ae072285661c15dacd16395e5dbb2943e}} 
+\index{headeMethods.h@{headeMethods.h}!printLinkedList@{printLinkedList}}
+\index{printLinkedList@{printLinkedList}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{printLinkedList()}{printLinkedList()}}
+{\footnotesize\ttfamily void print\+Linked\+List (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Prints the content of the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 141 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{141                                         \{}
+\DoxyCodeLine{142     \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *current = head;}
+\DoxyCodeLine{143     \textcolor{keywordflow}{while} (current != NULL) \{}
+\DoxyCodeLine{144         printf(\textcolor{stringliteral}{"{}Type: \%d\(\backslash\)n"{}}, current-\/>\mbox{\hyperlink{structNode_a78356ba739483ce3547999ba52abcca2}{data}}.\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}});}
+\DoxyCodeLine{145         current = current-\/>\mbox{\hyperlink{structNode_af67b110ca1a258b793bf69d306929b22}{next}};}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147     \}}
+\DoxyCodeLine{148 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{headeMethods_8h_ae072285661c15dacd16395e5dbb2943e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a2bc68f82a4715dc30ae2c450eeb1e629}\label{headeMethods_8h_a2bc68f82a4715dc30ae2c450eeb1e629}} 
+\index{headeMethods.h@{headeMethods.h}!processAssemblyText@{processAssemblyText}}
+\index{processAssemblyText@{processAssemblyText}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processAssemblyText()}{processAssemblyText()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structNode}{Node}}$\ast$ process\+Assembly\+Text (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Processes an entire file of assembly language text and builds a linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file to be processed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the head of the linked list. 
+\end{DoxyReturn}
+
+
+Definition at line 65 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{65                                                        \{}
+\DoxyCodeLine{66     \textcolor{keyword}{struct }\mbox{\hyperlink{structNode}{Node}} *head = NULL;}
+\DoxyCodeLine{67     FILE *file = fopen(filename, \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{68     \textcolor{keywordflow}{if} (file == NULL) \{}
+\DoxyCodeLine{69         perror(\textcolor{stringliteral}{"{}Error opening file"{}});}
+\DoxyCodeLine{70         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{71     \}}
+\DoxyCodeLine{72     \mbox{\hyperlink{front_8c_ac26aaf7e0131a5ccdb4c14ae928aa87d}{processLine}}(file, \&head);}
+\DoxyCodeLine{73     fclose(file);}
+\DoxyCodeLine{74     \textcolor{keywordflow}{return} head;}
+\DoxyCodeLine{75 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a2bc68f82a4715dc30ae2c450eeb1e629_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{headeMethods_8h_a2bc68f82a4715dc30ae2c450eeb1e629_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ac26aaf7e0131a5ccdb4c14ae928aa87d}\label{headeMethods_8h_ac26aaf7e0131a5ccdb4c14ae928aa87d}} 
+\index{headeMethods.h@{headeMethods.h}!processLine@{processLine}}
+\index{processLine@{processLine}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processLine()}{processLine()}}
+{\footnotesize\ttfamily void process\+Line (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 78 of file front.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{78                                                  \{}
+\DoxyCodeLine{79     \textcolor{keywordtype}{char} word[\mbox{\hyperlink{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}{MAX\_LINE\_SIZE}}];}
+\DoxyCodeLine{80     \mbox{\hyperlink{front_8c_a44bf2f6ee91a35522c07c779325d3ef0}{lineNumber}}=0;}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \textcolor{keywordflow}{while} (fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word) == 1) \{}
+\DoxyCodeLine{83         \textcolor{keyword}{struct }\mbox{\hyperlink{structpattern}{pattern}} \mbox{\hyperlink{structpattern_af6468fd0202f29193c73908fd6f7a902}{data}};}
+\DoxyCodeLine{84         \mbox{\hyperlink{front_8c_aefa918d3cc0fdd2c816db056bcdeaeed}{categorizeWord}}(file,word, \&\mbox{\hyperlink{structpattern_af6468fd0202f29193c73908fd6f7a902}{data}}, head);}
+\DoxyCodeLine{85         \mbox{\hyperlink{front_8c_a44bf2f6ee91a35522c07c779325d3ef0}{lineNumber}}++;}
+\DoxyCodeLine{86     \}}
+\DoxyCodeLine{87 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ac26aaf7e0131a5ccdb4c14ae928aa87d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ac26aaf7e0131a5ccdb4c14ae928aa87d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a4ca2c34a863fc17db10031bfe5ccf0b0}\label{headeMethods_8h_a4ca2c34a863fc17db10031bfe5ccf0b0}} 
+\index{headeMethods.h@{headeMethods.h}!processNoOperands@{processNoOperands}}
+\index{processNoOperands@{processNoOperands}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processNoOperands()}{processNoOperands()}}
+{\footnotesize\ttfamily int process\+No\+Operands (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions without operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 111 of file instrucstion.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{111                                             \{}
+\DoxyCodeLine{112     data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = INSTRUCTION;}
+\DoxyCodeLine{113     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.num\_of\_operands=0;}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{comment}{/* Update other properties of the data structure as needed */}}
+\DoxyCodeLine{116     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{117 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a4ca2c34a863fc17db10031bfe5ccf0b0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ab18a754930025706c9fad49b18fa3c33}\label{headeMethods_8h_ab18a754930025706c9fad49b18fa3c33}} 
+\index{headeMethods.h@{headeMethods.h}!processNumericArguments@{processNumericArguments}}
+\index{processNumericArguments@{processNumericArguments}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processNumericArguments()}{processNumericArguments()}}
+{\footnotesize\ttfamily int process\+Numeric\+Arguments (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to process numeric arguments in a data directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input string containing numeric arguments. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file directive.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{108                                                                                                \{}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110     \textcolor{comment}{/* Allocate memory for the array of strings */}}
+\DoxyCodeLine{111     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data = NULL;}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113     \textcolor{keywordflow}{if} (word == NULL) \{}
+\DoxyCodeLine{114         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: No numeric arguments found"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{115         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{116     \}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118     \textcolor{keywordflow}{if} (*word == \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{119         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Missing argument."{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{120         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{121     \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{comment}{/* Check if the token is a valid number or constant*/}}
+\DoxyCodeLine{124     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{define_8c_a529fe24170a61c22c810022e539206c3}{isNumeric}}(word) \&\& \mbox{\hyperlink{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc}{isEntryLabel}}(word)) \{}
+\DoxyCodeLine{125         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Argument is not a real number"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{126         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{127     \}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129     \textcolor{comment}{/* Resize the array of strings */}}
+\DoxyCodeLine{130     \textcolor{keywordtype}{char} **temp = realloc(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data, ( data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size + 1) * \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} *));}
+\DoxyCodeLine{131     \textcolor{keywordflow}{if} (temp == NULL) \{}
+\DoxyCodeLine{132         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Memory allocation failed"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{133         \textcolor{comment}{/* Clean up previously allocated strings */}}
+\DoxyCodeLine{134         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i <  data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size; i++) \{}
+\DoxyCodeLine{135             free(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data[i]);}
+\DoxyCodeLine{136         \}}
+\DoxyCodeLine{137         \textcolor{comment}{/* Free the array itself */}}
+\DoxyCodeLine{138         free(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data);}
+\DoxyCodeLine{139         \textcolor{keywordflow}{return} 0; \textcolor{comment}{// Indicate error}}
+\DoxyCodeLine{140     \}}
+\DoxyCodeLine{141     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data = temp;}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143     \textcolor{comment}{/* Allocate memory for the current string and copy the token */}}
+\DoxyCodeLine{144     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data[ data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size] = strdup(word);}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146     \textcolor{comment}{/* Check if memory allocation was successful */}}
+\DoxyCodeLine{147     \textcolor{keywordflow}{if} (data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data[ data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size] == NULL) \{}
+\DoxyCodeLine{148         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Memory allocation failed"{}},\textcolor{stringliteral}{"{}directive.h"{}}, head);}
+\DoxyCodeLine{149         \textcolor{comment}{/* Clean up previously allocated strings */}}
+\DoxyCodeLine{150         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i <=  data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size; i++) \{}
+\DoxyCodeLine{151             free(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data[i]);}
+\DoxyCodeLine{152         \}}
+\DoxyCodeLine{153         \textcolor{comment}{/* Free the array itself */}}
+\DoxyCodeLine{154         free(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.data);}
+\DoxyCodeLine{155         \textcolor{keywordflow}{return} 0;  \textcolor{comment}{// Indicate error}}
+\DoxyCodeLine{156     \}}
+\DoxyCodeLine{157     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size =  data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a104d3b03e3c8d45c5ee203dc6d862020}{dir}}.size++;}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{160 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ab18a754930025706c9fad49b18fa3c33_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ab18a754930025706c9fad49b18fa3c33_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ab3b600e768927750f73f08907f410181}\label{headeMethods_8h_ab3b600e768927750f73f08907f410181}} 
+\index{headeMethods.h@{headeMethods.h}!processOneOperand@{processOneOperand}}
+\index{processOneOperand@{processOneOperand}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processOneOperand()}{processOneOperand()}}
+{\footnotesize\ttfamily int process\+One\+Operand (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions with one operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 101 of file instrucstion.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{101                                                                              \{}
+\DoxyCodeLine{102     data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = INSTRUCTION;}
+\DoxyCodeLine{103     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.num\_of\_operands=1;}
+\DoxyCodeLine{104     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}{processOperands}}(file, data, head, 1)) \{}
+\DoxyCodeLine{105         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{106     \}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{109 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ab3b600e768927750f73f08907f410181_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ab3b600e768927750f73f08907f410181_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_aa5aebcb22236185a42e088063d0030e7}\label{headeMethods_8h_aa5aebcb22236185a42e088063d0030e7}} 
+\index{headeMethods.h@{headeMethods.h}!processOperands@{processOperands}}
+\index{processOperands@{processOperands}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processOperands()}{processOperands()}}
+{\footnotesize\ttfamily int process\+Operands (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head,  }\item[{int}]{operand\+Count }\end{DoxyParamCaption})}
+
+
+
+Handles processing of operands for instructions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The file pointer to the input assembly file. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if operand processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 4 of file instrucstion.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{4                                                                                             \{}
+\DoxyCodeLine{5     \textcolor{keywordtype}{char} word[\mbox{\hyperlink{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}{MAX\_LINE\_SIZE}}];}
+\DoxyCodeLine{6     \textcolor{keywordtype}{char} *token;}
+\DoxyCodeLine{7     \textcolor{keywordtype}{int} con=0;}
+\DoxyCodeLine{8     \textcolor{keywordtype}{int} i,y;}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10     \textcolor{keywordflow}{for} (i = 0; i < operandCount; i++) \{}
+\DoxyCodeLine{11         \textcolor{comment}{/* Read the next word from the file */}}
+\DoxyCodeLine{12         \textcolor{keywordflow}{if} (fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word) != 1) \{}
+\DoxyCodeLine{13             \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Missing operand"{}},\textcolor{stringliteral}{"{}instruction.h"{}}, head);}
+\DoxyCodeLine{14             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{15         \}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17         \textcolor{comment}{/* For two operands, check if there's a comma after first operand */}}
+\DoxyCodeLine{18         \textcolor{keywordflow}{if}(operandCount-\/i==2)}
+\DoxyCodeLine{19         \{}
+\DoxyCodeLine{20             \textcolor{keywordtype}{int} len = strlen(word);}
+\DoxyCodeLine{21             \textcolor{keywordflow}{if} (len > 0 \&\& word[len -\/ 1] != \textcolor{charliteral}{','}) \{}
+\DoxyCodeLine{22                 \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Missing comma"{}},\textcolor{stringliteral}{"{}instruction.h"{}}, head);}
+\DoxyCodeLine{23                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{24             \}}
+\DoxyCodeLine{25             token = strtok(word, \textcolor{stringliteral}{"{} ,"{}});}
+\DoxyCodeLine{26         \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28         \textcolor{comment}{/* Check if the word is a register (starts with 'r' and has a digit following it) */}}
+\DoxyCodeLine{29         \textcolor{keywordflow}{if}(word[0] == \textcolor{charliteral}{'r'} \&\& word[1] >= \textcolor{charliteral}{'0'} \&\& word[1] <= \textcolor{charliteral}{'7'}) \{}
+\DoxyCodeLine{30             \textcolor{comment}{/* Set operand type to REGISTER */}}
+\DoxyCodeLine{31             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount-\/1-\/i].op\_type = REGISTER;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33             \textcolor{comment}{/* Map the register string to the corresponding enum value */}}
+\DoxyCodeLine{34             \textcolor{keywordflow}{for} (y = 0; \mbox{\hyperlink{front_8c_a46fc27e049a0166b0d291695ee10e462}{registerMappings}}[y].\mbox{\hyperlink{structRegisterMapping_a5939f9fdd9fd4a901ae52f5eadc0293f}{name}} != NULL; ++y) \{}
+\DoxyCodeLine{35                 \textcolor{keywordflow}{if} ((operandCount-\/i==2)\&\& strcmp(token, \mbox{\hyperlink{front_8c_a46fc27e049a0166b0d291695ee10e462}{registerMappings}}[y].name) == 0||}
+\DoxyCodeLine{36                         (operandCount-\/i==1)\&\& strcmp(word, \mbox{\hyperlink{front_8c_a46fc27e049a0166b0d291695ee10e462}{registerMappings}}[y].name) == 0) \{}
+\DoxyCodeLine{37                     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount -\/ 1 -\/ y].operand\_value.reg = \mbox{\hyperlink{front_8c_a46fc27e049a0166b0d291695ee10e462}{registerMappings}}[y].\mbox{\hyperlink{structRegisterMapping_ae252c24666766f4198870028dab8a616}{reg}};}
+\DoxyCodeLine{38                     con=1;}
+\DoxyCodeLine{39                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{40                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(y==7)\{}
+\DoxyCodeLine{41                     \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid register"{}},\textcolor{stringliteral}{"{}instruction.h"{}}, head);}
+\DoxyCodeLine{42                     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{43                 \}}
+\DoxyCodeLine{44             \}}
+\DoxyCodeLine{45             \textcolor{comment}{/* Continue to the next iteration if the register was processed */}}
+\DoxyCodeLine{46             \textcolor{keywordflow}{if}(con==1)\{}
+\DoxyCodeLine{47                 con=0;}
+\DoxyCodeLine{48                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{49             \}}
+\DoxyCodeLine{50         \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52         \textcolor{comment}{/*-\/1 for ] at one operand and -\/2 for two operands to do the,}}
+\DoxyCodeLine{53 \textcolor{comment}{            * separate the operands but only for the first operands*/}}
+\DoxyCodeLine{54         \textcolor{keywordflow}{if} (word[strlen(word) -\/ operandCount-\/i] == \textcolor{charliteral}{']'}) \{ \textcolor{comment}{/* Check if the word ends with ']' for direct indexing */}}
+\DoxyCodeLine{55             \textcolor{comment}{/* Set operand type to DIRECT\_INDEX */}}
+\DoxyCodeLine{56             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount -\/ 1 -\/ i].op\_type = DIRECT\_INDEX;}
+\DoxyCodeLine{57             \textcolor{comment}{/* Tokenize the word to extract content inside square brackets */}}
+\DoxyCodeLine{58             token = strtok(word, \textcolor{stringliteral}{"{}[\string^ [ ]"{}});}
+\DoxyCodeLine{59             strcpy(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount -\/ 1 -\/ i].operand\_value.symbol, token);}
+\DoxyCodeLine{60             \textcolor{comment}{/* Move the file pointer back to the start of the word */}}
+\DoxyCodeLine{61             fseek(file, -\/strlen(word), SEEK\_CUR);}
+\DoxyCodeLine{62             \textcolor{comment}{/* Read the next word after the square brackets */}}
+\DoxyCodeLine{63             fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{64             token = strtok(word, \textcolor{stringliteral}{"{}[]"{}});}
+\DoxyCodeLine{65             strcpy(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount -\/ 1 -\/ i].operand\_value.const\_num, token);}
+\DoxyCodeLine{66             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{67         \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69         \textcolor{keywordflow}{if} (word[0] == \textcolor{charliteral}{'\#'}) \{  \textcolor{comment}{/* Check if the word starts with '\#' for immediate numbers */}}
+\DoxyCodeLine{70             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount-\/1-\/i].op\_type = IMMEDIATE\_NUMBER;}
+\DoxyCodeLine{71             \textcolor{comment}{/* Convert the string after '\#' to an integer and assign it to the operand */}}
+\DoxyCodeLine{72             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount-\/1-\/i].operand\_value.value = atoi(word + 1);}
+\DoxyCodeLine{73             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{74         \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76         \textcolor{keywordflow}{if}((operandCount-\/i==2)\&\& \mbox{\hyperlink{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}{isValidLabel}}(token,data,1)||(operandCount-\/i==1)\&\& \mbox{\hyperlink{directive_8c_a7fb05dea6f2c00d6630a34a63bed4333}{isValidLabel}}(word, data,1\textcolor{comment}{/*no need at ':' check*/}))\{}
+\DoxyCodeLine{77             data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount-\/1-\/i].op\_type = DIRECT;}
+\DoxyCodeLine{78             \textcolor{comment}{/* Assign the word as the symbol for the operand */}}
+\DoxyCodeLine{79             strcpy(data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.operands[operandCount-\/1-\/i].operand\_value.symbol, word);}
+\DoxyCodeLine{80             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{81         \}}
+\DoxyCodeLine{82         \textcolor{comment}{/* If none of the conditions are met, the operand is invalid */}}
+\DoxyCodeLine{83         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid operand"{}},\textcolor{stringliteral}{"{}instruction.h"{}}, head);}
+\DoxyCodeLine{84         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{85     \}}
+\DoxyCodeLine{86     \textcolor{keywordflow}{return} 1;     \textcolor{comment}{/* All operands processed successfully */}}
+\DoxyCodeLine{87 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_aa5aebcb22236185a42e088063d0030e7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_aa5aebcb22236185a42e088063d0030e7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a3a9b245c491e5d371d975156a60f32e6}\label{headeMethods_8h_a3a9b245c491e5d371d975156a60f32e6}} 
+\index{headeMethods.h@{headeMethods.h}!processTwoOperands@{processTwoOperands}}
+\index{processTwoOperands@{processTwoOperands}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processTwoOperands()}{processTwoOperands()}}
+{\footnotesize\ttfamily int process\+Two\+Operands (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions with two operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file instrucstion.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{90                                                                               \{}
+\DoxyCodeLine{91     data-\/>\mbox{\hyperlink{structpattern_ae4dd9b1ca60d69f0fe173292a2b5680b}{type\_line}} = INSTRUCTION;}
+\DoxyCodeLine{92     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a22b28d5e65012236d130bc2d847bea48}{inst}}.num\_of\_operands=2;}
+\DoxyCodeLine{93     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}{processOperands}}(file, data, head, 2)) \{}
+\DoxyCodeLine{94         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{95     \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{98 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a3a9b245c491e5d371d975156a60f32e6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a3a9b245c491e5d371d975156a60f32e6_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{headeMethods_8h_a3c4d69d58e5f21876f589033c2f2b8a0}\label{headeMethods_8h_a3c4d69d58e5f21876f589033c2f2b8a0}} 
+\index{headeMethods.h@{headeMethods.h}!instructionMappings@{instructionMappings}}
+\index{instructionMappings@{instructionMappings}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{instructionMappings}{instructionMappings}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structInstructionMapping}{Instruction\+Mapping}} instruction\+Mappings\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 9 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a44bf2f6ee91a35522c07c779325d3ef0}\label{headeMethods_8h_a44bf2f6ee91a35522c07c779325d3ef0}} 
+\index{headeMethods.h@{headeMethods.h}!lineNumber@{lineNumber}}
+\index{lineNumber@{lineNumber}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{lineNumber}{lineNumber}}
+{\footnotesize\ttfamily int line\+Number\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 9 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a5ab8d71be5fa7d6cc6c7d7f498a814c6}\label{headeMethods_8h_a5ab8d71be5fa7d6cc6c7d7f498a814c6}} 
+\index{headeMethods.h@{headeMethods.h}!num\_of\_constants@{num\_of\_constants}}
+\index{num\_of\_constants@{num\_of\_constants}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_constants}{num\_of\_constants}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+constants\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 8 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a085b57d9ed0b3d5392eb3dcffe1b2301}\label{headeMethods_8h_a085b57d9ed0b3d5392eb3dcffe1b2301}} 
+\index{headeMethods.h@{headeMethods.h}!num\_of\_entries@{num\_of\_entries}}
+\index{num\_of\_entries@{num\_of\_entries}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_entries}{num\_of\_entries}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+entries\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 6 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_aef398d61da8585441be8052f91c005d9}\label{headeMethods_8h_aef398d61da8585441be8052f91c005d9}} 
+\index{headeMethods.h@{headeMethods.h}!num\_of\_externals@{num\_of\_externals}}
+\index{num\_of\_externals@{num\_of\_externals}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_externals}{num\_of\_externals}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+externals\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 7 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a4d446a347bb50b9a831c9d6f355373e9}\label{headeMethods_8h_a4d446a347bb50b9a831c9d6f355373e9}} 
+\index{headeMethods.h@{headeMethods.h}!num\_of\_patterns@{num\_of\_patterns}}
+\index{num\_of\_patterns@{num\_of\_patterns}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_patterns}{num\_of\_patterns}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+patterns\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 4 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_aebb8c667f62ceaa6c41ba28e1832c46b}\label{headeMethods_8h_aebb8c667f62ceaa6c41ba28e1832c46b}} 
+\index{headeMethods.h@{headeMethods.h}!num\_of\_symbol@{num\_of\_symbol}}
+\index{num\_of\_symbol@{num\_of\_symbol}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_symbol}{num\_of\_symbol}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+symbol\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 5 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a46fc27e049a0166b0d291695ee10e462}\label{headeMethods_8h_a46fc27e049a0166b0d291695ee10e462}} 
+\index{headeMethods.h@{headeMethods.h}!registerMappings@{registerMappings}}
+\index{registerMappings@{registerMappings}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{registerMappings}{registerMappings}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structRegisterMapping}{Register\+Mapping}} register\+Mappings\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 9 of file front.\+c.
+

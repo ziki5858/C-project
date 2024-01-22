@@ -1,0 +1,207 @@
+\hypertarget{define_8c}{}\doxysection{define.\+c File Reference}
+\label{define_8c}\index{define.c@{define.c}}
+{\ttfamily \#include \char`\"{}heade\+Methods.\+h\char`\"{}}\newline
+Include dependency graph for define.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{define_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3}{define\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$data, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is a define and update the pattern structure. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{define_8c_a529fe24170a61c22c810022e539206c3}{is\+Numeric}} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is numeric. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{define_8c_aa0b3977cf0af0a66723704d8ca22fa37}{is\+Valid\+Constant\+Name}} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is a valid constant name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3}\label{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3}} 
+\index{define.c@{define.c}!defineFormat@{defineFormat}}
+\index{defineFormat@{defineFormat}!define.c@{define.c}}
+\doxysubsubsection{\texorpdfstring{defineFormat()}{defineFormat()}}
+{\footnotesize\ttfamily int define\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is a define and update the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is a define; otherwise, -\/1. 
+\end{DoxyReturn}
+
+
+Definition at line 4 of file define.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{4                                                                                    \{}
+\DoxyCodeLine{5     fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{6     \textcolor{keywordflow}{if} (\mbox{\hyperlink{define_8c_aa0b3977cf0af0a66723704d8ca22fa37}{isValidConstantName}}(word)) \{}
+\DoxyCodeLine{7         strcpy(data-\/>\mbox{\hyperlink{structpattern_a0f278562150729ca1f3637b08eeeec91}{label}}, word);}
+\DoxyCodeLine{8         \mbox{\hyperlink{front_8c_aebb8c667f62ceaa6c41ba28e1832c46b}{num\_of\_symbol}}++;}
+\DoxyCodeLine{9     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{10         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid constant name"{}},\textcolor{stringliteral}{"{}define.h"{}},head);}
+\DoxyCodeLine{11         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{12     \}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14     fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{15     \textcolor{keywordflow}{if}(strcmp(word,\textcolor{stringliteral}{"{}="{}})!=0)\{}
+\DoxyCodeLine{16         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Error: Invalid symbol, need to be ="{}},\textcolor{stringliteral}{"{}define.h"{}},head);}
+\DoxyCodeLine{17         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{18     \}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     fscanf(file, \textcolor{stringliteral}{"{}\%s"{}}, word);}
+\DoxyCodeLine{21     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{define_8c_a529fe24170a61c22c810022e539206c3}{isNumeric}}(word)) \{}
+\DoxyCodeLine{22         \mbox{\hyperlink{front_8c_a497d412bc5a4b29e959da8d58c6e7f44}{isError}}(data, \textcolor{stringliteral}{"{}Invalid numeric value"{}},\textcolor{stringliteral}{"{}define.h"{}}, head);}
+\DoxyCodeLine{23         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{24     \}}
+\DoxyCodeLine{25     data-\/>\mbox{\hyperlink{structpattern_afff91e806d98d10f2927dd7c331de280}{choice}}.\mbox{\hyperlink{structpattern_a294a79a375e516b24663916b3c524c7a}{def}}.value = atoi(word);}
+\DoxyCodeLine{26     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{27 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{define_8c_a529fe24170a61c22c810022e539206c3}\label{define_8c_a529fe24170a61c22c810022e539206c3}} 
+\index{define.c@{define.c}!isNumeric@{isNumeric}}
+\index{isNumeric@{isNumeric}!define.c@{define.c}}
+\doxysubsubsection{\texorpdfstring{isNumeric()}{isNumeric()}}
+{\footnotesize\ttfamily int is\+Numeric (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is numeric. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The word to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is numeric; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file define.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29                          \{}
+\DoxyCodeLine{30     \textcolor{keywordtype}{int} length = strlen(str);}
+\DoxyCodeLine{31     \textcolor{keywordtype}{int} startIndex = 0;}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \textcolor{keywordflow}{if} (str == NULL || *str == \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{35         \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* Not numeric if the string is empty or NULL*/}}
+\DoxyCodeLine{36     \}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{keywordflow}{while} (str[startIndex] == \textcolor{charliteral}{' '} \&\& startIndex < length) \{}
+\DoxyCodeLine{39         startIndex++;}
+\DoxyCodeLine{40     \}}
+\DoxyCodeLine{41     \textcolor{comment}{/* Check for an optional sign at the beginning*/}}
+\DoxyCodeLine{42     \textcolor{keywordflow}{if} (str[startIndex] == \textcolor{charliteral}{'-\/'} || str[startIndex] == \textcolor{charliteral}{'+'}) \{}
+\DoxyCodeLine{43         startIndex ++;}
+\DoxyCodeLine{44     \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keywordflow}{for} (i = startIndex; i < length; i++) \{}
+\DoxyCodeLine{47         \textcolor{keywordflow}{if} (!isdigit(str[i])) \{}
+\DoxyCodeLine{48             \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* Non-\/digit character found*/}}
+\DoxyCodeLine{49         \}}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{53 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{define_8c_a529fe24170a61c22c810022e539206c3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{define_8c_aa0b3977cf0af0a66723704d8ca22fa37}\label{define_8c_aa0b3977cf0af0a66723704d8ca22fa37}} 
+\index{define.c@{define.c}!isValidConstantName@{isValidConstantName}}
+\index{isValidConstantName@{isValidConstantName}!define.c@{define.c}}
+\doxysubsubsection{\texorpdfstring{isValidConstantName()}{isValidConstantName()}}
+{\footnotesize\ttfamily int is\+Valid\+Constant\+Name (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is a valid constant name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The word to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is a valid constant name; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file define.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{56                                            \{}
+\DoxyCodeLine{57     \textcolor{comment}{/* Check if the name is not empty */}}
+\DoxyCodeLine{58     \textcolor{keywordflow}{if} (*name == \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{59         \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* Invalid: Empty name */}}
+\DoxyCodeLine{60     \}}
+\DoxyCodeLine{61     \textcolor{comment}{/* Check if the first character is a letter */}}
+\DoxyCodeLine{62     \textcolor{keywordflow}{if} (!isalpha(*name)) \{}
+\DoxyCodeLine{63         \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* Invalid: Name must start with a letter */}}
+\DoxyCodeLine{64     \}}
+\DoxyCodeLine{65     \textcolor{comment}{/* Check the remaining characters */}}
+\DoxyCodeLine{66     \textcolor{keywordflow}{while} (*name != \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{67         \textcolor{comment}{/* Check if each character is alphanumeric or underscore */}}
+\DoxyCodeLine{68         \textcolor{keywordflow}{if} (!isalnum(*name) \&\& *name != \textcolor{charliteral}{'\_'}) \{}
+\DoxyCodeLine{69             \textcolor{keywordflow}{return} 0; \textcolor{comment}{/* Invalid: Name must be alphanumeric or underscore */}}
+\DoxyCodeLine{70         \}}
+\DoxyCodeLine{71         name++;}
+\DoxyCodeLine{72     \}}
+\DoxyCodeLine{73     \textcolor{keywordflow}{return} 1; \textcolor{comment}{/* Valid constant name */}}
+\DoxyCodeLine{74 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{define_8c_aa0b3977cf0af0a66723704d8ca22fa37_icgraph}
+\end{center}
+\end{figure}

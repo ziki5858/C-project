@@ -1,0 +1,13 @@
+<map id="isValidLabel" name="isValidLabel">
+<area shape="rect" id="node1" title="Function to check if a label is valid." alt="" coords="1235,31,1335,57"/>
+<area shape="rect" id="node2" href="$directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="838,5,963,32"/>
+<area shape="rect" id="node7" href="$directive_8c.html#ad0ef680cc59967d4e23e35dd0f42db52" title="Function to handle the .entry directive." alt="" coords="1028,31,1187,57"/>
+<area shape="rect" id="node8" href="$headeMethods_8h.html#aa5aebcb22236185a42e088063d0030e7" title="Handles processing of operands for instructions." alt="" coords="1040,81,1175,108"/>
+<area shape="rect" id="node3" href="$front_8c.html#aefa918d3cc0fdd2c816db056bcdeaeed" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="465,31,588,57"/>
+<area shape="rect" id="node4" href="$front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="319,31,417,57"/>
+<area shape="rect" id="node5" href="$front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="108,31,271,57"/>
+<area shape="rect" id="node6" href="$front_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,60,57"/>
+<area shape="rect" id="node9" href="$headeMethods_8h.html#ab3b600e768927750f73f08907f410181" title="Handles processing of instructions with one operand." alt="" coords="824,56,977,83"/>
+<area shape="rect" id="node11" href="$headeMethods_8h.html#a3a9b245c491e5d371d975156a60f32e6" title="Handles processing of instructions with two operands." alt="" coords="821,107,980,133"/>
+<area shape="rect" id="node10" href="$headeMethods_8h.html#a26e39fc2d91733521827b73be3588d13" title="Checks if a word is an instruction and updates the pattern structure." alt="" coords="636,56,773,83"/>
+</map>

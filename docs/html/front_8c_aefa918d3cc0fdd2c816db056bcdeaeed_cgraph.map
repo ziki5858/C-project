@@ -1,0 +1,24 @@
+<map id="categorizeWord" name="categorizeWord">
+<area shape="rect" id="node1" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="5,223,128,250"/>
+<area shape="rect" id="node2" href="$define_8c.html#a9b934e4c8638e4436a0b6b440cea6fc3" title="Function to check if a word is a define and update the pattern structure." alt="" coords="617,21,725,47"/>
+<area shape="rect" id="node3" href="$front_8c.html#a497d412bc5a4b29e959da8d58c6e7f44" title="Function to check if a word is an error and update the pattern structure." alt="" coords="868,274,932,301"/>
+<area shape="rect" id="node4" href="$front_8c.html#a2aea10f08082ec4cf48434ea86c023ac" title="Inserts a new node at the end of the linked list." alt="" coords="1029,451,1123,478"/>
+<area shape="rect" id="node8" href="$directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="182,325,307,351"/>
+<area shape="rect" id="node18" href="$headeMethods_8h.html#a26e39fc2d91733521827b73be3588d13" title="Checks if a word is an instruction and updates the pattern structure." alt="" coords="176,223,313,250"/>
+<area shape="rect" id="node6" href="$define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a word is numeric." alt="" coords="856,147,944,174"/>
+<area shape="rect" id="node7" href="$define_8c.html#aa0b3977cf0af0a66723704d8ca22fa37" title="Function to check if a word is a valid constant name." alt="" coords="819,21,981,47"/>
+<area shape="rect" id="node5" href="$front_8c.html#a50bf4aac153ee7424cba502accb069de" title="Creates a new linked list node with the given data." alt="" coords="1171,451,1268,478"/>
+<area shape="rect" id="node9" href="$directive_8c.html#a5d78273d4feb195d7706ce9d6d7c004b" title="Function to add a label to the .entry label set." alt="" coords="825,553,975,579"/>
+<area shape="rect" id="node10" href="$directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf" title="Function to handle the .data directive." alt="" coords="365,325,521,351"/>
+<area shape="rect" id="node14" href="$directive_8c.html#ad0ef680cc59967d4e23e35dd0f42db52" title="Function to handle the .entry directive." alt="" coords="592,477,751,503"/>
+<area shape="rect" id="node15" href="$directive_8c.html#a7fb05dea6f2c00d6630a34a63bed4333" title="Function to check if a label is valid." alt="" coords="850,477,950,503"/>
+<area shape="rect" id="node16" href="$directive_8c.html#a9923983ba7de99890cc241f1705c63ca" title="Function to handle the .string directive." alt="" coords="361,274,524,301"/>
+<area shape="rect" id="node11" href="$directive_8c.html#a4209c81388b14c5650d72bc2e92a5f91" title="Function to check if the last character of a string is a specific character." alt="" coords="596,375,747,402"/>
+<area shape="rect" id="node12" href="$directive_8c.html#ab18a754930025706c9fad49b18fa3c33" title="Function to process numeric arguments in a data directive." alt="" coords="572,325,771,351"/>
+<area shape="rect" id="node13" href="$directive_8c.html#a1076c92ff396fe7c35841d34e32fdcbc" title="Function to check if a label is already used as .entry." alt="" coords="849,375,951,402"/>
+<area shape="rect" id="node17" href="$directive_8c.html#a03a5ad42233f6ad7e6824e1eaff30e2f" title="Function to count characters in a string." alt="" coords="624,223,719,250"/>
+<area shape="rect" id="node19" href="$instrucstion_8c.html#a4ca2c34a863fc17db10031bfe5ccf0b0" title="Handles processing of instructions without operands." alt="" coords="367,173,519,199"/>
+<area shape="rect" id="node20" href="$instrucstion_8c.html#ab3b600e768927750f73f08907f410181" title="Handles processing of instructions with one operand." alt="" coords="366,426,519,453"/>
+<area shape="rect" id="node22" href="$instrucstion_8c.html#a3a9b245c491e5d371d975156a60f32e6" title="Handles processing of instructions with two operands." alt="" coords="363,375,522,402"/>
+<area shape="rect" id="node21" href="$instrucstion_8c.html#aa5aebcb22236185a42e088063d0030e7" title="Handles processing of operands for instructions." alt="" coords="604,426,739,453"/>
+</map>

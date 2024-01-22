@@ -1,0 +1,16 @@
+<map id="directiveFormat" name="directiveFormat">
+<area shape="rect" id="node1" title="Function to check if a word is a directive and return the directive type." alt="" coords="5,233,131,260"/>
+<area shape="rect" id="node2" href="$directive_8c.html#a5d78273d4feb195d7706ce9d6d7c004b" title="Function to add a label to the .entry label set." alt="" coords="413,208,564,235"/>
+<area shape="rect" id="node3" href="$directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf" title="Function to handle the .data directive." alt="" coords="182,81,338,108"/>
+<area shape="rect" id="node5" href="$front_8c.html#a497d412bc5a4b29e959da8d58c6e7f44" title="Function to check if a word is an error and update the pattern structure." alt="" coords="655,157,719,184"/>
+<area shape="rect" id="node11" href="$directive_8c.html#ad0ef680cc59967d4e23e35dd0f42db52" title="Function to handle the .entry directive." alt="" coords="181,259,339,285"/>
+<area shape="rect" id="node12" href="$directive_8c.html#a7fb05dea6f2c00d6630a34a63bed4333" title="Function to check if a label is valid." alt="" coords="439,360,539,387"/>
+<area shape="rect" id="node13" href="$directive_8c.html#a9923983ba7de99890cc241f1705c63ca" title="Function to handle the .string directive." alt="" coords="179,397,341,424"/>
+<area shape="rect" id="node4" href="$directive_8c.html#a4209c81388b14c5650d72bc2e92a5f91" title="Function to check if the last character of a string is a specific character." alt="" coords="413,5,564,32"/>
+<area shape="rect" id="node8" href="$directive_8c.html#ab18a754930025706c9fad49b18fa3c33" title="Function to process numeric arguments in a data directive." alt="" coords="389,107,588,133"/>
+<area shape="rect" id="node6" href="$front_8c.html#a2aea10f08082ec4cf48434ea86c023ac" title="Inserts a new node at the end of the linked list." alt="" coords="787,157,880,184"/>
+<area shape="rect" id="node7" href="$front_8c.html#a50bf4aac153ee7424cba502accb069de" title="Creates a new linked list node with the given data." alt="" coords="928,157,1025,184"/>
+<area shape="rect" id="node9" href="$directive_8c.html#a1076c92ff396fe7c35841d34e32fdcbc" title="Function to check if a label is already used as .entry." alt="" coords="636,259,739,285"/>
+<area shape="rect" id="node10" href="$define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a word is numeric." alt="" coords="643,107,731,133"/>
+<area shape="rect" id="node14" href="$directive_8c.html#a03a5ad42233f6ad7e6824e1eaff30e2f" title="Function to count characters in a string." alt="" coords="441,411,536,437"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="processOperands" name="processOperands">
+<area shape="rect" id="node1" title="Handles processing of operands for instructions." alt="" coords="5,31,140,57"/>
+<area shape="rect" id="node2" href="$front_8c.html#a497d412bc5a4b29e959da8d58c6e7f44" title="Function to check if a word is an error and update the pattern structure." alt="" coords="206,5,270,32"/>
+<area shape="rect" id="node5" href="$directive_8c.html#a7fb05dea6f2c00d6630a34a63bed4333" title="Function to check if a label is valid." alt="" coords="188,56,288,83"/>
+<area shape="rect" id="node3" href="$front_8c.html#a2aea10f08082ec4cf48434ea86c023ac" title="Inserts a new node at the end of the linked list." alt="" coords="336,5,429,32"/>
+<area shape="rect" id="node4" href="$front_8c.html#a50bf4aac153ee7424cba502accb069de" title="Creates a new linked list node with the given data." alt="" coords="477,5,575,32"/>
+</map>

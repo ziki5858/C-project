@@ -1,0 +1,8 @@
+<map id="handleDataDirective" name="handleDataDirective">
+<area shape="rect" id="node1" title="Function to handle the .data directive." alt="" coords="809,5,965,32"/>
+<area shape="rect" id="node2" href="$directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="636,5,761,32"/>
+<area shape="rect" id="node3" href="$front_8c.html#aefa918d3cc0fdd2c816db056bcdeaeed" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="465,5,588,32"/>
+<area shape="rect" id="node4" href="$front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="319,5,417,32"/>
+<area shape="rect" id="node5" href="$front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="108,5,271,32"/>
+<area shape="rect" id="node6" href="$front_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,60,32"/>
+</map>
