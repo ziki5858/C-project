@@ -1,5 +1,5 @@
-
 #include "headeMethods.h"
+
 /* Global variables*/
 int num_of_patterns;
 int num_of_symbol;

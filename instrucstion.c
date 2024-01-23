@@ -6,6 +6,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
     char *token;
     int con=0;
     int i,y;
+    int a;
 
     for (i = 0; i < operandCount; i++) {
         /* Read the next word from the file */
@@ -34,7 +35,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
             for (y = 0; registerMappings[y].name != NULL; ++y) {
                 if ((operandCount-i==2)&& strcmp(token, registerMappings[y].name) == 0||
                         (operandCount-i==1)&& strcmp(word, registerMappings[y].name) == 0) {
-                    data->choice.inst.operands[operandCount - 1 - y].operand_value.reg = registerMappings[y].reg;
+                    data->choice.inst.operands[operandCount - 1].operand_value.reg = registerMappings[y].reg;
                     con=1;
                     break;
                 } else if(y==7){
@@ -45,13 +46,15 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
             /* Continue to the next iteration if the register was processed */
             if(con==1){
                 con=0;
+
                 continue;
             }
         }
+        size_t wordLength = strlen(word);
+        size_t index = wordLength - (operandCount - i);
 
-        /*-1 for ] at one operand and -2 for two operands to do the,
-            * separate the operands but only for the first operands*/
-        if (word[strlen(word) - operandCount-i] == ']') { /* Check if the word ends with ']' for direct indexing */
+        /*-1 for ] at one operand and -2 for two operands to do the, separate the operands but only for the first operands*/
+        if (index >= 0 && index < wordLength && word[index] == ']') { /* Check if the word ends with ']' for direct indexing */
             /* Set operand type to DIRECT_INDEX */
             data->choice.inst.operands[operandCount - 1 - i].op_type = DIRECT_INDEX;
             /* Tokenize the word to extract content inside square brackets */

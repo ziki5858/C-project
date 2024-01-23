@@ -52,6 +52,8 @@ int handleStringDirective(FILE *file, struct pattern *data) {
     fscanf(file, "%s", word);
     data->choice.dir.string = (char *) strdup(word);
     data->choice.dir.size = countChars(word);
+
+    free(data->choice.dir.string);
     return 1;
 }
 
@@ -100,64 +102,57 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
         }
         token = strtok(word, " ,");
     }
+    free(data->choice.dir.data);
 
     return 1;
 }
 
 /* Function to process numeric arguments in the .data directive */
 int processNumericArguments(char *input, char *word, struct pattern *data, struct Node **head) {
-
     /* Allocate memory for the array of strings */
     data->choice.dir.data = NULL;
 
     if (word == NULL) {
-        isError(data, "Error: No numeric arguments found","directive.h", head);
+        isError(data, "Error: No numeric arguments found", "directive.h", head);
         return 0;
     }
 
     if (*word == '\0') {
-        isError(data, "Error: Missing argument.","directive.h", head);
+        isError(data, "Error: Missing argument.", "directive.h", head);
         return 0;
     }
 
-    /* Check if the token is a valid number or constant*/
+    /* Check if the token is a valid number or constant */
     if (!isNumeric(word) && isEntryLabel(word)) {
-        isError(data, "Error: Argument is not a real number","directive.h", head);
+        isError(data, "Error: Argument is not a real number", "directive.h", head);
         return 0;
     }
 
     /* Resize the array of strings */
-    char **temp = realloc(data->choice.dir.data, ( data->choice.dir.size + 1) * sizeof(char *));
+    char **temp = realloc(data->choice.dir.data, (data->choice.dir.size + 1) * sizeof(char *));
     if (temp == NULL) {
-        isError(data, "Error: Memory allocation failed","directive.h", head);
-        /* Clean up previously allocated strings */
-        for (int i = 0; i <  data->choice.dir.size; i++) {
-            free(data->choice.dir.data[i]);
-        }
+        isError(data, "Error: Memory allocation failed", "directive.h", head);
         /* Free the array itself */
         free(data->choice.dir.data);
         return 0; // Indicate error
     }
     data->choice.dir.data = temp;
 
-    /* Allocate memory for the current string and copy the token */
-    data->choice.dir.data[ data->choice.dir.size] = strdup(word);
-
-    /* Check if memory allocation was successful */
-    if (data->choice.dir.data[ data->choice.dir.size] == NULL) {
-        isError(data, "Error: Memory allocation failed","directive.h", head);
-        /* Clean up previously allocated strings */
-        for (int i = 0; i <=  data->choice.dir.size; i++) {
-            free(data->choice.dir.data[i]);
-        }
+    /* Allocate memory for the new string and copy the content of word */
+    data->choice.dir.data[data->choice.dir.size] = strdup(word);
+    if (data->choice.dir.data[data->choice.dir.size] == NULL) {
+        isError(data, "Error: Memory allocation failed", "directive.h", head);
         /* Free the array itself */
         free(data->choice.dir.data);
-        return 0;  // Indicate error
+        return 0; // Indicate error
     }
-    data->choice.dir.size =  data->choice.dir.size++;
+    free(data->choice.dir.data[data->choice.dir.size]);
 
+    data->choice.dir.size++;
     return 1;
 }
+
+
 
 /* Function to check if the last character of a string is a specific character */
 int checkLastCharacter(const char input[], char errorChar) {
