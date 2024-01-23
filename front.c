@@ -80,8 +80,8 @@ void processLine(FILE *file, struct Node **head) {
     lineNumber=0;
 
     while (fscanf(file, "%s", word) == 1) {
-        struct pattern data;
-        categorizeWord(file,word, &data, head);
+        struct pattern * data = (struct pattern*)calloc(1, sizeof(struct pattern));
+        categorizeWord(file,word, data, head);
         lineNumber++;
     }
 }
@@ -141,7 +141,10 @@ void isError(struct pattern *data, const char *errorMessage, const char *filenam
 void printLinkedList(struct Node *head) {
     struct Node *current = head;
     while (current != NULL) {
-        printf("Type: %d\n", current->data.type_line);
+        printf("\nType: %d\n", current->data.type_line);
+		if (current->data.label[0] != '\0') {
+			printf("Label: %s\n", current->data.label);
+		}
         current = current->next;
 
     }
@@ -161,7 +164,7 @@ void freeLinkedList(struct Node *head) {
 
 int main() {
     const char *filename = "exampleCheck";
-
+    printf("size of pattern: %lu\n", sizeof(struct pattern));
     struct Node *head = processAssemblyText(filename);
 
     printLinkedList(head);
