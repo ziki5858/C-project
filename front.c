@@ -82,8 +82,6 @@ void processLine(FILE *file, struct Node **head) {
     while (fscanf(file, "%s", word) == 1) {
         struct pattern * data = (struct pattern*)calloc(1, sizeof(struct pattern));
         categorizeWord(file,word, data, head);
-    printf("line number: %d, symbols: %d, constants: %d, entries: %d, externals: %d\n",
-       lineNumber, num_of_symbols, num_of_constants, num_of_entries, num_of_externals);
         lineNumber++;
     }
     num_of_patterns=lineNumber;

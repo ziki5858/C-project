@@ -29,13 +29,13 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
         /* Check if the word is a register (starts with 'r' and has a digit following it) */
         if(word[0] == 'r' && word[1] >= '0' && word[1] <= '7') {
             /* Set operand type to REGISTER */
-            data->choice.inst.operands[operandCount-1-i].op_type = REGISTER;
 
             /* Map the register string to the corresponding enum value */
             for (y = 0; registerMappings[y].name != NULL; ++y) {
                 if ((operandCount-i==2)&& strcmp(token, registerMappings[y].name) == 0||
                         (operandCount-i==1)&& strcmp(word, registerMappings[y].name) == 0) {
-                    data->choice.inst.operands[operandCount - 1].operand_value.reg = registerMappings[y].reg;
+                    data->choice.inst.operands[operandCount - 1-i].operand_value.reg = registerMappings[y].reg;
+                    data->choice.inst.operands[operandCount-1-i].op_type = REGISTER;
                     con=1;
                     break;
                 } else if(y==7){
@@ -46,18 +46,17 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
             /* Continue to the next iteration if the register was processed */
             if(con==1){
                 con=0;
-
                 continue;
             }
         }
         int len = strlen(token);
         if (len-1>0&&token[len-1] == ']') { /* Check if the word ends with ']' for direct indexing */
             /* Set operand type to DIRECT_INDEX */
-            data->choice.inst.operands[operandCount - i].op_type = DIRECT_INDEX;
+            data->choice.inst.operands[operandCount - i-1].op_type = DIRECT_INDEX;
             /* Tokenize the word to extract content inside square brackets */
             token = strtok(word, "[^ [ ]");
             if(isValidLabel(token,data,1,1)){
-                strcpy(data->choice.inst.operands[operandCount - i].operand_value.symbol, token);
+                strcpy(data->choice.inst.operands[operandCount - i-1].operand_value.symbol, token);
             }
             else{
                 isError(data, "Error: Invalid label","instruction.h", head);
@@ -68,7 +67,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
             /* Read the next word after the square brackets */
             fscanf(file, "%s", word);
             token = strtok(word, "[]");
-            strcpy(data->choice.inst.operands[operandCount - i].operand_value.const_num, token);
+            strcpy(data->choice.inst.operands[operandCount - i-1].operand_value.const_num, token);
             continue;
         }
 
