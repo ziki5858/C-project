@@ -5,7 +5,8 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
     fscanf(file, "%s", word);
     if (isValidConstantName(word)) {
         strcpy(data->label, word);
-        num_of_symbol++;
+        num_of_symbols++;
+        num_of_constants++;
     } else {
         isError(data, "Error: Invalid constant name","define.h",head);
         return -1;

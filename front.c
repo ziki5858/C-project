@@ -84,6 +84,7 @@ void processLine(FILE *file, struct Node **head) {
         categorizeWord(file,word, data, head);
         lineNumber++;
     }
+    num_of_patterns=lineNumber;
 }
 
 

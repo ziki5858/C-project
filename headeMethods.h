@@ -19,7 +19,7 @@ struct code;
 
 /* Global variables*/
 extern int num_of_patterns;
-extern int num_of_symbol;
+extern int num_of_symbols;
 extern int num_of_entries;
 extern int num_of_externals;
 extern int num_of_constants;

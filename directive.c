@@ -26,6 +26,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
         fscanf(file, "%s", word);
         if (isValidLabel(word,data,1)) {
             strcpy(data->label, word);
+            num_of_symbols++;
             num_of_entries++;
             data->choice.dir.directive_type = ENTRY;
             return 1;
@@ -229,7 +230,6 @@ int isValidLabel(char *name, struct pattern *data, int needColon) {
         count++;
     }
 
-    num_of_symbol++;
     return 1;
 }
 
@@ -278,7 +278,7 @@ int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
         /* Check if the label is valid */
         if (isValidLabel(tempLabel,data,1)) {
             strcpy(data->label, tempLabel);
-            num_of_symbol++;
+            num_of_symbols++;
             /* Add the label to the entry label set */
             addToEntryLabelSet(data->label);
             num_of_externals++;
