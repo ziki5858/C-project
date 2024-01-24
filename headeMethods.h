@@ -1,11 +1,3 @@
-/** @file
- *  @brief Brief description of the purpose of the file.
- *
- *  Detailed description of the purpose and contents of the file.
- *
- *  @note
- *  Additional notes or considerations, if any.
- */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -45,14 +37,7 @@ enum InstructionType {
 };
 
 enum Register {
-    r0,
-    r1,
-    r2,
-    r3,
-    r4,
-    r5,
-    r6,
-    r7
+    r0, r1, r2, r3, r4, r5, r6, r7
 };
 
 /**
@@ -211,9 +196,10 @@ int isNumeric(char *str);
  * @param name The label to be checked.
  * @param data Pointer to the data structure where the label is stored if valid.
  * @param needColon Flag indicating whether the label requires a colon at the end.
+ * @param symbol Flag indicating whether the label is a symbol.
  * @return 1 if the label is valid; otherwise, 0.
  */
-int isValidLabel(char *name,struct pattern *data, int needColon );
+int isValidLabel(char *name, struct pattern *data, int needColon, int symbol);
 
 /**
  * @brief Function to count characters in a string.

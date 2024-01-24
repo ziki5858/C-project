@@ -11,7 +11,7 @@ struct LabelSet entryLabelSet = { 0 };
 
 /* Function to handle the formatting of directives in the assembly code */
 int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
-    if (isValidLabel(word,data,0)) {
+    if (isValidLabel(word,data,0,0)) {
         strcpy(data->label, word);
         fscanf(file, "%s", word);
         if (strcmp(word, ".string") == 0) {
@@ -24,9 +24,8 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
     /* Separate cases for other directives */
     if (strcmp(word, ".entry") == 0) {
         fscanf(file, "%s", word);
-        if (isValidLabel(word,data,1)) {
+        if (isValidLabel(word,data,1,0)) {
             strcpy(data->label, word);
-            num_of_symbols++;
             num_of_entries++;
             data->choice.dir.directive_type = ENTRY;
             return 1;
@@ -199,7 +198,7 @@ int countChars(const char *str) {
     return count;
 }
 
-int isValidLabel(char *name, struct pattern *data, int needColon) {
+int isValidLabel(char *name, struct pattern *data, int needColon, int symbol) {
     int count = 0;   /* Check for alphanumeric or underscore, up to 30 characters */
     char *lastChar = name + strlen(name) - 1;
 
@@ -229,7 +228,9 @@ int isValidLabel(char *name, struct pattern *data, int needColon) {
         name++;
         count++;
     }
-
+    if(symbol==1){
+        num_of_symbols++;
+    }
     return 1;
 }
 
@@ -276,9 +277,8 @@ int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
         }
 
         /* Check if the label is valid */
-        if (isValidLabel(tempLabel,data,1)) {
+        if (isValidLabel(tempLabel,data,1,0)) {
             strcpy(data->label, tempLabel);
-            num_of_symbols++;
             /* Add the label to the entry label set */
             addToEntryLabelSet(data->label);
             num_of_externals++;

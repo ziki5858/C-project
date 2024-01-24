@@ -56,7 +56,13 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
             data->choice.inst.operands[operandCount - i].op_type = DIRECT_INDEX;
             /* Tokenize the word to extract content inside square brackets */
             token = strtok(word, "[^ [ ]");
-            strcpy(data->choice.inst.operands[operandCount - i].operand_value.symbol, token);
+            if(isValidLabel(token,data,1,1)){
+                strcpy(data->choice.inst.operands[operandCount - i].operand_value.symbol, token);
+            }
+            else{
+                isError(data, "Error: Invalid label","instruction.h", head);
+                return 0;
+            }
             /* Move the file pointer back to the start of the word */
             fseek(file, -strlen(word), SEEK_CUR);
             /* Read the next word after the square brackets */
@@ -73,8 +79,9 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
             continue;
         }
 
-        if((operandCount-i==2)&& isValidLabel(token,data,1)||(operandCount-i==1)&& isValidLabel(word, data,1/*no need at ':' check*/)){
+        if((operandCount-i==2)&& isValidLabel(token,data,1,0)||(operandCount-i==1)&& isValidLabel(word, data,1,0/*no need at ':' check*/)){
             data->choice.inst.operands[operandCount-1-i].op_type = DIRECT;
+            num_of_symbols++;
             /* Assign the word as the symbol for the operand */
             strcpy(data->choice.inst.operands[operandCount-1-i].operand_value.symbol, word);
             continue;

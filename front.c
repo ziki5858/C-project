@@ -2,7 +2,7 @@
 
 /* Global variables*/
 int num_of_patterns;
-int num_of_symbol;
+int num_of_symbols;
 int num_of_entries;
 int num_of_externals;
 int num_of_constants;
@@ -82,6 +82,7 @@ void processLine(FILE *file, struct Node **head) {
     while (fscanf(file, "%s", word) == 1) {
         struct pattern * data = (struct pattern*)calloc(1, sizeof(struct pattern));
         categorizeWord(file,word, data, head);
+        printf("line number: %d, symbols: %d\n", lineNumber, num_of_symbols);
         lineNumber++;
     }
     num_of_patterns=lineNumber;

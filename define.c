@@ -1,11 +1,9 @@
-
 #include "headeMethods.h"
 
 int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
     fscanf(file, "%s", word);
     if (isValidConstantName(word)) {
         strcpy(data->label, word);
-        num_of_symbols++;
         num_of_constants++;
     } else {
         isError(data, "Error: Invalid constant name","define.h",head);
