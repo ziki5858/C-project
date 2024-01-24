@@ -26,7 +26,6 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
         if (isValidLabel(word,data,1)) {
             num_of_entries++;
             data->choice.dir.directive_type = ENTRY;
-            addToEntryLabelSet(data->label);
             return 1;
         } else {
             isError(data, "Error: Invalid label name at .entry","directive.h", head);
@@ -198,6 +197,10 @@ int countChars(const char *str) {
 }
 
 int isValidLabel(char *name, struct pattern *data, int needColon) {
+    int count = 0;   /* Check for alphanumeric or underscore, up to 30 characters */
+    char *lastChar = name + strlen(name) - 1;
+    char *nameCopy = strdup(name);  /* Make a copy of the name for use in the while loop*/
+
     /* Check if the name is not empty */
     if (*name == '\0') {
         return 0; // Invalid: Empty name
@@ -208,10 +211,6 @@ int isValidLabel(char *name, struct pattern *data, int needColon) {
         return 0;
     }
 
-    /* Check for alphanumeric or underscore, up to 30 characters */
-    int count = 0;
-    char *lastChar = name + strlen(name) - 1;
-
     if(needColon!=1) {
         /* Check if the last character is ':'*/
         if (*lastChar == ':') {
@@ -220,17 +219,19 @@ int isValidLabel(char *name, struct pattern *data, int needColon) {
             return 0;
         }
     }
+        
 
-    while (*name != '\0' && count <= MAX_LABEL_SIZE) {
-        if (!isalnum(*name) && *name != '_'&&!isupper(*name)) {
+    while (*nameCopy != '\0' && count < MAX_LABEL_SIZE) {
+        if (!isalnum(*nameCopy) && *nameCopy != '_' && !isupper(*nameCopy)) {
             return 0;
         }
-        name++;
+        data->label[count] = *nameCopy;
+        nameCopy++;
         count++;
     }
 
     // Copy the modified label to the data structure
-    strcpy(data->label, lastChar);
+    strcpy(data->label, name);
     num_of_symbol++;
     return 1;
 }
