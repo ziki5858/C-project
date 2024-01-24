@@ -50,22 +50,19 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
                 continue;
             }
         }
-        size_t wordLength = strlen(word);
-        size_t index = wordLength - (operandCount - i);
-
-        /*-1 for ] at one operand and -2 for two operands to do the, separate the operands but only for the first operands*/
-        if (index >= 0 && index < wordLength && word[index] == ']') { /* Check if the word ends with ']' for direct indexing */
+        int len = strlen(token);
+        if (len-1>0&&token[len-1] == ']') { /* Check if the word ends with ']' for direct indexing */
             /* Set operand type to DIRECT_INDEX */
-            data->choice.inst.operands[operandCount - 1 - i].op_type = DIRECT_INDEX;
+            data->choice.inst.operands[operandCount - i].op_type = DIRECT_INDEX;
             /* Tokenize the word to extract content inside square brackets */
             token = strtok(word, "[^ [ ]");
-            strcpy(data->choice.inst.operands[operandCount - 1 - i].operand_value.symbol, token);
+            strcpy(data->choice.inst.operands[operandCount - i].operand_value.symbol, token);
             /* Move the file pointer back to the start of the word */
             fseek(file, -strlen(word), SEEK_CUR);
             /* Read the next word after the square brackets */
             fscanf(file, "%s", word);
             token = strtok(word, "[]");
-            strcpy(data->choice.inst.operands[operandCount - 1 - i].operand_value.const_num, token);
+            strcpy(data->choice.inst.operands[operandCount - i].operand_value.const_num, token);
             continue;
         }
 

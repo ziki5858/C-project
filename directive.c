@@ -12,6 +12,7 @@ struct LabelSet entryLabelSet = { 0 };
 /* Function to handle the formatting of directives in the assembly code */
 int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
     if (isValidLabel(word,data,0)) {
+        strcpy(data->label, word);
         fscanf(file, "%s", word);
         if (strcmp(word, ".string") == 0) {
             return handleStringDirective(file, data);
@@ -24,6 +25,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
     if (strcmp(word, ".entry") == 0) {
         fscanf(file, "%s", word);
         if (isValidLabel(word,data,1)) {
+            strcpy(data->label, word);
             num_of_entries++;
             data->choice.dir.directive_type = ENTRY;
             return 1;
@@ -199,7 +201,6 @@ int countChars(const char *str) {
 int isValidLabel(char *name, struct pattern *data, int needColon) {
     int count = 0;   /* Check for alphanumeric or underscore, up to 30 characters */
     char *lastChar = name + strlen(name) - 1;
-    char *nameCopy = strdup(name);  /* Make a copy of the name for use in the while loop*/
 
     /* Check if the name is not empty */
     if (*name == '\0') {
@@ -214,24 +215,20 @@ int isValidLabel(char *name, struct pattern *data, int needColon) {
     if(needColon!=1) {
         /* Check if the last character is ':'*/
         if (*lastChar == ':') {
-            *lastChar = '\0'; // Remove the last character
+            *lastChar = '\0'; /*Remove the last character from name*/ 
         } else {
             return 0;
         }
     }
-        
 
-    while (*nameCopy != '\0' && count < MAX_LABEL_SIZE) {
-        if (!isalnum(*nameCopy) && *nameCopy != '_' && !isupper(*nameCopy)) {
+    while (*name != '\0' && count < MAX_LABEL_SIZE) {
+        if (!isalnum(*name) && *name != '_' && !isupper(*name)) {
             return 0;
         }
-        data->label[count] = *nameCopy;
-        nameCopy++;
+        name++;
         count++;
     }
 
-    // Copy the modified label to the data structure
-    strcpy(data->label, name);
     num_of_symbol++;
     return 1;
 }
@@ -280,7 +277,7 @@ int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
 
         /* Check if the label is valid */
         if (isValidLabel(tempLabel,data,1)) {
-            strcpy(tempLabel, data->label);
+            strcpy(data->label, tempLabel);
             num_of_symbol++;
             /* Add the label to the entry label set */
             addToEntryLabelSet(data->label);
