@@ -166,18 +166,6 @@ void processLine(FILE *file, struct Node **head);
 struct Node *processAssemblyText(const char *filename);
 
 /**
- * @brief Prints the content of the linked list.
- * @param head A pointer to the head of the linked list.
- */
-void printLinkedList(struct Node *head);
-
-/**
- * @brief Frees the memory allocated for the linked list.
- * @param head A pointer to the head of the linked list.
- */
-void freeLinkedList(struct Node *head);
-
-/**
  * @brief Function to check if a word is a valid constant name.
  * @param name The word to be checked.
  * @return 1 if the word is a valid constant name; otherwise, 0.
@@ -208,12 +196,6 @@ int isValidLabel(char *name, struct pattern *data, int needColon, int symbol);
  */
 int countChars(const char *str);
 
-/**
- * @brief Function to check for missing elements in a data directive.
- * @param requireComma Flag indicating if a comma is required.
- * @return 0 if there is no extraneous text or missing comma; otherwise, 1.
- */
-int miss(int requireComma, FILE *file);
 
 /**
  * @brief Function to check if the last character of a string is a specific character.
@@ -277,10 +259,8 @@ int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head);
  * @param word The word to be categorized.
  * @param data A pointer to the pattern data structure to be updated.
  * @param head A pointer to the head of the linked list.
- * @return 1 if the categorization is successful; otherwise, 0.
  */
-int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head);
-
+int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) ;
 
 /**
  * @brief Checks if a word is an instruction and updates the pattern structure.
@@ -326,3 +306,57 @@ int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head);
  */
 int processOperands(FILE *file, struct pattern *data, struct Node **head, int operandCount);
 
+/**
+ * @brief Handles the return value from a formatting function in the assembly code in front.c
+ * @param return_value The return value from a formatting function (1 for success, -1 for error, others for specific cases).
+ * @param type_line The type line associated with the formatting function.
+ * @param data Pointer to the pattern data structure.
+ * @param head Pointer to the head of the linked list.
+ * @return The original return value if not an error, otherwise 0.
+ */
+int handleReturnValue(int return_value, int type_line, struct pattern *data, struct Node **head);
+
+/**
+ * @brief Function to check if a word is a valid register name.
+ * @param word The word to be checked.
+ * @param token The token to be checked.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @param operandCount The expected count of operands.
+ * @param i The index of the operand.
+ * @param head A pointer to the head of the linked list.
+ * @return 1 if the word is a valid register name; otherwise, 0.
+ */
+int registerOperand( char *word,  char *token, struct pattern *data, int operandCount, int i, struct Node **head);
+
+/*@brief Function to check if a word is a valid direct operand.
+ * @param word The word to be checked.
+ * @param token The token to be checked.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @param operandCount The expected count of operands.
+ * @param i The index of the operand.
+ * @param head A pointer to the head of the linked list.
+ * @return 1 if the word is a valid direct operand; otherwise, 0.
+ */
+int directIndexOperand(FILE *file,  char *word,  char *token, struct pattern *data, int operandCount, int i, struct Node **head);
+
+/*@brief Function to check if a word is a valid direct operand.
+ * @param word The word to be checked.
+ * @param token The token to be checked.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @param operandCount The expected count of operands.
+ * @param i The index of the operand.
+ * @param head A pointer to the head of the linked list.
+ * @return 1 if the word is a valid direct operand; otherwise, 0.
+ */
+int immediateNumberOperand( char *word, struct pattern *data, int operandCount, int i);
+
+/*@brief Function to check if a word is a valid direct operand.
+ * @param word The word to be checked.
+ * @param token The token to be checked.
+ * @param data A pointer to the pattern data structure to be updated.
+ * @param operandCount The expected count of operands.
+ * @param i The index of the operand.
+ * @param head A pointer to the head of the linked list.
+ * @return 1 if the word is a valid direct operand; otherwise, 0.
+ */
+int directLabelOperand( char *word,  char *token, struct pattern *data, int operandCount, int i, struct Node **head) ;

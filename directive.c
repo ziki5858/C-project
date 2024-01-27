@@ -66,43 +66,54 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
     fscanf(file, "%s", word);
     int len = strlen(word);
 
-    if(getc(file)!='\n'){
+    if (getc(file) != '\n') {
+        /* Check if the last character of the word is a comma */
         if (len > 0 && word[len - 1] != ',') {
-            isError(data, "Error: Missing comma","directive.h", head);
+            isError(data, "Error: Comma are not allowed at the end of line", "directive.h", head);
             return 0;
         }
+        /* Move the file pointer back to the start of the word */
+        fseek(file, ftell(file) - 1, SEEK_SET);
     }
-    fseek(file, ftell(file) - 1, SEEK_SET);
 
-
-
+    
+    /* Tokenize the word to process numeric arguments */
     token = strtok(word, " ,");
 
     while (token != NULL) {
-        if (checkLastCharacter(token, ',') == 0) {
-            isError(data, "Error: Extraneous text after end of command","directive.h", head);
+        /* Process numeric arguments based on the token */
+        if (!processNumericArguments(token, word, data, head)) {
             return 0;
-        }
-
-        if (!processNumericArguments(token,word, data, head)) {
-            return 0;
-        } else{
-            if(getc(file)=='\n')
+        } else {
+            /* Check if the next character is a newline character */
+            if (getc(file) == '\n') {
                 break;
-            else
+            } else {
+                /* Move the file pointer back to the start of the next word */
                 fseek(file, ftell(file) - 1, SEEK_SET);
+            }
         }
 
+        /* Read the next word from the file */
         fscanf(file, "%s", word);
         int len = strlen(word);
+
+        /* Check if the last character of the word is not a comma */
         if (len > 0 && word[len - 1] != ',') {
-            if(getc(file)=='\n')
+            /* Check if the next character is a newline character */
+            if (getc(file) == '\n') {
                 break;
-            isError(data, "Error: Missing comma","directive.h", head);
+            }
+
+            /* Display an error and return 0 if there is a missing comma */
+            isError(data, "Error: Missing comma", "directive.h", head);
             return 0;
         }
+
         token = strtok(word, " ,");
     }
+
+    /* Free allocated memory for data's .data field */
     free(data->choice.dir.data);
 
     return 1;
@@ -110,7 +121,6 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
 
 /* Function to process numeric arguments in the .data directive */
 int processNumericArguments(char *input, char *word, struct pattern *data, struct Node **head) {
-    /* Allocate memory for the array of strings */
     data->choice.dir.data = NULL;
 
     if (word == NULL) {
@@ -118,13 +128,8 @@ int processNumericArguments(char *input, char *word, struct pattern *data, struc
         return 0;
     }
 
-    if (*word == '\0') {
-        isError(data, "Error: Missing argument.", "directive.h", head);
-        return 0;
-    }
-
     /* Check if the token is a valid number or constant */
-    if (!isNumeric(word) && isEntryLabel(word)) {
+    if (!isNumeric(word) && !isEntryLabel(word)) {
         isError(data, "Error: Argument is not a real number", "directive.h", head);
         return 0;
     }
@@ -135,7 +140,7 @@ int processNumericArguments(char *input, char *word, struct pattern *data, struc
         isError(data, "Error: Memory allocation failed", "directive.h", head);
         /* Free the array itself */
         free(data->choice.dir.data);
-        return 0; // Indicate error
+        return 0; 
     }
     data->choice.dir.data = temp;
 
@@ -143,9 +148,8 @@ int processNumericArguments(char *input, char *word, struct pattern *data, struc
     data->choice.dir.data[data->choice.dir.size] = strdup(word);
     if (data->choice.dir.data[data->choice.dir.size] == NULL) {
         isError(data, "Error: Memory allocation failed", "directive.h", head);
-        /* Free the array itself */
         free(data->choice.dir.data);
-        return 0; // Indicate error
+        return 0; 
     }
     free(data->choice.dir.data[data->choice.dir.size]);
 
@@ -169,27 +173,9 @@ int checkLastCharacter(const char input[], char errorChar) {
     return 1;/* Last character is not a comma */
 }
 
-/* Function to handle missing arguments in the .data directive */
-int miss(int requireComma, FILE *file) {
-    int missing;
-    missing = fgetc(file);
 
-    if (missing == '\n') {
-        return 0; /* No extraneous text or missing comma */
-    }
-
-    if (requireComma && missing != ',') {
-        /* Handle extraneous text (clear the input buffer) */
-        while (fgetc(file) != '\n');
-        return 0;
-    }
-
-    return 1;
-}
-
-/* Function to count characters in a string */
 int countChars(const char *str) {
-    int count = 1; /* For the \0 at the end of the string by task instruction */
+    int count = 0; /* Initialize count to 0 for correct character count */
     /* Iterate through each character until the null terminator is reached */
     while (*str != '\0') {
         count++;
@@ -199,12 +185,12 @@ int countChars(const char *str) {
 }
 
 int isValidLabel(char *name, struct pattern *data, int needColon, int symbol) {
-    int count = 0;   /* Check for alphanumeric or underscore, up to 30 characters */
+    int count = 0;   /* Check for alphanumeric or underscore, up to MAX_LABEL_SIZE characters */
     char *lastChar = name + strlen(name) - 1;
 
     /* Check if the name is not empty */
     if (*name == '\0') {
-        return 0; // Invalid: Empty name
+        return 0; 
     }
 
     /* Check if the first character is a letter */
@@ -212,84 +198,65 @@ int isValidLabel(char *name, struct pattern *data, int needColon, int symbol) {
         return 0;
     }
 
-    if(needColon!=1) {
-        /* Check if the last character is ':'*/
-        if (*lastChar == ':') {
-            *lastChar = '\0'; /*Remove the last character from name*/ 
-        } else {
-            return 0;
-        }
+    /* Remove the last character (colon) if not needed */
+    if (needColon != 1 && *lastChar == ':') {
+        *lastChar = '\0';  /* Remove the last character (colon) from the name */
+    } else if (needColon != 1) {
+        return 0;  /* Labels without a colon must end with ':' */
     }
 
     while (*name != '\0' && count < MAX_LABEL_SIZE) {
         if (!isalnum(*name) && *name != '_' && !isupper(*name)) {
-            return 0;
+            return 0;  /* Invalid character in the label */
         }
         name++;
         count++;
     }
-    if(symbol==1){
-        num_of_symbols++;
+    if (symbol == 1) {
+        num_of_symbols++;  /* Increment symbol count if applicable */
     }
-    return 1;
+    return 1;  /* The label is valid */
 }
 
-
-
-/* Function to add a label to the set */
 void addToEntryLabelSet(const char *label) {
     strcpy(entryLabelSet.labels[entryLabelSet.count], label);
     entryLabelSet.count++;
 }
 
-/* Function to check if a label is in the set */
 int isEntryLabel(const char *label) {
     for (int i = 0; i < entryLabelSet.count; i++) {
         if (strcmp(entryLabelSet.labels[i], label) == 0) {
-            return 1; // Found in the set
+            return 1; /*Found in the set*/ 
         }
     }
-    return 0; // Not found in the set
+    return 0; /* Not found in the set*/
 }
 
 int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head) {
     char tempLabel[MAX_LABEL_SIZE];
-    int nextChar;
-    // Check if the next character is a newline
-    do {
-        nextChar = fgetc(file);
-    } while (nextChar != EOF && (nextChar == ' ' || nextChar == '\t'));
 
-    // If the next character is not a newline, put it back to the stream
-    if (nextChar != EOF && nextChar != '\n') {
-        ungetc(nextChar, file);
-    } else {
-        // Break if the next character is a newline
-        isError(data, "Error: no argument at .entry","directive.h", head);
-        return -1;
-    }
-
-    if (fscanf(file, "%s", tempLabel) == 1) {
-        /* Check if the label is already used as .entry */
-        if (isEntryLabel(tempLabel)) {
-            isError(data, "Error: Label already used as .entry","directive.h", head);
-            return -1;/*case -1 means that it is a directive type but arguments are not valid*/
-        }
-
-        /* Check if the label is valid */
-        if (isValidLabel(tempLabel,data,1,0)) {
-            strcpy(data->label, tempLabel);
-            /* Add the label to the entry label set */
-            addToEntryLabelSet(data->label);
-            num_of_externals++;
-            return 1;
-        } else {
-            isError(data, "Error: Invalid label name","directive.h", head);
-            return -1;
-        }
-    } else {
+    if (fscanf(file, "%s", tempLabel) != 1) {
         /* Handle fscanf failure */
-        isError(data, "Error: Unable to read label from file","directive.h", head);
+        isError(data, "Error: Unable to read label from file", "directive.h", head);
         return -1;
     }
+
+    /* Check if the label is already used as .entry */
+    if (isEntryLabel(tempLabel)) {
+        isError(data, "Error: Label already used as .entry", "directive.h", head);
+        return -1; /* case -1 means that it is a directive type but arguments are not valid */
+    }
+
+    /* Check if the label is valid */
+    if (isValidLabel(tempLabel, data, 1, 0)) {
+        strcpy(data->label, tempLabel);
+        /* Add the label to the entry label set */
+        addToEntryLabelSet(data->label);
+        num_of_externals++;
+        return 1;
+    }
+
+    /* Invalid label name */
+    isError(data, "Error: Invalid label name", "directive.h", head);
+    return -1;
 }
