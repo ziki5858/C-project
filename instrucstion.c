@@ -74,7 +74,13 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
         if (word[0] == '#') {  /* Check if the word starts with '#' for immediate numbers */
             data->choice.inst.operands[operandCount-1-i].op_type = IMMEDIATE_NUMBER;
             /* Convert the string after '#' to an integer and assign it to the operand */
-            data->choice.inst.operands[operandCount-1-i].operand_value.value = atoi(word + 1);
+            if (isNumeric(word+1)) {
+                data->choice.inst.operands[operandCount-1-i].operand_value.value = atoi(word+1);
+            }
+            else
+            {
+                strcpy(data->choice.inst.operands[operandCount-1-i].operand_value.const_num, word+1);
+            }
             continue;
         }
 
