@@ -1,3 +1,29 @@
+/*
+ * ----------------------------------------------------------------------------
+ * File: front.c
+ * Author: Ishay Abakiyev - ziki, Shlomo Wsisz
+ * Date: 28/01/2024
+ * Description: This file contains functions related to processing assembly language
+ *              code. It includes a categorization function, categorizing words
+ *              into predefined types such as .define, directives, and instructions.
+ *
+ * Functions:
+ *   - createNode: Creates a new linked list node with the given pattern data.
+ *   - insertNode: Inserts a new node at the end of the linked list.
+ *   - processAssemblyText: Processes the entire assembly file and returns the head of the linked list.
+ *   - processLine: Processes a single line from the assembly file, categorizes words, and updates the linked list.
+ *   - categorizeWord: Categorizes a word in the assembly language, utilizing an array of format processing functions.
+ *   - handleReturnValue: Handles the return value from format processing functions, updating the linked list if needed.
+ *   - processDefine: Processes the .define directive in the assembly code, updating the data structure accordingly.
+ *   - processDirective: Processes directives in the assembly code, updating the data structure based on the directive type.
+ *   - processInstruction: Processes instructions in the assembly code, updating the data structure based on the instruction type.
+ *   - isError: Handles error cases, updating the linked list with an error message.
+ *
+ * Main Function:
+ *   - Calls processAssemblyText to process the assembly file and obtain the linked list.
+ * ----------------------------------------------------------------------------
+ */
+
 #include "headeMethods.h"
 
 /* Global variables*/
@@ -47,7 +73,6 @@ struct Node *createNode(struct pattern data) {
     return newNode;
 }
 
-
 void insertNode(struct Node **head, struct pattern data) {
     struct Node *newNode = createNode(data);
 
@@ -74,7 +99,6 @@ struct Node *processAssemblyText(const char *filename) {
     return head;
 }
 
-
 void processLine(FILE *file, struct Node **head) {
     char word[MAX_LINE_SIZE];
     lineNumber=0;
@@ -87,49 +111,57 @@ void processLine(FILE *file, struct Node **head) {
     num_of_patterns=lineNumber;
 }
 
-
 int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
     int return_value;
 
-    if(strcmp(word, ".define") == 0){/*No need to check for label because language doesn't support label for define*/
-        return_value= defineFormat(file, word, data, head);
-        data->type_line = DEFINE;
-        if (return_value == -1) {
-            return 0;
-        }
-        else if(return_value == 1) {
-            insertNode(head, *data);
-            return 1;
+    if (strcmp(word, ".define") == 0) {
+        return_value = processDefine(file, word, data, head);
+        if (return_value != 0){
+            return return_value;
         }
     }
 
-    return_value= directiveFormat(file, word, data, head);
-    if (return_value == 1) {
-        data->type_line = DIRECTIVE;
+    return_value= processDirective(file, word, data, head);
+    if (return_value != 0){
+        return return_value;
+    }
+
+    return_value= instructionFormat(file, word, data, head);
+    if (return_value != 0){
+        return return_value;
+    }
+    
+    isError(data, "Error: word not at assembly language table","front.c", head);
+    return 0;
+}
+
+int handleReturnValue(int return_value, struct pattern *data, struct Node **head) {
+    if (return_value == -1) {
+        return -1;
+    } else if (return_value == 1) {
         insertNode(head, *data);
         return 1;
     }
-    else if (return_value == -1) {
-        return 0;
-    }
-
-    else {
-        return_value= instructionFormat(file, word, data, head);
-        if (return_value == 1) {
-            data->type_line = INSTRUCTION;
-            insertNode(head, *data);
-            return 1;
-        } else if (return_value == -1) {
-            return 0;
-        }
-        else {
-            isError(data, "Error: word not at assembly language table","front.c", head);
-            return 0;
-        }
-    }
-
+    return 0;
 }
 
+int processDefine(FILE *file, char *word, struct pattern *data, struct Node **head) {
+    int return_value = defineFormat(file, word, data, head);
+    data->type_line = DEFINE;
+    return handleReturnValue(return_value, data, head);
+}
+
+int processDirective(FILE *file, char *word, struct pattern *data, struct Node **head) {
+    int return_value = directiveFormat(file, word, data, head);
+    data->type_line = DIRECTIVE;
+    return handleReturnValue(return_value, data, head);
+}
+
+int processInstruction(FILE *file, char *word, struct pattern *data, struct Node **head) {
+    int return_value = instructionFormat(file, word, data, head);
+    data->type_line = INSTRUCTION;
+    return handleReturnValue(return_value, data, head);
+}
 
 void isError(struct pattern *data, const char *errorMessage, const char *filename, struct Node **head)
 {
@@ -139,38 +171,10 @@ void isError(struct pattern *data, const char *errorMessage, const char *filenam
     insertNode(head, *data);
 }
 
-void printLinkedList(struct Node *head) {
-    struct Node *current = head;
-    while (current != NULL) {
-        printf("\nType: %d\n", current->data.type_line);
-		if (current->data.label[0] != '\0') {
-			printf("Label: %s\n", current->data.label);
-		}
-        current = current->next;
-
-    }
-}
-
-void freeLinkedList(struct Node *head) {
-    struct Node *current = head;
-    while (current != NULL) {
-        struct Node *temp = current;
-        current = current->next;
-        /* Free the allocated memory for the data in each node*/
-        free(temp);
-    }
-}
-
-
-
 int main() {
     const char *filename = "exampleCheck";
     printf("size of pattern: %lu\n", sizeof(struct pattern));
     struct Node *head = processAssemblyText(filename);
-
-    printLinkedList(head);
-
-    freeLinkedList(head);
 
     return 0;
 }
