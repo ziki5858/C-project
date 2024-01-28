@@ -28,7 +28,6 @@
 
 /* Global variables*/
 int num_of_patterns;
-int num_of_symbols;
 int num_of_entries;
 int num_of_externals;
 int num_of_constants;
@@ -75,7 +74,6 @@ struct Node *createNode(struct pattern data) {
 
 void insertNode(struct Node **head, struct pattern data) {
     struct Node *newNode = createNode(data);
-
     if (*head == NULL) {
         *head = newNode;
     } else {
@@ -116,22 +114,20 @@ int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **h
 
     if (strcmp(word, ".define") == 0) {
         return_value = processDefine(file, word, data, head);
-        if (return_value != 0){
-            return return_value;
-        }
+        return handleReturnValue(return_value, data, head);
     }
 
-    return_value= processDirective(file, word, data, head);
-    if (return_value != 0){
-        return return_value;
+    return_value = processDirective(file, word, data, head);
+    if (return_value != 0) {
+        return handleReturnValue(return_value, data, head);
     }
 
-    return_value= instructionFormat(file, word, data, head);
-    if (return_value != 0){
-        return return_value;
+    return_value = instructionFormat(file, word, data, head);
+    if (return_value != 0) {
+        return handleReturnValue(return_value, data, head);
     }
-    
-    isError(data, "Error: word not at assembly language table","front.c", head);
+
+    isError(data, "Error: word not at assembly language table", "front.c", head);
     return 0;
 }
 
@@ -173,8 +169,7 @@ void isError(struct pattern *data, const char *errorMessage, const char *filenam
 
 int main() {
     const char *filename = "exampleCheck";
-    printf("size of pattern: %lu\n", sizeof(struct pattern));
     struct Node *head = processAssemblyText(filename);
-
+    
     return 0;
 }

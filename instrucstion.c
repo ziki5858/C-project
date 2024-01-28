@@ -112,7 +112,6 @@ int directLabelOperand( char *word,  char *token, struct pattern *data, int oper
         /* Set operand type to DIRECT */
 
         data->choice.inst.operands[operandCount - 1 - i].op_type = DIRECT;
-        num_of_symbols++; /* Assuming num_of_symbols is a global variable */
 
         /* Assign the word as the symbol for the operand */
         strcpy(data->choice.inst.operands[operandCount - 1 - i].operand_value.symbol, word);

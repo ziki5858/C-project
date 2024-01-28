@@ -212,9 +212,6 @@ int isValidLabel(char *name, struct pattern *data, int needColon, int symbol) {
         name++;
         count++;
     }
-    if (symbol == 1) {
-        num_of_symbols++;  /* Increment symbol count if applicable */
-    }
     return 1;  /* The label is valid */
 }
 
