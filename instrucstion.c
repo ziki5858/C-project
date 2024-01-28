@@ -41,15 +41,15 @@ int registerOperand( char *word,  char *token, struct pattern *data, int operand
                 break;
             } else if (y == 7) {
                 isError(data, "Error: Invalid register", "instruction.h", head);
-                return 0;
+                return false;
             }
         }
         /* Continue to the next iteration if the register was processed */
         if (con == 1) {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
 int directIndexOperand(FILE *file,  char *word,  char *token, struct pattern *data, int operandCount, int i, struct Node **head) {
@@ -68,7 +68,7 @@ int directIndexOperand(FILE *file,  char *word,  char *token, struct pattern *da
             strcpy(data->choice.inst.operands[operandCount - i - 1].operand_value.symbol, token);
         } else {
             isError(data, "Error: Invalid label", "instruction.h", head);
-            return 0;
+            return false;
         }
 
         /* Move the file pointer back to the start of the word */
@@ -78,11 +78,11 @@ int directIndexOperand(FILE *file,  char *word,  char *token, struct pattern *da
         fscanf(file, "%s", word);
         token = strtok(word, "[]");
         strcpy(data->choice.inst.operands[operandCount - i - 1].operand_value.const_num, token);
-        return 1;
+        return true;
     }
     
 
-    return 0;
+    return false;
 }
 
 int immediateNumberOperand( char *word, struct pattern *data, int operandCount, int i) {
@@ -99,10 +99,10 @@ int immediateNumberOperand( char *word, struct pattern *data, int operandCount, 
             strcpy(data->choice.inst.operands[operandCount - 1 - i].operand_value.const_num, word + 1);
         }
 
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 int directLabelOperand( char *word,  char *token, struct pattern *data, int operandCount, int i, struct Node **head) {
@@ -115,10 +115,10 @@ int directLabelOperand( char *word,  char *token, struct pattern *data, int oper
 
         /* Assign the word as the symbol for the operand */
         strcpy(data->choice.inst.operands[operandCount - 1 - i].operand_value.symbol, word);
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 int processOperands(FILE *file, struct pattern *data, struct Node **head, int operandCount) {
@@ -132,7 +132,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
         /* Read the next word from the file */
         if (fscanf(file, "%s", word) != 1) {
             isError(data, "Error: Missing operand","instruction.h", head);
-            return 0;
+            return false;
         }
 
         /* For two operands, check if there's a comma after first operand */
@@ -141,7 +141,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
             int len = strlen(word);
             if (len > 0 && word[len - 1] != ',') {
                 isError(data, "Error: Missing comma","instruction.h", head);
-                return 0;
+                return false;
             }
             token = strtok(word, " ,");
         }
@@ -168,27 +168,27 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
 
         /* If none of the conditions are met, the operand is invalid */
         isError(data, "Error: Invalid operand","instruction.h", head);
-        return 0;
+        return false;
     }
-    return 1;     /* All operands processed successfully */
+    return true;     /* All operands processed successfully */
 }
 
 int processTwoOperands(FILE  *file, struct pattern *data, struct Node **head) {
     data->type_line = INSTRUCTION;
     data->choice.inst.num_of_operands=2;
     if (!processOperands(file, data, head, 2)) {
-        return 0;
+        return false;
     }
-    return 1;
+    return true;
 }
 
 int processOneOperand(FILE  *file, struct pattern *data, struct Node **head) {
     data->type_line = INSTRUCTION;
     data->choice.inst.num_of_operands=1;
     if (!processOperands(file, data, head, 1)) {
-        return 0;
+        return false;
     }
-    return 1;
+    return true;
 }
 
 int processNoOperands(struct pattern *data) {
@@ -217,7 +217,7 @@ int instructionFormat(FILE *file, const char *word, struct pattern *data, struct
                 default:
                     /* Invalid instruction name*/
                     isError(data, "Invalid instruction name", "instruction.h", head);
-                    return 0;
+                    return false;
             }
         }
     }

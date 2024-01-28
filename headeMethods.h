@@ -16,6 +16,10 @@ extern int num_of_externals;
 extern int num_of_constants;
 extern int lineNumber;
 
+extern const int true;
+extern const int false;
+extern const int true_inValid;
+
 /**
  * @enum DirectiveType
  * @brief Enumeration for directive types.
@@ -243,14 +247,8 @@ int isEntryLabel(const char *label);
  */
 void addToEntryLabelSet(const char *label);
 
-/**
- * @brief Function to handle the .entry directive.
- * @param file Pointer to the file being processed.
- * @param data A pointer to the pattern data structure to be updated.
- * @param head A pointer to the head of the linked list.
- * @return 1 if the processing is successful; otherwise, 0.
- */
-int handleEntryDirective(FILE *file, struct pattern *data, struct Node **head);
+
+int handleExternDirective(FILE *file, struct pattern *data, struct Node **head);
 
 /**
  * @brief Categorizes a word based on its type and updates the pattern structure.
@@ -393,3 +391,5 @@ int processInstruction(FILE *file, char *word, struct pattern *data, struct Node
  * @return 1 if the word is a valid direct operand; otherwise, 0.
  */
 int handleReturnValue(int return_value, struct pattern *data, struct Node **head);
+
+int handleEntryDirective(FILE *file, char *word, struct pattern *data, struct Node **head);

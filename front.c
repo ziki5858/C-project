@@ -33,6 +33,10 @@ int num_of_externals;
 int num_of_constants;
 int lineNumber;
 
+const int true = 1;
+const int false = 0 ;
+const int true_inValid = -1;
+
 const struct InstructionMapping instructionMappings[] = {
     {"mov", MOV},
     {"cmp", CMP},
@@ -128,17 +132,17 @@ int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **h
     }
 
     isError(data, "Error: word not at assembly language table", "front.c", head);
-    return 0;
+    return false;
 }
 
 int handleReturnValue(int return_value, struct pattern *data, struct Node **head) {
     if (return_value == -1) {
-        return -1;
+        return true_inValid;
     } else if (return_value == 1) {
         insertNode(head, *data);
-        return 1;
+        return true;
     }
-    return 0;
+    return false;
 }
 
 int processDefine(FILE *file, char *word, struct pattern *data, struct Node **head) {
@@ -170,6 +174,6 @@ void isError(struct pattern *data, const char *errorMessage, const char *filenam
 int main() {
     const char *filename = "exampleCheck";
     struct Node *head = processAssemblyText(filename);
-    
+
     return 0;
 }
