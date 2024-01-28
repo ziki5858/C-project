@@ -1,3 +1,32 @@
+/*
+ * ----------------------------------------------------------------------------
+ * File: directive.c
+ * Author: Ishay Abakiyev - ziki, Shlomo Wsisz
+ * Date: 28/01/2024
+ * Description: This file contains functions related to processing assembly language
+ *              code. It includes functions for handling labels, directives, and
+ *              numeric arguments, as well as updating a linked list data structure.
+ *
+ * Structures:
+ *   - struct LabelSet: Set to store entry labels.
+ *
+ * Functions:
+ *   - isValidLabel: Checks if a label is valid based on certain criteria.
+ *   - directiveFormat: Processes various assembly language directives.
+ *   - handleEntryDirective: Handles the .entry directive.
+ *   - addToEntryLabelSet: Adds a label to the entry label set.
+ *   - isEntryLabel: Checks if a label is present in the entry label set.
+ *   - handleExternDirective: Handles the .extern directive.
+ *   - handleStringDirective: Handles the .string directive.
+ *   - handleDataDirective: Handles the .data directive.
+ *   - checkCommaWord: Checks for a missing comma at the end of a line.
+ *   - checkCommaAtEnd: Checks for a comma at the end of a line.
+ *   - processNumericArguments: Processes numeric arguments.
+ *   - checkLastCharacter: Checks the last character in a string.
+ *   - countChars: Counts the number of characters in a string.
+ * ----------------------------------------------------------------------------
+ */
+
 #include "headeMethods.h"
 
 /* Set to store entry labels */
@@ -128,68 +157,75 @@ int handleStringDirective(FILE *file, struct pattern *data) {
     return true;
 }
 
-
-/* Function to handle the .data directive */
 int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Node **head) {
     char *token;
     data->choice.dir.directive_type = DATA;
-
     fscanf(file, "%s", word);
-    int len = strlen(word);
 
-    if (getc(file) != '\n') {
-        /* Check if the last character of the word is a comma */
-        if (len > 0 && word[len - 1] != ',') {
-            isError(data, "Error: Comma are not allowed at the end of line", "directive.h", head);
-            return false;
-        }
-        /* Move the file pointer back to the start of the word */
-        fseek(file, ftell(file) - 1, SEEK_SET);
+    if (checkCommaAtEnd(file, word, data, head)){/*Comma at the end of line*/
+        return true_inValid;
     }
 
     /* Tokenize the word to process numeric arguments */
     token = strtok(word, " ,");
 
     while (token != NULL) {
-        /* Process numeric arguments based on the token */
-        if (!processNumericArguments(token, word, data, head)) {
-            return false;
-        } else {
-            /* Check if the next character is a newline character */
-            if (getc(file) == '\n') {
-                break;
-            } else {
-                /* Move the file pointer back to the start of the next word */
-                fseek(file, ftell(file) - 1, SEEK_SET);
-            }
+
+        /* Process numeric arguments based on the token, Check if the next character is a newline character */
+        if (!processNumericArguments(token, word, data, head)||getc(file) == '\n') {
+            return true_inValid;
         }
 
+        /* Move the file pointer back to the start of the next word */
+        fseek(file, ftell(file) - 1, SEEK_SET);
         /* Read the next word from the file */
         fscanf(file, "%s", word);
-        int len = strlen(word);
 
-        /* Check if the last character of the word is not a comma */
-        if (len > 0 && word[len - 1] != ',') {
-            /* Check if the next character is a newline character */
-            if (getc(file) == '\n') {
-                break;
-            }
-
-            /* Display an error and return false if there is a missing comma */
-            isError(data, "Error: Missing comma", "directive.h", head);
-            return false;
+        if (!checkCommaWord(file, word, data, head)) {
+            return true_inValid;  
         }
-
         token = strtok(word, " ,");
     }
 
     /* Free allocated memory for data's .data field */
     free(data->choice.dir.data);
-
     return true;
 }
 
-/* Function to process numeric arguments in the .data directive */
+int checkCommaWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
+    int len = strlen(word);
+
+    if (len > 0 && word[len - 1] != ',') {
+        /* Check if the next character is a newline character */
+        if (getc(file) == '\n') {
+            return true;  // Return true if the newline character is found
+        }
+
+        /* Display an error and return false if there is a missing comma */
+        isError(data, "Error: Missing comma", "directive.h", head);
+        return false;
+    }
+
+    return true;  // Return true if the last character is a comma
+}
+
+int checkCommaAtEnd(FILE *file, char *word, struct pattern *data, struct Node **head) {
+    int len = strlen(word);
+
+    if (getc(file) != '\n') {
+        /* Check if the last character of the word is a comma */
+        if (len > 0 && word[len - 1] != ',') {
+            isError(data, "Error: Comma is not allowed at the end of line", "directive.h", head);
+            return true;  
+        }
+
+        /* Move the file pointer back to the start of the word */
+        fseek(file, ftell(file) - 1, SEEK_SET);
+    }
+
+    return false; 
+}
+
 int processNumericArguments(char *input, char *word, struct pattern *data, struct Node **head) {
     data->choice.dir.data = NULL;
 
@@ -227,9 +263,6 @@ int processNumericArguments(char *input, char *word, struct pattern *data, struc
     return true;
 }
 
-
-
-/* Function to check if the last character of a string is a specific character */
 int checkLastCharacter(const char input[], char errorChar) {
     /* Check if the last character is a comma */
     size_t length = strlen(input);

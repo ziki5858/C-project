@@ -1,26 +1,45 @@
+/*
+ * ----------------------------------------------------------------------------
+ * File: define.h
+ * Author: Ishay Abakiyev - ziki, Shlomo Wsisz
+ * Date: 28/01/2024
+ * Description: This file contains functions related to processing the .define directive
+ *              in assembly language code. It includes a function to handle the
+ *              .define directive and auxiliary functions for validation.
+ * 
+ * Functions:
+ *   - defineFormat: Processes the .define directive in the assembly code, updating the data structure.
+ *   - isNumeric: Checks if a string represents a numeric value.
+ *   - isValidConstantName: Checks if a string is a valid constant name.
+ * ----------------------------------------------------------------------------
+ */
+
 #include "headeMethods.h"
 
 int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
-    fscanf(file, "%s", word);
+    if (!fscanf(file, "%s", word)) {
+        isError(data, "Error: Unable to read constant name", "define.h", head);
+        return false;
+    }
+
     if (isValidConstantName(word)) {
         strcpy(data->label, word);
         num_of_constants++;
     } else {
-        isError(data, "Error: Invalid constant name","define.h",head);
-        return true_inValid;
+        isError(data, "Error: Invalid constant name", "define.h", head);
+        return false;
     }
 
-    fscanf(file, "%s", word);
-    if(strcmp(word,"=")!=0){
-        isError(data, "Error: Invalid symbol, need to be =","define.h",head);
-        return true_inValid;
+    if (!fscanf(file, "%s", word) || strcmp(word, "=") != 0) {
+        isError(data, "Error: Invalid symbol, expected =", "define.h", head);
+        return false;
     }
 
-    fscanf(file, "%s", word);
-    if (!isNumeric(word)) {
-        isError(data, "Invalid numeric value","define.h", head);
-        return true_inValid;
+    if (!fscanf(file, "%s", word) || !isNumeric(word)) {
+        isError(data, "Error: Invalid numeric value", "define.h", head);
+        return false;
     }
+
     data->choice.def.value = atoi(word);
     return true;
 }

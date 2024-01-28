@@ -171,6 +171,7 @@ void isError(struct pattern *data, const char *errorMessage, const char *filenam
     insertNode(head, *data);
 }
 
+
 int main() {
     const char *filename = "exampleCheck";
     struct Node *head = processAssemblyText(filename);
