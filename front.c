@@ -25,6 +25,12 @@
  */
 
 #include "headeMethods.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+
 
 /* Global variables*/
 int num_of_patterns;
@@ -89,6 +95,18 @@ void insertNode(struct Node **head, struct pattern data) {
     }
 }
 
+void processLine(FILE *file, struct Node **head) {
+    char word[MAX_LINE_SIZE];
+    lineNumber=0;
+
+    while (fscanf(file, "%s", word) == 1) {
+        struct pattern * data = (struct pattern*)calloc(1, sizeof(struct pattern));
+        categorizeWord(file,word, data, head);
+        lineNumber++;
+    }
+    num_of_patterns=lineNumber;
+}
+
 struct Node *processAssemblyText(const char *filename) {
     struct Node *head = NULL;
     FILE *file = fopen(filename, "r");
@@ -101,17 +119,6 @@ struct Node *processAssemblyText(const char *filename) {
     return head;
 }
 
-void processLine(FILE *file, struct Node **head) {
-    char word[MAX_LINE_SIZE];
-    lineNumber=0;
-
-    while (fscanf(file, "%s", word) == 1) {
-        struct pattern * data = (struct pattern*)calloc(1, sizeof(struct pattern));
-        categorizeWord(file,word, data, head);
-        lineNumber++;
-    }
-    num_of_patterns=lineNumber;
-}
 
 void categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
     int return_value;
