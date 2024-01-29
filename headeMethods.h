@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+
 #define MAX_ERROR_SIZE 300
 #define MAX_LINE_SIZE 81
 #define MAX_LABEL_SIZE 31
@@ -34,9 +35,9 @@ struct pattern {
         char error[MAX_ERROR_SIZE];
         /* Union to store different types of patterns*/
         struct {
-            enum DirectiveType directive_type; /**< Type of directive pattern */
+            enum DirectiveType directive_type;
             char **data;
-            char *string;                      /**< Data for certain directive patterns */
+            char *string;                    
             int size;
         } dir;
 
@@ -99,9 +100,8 @@ extern const int true_inValid;
  * @param word The word to be categorized.
  * @param data A pointer to the pattern data structure to be updated.
  * @param head A pointer to the head of the linked list.
- * @return 1 if the word is successfully categorized; otherwise, 0.
  */
-int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head);
+void categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head);
 
 
 /* Directive processing functions */
@@ -134,12 +134,11 @@ void isError(struct pattern *data, const char *errorMessage, const char *filenam
 /*
  * @brief Processes numeric arguments in a data directive.
  * @param input The input string containing numeric arguments.
- * @param word A buffer to store individual words during processing.
  * @param data A pointer to the pattern data structure to be updated.
  * @param head A pointer to the head of the linked list.
  * @return 1 if the processing is successful; otherwise, 0.
  */
-int processNumericArguments(char *input, char *word, struct pattern *data, struct Node **head);
+int processNumericArguments(char *input, struct pattern *data, struct Node **head);
 /**
  * @brief Handles processing of the .string directive.
  * @param file Pointer to the file being processed.
@@ -381,6 +380,14 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
  */
 int handleReturnValue(int return_value, struct pattern *data, struct Node **head);
 
+/**
+ * @brief Function to add a label to the entry label set.
+ * @param label The label to be added.
+*/
+void addToEntryLabelSet(const char *label);
 
-
-
+/**
+ * @brief Function to check if a label is in the entry label set.
+ * @param label The label to be checked.
+*/
+int isEntryLabel(const char *label);

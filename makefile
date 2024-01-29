@@ -1,4 +1,4 @@
-CFLAGS = -fsanitize=address -g
+CFLAGS = -fsanitize=address -g -std=c90 -Wall -pedantic -ansi
 front: front.o define.o instrucstion.o directive.o
 	gcc $(CFLAGS)  front.o define.o instrucstion.o directive.o -o front
 front.o: front.c

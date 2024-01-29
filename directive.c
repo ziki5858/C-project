@@ -159,32 +159,37 @@ int handleStringDirective(FILE *file, struct pattern *data) {
 
 int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Node **head) {
     char *token;
+    char input[MAX_LINE_SIZE];
     data->choice.dir.directive_type = DATA;
-    fscanf(file, "%s", word);
 
-    if (checkCommaAtEnd(file, word, data, head)){/*Comma at the end of line*/
+    /* Read the input line */
+    fgets(input, sizeof(input), file);
+    /* Replace newline character with null terminator */
+    input[strcspn(input, "\n")] = '\0';
+
+
+    if (checkCommaAtEnd(file, input, data, head)){/*Comma at the end of line*/
+        input[strcspn(input, "\0")] = '\n';
         return true_inValid;
     }
 
     /* Tokenize the word to process numeric arguments */
-    token = strtok(word, " ,");
+    token = strtok(input, " ,");
 
     while (token != NULL) {
-
+        
         /* Process numeric arguments based on the token, Check if the next character is a newline character */
-        if (!processNumericArguments(token, word, data, head)||getc(file) == '\n') {
+        if (!processNumericArguments(token, data, head)) {
             return true_inValid;
         }
-
-        /* Move the file pointer back to the start of the next word */
-        fseek(file, ftell(file) - 1, SEEK_SET);
-        /* Read the next word from the file */
-        fscanf(file, "%s", word);
-
-        if (!checkCommaWord(file, word, data, head)) {
-            return true_inValid;  
+          /* Tokenize the word to process numeric arguments */
+        token = strtok(NULL, " ");
+         if(token==NULL){
+            break;
         }
-        token = strtok(word, " ,");
+     
+    token = strtok(token, " ,");
+    
     }
 
     /* Free allocated memory for data's .data field */
@@ -196,9 +201,10 @@ int checkCommaWord(FILE *file, char *word, struct pattern *data, struct Node **h
     int len = strlen(word);
 
     if (len > 0 && word[len - 1] != ',') {
+        int check=getc(file);
         /* Check if the next character is a newline character */
-        if (getc(file) == '\n') {
-            return true;  // Return true if the newline character is found
+        if (check == '\n'||check!=',') {
+            return false;  // Return true if the newline character is found
         }
 
         /* Display an error and return false if there is a missing comma */
@@ -214,28 +220,29 @@ int checkCommaAtEnd(FILE *file, char *word, struct pattern *data, struct Node **
 
     if (getc(file) != '\n') {
         /* Check if the last character of the word is a comma */
-        if (len > 0 && word[len - 1] != ',') {
+        if (len > 0 && word[len - 1] == ',') {
+            /* Move the file pointer back to the start of the word */
+            fseek(file, ftell(file) - 1, SEEK_SET);
             isError(data, "Error: Comma is not allowed at the end of line", "directive.h", head);
             return true;  
         }
-
-        /* Move the file pointer back to the start of the word */
-        fseek(file, ftell(file) - 1, SEEK_SET);
+     
     }
-
+     /* Move the file pointer back to the start of the word */
+    fseek(file, ftell(file) - 1, SEEK_SET);
     return false; 
 }
 
-int processNumericArguments(char *input, char *word, struct pattern *data, struct Node **head) {
+int processNumericArguments(char *input, struct pattern *data, struct Node **head) {
     data->choice.dir.data = NULL;
 
-    if (word == NULL) {
+    if (input == NULL) {
         isError(data, "Error: No numeric arguments found", "directive.h", head);
         return false;
     }
 
     /* Check if the token is a valid number or constant */
-    if (!isNumeric(word) && !isEntryLabel(word)) {
+    if (!isNumeric(input) && !isEntryLabel(input)) {
         isError(data, "Error: Argument is not a real number", "directive.h", head);
         return false;
     }
@@ -251,7 +258,7 @@ int processNumericArguments(char *input, char *word, struct pattern *data, struc
     data->choice.dir.data = temp;
 
     /* Allocate memory for the new string and copy the content of word */
-    data->choice.dir.data[data->choice.dir.size] = strdup(word);
+    data->choice.dir.data[data->choice.dir.size] = strdup(input);
     if (data->choice.dir.data[data->choice.dir.size] == NULL) {
         isError(data, "Error: Memory allocation failed", "directive.h", head);
         free(data->choice.dir.data);

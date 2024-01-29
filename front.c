@@ -113,26 +113,27 @@ void processLine(FILE *file, struct Node **head) {
     num_of_patterns=lineNumber;
 }
 
-int categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
+void categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
     int return_value;
 
     if (strcmp(word, ".define") == 0) {
         return_value = processDefine(file, word, data, head);
-        return handleReturnValue(return_value, data, head);
+        if (return_value != 0) {
+            return;
+        }
     }
 
-    return_value = processDirective(file, word, data, head);
+    return_value = processDirective(file, word, data, head);/*Here undle label for all cases*/
     if (return_value != 0) {
-        return handleReturnValue(return_value, data, head);
+        return;
     }
 
-    return_value = instructionFormat(file, word, data, head);
+    return_value = processInstruction(file, word, data, head);
     if (return_value != 0) {
-        return handleReturnValue(return_value, data, head);
+        return;
     }
 
     isError(data, "Error: word not at assembly language table", "front.c", head);
-    return false;
 }
 
 int handleReturnValue(int return_value, struct pattern *data, struct Node **head) {
@@ -146,20 +147,23 @@ int handleReturnValue(int return_value, struct pattern *data, struct Node **head
 }
 
 int processDefine(FILE *file, char *word, struct pattern *data, struct Node **head) {
-    int return_value = defineFormat(file, word, data, head);
+    int return_value;
     data->type_line = DEFINE;
+    return_value = defineFormat(file, word, data, head);
     return handleReturnValue(return_value, data, head);
 }
 
 int processDirective(FILE *file, char *word, struct pattern *data, struct Node **head) {
-    int return_value = directiveFormat(file, word, data, head);
+    int return_value;
     data->type_line = DIRECTIVE;
+    return_value = directiveFormat(file, word, data, head);
     return handleReturnValue(return_value, data, head);
 }
 
 int processInstruction(FILE *file, char *word, struct pattern *data, struct Node **head) {
-    int return_value = instructionFormat(file, word, data, head);
+    int return_value;
     data->type_line = INSTRUCTION;
+    return_value = instructionFormat(file, word, data, head);
     return handleReturnValue(return_value, data, head);
 }
 
@@ -169,12 +173,4 @@ void isError(struct pattern *data, const char *errorMessage, const char *filenam
     /*Update the error message with the line number and filename*/
     snprintf(data->choice.error, sizeof(data->choice.error), "Error: %s, File: %s, Line: %d", errorMessage, filename, lineNumber);
     insertNode(head, *data);
-}
-
-
-int main() {
-    const char *filename = "exampleCheck";
-    struct Node *head = processAssemblyText(filename);
-
-    return 0;
 }

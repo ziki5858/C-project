@@ -25,6 +25,7 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
     if (isValidConstantName(word)) {
         strcpy(data->label, word);
         num_of_constants++;
+        addToEntryLabelSet(word);
     } else {
         isError(data, "Error: Invalid constant name", "define.h", head);
         return false;
@@ -45,29 +46,18 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
 }
 
 int isNumeric(char *str) {
-    int length = strlen(str);
-    int startIndex = 0;
-    int i;
-
     if (str == NULL || *str == '\0') {
-        return false; /* Not numeric if the string is empty or NULL*/
+        return 0;  /* Empty string or NULL is not numeric */
     }
 
-    while (str[startIndex] == ' ' && startIndex < length) {
-        startIndex++;
-    }
-    /* Check for an optional sign at the beginning*/
-    if (str[startIndex] == '-' || str[startIndex] == '+') {
-        startIndex ++;
-    }
-
-    for (i = startIndex; i < length; i++) {
-        if (!isdigit(str[i])) {
-            return false; /* Non-digit character found*/
+    while (*str) {
+        if (!isdigit((unsigned char) *str) && *str != '.' && *str != '-') {
+            return false;  /* Non-numeric character found */
         }
+        str++;
     }
 
-    return true;
+    return true;  /* All characters are numeric */
 }
 
 /* Function to check if a string is a valid constant name */
