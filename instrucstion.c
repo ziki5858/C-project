@@ -33,8 +33,8 @@ int registerOperand( char *word,  char *token, struct pattern *data, int operand
 
         /* Map the register string to the corresponding enum value */
         for (y = 0; registerMappings[y].name != NULL; ++y) {
-            if ((operandCount - i == 2) && strcmp(token, registerMappings[y].name) == 0 ||
-                (operandCount - i == 1) && strcmp(word, registerMappings[y].name) == 0) {
+            if (((operandCount - i == 2) && strcmp(token, registerMappings[y].name)) == 0 ||
+                ((operandCount - i == 1) && strcmp(word, registerMappings[y].name)) == 0) {
                 data->choice.inst.operands[operandCount - 1 - i].operand_value.reg = registerMappings[y].reg;
                 data->choice.inst.operands[operandCount - 1 - i].op_type = REGISTER;
                 con = 1;
@@ -107,8 +107,8 @@ int immediateNumberOperand( char *word, struct pattern *data, int operandCount, 
 
 int directLabelOperand( char *word,  char *token, struct pattern *data, int operandCount, int i, struct Node **head) {
     /* Check if the word is a valid label and process it */
-    if ((operandCount - i == 2) && isValidLabel(token, data, 1, 0) ||
-        (operandCount - i == 1) && isValidLabel(word, data, 1, 0 /* no need at ':' check */)) {
+    if (((operandCount - i == 2) && isValidLabel(token, data, 1, 0)) ||
+        ((operandCount - i == 1) && isValidLabel(word, data, 1, 0 /* no need at ':' check */))) {
         /* Set operand type to DIRECT */
 
         data->choice.inst.operands[operandCount - 1 - i].op_type = DIRECT;
@@ -124,9 +124,7 @@ int directLabelOperand( char *word,  char *token, struct pattern *data, int oper
 int processOperands(FILE *file, struct pattern *data, struct Node **head, int operandCount) {
     char word[MAX_LINE_SIZE];
     char *token=NULL;
-    int con=0;
-    int i,y;
-    int a;
+    int i;
 
     for (i = 0; i < operandCount; i++) {
         /* Read the next word from the file */
@@ -206,13 +204,26 @@ int instructionFormat(FILE *file, const char *word, struct pattern *data, struct
         if (strcmp(word, instructionMappings[i].name) == 0) {
             data->choice.inst.op_type = instructionMappings[i].type;
             switch (i) {
-                case 0 ... 4:  
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4: 
                     return processTwoOperands(file, data, head);
-
-                case 5 ... 14: 
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:    
                     return processOneOperand(file, data, head);
-
-                case 15 ... 17: 
+                case 15: 
+                case 16:
+                case 17:
                     return processNoOperands(data);
                 default:
                     /* Invalid instruction name*/
@@ -221,4 +232,5 @@ int instructionFormat(FILE *file, const char *word, struct pattern *data, struct
             }
         }
     }
+    return false;
 }

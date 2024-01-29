@@ -116,8 +116,8 @@ int isEntryLabel(const char *label) {
 }
 
 int handleExternDirective(FILE *file, struct pattern *data, struct Node **head) {
-    data->choice.dir.directive_type = EXTERN;
     char tempLabel[MAX_LABEL_SIZE];
+    data->choice.dir.directive_type = EXTERN;
 
     if (fscanf(file, "%s", tempLabel) != 1) {
         /* Handle fscanf failure */
@@ -149,26 +149,60 @@ int handleStringDirective(FILE *file, struct pattern *data) {
 
     fscanf(file, "%s", word);
     /* Allocate memory for the string and copy the word into it */
-    data->choice.dir.string = (char *) strdup(word);
+    data->choice.dir.string = strdup(word);
     /* Set the size of the string based on the character count */
     data->choice.dir.size = countChars(word);
-    /* Free the memory allocated for the string (consider removing this line if not intended) */
-    free(data->choice.dir.string);
-
     return true;
+}
+
+void spareSpace(char *token) {
+    int i = 0;
+    while (token[i] == ' '||token[i]=='\t'||token[i]=='\r') {
+        i++;
+    }
+    memmove(token, token + i, strlen(token + i) + 1);
+    for(i=strlen(token)-1;i>=0;i--){
+        if(token[i]==' '||token[i]=='\t'||token[i]=='\r'||token[i]=='\n'){
+            token[i]='\0';
+        }
+        else{
+            break;
+        }
+    }
+}
+
+int check_comas_continus(char *line) {
+  int i, comas = 0;
+  /* start from the start of the line and check if there are multiple consecutive comas*/
+  for (i = 0; i < strlen(line); i++) {
+    if (line[i] == ',') {
+      comas++;
+	  /* if there is a char that is not a space or a coma, reset the counter*/
+    } else if ((line[i] != ' ') && (line[i] != '\t')) {
+      comas = 0;
+    }
+	/* if there are multiple consecutive comas, return 0*/
+    if (comas == 2) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Node **head) {
     char *token;
     char input[MAX_LINE_SIZE];
-    int c;
-
     data->choice.dir.directive_type = DATA;
 
     /* Read the input line */
     fgets(input, sizeof(input), file);
     /* Replace newline character with null terminator */
     input[strcspn(input, "\n")] = '\0';
+    if(!check_comas_continus(input)){
+        isError(data, "Error: Multiple consecutive commas", "directive.h", head);
+        return true_inValid;
+    }
 
     if (checkCommaAtEnd(file, input, data, head)) {/*Comma at the end of line*/
         input[strcspn(input, "\0")] = '\n';
@@ -177,9 +211,8 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
 
     token = strtok(input, ",");
 
-    /*need to spare space at from " 6" to "6"*/
-
     while (token != NULL) {
+        spareSpace(token);
         if (!processNumericArguments(token, data, head)) {
             return true_inValid;
         }
@@ -187,10 +220,6 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
         /* Tokenize the word to process the next numeric argument */
         token = strtok(NULL, ",");
     }
-
-    /* Free allocated memory for data's .data field */
-    free(data->choice.dir.data);
-
     return true; 
 }
 
@@ -201,7 +230,7 @@ int checkCommaWord(FILE *file, char *word, struct pattern *data, struct Node **h
         int check=getc(file);
         /* Check if the next character is a newline character */
         if (check == '\n'||check!=',') {
-            return false;  // Return true if the newline character is found
+            return false;  /*Return false if the newline character is found*/ 
         }
 
         /* Display an error and return false if there is a missing comma */
@@ -209,7 +238,7 @@ int checkCommaWord(FILE *file, char *word, struct pattern *data, struct Node **h
         return false;
     }
 
-    return true;  // Return true if the last character is a comma
+    return true;  /* Return true if the last character is a comma*/
 }
 
 int checkCommaAtEnd(FILE *file, char *word, struct pattern *data, struct Node **head) {
@@ -231,6 +260,7 @@ int checkCommaAtEnd(FILE *file, char *word, struct pattern *data, struct Node **
 }
 
 int processNumericArguments(char *input, struct pattern *data, struct Node **head) {
+    char **temp;
     data->choice.dir.data = NULL;
 
     if (input == NULL) {
@@ -245,7 +275,7 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
     }
 
     /* Resize the array of strings */
-    char **temp = realloc(data->choice.dir.data, (data->choice.dir.size + 1) * sizeof(char *));
+    temp = realloc(data->choice.dir.data, (data->choice.dir.size + 1) * sizeof(char *));
     if (temp == NULL) {
         isError(data, "Error: Memory allocation failed", "directive.h", head);
         /* Free the array itself */
@@ -261,7 +291,6 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
         free(data->choice.dir.data);
         return false; 
     }
-    free(data->choice.dir.data[data->choice.dir.size]);
 
     data->choice.dir.size++;
     return true;

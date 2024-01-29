@@ -391,3 +391,16 @@ void addToEntryLabelSet(const char *label);
  * @param label The label to be checked.
 */
 int isEntryLabel(const char *label);
+
+/**
+ * @brief Function to check if a label is in the external label set.
+ * @param label The label to be checked.
+*/
+void spareSpace(char *token);
+
+/**
+ * @brief This function checks if there are multiple consecutive comas
+ * @param line The line that the user entered
+ * @return int 0 if there are multiple consecutive comas, 1 otherwise
+ */
+int check_comas_continus(char *line);

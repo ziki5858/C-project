@@ -1,8 +1,8 @@
-CFLAGS = -fsanitize=address -g 
+CFLAGS = -fsanitize=address -g -Wall -pedantic -ansi
 front: front.o define.o instrucstion.o directive.o
 	gcc $(CFLAGS)  front.o define.o instrucstion.o directive.o -o front
-front.o: front.c
-	gcc $(CFLAGS) -c front.c
+front.o: front.c headeMethods.h
+	gcc $(CFLAGS) -c front.c headeMethods.h
 define.o: define.c
 	gcc $(CFLAGS) -c define.c
 instrucstion.o: instrucstion.c
