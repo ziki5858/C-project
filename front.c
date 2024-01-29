@@ -174,3 +174,9 @@ void isError(struct pattern *data, const char *errorMessage, const char *filenam
     snprintf(data->choice.error, sizeof(data->choice.error), "Error: %s, File: %s, Line: %d", errorMessage, filename, lineNumber);
     insertNode(head, *data);
 }
+
+int main() {
+    const char *filename = "exampleCheck";
+    struct Node *head = processAssemblyText(filename);
+    return 0;
+}

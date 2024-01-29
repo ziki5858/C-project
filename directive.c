@@ -106,7 +106,8 @@ void addToEntryLabelSet(const char *label) {
 }
 
 int isEntryLabel(const char *label) {
-    for (int i = 0; i < entryLabelSet.count; i++) {
+    int i;
+    for (i = 0; i < entryLabelSet.count; i++) {
         if (strcmp(entryLabelSet.labels[i], label) == 0) {
             return true; /*Found in the set*/ 
         }
@@ -160,6 +161,8 @@ int handleStringDirective(FILE *file, struct pattern *data) {
 int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Node **head) {
     char *token;
     char input[MAX_LINE_SIZE];
+    int c;
+
     data->choice.dir.directive_type = DATA;
 
     /* Read the input line */
@@ -167,34 +170,28 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
     /* Replace newline character with null terminator */
     input[strcspn(input, "\n")] = '\0';
 
-
-    if (checkCommaAtEnd(file, input, data, head)){/*Comma at the end of line*/
+    if (checkCommaAtEnd(file, input, data, head)) {/*Comma at the end of line*/
         input[strcspn(input, "\0")] = '\n';
         return true_inValid;
     }
 
-    /* Tokenize the word to process numeric arguments */
-    token = strtok(input, " ,");
+    token = strtok(input, ",");
+
+    /*need to spare space at from " 6" to "6"*/
 
     while (token != NULL) {
-        
-        /* Process numeric arguments based on the token, Check if the next character is a newline character */
         if (!processNumericArguments(token, data, head)) {
             return true_inValid;
         }
-          /* Tokenize the word to process numeric arguments */
-        token = strtok(NULL, " ");
-         if(token==NULL){
-            break;
-        }
-     
-    token = strtok(token, " ,");
-    
+
+        /* Tokenize the word to process the next numeric argument */
+        token = strtok(NULL, ",");
     }
 
     /* Free allocated memory for data's .data field */
     free(data->choice.dir.data);
-    return true;
+
+    return true; 
 }
 
 int checkCommaWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
