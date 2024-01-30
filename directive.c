@@ -23,7 +23,6 @@
  *   - checkCommaAtEnd: Checks for a comma at the end of a line.
  *   - processNumericArguments: Processes numeric arguments.
  *   - checkLastCharacter: Checks the last character in a string.
- *   - countChars: Counts the number of characters in a string.
  * ----------------------------------------------------------------------------
  */
 
@@ -145,13 +144,21 @@ int handleExternDirective(FILE *file, struct pattern *data, struct Node **head) 
 
 int handleStringDirective(FILE *file, struct pattern *data) {
     char word[MAX_LINE_SIZE];
+    int len,i;
+ 
     data->choice.dir.directive_type = STRING;
-
     fscanf(file, "%s", word);
-    /* Allocate memory for the string and copy the word into it */
+
+    len=strlen(word);
+    for ( i = len - 1; i >= 0; --i) {
+    /* Check if the character has a negative ASCII value*/
+    if (word[i] <0) {
+        len--;
+    }
+    }
     data->choice.dir.string = strdup(word);
-    /* Set the size of the string based on the character count */
-    data->choice.dir.size = countChars(word);
+
+    data->choice.dir.size = len;
     return true;
 }
 
@@ -311,14 +318,5 @@ int checkLastCharacter(const char input[], char errorChar) {
 }
 
 
-int countChars(const char *str) {
-    int count = 0; /* Initialize count to 0 for correct character count */
-    /* Iterate through each character until the null terminator is reached */
-    while (*str != '\0') {
-        count++;
-        str++;
-    }
-    return count;
-}
 
 

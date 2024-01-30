@@ -241,12 +241,6 @@ int isNumeric(char *str);
  */
 int isValidLabel(char *name, struct pattern *data, int needColon, int symbol);
 /**
- * @brief Function to count characters in a string.
- * @param str The string to be processed.
- * @return The number of characters in the string.
- */
-int countChars(const char *str);
-/**
  * @brief Function to check if the last character of a string is a specific character.
  * @param input The string to be checked.
  * @param errorChar The specific character to check for.

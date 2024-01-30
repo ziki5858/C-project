@@ -33,8 +33,7 @@ int registerOperand( char *word,  char *token, struct pattern *data, int operand
 
         /* Map the register string to the corresponding enum value */
         for (y = 0; registerMappings[y].name != NULL; ++y) {
-            if (((operandCount - i == 2) && strcmp(token, registerMappings[y].name)) == 0 ||
-                ((operandCount - i == 1) && strcmp(word, registerMappings[y].name)) == 0) {
+            if (strcmp(token, registerMappings[y].name) == 0) {
                 data->choice.inst.operands[operandCount - 1 - i].operand_value.reg = registerMappings[y].reg;
                 data->choice.inst.operands[operandCount - 1 - i].op_type = REGISTER;
                 con = 1;
