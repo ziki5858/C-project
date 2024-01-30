@@ -261,7 +261,7 @@ int checkCommaAtEnd(FILE *file, char *word, struct pattern *data, struct Node **
 
 int processNumericArguments(char *input, struct pattern *data, struct Node **head) {
     char **temp;
-    data->choice.dir.data = NULL;
+    /*data->choice.dir.data = NULL;*/
 
     if (input == NULL) {
         isError(data, "Error: No numeric arguments found", "directive.h", head);
@@ -285,7 +285,8 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
     data->choice.dir.data = temp;
 
     /* Allocate memory for the new string and copy the content of word */
-    data->choice.dir.data[data->choice.dir.size] = strdup(input);
+	data->choice.dir.data[data->choice.dir.size] = (char *)malloc(strlen(input) + 1);
+    strcpy(data->choice.dir.data[data->choice.dir.size] , input);
     if (data->choice.dir.data[data->choice.dir.size] == NULL) {
         isError(data, "Error: Memory allocation failed", "directive.h", head);
         free(data->choice.dir.data);
