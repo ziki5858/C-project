@@ -64,7 +64,7 @@ struct pattern {
 
 /* Structure for a linked list node representing a pattern */
 struct Node {
-    struct pattern data;  /**< Data containing information about the assembly language pattern */
+    struct pattern *data;  /**< Data containing information about the assembly language pattern */
     struct Node *next;    /**< Pointer to the next node in the linked list */
 };
 
@@ -198,13 +198,13 @@ int checkCommaWord(FILE *file, char *word, struct pattern *data, struct Node **h
  * @param data The pattern data to be stored in the node.
  * @return A pointer to the newly created node.
  */
-struct Node *createNode(struct pattern data);
+struct Node *createNode(struct pattern * data);
 /**
  * @brief Inserts a new node at the end of the linked list.
  * @param head A pointer to the head of the linked list.
  * @param data The pattern data to be stored in the new node.
  */
-void insertNode(struct Node **head, struct pattern data);
+void insertNode(struct Node **head, struct pattern * data);
 /**
  * @brief Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list.
  * @param file Pointer to the file being processed.

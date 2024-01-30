@@ -75,14 +75,14 @@ const struct RegisterMapping registerMappings[] = {
 {NULL, (enum Register)0}   /* Sentinel value for the end of the array */
 };
 
-struct Node *createNode(struct pattern data) {
+struct Node *createNode(struct pattern * data) {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->data = data;
     newNode->next = NULL;
     return newNode;
 }
 
-void insertNode(struct Node **head, struct pattern data) {
+void insertNode(struct Node **head, struct pattern * data) {
     struct Node *newNode = createNode(data);
     if (*head == NULL) {
         *head = newNode;
@@ -91,6 +91,7 @@ void insertNode(struct Node **head, struct pattern data) {
         while (temp->next != NULL) {
             temp = temp->next;
         }
+		
         temp->next = newNode;
     }
 }
@@ -147,7 +148,7 @@ int handleReturnValue(int return_value, struct pattern *data, struct Node **head
     if (return_value == -1) {
         return true_inValid;
     } else if (return_value == 1) {
-        insertNode(head, *data);
+        insertNode(head, data);
         return true;
     }
     return false;
@@ -179,42 +180,6 @@ void isError(struct pattern *data, const char *errorMessage, const char *filenam
     data->type_line = ERROR;
     /*Update the error message with the line number and filename*/
     snprintf(data->choice.error, sizeof(data->choice.error), "%s, File: %s, Line: %d", errorMessage, filename, lineNumber);
-    insertNode(head, *data);
+    insertNode(head, data);
 }
 
-int main() {
-    const char *filename = "exampleCheck";
-    struct Node *head = processAssemblyText(filename);
-
-    struct Node *current = head;
-    while (current != NULL) {
-        printf("Label: %s\n", current->data.label);
-
-        switch (current->data.type_line) {
-            case DIRECTIVE:
-                printf("Type: Directive\n");
-                printf("Directive Type: %d\n", current->data.choice.dir.directive_type);
-                break;
-            case INSTRUCTION:
-                printf("Type: Instruction\n");
-                printf("Operation Type: %d\n", current->data.choice.inst.op_type);
-                break;
-            case DEFINE:
-                printf("Type: Define\n");
-                printf("Value: %d\n", current->data.choice.def.value);
-                break;
-            case ERROR:
-                printf("Type: Error\n");
-                printf("Error Message: %s\n", current->data.choice.error);
-                break;
-            default:
-                printf("Unknown Type\n");
-                break;
-        }
-
-        printf("\n");
-
-        current = current->next;
-    }
-    return 0;
-}
