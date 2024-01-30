@@ -144,20 +144,20 @@ int handleExternDirective(FILE *file, struct pattern *data, struct Node **head) 
 
 int handleStringDirective(FILE *file, struct pattern *data) {
     char word[MAX_LINE_SIZE];
-    int len,i;
+    int len,i,j=0;
  
     data->choice.dir.directive_type = STRING;
     fscanf(file, "%s", word);
 
     len=strlen(word);
-    for ( i = len - 1; i >= 0; --i) {
-    /* Check if the character has a negative ASCII value*/
-    if (word[i] <0) {
-        len--;
+    /* Allocate memory for the string, including the possibility of all characters being printable */
+    data->choice.dir.string = malloc(len + 1); /* +1 for the null terminator*/
+    for (i = 0; i < len; ++i) {
+        if (isprint(word[i])) {
+            data->choice.dir.string[j++] = word[i];
+            len--;
+        }
     }
-    }
-    data->choice.dir.string = strdup(word);
-
     data->choice.dir.size = len;
     return true;
 }
