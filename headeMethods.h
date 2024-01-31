@@ -145,7 +145,7 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
  * @param data A pointer to the pattern data structure to be updated.
  * @return 1 if the processing is successful; otherwise, 0.
  */
-int handleStringDirective(FILE *file, struct pattern *data);
+int handleStringDirective(FILE *file, struct pattern *data, struct Node **head);
 /**
  * @brief Handles processing of the .data directive.
  * @param file Pointer to the file being processed.

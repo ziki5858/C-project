@@ -142,22 +142,34 @@ int handleExternDirective(FILE *file, struct pattern *data, struct Node **head) 
     return true_inValid;
 }
 
-int handleStringDirective(FILE *file, struct pattern *data) {
+int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) {
     char word[MAX_LINE_SIZE];
-    int len,i,j=0;
+    char *token;
+    int len=0,i,j=0,enter=false;
  
     data->choice.dir.directive_type = STRING;
     fscanf(file, "%s", word);
-
+    spareSpace(word);
     len=strlen(word);
+    
+    if(word[0]==34&&word[len-1]==34){
+        len-=2;
+    }
+    else{
+        isError(data, "Error: Invalid string", "directive.h", head);
+        return true_inValid;
+    }
+    token=word[1];
     /* Allocate memory for the string, including the possibility of all characters being printable */
     data->choice.dir.string = malloc(len + 1); /* +1 for the null terminator*/
     for (i = 0; i < len; ++i) {
-        if (isprint(word[i])) {
-            data->choice.dir.string[j++] = word[i];
-            len--;
-        }
+        if (!isprint(word[i])) {
+            isError(data, "Error: Invalid string", "directive.h", head);
+            return true_inValid;
+        }       
     }
+    strncpy(data->choice.dir.string, token, len);
+    data->choice.dir.string[len] = '\0';
     data->choice.dir.size = len;
     return true;
 }
