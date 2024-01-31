@@ -79,7 +79,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
     }  if (strcmp(word, ".extern") == 0) {
         return handleExternDirective(file, data, head);
     }  if (strcmp(word, ".string") == 0) {
-        return handleStringDirective(file, data);
+        return handleStringDirective(file, data, head);
     }  if (strcmp(word, ".data") == 0) {
         return handleDataDirective(file,word, data, head);
     }
@@ -159,10 +159,10 @@ int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) 
         isError(data, "Error: Invalid string", "directive.h", head);
         return true_inValid;
     }
-    token=word[1];
+    token = &word[1];
     /* Allocate memory for the string, including the possibility of all characters being printable */
     data->choice.dir.string = malloc(len + 1); /* +1 for the null terminator*/
-    for (i = 0; i < len; ++i) {
+    for (i = 1; i < len; ++i) {
         if (!isprint(word[i])) {
             isError(data, "Error: Invalid string", "directive.h", head);
             return true_inValid;
@@ -170,7 +170,7 @@ int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) 
     }
     strncpy(data->choice.dir.string, token, len);
     data->choice.dir.string[len] = '\0';
-    data->choice.dir.size = len;
+    data->choice.dir.size = len+1;
     return true;
 }
 
