@@ -77,7 +77,7 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
     if (strcmp(word, ".entry") == 0) {
         return handleEntryDirective(file, word, data, head);
     }  if (strcmp(word, ".extern") == 0) {
-        return handleExternDirective(file, data, head);
+        return handleExternDirective(file,word, data, head);
     }  if (strcmp(word, ".string") == 0) {
         return handleStringDirective(file, data, head);
     }  if (strcmp(word, ".data") == 0) {
@@ -95,7 +95,7 @@ int handleEntryDirective(FILE *file, char *word, struct pattern *data, struct No
         return true;
     } 
 
-    isError(data, "Error: Invalid label name at .entry", "directive.h", head);
+    isError(file,word,data, "Error: Invalid label name at .entry", "directive.h", head);
     return true_inValid;  /*means that it is a directive type but arguments are not valid*/
 }
 
@@ -114,18 +114,18 @@ int isEntryLabel(const char *label) {
     return false; /* Not found in the set*/
 }
 
-int handleExternDirective(FILE *file, struct pattern *data, struct Node **head) {
+int handleExternDirective(FILE *file,char *word, struct pattern *data, struct Node **head) {
     char tempLabel[MAX_LABEL_SIZE];
     data->choice.dir.directive_type = EXTERN;
 
     if (fscanf(file, "%s", tempLabel) != 1) {
         /* Handle fscanf failure */
-        isError(data, "Error: Unable to read label from file", "directive.h", head);
+        isError(file,word,data, "Error: Unable to read label from file", "directive.h", head);
         return true_inValid;
     }
     /* Check if the label is already used as .entry */
     if (isEntryLabel(tempLabel)) {
-        isError(data, "Error: Label already used as .entry", "directive.h", head);
+        isError(file,word,data, "Error: Label already used as .entry", "directive.h", head);
         return true_inValid; /* case -1 means that it is a directive type but arguments are not valid */
     }
 
@@ -138,7 +138,7 @@ int handleExternDirective(FILE *file, struct pattern *data, struct Node **head) 
     }
 
     /* Invalid label name */
-    isError(data, "Error: Invalid label name", "directive.h", head);
+    isError(file,word,data, "Error: Invalid label name", "directive.h", head);
     return true_inValid;
 }
 
@@ -156,7 +156,7 @@ int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) 
         len-=2;
     }
     else{
-        isError(data, "Error: Invalid string", "directive.h", head);
+        isError(file,word,data, "Error: Invalid string", "directive.h", head);
         return true_inValid;
     }
     token = &word[1];
@@ -164,7 +164,7 @@ int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) 
     data->choice.dir.string = malloc(len + 1); /* +1 for the null terminator*/
     for (i = 1; i < len; ++i) {
         if (!isprint(word[i])) {
-            isError(data, "Error: Invalid string", "directive.h", head);
+            isError(file,word,data, "Error: Invalid string", "directive.h", head);
             return true_inValid;
         }       
     }
@@ -219,7 +219,7 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
     /* Replace newline character with null terminator */
     input[strcspn(input, "\n")] = '\0';
     if(!check_comas_continus(input)){
-        isError(data, "Error: Multiple consecutive commas", "directive.h", head);
+        isError(file,word,data, "Error: Multiple consecutive commas", "directive.h", head);
         return true_inValid;
     }
 
@@ -232,7 +232,7 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
 
     while (token != NULL) {
         spareSpace(token);
-        if (!processNumericArguments(token, data, head)) {
+        if (!processNumericArguments(file,word, token, data, head)) {
             return true_inValid;
         }
 
@@ -253,7 +253,7 @@ int checkCommaWord(FILE *file, char *word, struct pattern *data, struct Node **h
         }
 
         /* Display an error and return false if there is a missing comma */
-        isError(data, "Error: Missing comma", "directive.h", head);
+        isError(file, word, data, "Error: Missing comma", "directive.h", head);
         return false;
     }
 
@@ -268,7 +268,7 @@ int checkCommaAtEnd(FILE *file, char *word, struct pattern *data, struct Node **
         if (len > 0 && word[len - 1] == ',') {
             /* Move the file pointer back to the start of the word */
             fseek(file, ftell(file) - 1, SEEK_SET);
-            isError(data, "Error: Comma is not allowed at the end of line", "directive.h", head);
+            isError(file,word,data, "Error: Comma is not allowed at the end of line", "directive.h", head);
             return true;  
         }
      
@@ -278,25 +278,25 @@ int checkCommaAtEnd(FILE *file, char *word, struct pattern *data, struct Node **
     return false; 
 }
 
-int processNumericArguments(char *input, struct pattern *data, struct Node **head) {
+int processNumericArguments(FILE *file,char *word, char *input, struct pattern *data, struct Node **head) {
     char **temp;
     /*data->choice.dir.data = NULL;*/
 
     if (input == NULL) {
-        isError(data, "Error: No numeric arguments found", "directive.h", head);
+        isError(file,word,data, "Error: No numeric arguments found", "directive.h", head);
         return false;
     }
 
     /* Check if the token is a valid number or constant */
     if (!isNumeric(input) && !isEntryLabel(input)) {
-        isError(data, "Error: Argument is not a real number", "directive.h", head);
+        isError(file,word,data, "Error: Argument is not a real number", "directive.h", head);
         return false;
     }
 
     /* Resize the array of strings */
     temp = realloc(data->choice.dir.data, (data->choice.dir.size + 1) * sizeof(char *));
     if (temp == NULL) {
-        isError(data, "Error: Memory allocation failed", "directive.h", head);
+        isError(file,word,data, "Error: Memory allocation failed", "directive.h", head);
         /* Free the array itself */
         free(data->choice.dir.data);
         return false; 
@@ -307,7 +307,7 @@ int processNumericArguments(char *input, struct pattern *data, struct Node **hea
 	data->choice.dir.data[data->choice.dir.size] = (char *)malloc(strlen(input) + 1);
     strcpy(data->choice.dir.data[data->choice.dir.size] , input);
     if (data->choice.dir.data[data->choice.dir.size] == NULL) {
-        isError(data, "Error: Memory allocation failed", "directive.h", head);
+        isError(file,word,data, "Error: Memory allocation failed", "directive.h", head);
         free(data->choice.dir.data);
         return false; 
     }

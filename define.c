@@ -18,7 +18,7 @@
 
 int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
     if (!fscanf(file, "%s", word)) {
-        isError(data, "Error: Unable to read constant name", "define.h", head);
+        isError(file,word, data, "Error: Unable to read constant name", "define.h", head);
         return false;
     }
 
@@ -27,17 +27,17 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
         num_of_constants++;
         addToEntryLabelSet(word);
     } else {
-        isError(data, "Error: Invalid constant name", "define.h", head);
+        isError(file,word, data, "Error: Invalid constant name", "define.h", head);
         return false;
     }
 
     if (!fscanf(file, "%s", word) || strcmp(word, "=") != 0) {
-        isError(data, "Error: Invalid symbol, expected =", "define.h", head);
+        isError(file,word, data, "Error: Invalid symbol, expected =", "define.h", head);
         return false;
     }
 
     if (!fscanf(file, "%s", word) || !isNumeric(word)) {
-        isError(data, "Error: Invalid numeric value", "define.h", head);
+        isError(file,word, data, "Error: Invalid numeric value", "define.h", head);
         return false;
     }
 

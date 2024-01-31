@@ -125,20 +125,22 @@ int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **
 int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **head);
 /**
  * @brief Function to check if a word is an error and update the pattern structure.
+ * @param file Pointer to the file being processed.
  * @param data A pointer to the pattern data structure to be updated.
  * @param errorMessage The error message to be associated with the pattern.
  * @param filename The name of the file being processed.
  * @param head A pointer to the head of the linked list.
  */
-void isError(struct pattern *data, const char *errorMessage, const char *filename, struct Node **head);
+void isError(FILE *file,char *word, struct pattern *data, const char *errorMessage, const char *filename, struct Node **head);
 /*
  * @brief Processes numeric arguments in a data directive.
+ * @param file Pointer to the file being processed.
  * @param input The input string containing numeric arguments.
  * @param data A pointer to the pattern data structure to be updated.
  * @param head A pointer to the head of the linked list.
  * @return 1 if the processing is successful; otherwise, 0.
  */
-int processNumericArguments(char *input, struct pattern *data, struct Node **head);
+int processNumericArguments(FILE *file,char *word, char *input, struct pattern *data, struct Node **head);
 /**
  * @brief Handles processing of the .string directive.
  * @param file Pointer to the file being processed.
@@ -158,11 +160,12 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
 /**
  * @brief Handles processing of the .extern directive.
  * @param file Pointer to the file being processed.
+ * @param word The word to be checked.
  * @param data A pointer to the pattern data structure to be updated.
  * @param head A pointer to the head of the linked list.
  * @return 1 if the processing is successful; otherwise, 0.
  */
-int handleExternDirective(FILE *file, struct pattern *data, struct Node **head);
+int handleExternDirective(FILE *file, char *word, struct pattern *data, struct Node **head);
 /**
  * @brief Handles processing of the .entry directive.
  * @param file Pointer to the file being processed.
@@ -253,6 +256,7 @@ int checkLastCharacter(const char input[], char errorChar);
 
 /**
  * @brief Function to process a register operand.
+ * @param file Pointer to the file being processed.
  * @param word The word to be checked.
  * @param token The token to be checked.
  * @param data A pointer to the pattern data structure to be updated.
@@ -261,7 +265,7 @@ int checkLastCharacter(const char input[], char errorChar);
  * @param head A pointer to the head of the linked list.
  * @return 1 if the word is a valid register operand; otherwise, 0.
  */
-int registerOperand(char *word, char *token, struct pattern *data, int operandCount, int i, struct Node **head);
+int registerOperand(FILE *file, char *word, char *token, struct pattern *data, int operandCount, int i, struct Node **head);
 /**
  * @brief Function to process a direct index operand.
  * @param file Pointer to the file being processed.

@@ -24,7 +24,7 @@
  */
 #include "headeMethods.h"
 
-int registerOperand( char *word,  char *token, struct pattern *data, int operandCount, int i, struct Node **head) {
+int registerOperand(FILE *file, char *word,  char *token, struct pattern *data, int operandCount, int i, struct Node **head) {
     int y;
     int con = 0;
     /* Check if the word is a register (starts with 'r' and has a digit following it) */
@@ -39,7 +39,7 @@ int registerOperand( char *word,  char *token, struct pattern *data, int operand
                 con = 1;
                 break;
             } else if (y == 7) {
-                isError(data, "Error: Invalid register", "instruction.h", head);
+                isError(file, word, data, "Error: Invalid register", "instruction.h", head);
                 return false;
             }
         }
@@ -66,7 +66,7 @@ int directIndexOperand(FILE *file,  char *word,  char *token, struct pattern *da
         if (isValidLabel(token, data, 1, 1)) {
             strcpy(data->choice.inst.operands[operandCount - i - 1].operand_value.symbol, token);
         } else {
-            isError(data, "Error: Invalid label", "instruction.h", head);
+            isError(file,word,data, "Error: Invalid label", "instruction.h", head);
             return false;
         }
 
@@ -128,7 +128,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
     for (i = 0; i < operandCount; i++) {
         /* Read the next word from the file */
         if (fscanf(file, "%s", word) != 1) {
-            isError(data, "Error: Missing operand","instruction.h", head);
+            isError(file,word,data, "Error: Missing operand","instruction.h", head);
             return false;
         }
 
@@ -137,14 +137,14 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
         {
             int len = strlen(word);
             if (len > 0 && word[len - 1] != ',') {
-                isError(data, "Error: Missing comma","instruction.h", head);
+                isError(file,word,data, "Error: Missing comma","instruction.h", head);
                 return false;
             }
             token = strtok(word, " ,");
         }
 
             /* Check if the word is a register and process it */
-        if (registerOperand(word, token, data, operandCount, i, head)) {
+        if (registerOperand(file, word, token, data, operandCount, i, head)) {
             continue;
         }
     
@@ -164,7 +164,7 @@ int processOperands(FILE *file, struct pattern *data, struct Node **head, int op
         }
 
         /* If none of the conditions are met, the operand is invalid */
-        isError(data, "Error: Invalid operand","instruction.h", head);
+        isError(file,word,data, "Error: Invalid operand","instruction.h", head);
         return false;
     }
     return true;     /* All operands processed successfully */
@@ -226,7 +226,7 @@ int instructionFormat(FILE *file, const char *word, struct pattern *data, struct
                     return processNoOperands(data);
                 default:
                     /* Invalid instruction name*/
-                    isError(data, "Invalid instruction name", "instruction.h", head);
+                    isError(file,word,data, "Invalid instruction name", "instruction.h", head);
                     return false;
             }
         }
