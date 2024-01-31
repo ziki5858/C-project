@@ -145,7 +145,7 @@ int handleExternDirective(FILE *file, struct pattern *data, struct Node **head) 
 int handleStringDirective(FILE *file, struct pattern *data, struct Node **head) {
     char word[MAX_LINE_SIZE];
     char *token;
-    int len=0,i,j=0,enter=false;
+    int len=0,i;
  
     data->choice.dir.directive_type = STRING;
     fscanf(file, "%s", word);
