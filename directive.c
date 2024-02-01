@@ -69,6 +69,7 @@ int isValidLabel(char *name, struct pattern *data, int needColon, int symbol) {
 }
 
 int directiveFormat(FILE *file, char *word, struct pattern *data, struct Node **head) {
+
     if (isValidLabel(word,data,0,0)) {  /* Check if the provided word is a valid label*/
         strcpy(data->label, word);
         fscanf(file, "%s", word);
@@ -123,12 +124,7 @@ int handleExternDirective(FILE *file,char *word, struct pattern *data, struct No
         isError(file,word,data, "Error: Unable to read label from file", "directive.h", head);
         return true_inValid;
     }
-    /* Check if the label is already used as .entry */
-    if (isEntryLabel(tempLabel)) {
-        isError(file,word,data, "Error: Label already used as .entry", "directive.h", head);
-        return true_inValid; /* case -1 means that it is a directive type but arguments are not valid */
-    }
-
+   
     if (isValidLabel(tempLabel, data, 1, 0)) {
         strcpy(data->label, tempLabel);
         /* Add the label to the entry label set */
