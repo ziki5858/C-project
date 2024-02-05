@@ -18,7 +18,14 @@ void delete_from_trie(Trie trie,const char  *string);
 
 
 void destroy_trie(Trie * trie);
-
+/**
+ * @brief This function is used to destroy the trie, and free the end of string pointer,
+ * by using a function pointer that given by the user.
+ * 
+ * @param trie The trie.
+ * @param destroy_ptr The function pointer that is used to free the end of string pointer.
+ */
+void destroy_trie_with_ptr(Trie * trie, void (*destroy_ptr)(void *));
 
 
 

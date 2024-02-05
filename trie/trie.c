@@ -78,6 +78,12 @@ static void trie_destroy_sub(TrieNode node_i) {
         if(node_i->next[i] != NULL) {
             trie_destroy_sub(node_i->next[i]);
             node_i->next[i] = NULL;
+			if (node_i->end_of_string_pointer != NULL)
+			{
+				free(node_i->end_of_string_pointer);
+				node_i->end_of_string_pointer = NULL;
+			
+			}
         }
     }
     free(node_i);
@@ -93,4 +99,48 @@ void destroy_trie(Trie * trie) {
         free(*trie);
         (*trie) = NULL;
     }
+}
+
+/**
+ * @brief This function is used to destroy the trie, and free the end of string pointer,
+ * by using a function pointer.
+ * 
+ * @param node_i The node of the trie.
+ * @param destroy_ptr The function pointer that is used to free the end of string pointer.
+ */
+static void trie_destroy_sub_with_ptr(TrieNode node_i, void (*destroy_ptr)(void *)) {
+	int i;
+	/* destroy the trie recursively */
+	for(i=0;i<TRIE_CHAR_COUNT;i++) {
+		if(node_i->next[i] != NULL) {
+			trie_destroy_sub_with_ptr(node_i->next[i],destroy_ptr);
+			node_i->next[i] = NULL;
+		}
+		if (node_i->end_of_string_pointer != NULL){
+			destroy_ptr(node_i->end_of_string_pointer); /* free the end of string pointer by using the function pointer */
+			node_i->end_of_string_pointer = NULL;
+		}
+	}
+	free(node_i);
+}
+
+/**
+ * @brief This function is used to destroy the trie, and free the end of string pointer,
+ * by using a function pointer that given by the user.
+ * 
+ * @param trie The trie.
+ * @param destroy_ptr The function pointer that is used to free the end of string pointer.
+ */
+void destroy_trie_with_ptr(Trie * trie, void (*destroy_ptr)(void *)) {
+	int i;
+	if(*trie != NULL) {
+		Trie root = *trie;
+		/* destroy the trie by using trie_destroy_sub_with_ptr function on each node */
+		for(i=0;i<TRIE_CHAR_COUNT;i++) {
+			if(root->next[i] != NULL) 
+				trie_destroy_sub_with_ptr(root->next[i],destroy_ptr);
+		}
+		free(*trie);
+		(*trie) = NULL;
+	}
 }

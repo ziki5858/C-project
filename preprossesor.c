@@ -15,14 +15,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define SKIP_SPACES(line) while(*line == ' ' || *line == '\t') line++
+#define SKIP_SPACES(line) while(*line == ' ' || *line == '\t' || *line == '\r') line++
 #define SPACES " \t\n\r\f\v"
 #define MAX_LINE_LENGTH 81
 #define EXT_BEFORE ".as"
 #define EXT_AFTER ".am"
 
 typedef struct macro * Macro ;
-int num_of_patterns;
+int num_of_patterns1;
 
 /**
  * @brief struct for macro, contains the name of the macro, the value of the macro and the number of lines in the macro
@@ -80,18 +80,6 @@ void insert_line_to_macro(Macro m, char *line);
  */
 int preprocess(char *name_of_file);
 
-
-
-
-
-int main(){
-	int i = 0;
-	i = preprocess("code");
-	printf("%d\n", i);
-
-	
-	return 0;
-}
 
 
 int determaine_which_line_is_it(char *line){
@@ -288,7 +276,7 @@ int preprocess(char *name_of_file){
 	rewind(ptr_preprocessed);
 	while (fgets(line, MAX_LINE_LENGTH, ptr_preprocessed) != NULL)
 		count++;
-	num_of_patterns = count;
+	num_of_patterns1 = count;
 	return 0;
 }
 

@@ -1,6 +1,6 @@
 #include "front.h"
 #include "tables.h"
-#include "trie/trie.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,7 +10,6 @@
 
 extern int num_of_patterns; /* אולי מהקדם אסמבלר?*/
 
-Trie macro_trie;
 // extern Trie macro_trie;
 char saved_words[26][6] = {"mov", "cmp", "add",   "sub",    "lea", "not", "clr",
                            "inc", "dec", "jmp",   "bne",    "red", "prn", "jsr",
@@ -25,7 +24,7 @@ int IC = 0, DC = 0;
 Code *code, data;
 
 Symbol *symbol_table;
-int num_of_symbols_in_table = 0;
+int num_of_symbols = 0, size_of_symbol_table = 4;
 
 External *external_table;
 int num_of_externals_in_table = 0;
@@ -36,9 +35,9 @@ int num_of_entries_in_table = 0;
 Symbol *symbol_table_of_entries;
 int num_of_symbols_in_entries = 0;
 
-Constant *constant_table;
-int num_of_constants_in_table = 0;
-int size_in_constant_table = 4;
+// Constant *constant_table;
+// int num_of_constants_in_table = 0;
+// int size_in_constant_table = 4;
 
 Symbol create_symbol(char *label, int address, int type, int line_in_file) {
   Symbol s = (Symbol)calloc(1, sizeof(struct symbol));
@@ -50,13 +49,15 @@ Symbol create_symbol(char *label, int address, int type, int line_in_file) {
   s->address = address;
   s->type = type;
   s->line_in_file = line_in_file;
-  printf("label: %s\n", s->label);
-  printf("address: %d\n", s->address);
-  printf("type: %d\n", s->type);
-  printf("line_in_file: %d\n", s->line_in_file);
+
   if (insert_to_trie(symbols, label, s)) {
-    (symbol_table[num_of_symbols_in_table]) = s;
-    num_of_symbols_in_table++;
+    if (num_of_symbols == size_of_symbol_table) {
+      symbol_table = (Symbol *)realloc(
+          symbol_table, sizeof(Symbol) * (size_of_symbol_table * 2));
+      size_of_symbol_table *= 2;
+    }
+    (symbol_table[num_of_symbols]) = s;
+    num_of_symbols++;
     return s;
   }
   print_error_msg("fail to add symbol", line_in_file);
@@ -73,10 +74,11 @@ Constant create_constant(char *label, int value, int line_in_file) {
   c->value = value;
   c->line_in_file = line_in_file;
   if (insert_to_trie(constant, label, c)) {
-    if (num_of_constants_in_table == size_in_constant_table)
-      constant_table = (Constant *)realloc(
-          constant_table, sizeof(Constant) * (size_in_constant_table *= 2));
-    constant_table[num_of_constants_in_table++] = c;
+    // if (num_of_constants_in_table == size_in_constant_table)
+    //   constant_table = (Constant *)realloc(
+    //       constant_table, sizeof(Constant) * (size_in_constant_table *= 2));
+    // constant_table[num_of_constants_in_table++] = c;
+    // size_in_constant_table *= 2;
     return c;
   }
   print_error_msg("fail to add constant", line_in_file);
@@ -202,27 +204,35 @@ char *encoded_immidiate_number(int n) {
 }
 
 int check_validation_of_operands_num(struct pattern *instruction) {
-  int i;
-  if (instruction->inst.num_of_operands == 0) {
-    if (instruction->inst.op_type == RTS || instruction->inst.op_type == HLT)
+  int i = instruction->choice.inst.num_of_operands;
+
+  if (i == 0) {
+    if (instruction->choice.inst.op_type == RTS ||
+        instruction->choice.inst.op_type == HLT)
       return 1;
     else
       return 0;
   }
-  if (instruction->inst.num_of_operands == 1) {
-    if (instruction->inst.op_type == NOT || instruction->inst.op_type == CLR ||
-        instruction->inst.op_type == INC || instruction->inst.op_type == DEC ||
-        instruction->inst.op_type == JMP || instruction->inst.op_type == BNE ||
-        instruction->inst.op_type == RED || instruction->inst.op_type == PRN ||
-        instruction->inst.op_type == JSR)
+  if (i == 1) {
+    if (instruction->choice.inst.op_type == NOT ||
+        instruction->choice.inst.op_type == CLR ||
+        instruction->choice.inst.op_type == INC ||
+        instruction->choice.inst.op_type == DEC ||
+        instruction->choice.inst.op_type == JMP ||
+        instruction->choice.inst.op_type == BNE ||
+        instruction->choice.inst.op_type == RED ||
+        instruction->choice.inst.op_type == PRN ||
+        instruction->choice.inst.op_type == JSR)
       return 1;
     else
       return 0;
   }
-  if (instruction->inst.num_of_operands == 2) {
-    if (instruction->inst.op_type == MOV || instruction->inst.op_type == CMP ||
-        instruction->inst.op_type == ADD || instruction->inst.op_type == SUB ||
-        instruction->inst.op_type == LEA)
+  if (i == 2) {
+    if (instruction->choice.inst.op_type == MOV ||
+        instruction->choice.inst.op_type == CMP ||
+        instruction->choice.inst.op_type == ADD ||
+        instruction->choice.inst.op_type == SUB ||
+        instruction->choice.inst.op_type == LEA)
       return 1;
     else
       return 0;
@@ -231,17 +241,17 @@ int check_validation_of_operands_num(struct pattern *instruction) {
 }
 
 int check_validation_of_operands_type(struct pattern *instruction) {
-  int i = instruction->inst.op_type;
+  int i = instruction->choice.inst.op_type;
   if ((i == MOV || (i >= ADD && i <= DEC) || i == RED) &&
-      (instruction->inst.operands[0].op_type == IMMEDIATE_NUMBER))
+      (instruction->choice.inst.operands[0].op_type == IMMEDIATE_NUMBER))
     return 0;
   if ((i == JMP || i == BNE || i == JSR) &&
-      (instruction->inst.operands[0].op_type == DIRECT_INDEX ||
-       instruction->inst.operands[0].op_type == IMMEDIATE_NUMBER))
+      (instruction->choice.inst.operands[0].op_type == DIRECT_INDEX ||
+       instruction->choice.inst.operands[0].op_type == IMMEDIATE_NUMBER))
     return 0;
   if ((i == LEA) &&
-      ((instruction->inst.operands[1].op_type == REGISTER) ||
-       (instruction->inst.operands[1].op_type == IMMEDIATE_NUMBER)))
+      ((instruction->choice.inst.operands[1].op_type == REGISTER) ||
+       (instruction->choice.inst.operands[1].op_type == IMMEDIATE_NUMBER)))
     return 0;
   return 1;
 }
@@ -260,7 +270,7 @@ char *encoded_instruction(struct pattern *instruction) {
     result[i] = '0';
   }
 
-  char *op_code = toBinaryString(instruction->inst.op_type, 4);
+  char *op_code = toBinaryString(instruction->choice.inst.op_type, 4);
 
   for (i = 0; i < 4; i++) {
     result[i + 4] = op_code[i];
@@ -268,8 +278,9 @@ char *encoded_instruction(struct pattern *instruction) {
   free(op_code);
   /*assumming that the first operand is the target operand
    */
-  for (i = 0; i < instruction->inst.num_of_operands; i++) {
-    char *operand = toBinaryString(instruction->inst.operands[i].op_type, 2);
+  for (i = 0; i < instruction->choice.inst.num_of_operands; i++) {
+    char *operand =
+        toBinaryString(instruction->choice.inst.operands[i].op_type, 2);
     for (j = 0; j < 2; j++) {
       result[i * -2 + j + 10] = operand[j];
     }
@@ -280,7 +291,8 @@ char *encoded_instruction(struct pattern *instruction) {
 }
 
 int extract_immidiate_number(struct pattern *p, int num_of_operand) {
-  char *buffer = p->inst.operands[num_of_operand].operand_value.const_num;
+  char *buffer =
+      p->choice.inst.operands[num_of_operand].operand_value.const_num;
   if (isalpha(buffer[0])) {
     Constant c = (Constant)exist_in_trie(constant, buffer);
     if (c)
@@ -290,9 +302,11 @@ int extract_immidiate_number(struct pattern *p, int num_of_operand) {
 
       return 0;
     }
-  } else {
-    return p->inst.operands[num_of_operand].operand_value.value;
+  } else if(isdigit(buffer[0]) || buffer[0] == '-' || buffer[0] == '+'){
+	return atoi(buffer);
   }
+    return p->choice.inst.operands[num_of_operand].operand_value.value;
+  
   return 0;
 }
 
@@ -349,7 +363,7 @@ void handle_lable_define(struct pattern *p, char *type, int counter) {
   if (s && s->type == S_ENTRY) { /* define as entry without data */
     s->type = (type_of_op) ? ENTRY_DATA : ENTRY_CODE;
     s->address = (type_of_op) ? DC : IC;
-	symbol_table_of_entries[num_of_symbols_in_entries++] = s;
+    symbol_table_of_entries[num_of_symbols_in_entries++] = s;
   } else if (!s) {
     s = create_symbol(p->label, counter, (type_of_op) ? S_DATA : CODE,
                       current_pattern_num); /* define as data */
@@ -369,20 +383,20 @@ void allocate_memory_for_instructions(struct pattern *ins, Code *code_i) {
     print_error_memory(current_pattern_num);
     return;
   }
-  if (ins->inst.num_of_operands == 0) {
+  if (ins->choice.inst.num_of_operands == 0) {
     amount = 1;
-  } else if (ins->inst.num_of_operands >= 1) {
-    if (ins->inst.operands[0].op_type == DIRECT_INDEX) {
+  } else if (ins->choice.inst.num_of_operands >= 1) {
+    if (ins->choice.inst.operands[0].op_type == DIRECT_INDEX) {
       amount = 3;
     } else {
       amount = 2;
     }
   }
-  if (ins->inst.num_of_operands == 2) {
-    if (ins->inst.operands[1].op_type == DIRECT_INDEX) {
+  if (ins->choice.inst.num_of_operands == 2) {
+    if (ins->choice.inst.operands[1].op_type == DIRECT_INDEX) {
       amount += 2;
-    } else if (!((ins->inst.operands[1].op_type == REGISTER) &&
-                 (ins->inst.operands[0].op_type == REGISTER))) {
+    } else if (!((ins->choice.inst.operands[1].op_type == REGISTER) &&
+                 (ins->choice.inst.operands[0].op_type == REGISTER))) {
       amount += 1;
     }
   }
@@ -408,7 +422,7 @@ void allocate_memory_for_data(struct pattern *data_i) {
   int i, exist, new;
   WordBin *temp;
   exist = data->num_of_lines;
-  new = data_i->dir.size;
+  new = data_i->choice.dir.size;
   temp = (WordBin *)realloc(data->lines, sizeof(WordBin) * (exist + new));
   if (!temp) {
     print_error_memory(current_pattern_num);
@@ -424,15 +438,15 @@ void allocate_memory_for_data(struct pattern *data_i) {
   }
 }
 
-void first_round(struct node *head) {
-  struct node *current_pattern = head;
+void first_round(struct Node *head) {
+  struct Node *current_pattern = head;
 
   char *buffer;
   int data_element;
   int sign = 1, i, char_index, num;
   Symbol s;
 
-  //buffer = (char *)calloc(MAX_LINE_SIZE, sizeof(char));
+  // buffer = (char *)calloc(MAX_LINE_SIZE, sizeof(char));
   /*
   initialize the tries
   */
@@ -440,18 +454,18 @@ void first_round(struct node *head) {
   externals = trie();
   entries = trie();
   constant = trie();
-  macro_trie = trie();
 
   /* initialize the code and data tables */
   code = (Code *)calloc(num_of_patterns, sizeof(Code));
   data = (Code)calloc(1, sizeof(struct code));
 
   /* initialize the symbol, entry and external tables */
-  symbol_table = (Symbol *)calloc(num_of_symbols, sizeof(Symbol));
+  symbol_table = (Symbol *)calloc(size_of_symbol_table, sizeof(Symbol));
   entry_table = (Entry *)calloc(num_of_entries, sizeof(Entry));
   symbol_table_of_entries = (Symbol *)calloc(num_of_entries, sizeof(Symbol));
   external_table = (External *)calloc(num_of_externals, sizeof(External));
-  constant_table = (Constant *)calloc(size_in_constant_table, sizeof(Constant));
+  // constant_table = (Constant *)calloc(size_in_constant_table,
+  // sizeof(Constant));
 
   // while (current_pattern) {
   for (current_pattern_num = 1; current_pattern_num <= num_of_patterns;
@@ -488,14 +502,14 @@ void first_round(struct node *head) {
 
     /* dealing with syntax errors */
     case ERROR:
-      printf("%s\n", current_pattern->data->error);
+      printf("%s\n", current_pattern->data->choice.error);
       break;
 
       /* dealing with directives */
     case DIRECTIVE:
 
       /* check the type of the directive */
-      switch (current_pattern->data->dir.directive_type) {
+      switch (current_pattern->data->choice.dir.directive_type) {
 
       /* dealing with data directive */
       case DATA:
@@ -524,8 +538,8 @@ void first_round(struct node *head) {
         //     data->lines, sizeof(WordBin) * (data->num_of_lines +
         //                                     current_pattern->data->dir.size));
         allocate_memory_for_data(current_pattern->data);
-        for (i = 0; i < current_pattern->data->dir.size; i++) {
-          buffer = current_pattern->data->dir.data[i];
+        for (i = 0; i < current_pattern->data->choice.dir.size; i++) {
+          buffer = current_pattern->data->choice.dir.data[i];
 
           if (isalpha(buffer[0]) &&
               exist_in_trie(constant, buffer)) { /* if the data is a constant */
@@ -553,9 +567,9 @@ void first_round(struct node *head) {
           strcpy(data->lines[data->num_of_lines + i]->word, temp_data); /* -> */
           free(temp_data);
         }
-        data->num_of_lines += current_pattern->data->dir.size;
+        data->num_of_lines += current_pattern->data->choice.dir.size;
         // data->line_in_file = current_pattern_num;
-        DC += current_pattern->data->dir.size;
+        DC += current_pattern->data->choice.dir.size;
         break;
 
       case STRING:
@@ -581,14 +595,14 @@ void first_round(struct node *head) {
         //     data->lines, sizeof(WordBin) * (data->num_of_lines +
         //                                     current_pattern->data->dir.size));
         allocate_memory_for_data(current_pattern->data);
-        for (i = 0; i < current_pattern->data->dir.size; i++) {
-          char_index = current_pattern->data->dir.string[i];
+        for (i = 0; i < current_pattern->data->choice.dir.size; i++) {
+          char_index = current_pattern->data->choice.dir.string[i];
           char *temp_data = encoded_data(char_index);
           strcpy(data->lines[data->num_of_lines + i]->word, temp_data);
           free(temp_data);
         }
-        data->num_of_lines += current_pattern->data->dir.size;
-        DC += current_pattern->data->dir.size;
+        data->num_of_lines += current_pattern->data->choice.dir.size;
+        DC += current_pattern->data->choice.dir.size;
         break;
 
       case ENTRY: /*אולי להשמיט את בדיקת התווית במקרה כזה*/
@@ -607,7 +621,7 @@ void first_round(struct node *head) {
           // current_pattern->data->label);
           if (s->type == DATA || s->type == CODE) {
             s->type = (s->type == DATA) ? ENTRY_DATA : ENTRY_CODE;
-			symbol_table_of_entries[num_of_symbols_in_entries++] = s;
+            symbol_table_of_entries[num_of_symbols_in_entries++] = s;
             create_entry(s, current_pattern_num);
           } else {
             /* seem to be allowed */
@@ -649,7 +663,7 @@ void first_round(struct node *head) {
         continue;
       }
       Constant c = create_constant(current_pattern->data->label,
-                                   current_pattern->data->def.value,
+                                   current_pattern->data->choice.def.value,
                                    current_pattern_num);
       break;
 
@@ -689,7 +703,7 @@ void first_round(struct node *head) {
 
       allocate_memory_for_instructions(current_pattern->data,
                                        &(code[num_of_codes]));
-      current_pattern->data->code = code[num_of_codes];
+      current_pattern->data->choice.inst.code = code[num_of_codes];
       int num_of_word_nedded = 1;
       // Code codes = (Code)calloc(1, sizeof(struct code));
       //   code[num_of_codes] = codes;
@@ -704,13 +718,14 @@ void first_round(struct node *head) {
       //   code[num_of_codes]->line_in_file = current_pattern_num;
 
       /* check if there ara operands */
-      if (current_pattern->data->inst.num_of_operands >= 1) {
+      if (current_pattern->data->choice.inst.num_of_operands >= 1) {
 
         /* check the type of the first operand */
-        if (current_pattern->data->inst.num_of_operands ==
+        if (current_pattern->data->choice.inst.num_of_operands ==
             2) { /*there is olso sorce op*/
-          if ((current_pattern->data->inst.operands[0].op_type == REGISTER) &&
-              (current_pattern->data->inst.operands[1].op_type ==
+          if ((current_pattern->data->choice.inst.operands[0].op_type ==
+               REGISTER) &&
+              (current_pattern->data->choice.inst.operands[1].op_type ==
                REGISTER)) { /*tow registers*/
             num_of_word_nedded += 1;
             // code[num_of_codes]->lines = (WordBin *)realloc(
@@ -718,14 +733,16 @@ void first_round(struct node *head) {
             //     num_of_word_nedded);
             // 	code[num_of_codes]->lines[1] = (WordBin)calloc(1, sizeof(struct
             // word_bin));
-            temp_ins = encoded_registers(
-                current_pattern->data->inst.operands[1].operand_value.reg,
-                current_pattern->data->inst.operands[0].operand_value.reg);
+            temp_ins =
+                encoded_registers(current_pattern->data->choice.inst.operands[1]
+                                      .operand_value.reg,
+                                  current_pattern->data->choice.inst.operands[0]
+                                      .operand_value.reg);
             strcpy(code[num_of_codes]->lines[1]->word, temp_ins);
             free(temp_ins);
 
           } else
-            switch (current_pattern->data->inst.operands[1].op_type) {
+            switch (current_pattern->data->choice.inst.operands[1].op_type) {
             case REGISTER:
               /*only the sorsce operand is register*/
               num_of_word_nedded += 1;
@@ -735,7 +752,9 @@ void first_round(struct node *head) {
               // code[num_of_codes]->lines[1] = (WordBin)calloc(1, sizeof(struct
               // word_bin));
               char *temp_reg = encoded_registers(
-                  current_pattern->data->inst.operands[1].operand_value.reg, 0);
+                  current_pattern->data->choice.inst.operands[1]
+                      .operand_value.reg,
+                  0);
               strcpy(code[num_of_codes]->lines[1]->word, temp_reg);
               free(temp_reg);
               break;
@@ -782,10 +801,11 @@ void first_round(struct node *head) {
               break;
             }
         }
-        switch (current_pattern->data->inst.operands[0].op_type) {
+        switch (current_pattern->data->choice.inst.operands[0].op_type) {
         case REGISTER:
-          if ((current_pattern->data->inst.num_of_operands == 2) &&
-              (current_pattern->data->inst.operands[1].op_type != REGISTER)) {
+          if ((current_pattern->data->choice.inst.num_of_operands == 2) &&
+              (current_pattern->data->choice.inst.operands[1].op_type !=
+               REGISTER)) {
             num_of_word_nedded += 1;
             // code[num_of_codes]->lines = (WordBin *)realloc(
             //     code[num_of_codes]->lines, sizeof(WordBin) *
@@ -793,8 +813,9 @@ void first_round(struct node *head) {
             // code[num_of_codes]->lines[num_of_word_nedded-1] =
             // (WordBin)calloc(1, sizeof(struct word_bin));
             strcpy(code[num_of_codes]->lines[num_of_word_nedded - 1]->word,
-                   encoded_registers(0, current_pattern->data->inst.operands[0]
-                                            .operand_value.reg));
+                   encoded_registers(
+                       0, current_pattern->data->choice.inst.operands[0]
+                              .operand_value.reg));
           }
           break;
 
@@ -852,5 +873,5 @@ void first_round(struct node *head) {
     // current_pattern = current_pattern->next;
   }
   add_IC_to_symbol_table(IC);
-  //free(buffer);
+  // free(buffer);
 }

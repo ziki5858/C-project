@@ -21,7 +21,7 @@ void validate_entreis() {
   Entry e;
   int i;
   printf("num of entries: %d\n", num_of_entries);
-  for (i = 0; i < num_of_entries; i++) {
+  for (i = 0; i < num_of_entries_in_table; i++) {
     e = entry_table[i];
     if (e->symbol->address == 0) {
 
@@ -31,24 +31,24 @@ void validate_entreis() {
     }
   }
 }
-void secondround(struct node *head) {
+void secondround(struct Node *head) {
   validate_entreis();
   int type_ARE, value, i, words =0, j = 0;
   Symbol s;
   while (head) {
-    if (head->data->code) {
+    if (head->data->type_line == INSTRUCTION) {
 
-      if (head->data->inst.operands[0].op_type == DIRECT ||
-          head->data->inst.operands[0].op_type == DIRECT_INDEX ||( head->data->inst.num_of_operands == 2 &&
-          (head->data->inst.operands[1].op_type == DIRECT ||
-          head->data->inst.operands[1].op_type == DIRECT_INDEX))) {
+      if (head->data->choice.inst.operands[0].op_type == DIRECT ||
+          head->data->choice.inst.operands[0].op_type == DIRECT_INDEX ||( head->data->choice.inst.num_of_operands == 2 &&
+          (head->data->choice.inst.operands[1].op_type == DIRECT ||
+          head->data->choice.inst.operands[1].op_type == DIRECT_INDEX))) {
 
-        for (i = 0; i < head->data->inst.num_of_operands; i++, j = 0) {
+        for (i = 0; i < head->data->choice.inst.num_of_operands; i++, j = 0) {
 
-          if ((head->data->inst.operands[i].op_type == DIRECT) ||
-              (head->data->inst.operands[i].op_type == DIRECT_INDEX)) {
+          if ((head->data->choice.inst.operands[i].op_type == DIRECT) ||
+              (head->data->choice.inst.operands[i].op_type == DIRECT_INDEX)) {
             s = (Symbol)exist_in_trie(
-                symbols, head->data->inst.operands[i].operand_value.symbol);
+                symbols, head->data->choice.inst.operands[i].operand_value.symbol);
             if (s) {
               if (s->type == S_EXTERN) {
                 type_ARE = 1;
@@ -58,7 +58,7 @@ void secondround(struct node *head) {
                 type_ARE = 2;
                 value = s->address;
               }
-              char *result = calloc(WIDTH_OF_WORD, sizeof(char));
+              char *result = (char*)calloc(WIDTH_OF_WORD, sizeof(char));
               if (result == NULL) {
                 printf("error in allocation memory\n");
                 error_flag = 1;
@@ -71,17 +71,17 @@ void secondround(struct node *head) {
               strcat(result, temp_res);
 			  free(temp_res);
               if (i == 1)
-                strcpy((char *)head->data->code->lines[1], result);
+                strcpy((char *)head->data->choice.inst.code->lines[1], result);
               else {
 
-                if (head->data->inst.num_of_operands == 2) {
+                if (head->data->choice.inst.num_of_operands == 2) {
 
-                  if (head->data->inst.operands[1].op_type == DIRECT_INDEX)
+                  if (head->data->choice.inst.operands[1].op_type == DIRECT_INDEX)
                     j = 2;
                   else
                     j = 1;
                 }
-                strcpy((char *)head->data->code->lines[1 + j], result);
+                strcpy((char *)head->data->choice.inst.code->lines[1 + j], result);
                 if (type_ARE == 1) {
                   insert_address_to_external(exist_in_trie(externals, s->label),
                                              words + 1 + j);
@@ -90,14 +90,14 @@ void secondround(struct node *head) {
 			  free(result);
             } else {
               printf("error: symbol %s not found\n",
-                     head->data->inst.operands[i].operand_value.symbol);
+                     head->data->choice.inst.operands[i].operand_value.symbol);
               error_flag = 1;
               return;
             }
           }
         }
       }
-      words += head->data->code->num_of_lines;
+      words += head->data->choice.inst.code->num_of_lines;
     }
     head = head->next;
   }
