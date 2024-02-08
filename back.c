@@ -47,9 +47,7 @@ void translator() {
   binary_table_translated = calloc(IC + DC, sizeof(char *));
   for (i = 0; i < IC + DC; i++) {
     binary_table_translated[i] = convert(binary_table[i]);
-    // binary_table_translated[i] = calloc(8, sizeof(char));
-    // strcpy(binary_table_translated[i], convert(binary_table[i]));
-    printf("line: %d\n", i);
+       printf("line: %d\n", i);
     printf("%s\n", binary_table[i]);
     printf("%s\n", binary_table_translated[i]);
   }

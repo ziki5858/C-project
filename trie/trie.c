@@ -64,7 +64,6 @@ void delete_from_trie(Trie trie,const char *string) {
 }
 
 void * exist_in_trie(Trie trie,const char *string) {
-	//printf("string: %s\n", string);
     TrieNode find_node;
     if(string == NULL)
         return NULL;

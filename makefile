@@ -1,39 +1,39 @@
 CFLAGS = -Wall -ansi -pedantic -fsanitize=address -g
 exem:  firstround.o secondround.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o
-	gcc -g  firstround.o secondround.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o -o exem
+	gcc ${CFLAGS}  firstround.o secondround.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o -o exem
 
-firstround.o: firstround.c
-	gcc -c -g firstround.c -o firstround.o
+firstround.o: ./assemblerRounds/firstround.c
+	gcc -c ${CFLAGS} ./assemblerRounds/firstround.c -o firstround.o
 
-secondround.o: secondround.c
-	gcc -c -g secondround.c -o secondround.o
+secondround.o: ./assemblerRounds/secondround.c
+	gcc -c ${CFLAGS} ./assemblerRounds/secondround.c -o secondround.o
 
 back.o: back.c
-	gcc -c -g back.c -o back.o
+	gcc -c ${CFLAGS} back.c -o back.o
 
 assembler.o: assembler.c	
-	gcc -c -g assembler.c -o assembler.o
+	gcc -c ${CFLAGS} assembler.c -o assembler.o
 
 trie.o: trie/trie.c
-	gcc -c -g trie/trie.c -o trie.o
+	gcc -c ${CFLAGS} trie/trie.c -o trie.o
 
 memory.o: memory.c
-	gcc -c -g memory.c -o memory.o
+	gcc -c ${CFLAGS} memory.c -o memory.o
 
-front.o: front.c
-	gcc -c -g front.c -o front.o
+front.o: ./front/front.c
+	gcc -c ${CFLAGS} ./front/front.c -o front.o
 
-instrucstion.o: instrucstion.c
-	gcc -c -g instrucstion.c -o instrucstion.o
+instrucstion.o: ./front/instrucstion.c
+	gcc -c ${CFLAGS} ./front/instrucstion.c -o instrucstion.o
 
-directive.o: directive.c
-	gcc -c -g directive.c -o directive.o
+directive.o: ./front/directive.c
+	gcc -c ${CFLAGS} ./front/directive.c -o directive.o
 
-define.o: define.c
-	gcc -c -g define.c -o define.o
+define.o: ./front/define.c
+	gcc -c ${CFLAGS} ./front/define.c -o define.o
 
-preprossesor.o: preprossesor.c
-	gcc -c -g preprossesor.c -o preprossesor.o
+preprossesor.o: ./preprocessor/preprossesor.c
+	gcc -c ${CFLAGS}  ./preprocessor/preprossesor.c -o preprossesor.o
 
 clean:
 	rm -f *.o 

@@ -11,7 +11,7 @@
 
 
 
-#include "./trie/trie.h"
+#include "../trie/trie.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

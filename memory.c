@@ -31,13 +31,13 @@ void destroy_macro(void *macro_i) {
  * 
  */
 void free_memory() {
-  int i;
+  int i,j;
 
   /* free the code array, and all the lines in it */
   extern Code *code;
   extern int num_of_codes;
   for (i = 0; i < num_of_codes; i++) {
-    for (int j = 0; j < code[i]->num_of_lines; j++) {
+    for (j = 0; j < code[i]->num_of_lines; j++) {
       free(code[i]->lines[j]);
     }
     free(code[i]->lines);
@@ -60,31 +60,31 @@ void free_memory() {
   destroy_trie(&entries);
   destroy_trie_with_ptr(&macro_trie, destroy_macro);
 
-//   for (i = 0; i < num_of_symbols; i++) {
-//     free(symbol_table[i]);
-//   }
+ /*  for (i = 0; i < num_of_symbols; i++) {
+     free(symbol_table[i]);
+   }*/
   /* free the tables */
   free(symbol_table);
   
   free(symbol_table_of_entries);
 
-//   for (i = 0; i < num_of_entries; i++) {
-//     free(entry_table[i]);
-//   }
+/*   for (i = 0; i < num_of_entries; i++) {
+     free(entry_table[i]);
+   }*/
   free(entry_table);
   
   
-//   extern int num_of_constants_in_table;
-//   extern Constant *constant_table;
-//   for (i = 0; i < num_of_constants_in_table; i++) {
-//     free(constant_table[i]);
-//   }
-//   free(constant_table);
+/*   extern int num_of_constants_in_table;
+   extern Constant *constant_table;
+   for (i = 0; i < num_of_constants_in_table; i++) {
+     free(constant_table[i]);
+   }
+   free(constant_table);
 
-//   for (i = 0; i < num_of_externals; i++) {
-//     free(external_table[i]->addresses);
-//     free(external_table[i]);
-//   }
+   for (i = 0; i < num_of_externals; i++) {
+     free(external_table[i]->addresses);
+     free(external_table[i]);
+   }*/
   free(external_table);
 
   

@@ -1,5 +1,5 @@
-#include "front.h"
-#include "tables.h"
+#include "../front.h"
+#include "../tables.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,7 +16,6 @@ extern Entry *entry_table;
 extern int num_of_entries;
 
 char **binary_table;
-// int words = IC + DC;
 void validate_entreis() {
   Entry e;
   int i;
