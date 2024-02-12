@@ -33,7 +33,7 @@ void assembler(char *file_name){
 	
 	}
 	/* make the file name with the extension .am */
-	file_name_with_extension = calloc(strlen(file_name) + 3, sizeof(char));
+	file_name_with_extension = calloc(strlen(file_name) + 4, sizeof(char));
 	strcpy(file_name_with_extension, file_name);
 	strcat(file_name_with_extension, ".am");
 
@@ -59,7 +59,8 @@ void assembler(char *file_name){
 		printf("error: there are errors in the file\n"); {
 	
 	}
-}}
+	
+}free_memory(head);}
 
 /**
  * @brief This is the main function of the program, it calls the assembler function for each file that was given as an argument.

@@ -8,13 +8,13 @@ struct entry;
 struct code;
 struct word_bin;
 
-typedef struct symbol *Symbol;
+/*typedef struct symbol *Symbol;
 typedef struct constant *Constant;
 typedef struct external *External;
 typedef struct entry *Entry;
 typedef struct code *Code;
 typedef struct word_bin *WordBin;
-typedef struct pattern *Pattern ;
+typedef struct pattern *Pattern ;*/
 
 
 

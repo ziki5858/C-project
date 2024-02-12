@@ -31,9 +31,10 @@ void validate_entreis() {
   }
 }
 void secondround(struct Node *head) {
-  validate_entreis();
+  char *result, *temp_res;
   int type_ARE, value, i, words =0, j = 0;
   Symbol s;
+  validate_entreis();
   while (head) {
     if (head->data->type_line == INSTRUCTION) {
 
@@ -57,13 +58,13 @@ void secondround(struct Node *head) {
                 type_ARE = 2;
                 value = s->address;
               }
-              char *result = (char*)calloc(WIDTH_OF_WORD, sizeof(char));
+              result = (char*)calloc(WIDTH_OF_WORD, sizeof(char));
               if (result == NULL) {
                 printf("error in allocation memory\n");
                 error_flag = 1;
                 return;
               }
-			  char *temp_res = toBinaryString(value, 12);
+			  temp_res = toBinaryString(value, 12);
               strcpy(result, temp_res);
 			  free(temp_res);
 			  temp_res = toBinaryString(type_ARE, 2);

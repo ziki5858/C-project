@@ -131,7 +131,7 @@ int defineFormat(FILE *file, char *word, struct pattern *data, struct Node **hea
  * @param filename The name of the file being processed.
  * @param head A pointer to the head of the linked list.
  */
-void isError(FILE *file,char *word, struct pattern *data, const char *errorMessage, const char *filename, struct Node **head);
+void isError(FILE *file,const char *word, struct pattern *data, const char *errorMessage, const char *filename, struct Node **head);
 /*
  * @brief Processes numeric arguments in a data directive.
  * @param file Pointer to the file being processed.

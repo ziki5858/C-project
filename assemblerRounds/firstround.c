@@ -136,9 +136,9 @@ void add_IC_to_symbol_table(int IC) {
   Symbol s;
   for (i = 0; i < num_of_symbols; i++) {
     s = symbol_table[i];
-    if (s->type == S_DATA || s->type == ENTRY_DATA)
+    if ((int)s->type == (int)S_DATA || (int)s->type == (int)ENTRY_DATA)
       s->address += (IC + 100);
-    else if (s->type == CODE || s->type == ENTRY_CODE)
+    else if ((int)s->type == (int)CODE || (int)s->type == (int)ENTRY_CODE)
       s->address += 100;
   }
 }
@@ -362,7 +362,7 @@ void handle_lable_define(struct pattern *p, char *type, int counter) {
   int type_of_op = (strcmp(type, "data") == 0) ? 1 : 0;
 
   Symbol s = (Symbol)exist_in_trie(symbols, p->label);
-  if (s && s->type == S_ENTRY) { /* define as entry without data */
+  if (s && (int)s->type == (int)S_ENTRY) { /* define as entry without data */
     s->type = (type_of_op) ? ENTRY_DATA : ENTRY_CODE;
     s->address = (type_of_op) ? DC : IC;
     symbol_table_of_entries[num_of_symbols_in_entries++] = s;
@@ -443,8 +443,8 @@ void allocate_memory_for_data(struct pattern *data_i) {
 void first_round(struct Node *head) {
   struct Node *current_pattern = head;
 
-  char *buffer, *temp_data;
-  int data_element;
+  char *buffer, *temp_data, *temp_ins, *temp_reg;
+  int data_element, num_of_word_nedded;
   int sign = 1, i, char_index, num;
   Symbol s;
 
@@ -569,8 +569,8 @@ void first_round(struct Node *head) {
         if ((s = (Symbol)exist_in_trie(symbols,
                                        current_pattern->data->label))) {
           
-          if (s->type == DATA || s->type == CODE) {
-            s->type = (s->type == DATA) ? ENTRY_DATA : ENTRY_CODE;
+          if ((int)s->type == (int)DATA || (int)s->type == (int)CODE) {
+            s->type = ((int)s->type == (int)DATA) ? ENTRY_DATA : ENTRY_CODE;
             symbol_table_of_entries[num_of_symbols_in_entries++] = s;
             create_entry(s, current_pattern_num);
           } else {
@@ -612,7 +612,7 @@ void first_round(struct Node *head) {
         print_error_msg("symbol already exist as symbol", current_pattern_num);
         continue;
       }
-      Constant c = create_constant(current_pattern->data->label,
+      create_constant(current_pattern->data->label,
                                    current_pattern->data->choice.def.value,
                                    current_pattern_num);
       break;
@@ -637,9 +637,9 @@ void first_round(struct Node *head) {
       allocate_memory_for_instructions(current_pattern->data,
                                        &(code[num_of_codes]));
       current_pattern->data->choice.inst.code = code[num_of_codes];
-      int num_of_word_nedded = 1;
+      num_of_word_nedded = 1;
      
-      char *temp_ins = encoded_instruction(current_pattern->data);
+      temp_ins = encoded_instruction(current_pattern->data);
       strcpy(code[num_of_codes]->lines[0]->word, temp_ins);
       free(temp_ins);
      
@@ -669,7 +669,7 @@ void first_round(struct Node *head) {
               /*only the sorsce operand is register*/
               num_of_word_nedded += 1;
               
-              char *temp_reg = encoded_registers(
+              temp_reg = encoded_registers(
                   current_pattern->data->choice.inst.operands[1]
                       .operand_value.reg,
                   0);
@@ -678,7 +678,7 @@ void first_round(struct Node *head) {
               break;
             case IMMEDIATE_NUMBER:
               num_of_word_nedded += 1;
-              int num;
+              
               num = extract_immidiate_number(current_pattern->data, 1);
               
               strcpy(code[num_of_codes]->lines[1]->word,
@@ -727,7 +727,7 @@ void first_round(struct Node *head) {
 
         case DIRECT:
           num_of_word_nedded += 1;
-          char *temp_data = encoded_data(0);
+          temp_data = encoded_data(0);
           strcpy(code[num_of_codes]->lines[num_of_word_nedded - 1]->word,
                  temp_data);
           free(temp_data);

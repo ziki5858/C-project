@@ -138,3 +138,4 @@ void to_binary_table();
 void translator();
 void to_files(char * file_name);
 void assembler(char *file_name);
+void free_memory(struct Node *head);

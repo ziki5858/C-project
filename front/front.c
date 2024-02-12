@@ -23,12 +23,12 @@
  *   - Calls processAssemblyText to process the assembly file and obtain the linked list.
  * ----------------------------------------------------------------------------
  */
-
-#include "headeMethods.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include "headeMethods.h"
+
 
 
 
@@ -175,11 +175,11 @@ int processInstruction(FILE *file, char *word, struct pattern *data, struct Node
     return handleReturnValue(return_value, data, head);
 }
 
-void isError(FILE *file,char *word, struct pattern *data, const char *errorMessage, const char *filename, struct Node **head){
+void isError(FILE *file,const char *word, struct pattern *data, const char *errorMessage, const char *filename, struct Node **head){
     data->type_line = ERROR;
     /*Update the error message with the line number and filename*/
     snprintf(data->choice.error, sizeof(data->choice.error), "%s, File: %s, Line: %d", errorMessage, filename, lineNumber);
     insertNode(head, data);
-    fgets(word, MAX_LINE_SIZE, file);
+    fgets((char*)word, MAX_LINE_SIZE, file);
 }
 

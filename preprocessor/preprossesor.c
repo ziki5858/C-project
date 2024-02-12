@@ -143,9 +143,11 @@ int determaine_which_line_is_it(char *line){
 
 Macro creat_macro(char *line){
 	char const *result;
-	char *def = strtok(line, " "); /* the first word */
-	char *name = strtok(NULL, " "); /* the second word */
-	Macro m = (Macro)malloc(sizeof(struct macro)); /* alocate memory for macro */
+	char *name;
+	Macro m;
+	strtok(line, " "); /* the first word */
+	name = strtok(NULL, " "); /* the second word */
+	m = (Macro)malloc(sizeof(struct macro)); /* alocate memory for macro */
 	if (m == NULL)
 		return NULL;
 	strcpy(m->name, name); /* copy the name of the macro to the macro struct */
@@ -215,6 +217,7 @@ int preprocess(char *name_of_file){
 	char line[MAX_LINE_LENGTH];
 	char *temp;
 	char *temp_original;
+	int count = 0; /* the number of lines in the preprocessed file	*/
 
 	/* a pointer to the macro, ant for a macro trie	*/
 	Macro m = NULL;
@@ -272,7 +275,6 @@ int preprocess(char *name_of_file){
 	}
 
 	/* count the lines in the preprocessed file	*/
-	int count = 0;
 	rewind(ptr_preprocessed);
 	while (fgets(line, MAX_LINE_LENGTH, ptr_preprocessed) != NULL)
 		count++;

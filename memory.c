@@ -26,15 +26,28 @@ void destroy_macro(void *macro_i) {
 }
 
 
+
+void destroy_linked_list(struct Node *head) {
+  struct Node *temp;
+  while (head) {
+	temp = head;
+	head = head->next;
+	free(temp->data);
+	free(temp);
+  }
+}
+
+
+
 /**
  * @brief This function used to free all the memory that was allocated during the initialization of the memory.
  * 
  */
-void free_memory() {
+void free_memory(struct Node *head) {
   int i,j;
 
   /* free the code array, and all the lines in it */
-  extern Code *code;
+  extern Code *code, data;
   extern int num_of_codes;
   for (i = 0; i < num_of_codes; i++) {
     for (j = 0; j < code[i]->num_of_lines; j++) {
@@ -46,7 +59,7 @@ void free_memory() {
   free(code);
 
   /* free the data array, and all the lines in it */
-  extern Code data;
+  
   for (i = 0; i < DC; i++) {
     free(data->lines[i]);
   }
@@ -60,9 +73,9 @@ void free_memory() {
   destroy_trie(&entries);
   destroy_trie_with_ptr(&macro_trie, destroy_macro);
 
- /*  for (i = 0; i < num_of_symbols; i++) {
+   for (i = 0; i < num_of_symbols; i++) {
      free(symbol_table[i]);
-   }*/
+   }
   /* free the tables */
   free(symbol_table);
   
@@ -94,5 +107,8 @@ void free_memory() {
   }
   free(binary_table);
   free(binary_table_translated);
+
+  /* free the linked list */
+  destroy_linked_list(head);
 }
 
