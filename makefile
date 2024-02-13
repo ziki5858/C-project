@@ -1,4 +1,4 @@
-CFLAGS = -fsanitize=address -g -Wall -pedantic -ansi
+CFLAGS = -fsanitize=address -g -Wall -pedantic -ansi make 
 front: front.o define.o instrucstion.o directive.o a.o
 	gcc $(CFLAGS)  front.o define.o instrucstion.o directive.o a.o -o front
 front.o: front.c headeMethods.h
