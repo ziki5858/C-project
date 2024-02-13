@@ -175,7 +175,7 @@ int processInstruction(FILE *file, char *word, struct pattern *data, struct Node
     return handleReturnValue(return_value, data, head);
 }
 
-void isError(FILE *file,char *word, struct pattern *data, const char *errorMessage, const char *filename, struct Node **head){
+void isError(FILE *file, char *word, struct pattern *data, const char *errorMessage, const char *filename, struct Node **head){
     data->type_line = ERROR;
     /*Update the error message with the line number and filename*/
     sprintf(data->choice.error, "%s, File: %s, Line: %d", errorMessage, filename, lineNumber);

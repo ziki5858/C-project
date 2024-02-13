@@ -194,7 +194,7 @@ int processNoOperands(struct pattern *data) {
     return 1;
 }
 
-int instructionFormat(FILE *file, const char *word, struct pattern *data, struct Node **head) {
+int instructionFormat(FILE *file,  char *word, struct pattern *data, struct Node **head) {
     /* There is no need to check if the word is a valid label,
      because it is already checked in categorizeWord */
     int i;
