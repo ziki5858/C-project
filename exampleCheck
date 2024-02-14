@@ -16,5 +16,5 @@ END: hlt
 STR: .string "abcdef"
 LIST: .data 6, -9, len
 K: .data 22
-.extern L3
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae metus non lacus imperdiet ullamcorper.
 .extern L3
