@@ -98,12 +98,22 @@ void insertNode(struct Node **head, struct pattern * data) {
 
 void processLine(FILE *file, struct Node **head) {
     char word[MAX_LINE_SIZE];
+    char *token;    
+    char lineB[MAX_LINE_SIZE+2];
     lineNumber=0;
 
-    while (fscanf(file, "%s", word) == 1) {
+    while (fgets(lineB, sizeof(lineB), file) != NULL){
         struct pattern * data = (struct pattern*)calloc(1, sizeof(struct pattern));
-        categorizeWord(file,word, data, head);
-        lineNumber++;
+        if (strlen(lineB) > MAX_LINE_SIZE ) {
+            isError(file,word, data, "Error: Line exceeds maximum length of 80 characters", "front.c", head);
+        }
+       
+        else{
+            fseek(file, -strlen(lineB), SEEK_CUR);
+            fscanf(file, "%s", word);
+            categorizeWord(file,word, data, head);
+        }
+        lineNumber++;   
     }
     num_of_patterns=lineNumber;
 }
