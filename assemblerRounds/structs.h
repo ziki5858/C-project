@@ -1,17 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include "trie/trie.h"
-#define WIDTH_OF_WORD 15
-#define MAX_ERROR_SIZE 300
-#define MAX_LINE_SIZE 81
-#define MAX_LABEL_SIZE 31
-extern int IC, DC, error_flag;
-
-
 #ifndef ASSEMBLER_STRUCTURES
 #define ASSEMBLER_STRUCTURES
+
+#define MAX_LINE_SIZE 81
+#define MAX_LABEL_SIZE 31
+#define MAX_ERROR_SIZE 300
 /* Enumeration for directive types */
 enum DirectiveType {
     ENTRY, /**< Entry directive */
@@ -107,38 +99,7 @@ struct entry {
   int line_in_file;
 };
 #endif
-struct word_bin {
-  char word[WIDTH_OF_WORD]; /**/
-};
 
-struct code {
-  int num_of_lines;
-  WordBin *lines;
-  int line_in_file;
-};
+
 void print_error_memory(int line);
 void print_error_msg(char *msg, int line);
-extern int num_of_entries;
-extern int num_of_externals;
-extern int num_of_symbols;
-extern int num_of_patterns;
-
-
-extern External *external_table;
-extern Entry *entry_table;
-extern Symbol *symbol_table_of_entries;
-extern Symbol *symbol_table;
-extern Code *code, data;
-extern Trie symbols, constant, externals, entries, macro_trie;
-extern char **binary_table, **binary_table_translated;
-
-
-int preprocess(char *name_of_file);
-struct Node *processAssemblyText(const char *filename);
-void first_round(struct Node *head);
-void secondround(struct Node *head);
-void to_binary_table();
-void translator();
-void to_files(char * file_name);
-void assembler(char *file_name);
-void free_memory(struct Node *head);

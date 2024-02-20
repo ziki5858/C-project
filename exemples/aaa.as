@@ -13,12 +13,10 @@ endmcr
  m_mcr
 L1: inc L3 
 .entry LOOP
-.entry LOOP
-.entry LOOP
  bne LOOP 
 END: hlt 
 .define len = 4 
-STR: .string "abcdef" 
+STR:       .string "abcdef" 
 LIST: .data 6, -9, len 
 K: .data 22
   .extern L3

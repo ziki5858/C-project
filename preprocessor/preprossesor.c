@@ -84,19 +84,21 @@ int preprocess(char *name_of_file);
 
 int determaine_which_line_is_it(char *line){
 	char *copy_line = malloc(strlen(line) + 1); 
-	char *temp;
+	char *temp, *ptr_to_copy_line;
 	char *start_of_macro = "mcr";
 	char *end_of_macro = "endmcr";
 	int index; 
 	strcpy(copy_line, line);
+	ptr_to_copy_line = copy_line;
 	SKIP_SPACES(copy_line);
 
 
 	/*
 	if the line is empty or a comment line or a line with only spaces, return 1
 	*/
-	if (*copy_line == '\0' || *copy_line == '\n' || *copy_line == ';')
-		return 1;
+	if (*copy_line == '\0' || *copy_line == '\n' || *copy_line == ';'){
+		free(ptr_to_copy_line);
+		return 1;}
 	
 	
 	/* now we will check if the line is a macro definition, a macro end or a macro call
@@ -116,7 +118,7 @@ int determaine_which_line_is_it(char *line){
 		temp = malloc(strlen(copy_line) + 1);
 		strcpy(temp, copy_line);
 	}
-	free(copy_line);
+	free(ptr_to_copy_line);
 		
 	/* now we will check if the line is a macro definition	*/
 	if (strcmp(temp , start_of_macro) == 0)
@@ -147,12 +149,12 @@ Macro creat_macro(char *line){
 	Macro m;
 	strtok(line, " "); /* the first word */
 	name = strtok(NULL, " "); /* the second word */
-	m = (Macro)malloc(sizeof(struct macro)); /* alocate memory for macro */
+	m = (Macro)calloc(1,sizeof(struct macro)); /* alocate memory for macro */
 	if (m == NULL)
 		return NULL;
 	strcpy(m->name, name); /* copy the name of the macro to the macro struct */
 	m->value = calloc(MAX_LINE_LENGTH, sizeof(char)); /* alocate memory of one line for the value of the macro */
-	
+	m->number_of_lines = 0; /* the number of lines in the macro */
 	/* insert the macro to the trie	*/
 	result = insert_to_trie(macro_trie, m->name, (void*)m);
 	if (result == NULL)
@@ -279,6 +281,9 @@ int preprocess(char *name_of_file){
 	while (fgets(line, MAX_LINE_LENGTH, ptr_preprocessed) != NULL)
 		count++;
 	num_of_patterns1 = count;
+	/* close the files	*/
+	fclose(ptr_original);
+	fclose(ptr_preprocessed);
 	return 0;
 }
 

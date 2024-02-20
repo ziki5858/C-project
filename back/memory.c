@@ -1,5 +1,5 @@
-#include "front.h"
-#include "trie/trie.h"
+#include "../front.h"
+#include "../trie/trie.h"
 #include <stdlib.h>
 
 /**
@@ -25,13 +25,32 @@ void destroy_macro(void *macro_i) {
   free(m);
 }
 
+void destroy_constant(void *constant_i) {
+  Constant c = (Constant)constant_i;
+  free(c);
+}
+
 
 
 void destroy_linked_list(struct Node *head) {
   struct Node *temp;
+  int i;
   while (head) {
 	temp = head;
 	head = head->next;
+	if ((int)temp->data->type_line == (int)DIRECTIVE) {
+	/* if there is 2d data in the node, free it */
+	if ((int)temp->data->choice.dir.directive_type == (int)DATA) {
+	for(i = 0; i < temp->data->choice.dir.size; i++) {
+		free(temp->data->choice.dir.data[i]);	
+	}
+	free(temp->data->choice.dir.data);
+	}
+	/* free the string in the node */
+	if ((int)temp->data->choice.dir.directive_type == (int)STRING) {
+		free(temp->data->choice.dir.string);
+	}
+	}
 	free(temp->data);
 	free(temp);
   }
@@ -68,7 +87,7 @@ void free_memory(struct Node *head) {
 
   /* free the tries */
   destroy_trie(&symbols);
-  destroy_trie(&constant);
+  destroy_trie_with_ptr(&constant, destroy_constant);
   destroy_trie_with_ptr(&externals, destroy_extern);
   destroy_trie(&entries);
   destroy_trie_with_ptr(&macro_trie, destroy_macro);
@@ -81,9 +100,9 @@ void free_memory(struct Node *head) {
   
   free(symbol_table_of_entries);
 
-/*   for (i = 0; i < num_of_entries; i++) {
+   for (i = 0; i < num_of_entries; i++) {
      free(entry_table[i]);
-   }*/
+   }
   free(entry_table);
   
   
@@ -100,14 +119,15 @@ void free_memory(struct Node *head) {
    }*/
   free(external_table);
 
-  
+  if (error_flag == 0) {
+	/* free the binary table */
   for (i = 0; i < IC + DC; i++) {
     free(binary_table[i]);
     free(binary_table_translated[i]);
   }
   free(binary_table);
   free(binary_table_translated);
-
+  }
   /* free the linked list */
   destroy_linked_list(head);
 }

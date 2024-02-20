@@ -1,9 +1,11 @@
-#include "../front.h"
 /*#include "../tables.h"*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../front.h"
+#include "structs_func.h"
+#include "encoder.h"
 #define WIDTH_OF_WORD 15 /*14?????????????*/
 #define MAX_DATA_VALUE 8191
 #define MIN_DATA_VALUE -8192
@@ -18,119 +20,38 @@ char saved_words[26][6] = {"mov", "cmp", "add",   "sub",    "lea", "not", "clr",
 int error_flag = 0;
 int num_of_codes = 0;
 int current_pattern_num = 0;
-
-Trie symbols, constant, externals, entries; /*אולי להוסיף עץ בשם לבהירות*/
 int IC = 0, DC = 0;
-Code *code, data;
 
-Symbol *symbol_table;
-int num_of_symbols = 0, size_of_symbol_table = 4;
 
-External *external_table;
-int num_of_externals_in_table = 0;
-
-Entry *entry_table;
-int num_of_entries_in_table = 0;
-
-Symbol *symbol_table_of_entries;
-int num_of_symbols_in_entries = 0;
-
-/* Constant *constant_table;
- int num_of_constants_in_table = 0;
- int size_in_constant_table = 4;*/
-
-Symbol create_symbol(char *label, int address, int type, int line_in_file) {
-  Symbol s = (Symbol)calloc(1, sizeof(struct symbol));
-  if (!s) {
-    print_error_memory(line_in_file);
-    return NULL;
-  }
-  strcpy(s->label, label);
-  s->address = address;
-  s->type = type;
-  s->line_in_file = line_in_file;
-
-  if (insert_to_trie(symbols, label, s)) {
-    if (num_of_symbols == size_of_symbol_table) {
-      symbol_table = (Symbol *)realloc(
-          symbol_table, sizeof(Symbol) * (size_of_symbol_table * 2));
-      size_of_symbol_table *= 2;
-    }
-    (symbol_table[num_of_symbols]) = s;
-    num_of_symbols++;
-    return s;
-  }
-  print_error_msg("fail to add symbol", line_in_file);
-  return NULL;
-}
-
-Constant create_constant(char *label, int value, int line_in_file) {
-  Constant c = (Constant)calloc(1, sizeof(struct constant));
-  if (!c) {
-    print_error_memory(line_in_file);
-    return NULL;
-  }
-  c->label = label;
-  c->value = value;
-  c->line_in_file = line_in_file;
-  if (insert_to_trie(constant, label, c)) {
-    /* if (num_of_constants_in_table == size_in_constant_table)
-       constant_table = (Constant *)realloc(
-           constant_table, sizeof(Constant) * (size_in_constant_table *= 2));
-     constant_table[num_of_constants_in_table++] = c;
-     size_in_constant_table *= 2;*/
-    return c;
-  }
-  print_error_msg("fail to add constant", line_in_file);
-  return NULL;
-}
-
-External create_external(char *label, int line_in_file) {
-  External e = (External)calloc(1, sizeof(struct external));
-  if (!e) {
-    print_error_memory(line_in_file);
-    return NULL;
-  }
-  e->label = label;
-  e->line_in_file = line_in_file;
-  e->addresses = (int *)calloc(1, sizeof(int));
-  
-  if (insert_to_trie(externals, label, e)) {
-    external_table[num_of_externals_in_table++] = e;
-    return e;
-  }
-  print_error_msg("fail to add external", line_in_file);
-  return NULL;
-}
-
-void insert_address_to_external(External e, int address) {
-  e->addresses =
-      (int *)realloc(e->addresses, sizeof(int) * (e->number_of_addresses + 1));
-  e->addresses[e->number_of_addresses] = address;
-  e->number_of_addresses++;
-}
-
-Entry create_entry(Symbol symbol, int line_in_file) { /*למ הוגדר ככה בסימבול?*/
-  Entry e = (Entry)calloc(1, sizeof(struct entry));
-  e->symbol = symbol;
-  e->line_in_file = line_in_file;
-  if (insert_to_trie(entries, symbol->label, e)) {
-    entry_table[num_of_entries_in_table++] = e;
-    return e;
-  }
-  return NULL;
-}
-
+/**
+ * @brief Print error message
+ * 
+ * @param msg The message to print
+ * @param line The line in the file
+ */
 void print_error_memory(int line) {
   printf("error: fail to allocate memory in line %d\n", line);
   error_flag = 1;
 }
 
+
+/**
+ * @brief Print error message
+ * 
+ * @param msg The message to print
+ * @param line The line in the file
+ */
 void print_error_msg(char *msg, int line) {
   printf("error: %s in line %d\n", msg, line);
   error_flag = 1;
 }
 
+
+/**
+ * @brief Add IC to symbol table
+ * 
+ * @param IC The IC to add
+ */
 void add_IC_to_symbol_table(int IC) {
   int i;
   Symbol s;
@@ -143,67 +64,15 @@ void add_IC_to_symbol_table(int IC) {
   }
 }
 
-char *toBinaryString(int n, int num_bits) {
-  int i;
-  char *string = malloc(num_bits + 1);
-  if (!string) {
-    return NULL;
-  }
-  for (i = num_bits - 1; i >= 0; i--) {
-    string[i] = (n & 1) + '0';
-    n >>= 1;
-  }
-  string[num_bits] = '\0';
-  return string;
-}
 
-char *encoded_register(int n) { return toBinaryString(n, 3); }
 
-char *encoded_registers(int n1, int n2) {
-  char *result = malloc(WIDTH_OF_WORD),*reg1,*reg2; /*now its 15*/
-  int i;
-  if (!result) {
-    return NULL;
-  }
-  result[WIDTH_OF_WORD - 1] = '\0';
-  
 
-  /* initialize result to 0 */
-  for (i = 0; i < 14; i++) {
-    result[i] = '0';
-  }
-
-  reg1 = encoded_register(n1);
-  reg2 = encoded_register(n2);
-
-  for (i = 0; i < 3; i++) {
-    result[i + 6] = reg1[i];
-    result[i + 9] = reg2[i];
-  }
-  free(reg1);
-  free(reg2);
-  return result;
-}
-
-char *encoded_data(int n) {
-  return toBinaryString(n, WIDTH_OF_WORD - 1);
-} /*now 15*/
-
-char *encoded_immidiate_number(int n) {
-  char *base = toBinaryString(n, 12);
-  char *result = calloc(WIDTH_OF_WORD, sizeof(char));
-  if (!result) {
-    print_error_memory(current_pattern_num);
-    return NULL;
-  }
-  strcat(result, base);
-  free(base);
-  result[WIDTH_OF_WORD - 1] = '\0';
-  result[12] = '0';
-  result[13] = '0';
-  return result;
-}
-
+/**
+ * @brief Check validation of operands number
+ * 
+ * @param instruction The instruction to check
+ * @return int 1 if valid, 0 otherwise
+ */
 int check_validation_of_operands_num(struct pattern *instruction) {
   int i = instruction->choice.inst.num_of_operands;
 
@@ -241,6 +110,13 @@ int check_validation_of_operands_num(struct pattern *instruction) {
   return 0;
 }
 
+
+/**
+ * @brief Check validation of operands type
+ * 
+ * @param instruction The instruction to check
+ * @return int 1 if valid, 0 otherwise
+ */
 int check_validation_of_operands_type(struct pattern *instruction) {
   int i = instruction->choice.inst.op_type;
   if ((i == MOV || (i >= ADD && i <= DEC) || i == RED) &&
@@ -257,41 +133,17 @@ int check_validation_of_operands_type(struct pattern *instruction) {
   return 1;
 }
 
-char *encoded_instruction(struct pattern *instruction) {
-  char *result = malloc(WIDTH_OF_WORD), *op_code;
-  int i, j;
-  if (!result) {
-    print_error_memory(current_pattern_num);
-    return NULL;
-  }
-  result[WIDTH_OF_WORD - 1] = '\0';
-  
 
-  /* initialize result to 0 */
-  for (i = 0; i < 14; i++) {
-    result[i] = '0';
-  }
 
-  op_code = toBinaryString(instruction->choice.inst.op_type, 4);
 
-  for (i = 0; i < 4; i++) {
-    result[i + 4] = op_code[i];
-  }
-  free(op_code);
-  /*assumming that the first operand is the target operand
-   */
-  for (i = 0; i < instruction->choice.inst.num_of_operands; i++) {
-    char *operand =
-        toBinaryString(instruction->choice.inst.operands[i].op_type, 2);
-    for (j = 0; j < 2; j++) {
-      result[i * -2 + j + 10] = operand[j];
-    }
-    free(operand);
-  }
 
-  return result;
-}
-
+/**
+ * @brief Extract immidiate number from the instruction
+ * 
+ * @param p The instruction
+ * @param num_of_operand The number of the operand
+ * @return int The immidiate number
+ */
 int extract_immidiate_number(struct pattern *p, int num_of_operand) {
   char *buffer =
       p->choice.inst.operands[num_of_operand].operand_value.const_num;
@@ -312,6 +164,13 @@ int extract_immidiate_number(struct pattern *p, int num_of_operand) {
   return 0;
 }
 
+
+/**
+ * @brief Check if the word is a saved word
+ * 
+ * @param word The word to check
+ * @return int 1 if saved word, 0 otherwise
+ */
 int is_saved_word(char *word) {
   int i;
   for (i = 0; i < 26; i++) {
@@ -321,6 +180,13 @@ int is_saved_word(char *word) {
   return 0;
 }
 
+
+/**
+ * @brief Determaine the sign of the number
+ * 
+ * @param buffer The buffer to check
+ * @return int 1 if positive, -1 if negative, 0 otherwise
+ */
 int determaine_sign(char *buffer) {
   if (buffer[0] == '-') {
     return -1;
@@ -331,6 +197,13 @@ int determaine_sign(char *buffer) {
   }
 }
 
+
+/**
+ * @brief Check if the string contains only digits
+ * 
+ * @param str The string to check
+ * @return int 1 if contains only digits, 0 otherwise
+ */
 int containsOnlyDigits(const char *str) {
   while (*str) {
     if (!isdigit(*str)) {
@@ -341,6 +214,12 @@ int containsOnlyDigits(const char *str) {
   return 1; 
 }
 
+
+/**
+ * @brief Handle lable error by printing an error message based on the error
+ * 
+ * @param p The pattern to check
+ */
 void handle_lable_error(struct pattern *p) {
   if (p->label[0]) {
     if (exist_in_trie(macro_trie, p->label)) {
@@ -358,6 +237,14 @@ void handle_lable_error(struct pattern *p) {
   }
 }
 
+
+/**
+ * @brief Handle lable define by adding the lable to the symbol table
+ * 
+ * @param p The pattern to check
+ * @param type The type of the lable
+ * @param counter The counter to add
+ */
 void handle_lable_define(struct pattern *p, char *type, int counter) {
   int type_of_op = (strcmp(type, "data") == 0) ? 1 : 0;
 
@@ -377,6 +264,13 @@ void handle_lable_define(struct pattern *p, char *type, int counter) {
   }
 }
 
+
+/**
+ * @brief Allocate memory for instructions
+ * 
+ * @param ins The instruction to allocate memory for
+ * @param code_i The code to allocate memory for
+ */
 void allocate_memory_for_instructions(struct pattern *ins, Code *code_i) {
   int amount, i;
   WordBin *temp;
@@ -420,6 +314,12 @@ void allocate_memory_for_instructions(struct pattern *ins, Code *code_i) {
   }
 }
 
+
+/**
+ * @brief Allocate memory for data
+ * 
+ * @param data_i The data to allocate memory for
+ */
 void allocate_memory_for_data(struct pattern *data_i) {
   int i, exist, new;
   WordBin *temp;
@@ -440,6 +340,12 @@ void allocate_memory_for_data(struct pattern *data_i) {
   }
 }
 
+
+/**
+ * @brief The first round of the assembler
+ * 
+ * @param head The head of the linked list
+ */
 void first_round(struct Node *head) {
   struct Node *current_pattern = head;
 
@@ -486,6 +392,7 @@ void first_round(struct Node *head) {
     /* dealing with syntax errors */
     case ERROR:
       printf("%s\n", current_pattern->data->choice.error);
+	  error_flag = 1;
       break;
 
       /* dealing with directives */
@@ -612,6 +519,10 @@ void first_round(struct Node *head) {
         print_error_msg("symbol already exist as symbol", current_pattern_num);
         continue;
       }
+	  if (exist_in_trie(constant, current_pattern->data->label)) {
+		print_error_msg("symbol already exist as constant", current_pattern_num);
+		continue;
+	  }
       create_constant(current_pattern->data->label,
                                    current_pattern->data->choice.def.value,
                                    current_pattern_num);

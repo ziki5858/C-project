@@ -1,5 +1,5 @@
-#include "front.h"
-#include "tables.h"
+#include "../front.h"
+#include "../tables.h"
 
 
 extern int IC, DC;
