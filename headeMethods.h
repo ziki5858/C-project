@@ -97,11 +97,12 @@ extern const int true_inValid;
 /**
  * @brief Categorizes a word based on its type and updates the pattern structure.
  * @param file Pointer to the file being processed.
+ * @param lineB The line being processed.
  * @param word The word to be categorized.
  * @param data A pointer to the pattern data structure to be updated.
  * @param head A pointer to the head of the linked list.
  */
-void categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head);
+void categorizeWord(FILE *file, char *lineB, char *word, struct pattern *data, struct Node **head);
 
 
 /* Directive processing functions */
@@ -310,12 +311,13 @@ int processDefine(FILE *file, char *word, struct pattern *data, struct Node **he
 /**
  * @brief Function to process a generic directive.
  * @param file Pointer to the file being processed.
+ * @param lineB The line being processed.
  * @param word The word to be checked.
  * @param data A pointer to the pattern data structure to be updated.
  * @param head A pointer to the head of the linked list.
  * @return 1 if the processing is successful; otherwise, 0.
  */
-int processDirective(FILE *file, char *word, struct pattern *data, struct Node **head);
+int processDirective(FILE *file,char *lineB, char *word, struct pattern *data, struct Node **head);
 /**
  * @brief Function to process a generic instruction.
  * @param file Pointer to the file being processed.

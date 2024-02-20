@@ -235,7 +235,7 @@ int handleDataDirective(FILE *file, char *word, struct pattern *data, struct Nod
         /* Tokenize the word to process the next numeric argument */
         token = strtok(NULL, ",");
     }
-    return true; 
+    return 2;/*case .data for fseek again*/ 
 }
 
 int checkCommaWord(FILE *file, char *word, struct pattern *data, struct Node **head) {

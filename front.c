@@ -97,27 +97,24 @@ void insertNode(struct Node **head, struct pattern * data) {
 }
 
 void processLine(FILE *file, struct Node **head) {
-    char word[MAX_LINE_SIZE];
-    char lineB[MAX_LINE_SIZE+2];
-    lineNumber=0;
+    char word[MAX_LINE_SIZE]; /* Buffer to store individual words */
+    char lineB[MAX_LINE_SIZE+2]; /* Buffer to store the entire line read from file, plus extra space for potential null terminator and newline character */
 
-    while (fgets(lineB, sizeof(lineB), file) != NULL){
+    while (fgets(lineB, sizeof(lineB), file) != NULL){ /* Read a line from the file until NULL is encountered (end of file) */
         int c;
-        struct pattern * data = (struct pattern*)calloc(1, sizeof(struct pattern));
+        struct pattern * data = (struct pattern*)calloc(1, sizeof(struct pattern)); /* Allocate memory for a structure to store pattern data */
         
-        if (strlen(lineB) > MAX_LINE_SIZE ) {
-            isError(file,word, data, "Error: Line exceeds maximum length of 80 characters", "front.c", head);
+        if (strlen(lineB) > MAX_LINE_SIZE ) { /* If the length of the line exceeds the maximum allowed size */
+            isError(file, word, data, "Error: Line exceeds maximum length of 80 characters", "front.c", head); /* Call a function to handle the error */
         }
-       
         else{
-            fseek(file, -strlen(lineB), SEEK_CUR);
-            fscanf(file, "%s", word);
-            categorizeWord(file,word, data, head);
-            while ((c = fgetc(file)) != '\n' && c != EOF);
+            fseek(file, -strlen(lineB), SEEK_CUR); /* Move the file pointer back to the beginning of the line */
+            fscanf(file, "%s", word); /* Read the first word from the line */
+            categorizeWord(file, lineB, word, data, head); /* Call a function to categorize/process the word */
         }
-        lineNumber++;   
+        while ((c = fgetc(file)) != '\n' && c != EOF); /* Discard remaining characters in the current line until a newline or end of file is encountered */
+        num_of_patterns++; /* Increment the count of patterns processed */
     }
-    num_of_patterns=lineNumber;
 }
 
 struct Node *processAssemblyText(const char *filename) {
@@ -133,7 +130,7 @@ struct Node *processAssemblyText(const char *filename) {
 }
 
 
-void categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **head) {
+void categorizeWord(FILE *file, char *lineB, char *word, struct pattern *data, struct Node **head) {
     int return_value;
 
     if (strcmp(word, ".define") == 0) {
@@ -143,7 +140,7 @@ void categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **
         }
     }
 
-    return_value = processDirective(file, word, data, head);/*Here undle label for all cases*/
+    return_value = processDirective(file,lineB, word, data, head);/*Here undle label for all cases*/
     if (return_value != 0) {
         return;
     }
@@ -159,7 +156,7 @@ void categorizeWord(FILE *file, char *word, struct pattern *data, struct Node **
 int handleReturnValue(int return_value, struct pattern *data, struct Node **head) {
     if (return_value == -1) {
         return true_inValid;
-    } else if (return_value == 1) {
+    } else if (return_value == 1||return_value == 2) {
         insertNode(head, data);
         return true;
     }
@@ -173,10 +170,14 @@ int processDefine(FILE *file, char *word, struct pattern *data, struct Node **he
     return handleReturnValue(return_value, data, head);
 }
 
-int processDirective(FILE *file, char *word, struct pattern *data, struct Node **head) {
+int processDirective(FILE *file,char *lineB, char *word, struct pattern *data, struct Node **head) {
     int return_value;
+   
     data->type_line = DIRECTIVE;
     return_value = directiveFormat(file, word, data, head);
+    if(return_value == 2){
+        fseek(file, -strlen(lineB), SEEK_CUR);
+    }
     return handleReturnValue(return_value, data, head);
 }
 
@@ -188,12 +189,9 @@ int processInstruction(FILE *file, char *word, struct pattern *data, struct Node
 }
 
 void isError(FILE *file, char *word, struct pattern *data, const char *errorMessage, const char *filename, struct Node **head){
-    int c;
     data->type_line = ERROR;
     /*Update the error message with the line number and filename*/
-    sprintf(data->choice.error, "%s, File: %s, Line: %d", errorMessage, filename, lineNumber);
+    sprintf(data->choice.error, "%s, File: %s, Line: %d", errorMessage, filename, num_of_patterns);
     insertNode(head, data);
-    /*Skip to the next line*/
-    while ((c = fgetc(file)) != '\n' && c != EOF);
 }
 
