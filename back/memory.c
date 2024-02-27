@@ -66,7 +66,7 @@ void free_memory(struct Node *head) {
   int i,j;
 
   /* free the code array, and all the lines in it */
-  extern Code *code, data;
+  
   extern int num_of_codes;
   for (i = 0; i < num_of_codes; i++) {
     for (j = 0; j < code[i]->num_of_lines; j++) {
