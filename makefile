@@ -32,7 +32,7 @@ directive.o: ./front/directive.c
 define.o: ./front/define.c
 	gcc -c ${CFLAGS} ./front/define.c -o define.o
 
-preprossesor.o: ./preprocessor/preprossesor.c
+preprossesor.o: ./preprocessor/preprossesor.c ./preprocessor/preprossesor.h
 	gcc -c ${CFLAGS}  ./preprocessor/preprossesor.c -o preprossesor.o
 
 structs_func.o: ./assemblerRounds/structs_func.c ./assemblerRounds/structs_func.h
