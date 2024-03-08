@@ -1,9 +1,43 @@
+/**
+ * @file structs_func.c
+ * @author shlomo weisz
+ * @brief  This file contains the implementation of the functions that used to create the structs of the assembler.
+ * the file contains the following functions:
+ * 1. create_symbol - a function that creates a symbol.
+ * 2. create_constant - a function that creates a constant.
+ * 3. create_external - a function that creates an external.
+ * 4. insert_address_to_external - a function that inserts an address to an external.
+ * 5. create_entry - a function that creates an entry.
+ * the file also contains the global variables of the structs:
+ * 1. symbols - a trie that contains the symbols of the assembler.
+ * 2. constant - a trie that contains the constants of the assembler.
+ * 3. externals - a trie that contains the externals of the assembler.
+ * 4. entries - a trie that contains the entries of the assembler.
+ * 5. code - a struct that contains the code of the assembler.
+ * 6. data - a struct that contains the data of the assembler.
+ * 7. symbol_table - an array that contains the symbols of the assembler.
+ * 8. num_of_symbols - the number of symbols in the symbol table.
+ * 9. size_of_symbol_table - the size of the symbol table.
+ * 10. external_table - an array that contains the externals of the assembler.
+ * 11. num_of_externals_in_table - the number of externals in the external table.
+ * 12. entry_table - an array that contains the entries of the assembler.
+ * 13. num_of_entries_in_table - the number of entries in the entry table.
+ * 14. symbol_table_of_entries - an array that contains the symbols of the entries.
+ * 15. num_of_symbols_in_entries - the number of symbols in the symbol table of the entries.
+ * @version 0.1
+ * @date 2024-03-07
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include "structs_func.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-Trie symbols, constant, externals, entries; /*אולי להוסיף עץ בשם לבהירות*/
+
+/* Global variables*/
+Trie symbols, constant, externals, entries; 
 
 Code *code, data;
 
@@ -19,9 +53,7 @@ int num_of_entries_in_table = 0;
 Symbol *symbol_table_of_entries;
 int num_of_symbols_in_entries = 0;
 
-/* Constant *constant_table;
- int num_of_constants_in_table = 0;
- int size_in_constant_table = 4;*/
+
 
 
 /**
@@ -39,13 +71,14 @@ Symbol create_symbol(char *label, int address, int type, int line_in_file) {
     print_error_memory(line_in_file);
     return NULL;
   }
+  /* set the values of the symbol */
   strcpy(s->label, label);
   s->address = address;
   s->type = type;
   s->line_in_file = line_in_file;
 
   if (insert_to_trie(symbols, label, s)) {
-    if (num_of_symbols == size_of_symbol_table) {
+    if (num_of_symbols == size_of_symbol_table) { /* if the symbol table is full, we will allocate more memory */
       symbol_table = (Symbol *)realloc(
           symbol_table, sizeof(Symbol) * (size_of_symbol_table * 2));
       size_of_symbol_table *= 2;
@@ -73,6 +106,7 @@ Constant create_constant(char *label, int value, int line_in_file) {
     print_error_memory(line_in_file);
     return NULL;
   }
+  /* set the values of the constant */
   c->label = label;
   c->value = value;
   c->line_in_file = line_in_file;
@@ -97,12 +131,13 @@ External create_external(char *label, int line_in_file) {
     print_error_memory(line_in_file);
     return NULL;
   }
+  /* set the values of the external */
   e->label = label;
   e->line_in_file = line_in_file;
   e->addresses = (int *)calloc(1, sizeof(int));
   
   if (insert_to_trie(externals, label, e)) {
-    external_table[num_of_externals_in_table++] = e;
+    external_table[num_of_externals_in_table++] = e; /* add the external to the table */
     return e;
   }
   print_error_msg("fail to add external", line_in_file);
@@ -111,9 +146,9 @@ External create_external(char *label, int line_in_file) {
 
 
 /**
- * @brief Insert address to external
+ * @brief Insert address to external 
  * 
- * @param e the external
+ * @param e the external to insert the address
  * @param address The address to insert
  */
 void insert_address_to_external(External e, int address) {
@@ -133,10 +168,11 @@ void insert_address_to_external(External e, int address) {
  */
 Entry create_entry(Symbol symbol, int line_in_file) { /*למ הוגדר ככה בסימבול?*/
   Entry e = (Entry)calloc(1, sizeof(struct entry));
+  /* set the values of the entry */
   e->symbol = symbol;
   e->line_in_file = line_in_file;
   if (insert_to_trie(entries, symbol->label, e)) {
-    entry_table[num_of_entries_in_table++] = e;
+    entry_table[num_of_entries_in_table++] = e; /* add the entry to the table */
     return e;
   }
   return NULL;

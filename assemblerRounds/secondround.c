@@ -5,36 +5,41 @@
 #include <string.h>
 #define WIDTH_OF_WORD 15
 
-extern Code *code;
-extern Code data;
-extern Trie symbols, constant, externals;
+
 extern int IC;
 extern int DC;
 extern int error_flag;
 extern int num_of_codes;
-extern Entry *entry_table;
-extern int num_of_entries;
 
 char **binary_table;
+
+
+/**
+ * @brief  check if all the entries are defined
+ * 
+ */
 void validate_entreis() {
   Entry e;
   int i;
-  printf("num of entries: %d\n", num_of_entries);
+  /* loop over the entry table and check if the symbol is defined */
   for (i = 0; i < num_of_entries_in_table; i++) {
     e = entry_table[i];
     if (e->symbol->address == 0) {
 
-      printf("error: in line:%d entry %s definition not found\n",
-             e->line_in_file, e->symbol->label);
+      printf("error: in line:%d entry %s definition not found\n", e->line_in_file, e->symbol->label);
       error_flag = 1;
     }
   }
 }
+
+
+
 void secondround(struct Node *head) {
   char *result, *temp_res;
   int type_ARE, value, i, words =0, j = 0;
   Symbol s;
   validate_entreis();
+  
   while (head) {
     if (head->data->type_line == INSTRUCTION) {
 
@@ -102,6 +107,8 @@ void secondround(struct Node *head) {
     head = head->next;
   }
 }
+
+
 
 void to_binary_table() {
   int i, j, k;

@@ -4,6 +4,17 @@
 #define MAX_LINE_SIZE 81
 #define MAX_LABEL_SIZE 31
 #define MAX_ERROR_SIZE 300
+
+/**
+ * @brief this struct is used to represent a line in the assembly file.
+ * the line type can be a directive, an instruction, a define or an error.
+ * if the line is a directive, there is a union with the directive type and the data.
+ * if the line is an instruction, there is a union with the instruction type and the operands.
+ * if the line is a define, there is a union with the value of the define.
+ * if the line is an error, there is a union with the error message.
+ * 
+ */
+
 /* Enumeration for directive types */
 enum DirectiveType {
     ENTRY, /**< Entry directive */
@@ -57,11 +68,23 @@ struct pattern {
         } def;
     } choice;
 };
+
+/**
+ * @brief  This struct is used to represent a node in a linked list.
+ * each node has a pointer to the data, and a pointer to the next node.
+ * 
+ */
 struct Node {
   struct pattern *data;
   struct Node *next;
 };
 
+
+/**
+ * @brief  This struct is used to represent a symbol in the assembly file.
+ * each symbol has a label, an address, a type and a line in the file.
+ *  
+ */
 struct symbol {
   char label[MAX_LABEL_SIZE];
   int address;
@@ -69,18 +92,32 @@ struct symbol {
   int line_in_file;
 };
 
+
+/**
+ * @brief  This struct is used to represent a constant in the assembly file.
+ * each constant has a label, a value and a line in the file.
+ *  
+ */
 struct constant {
   char *label;
   int value;
   int line_in_file;
 };
 
+
+/**
+ * @brief  This struct is used to represent a code in the assembly file.
+ * each code has a label, an address, a line in the file and a pointer to the next code.
+ *  
+ */
 struct external {
   char *label;
   int *addresses;
   int number_of_addresses;
   int line_in_file;
 };
+
+/* make short names for the structs pointers */
 typedef struct symbol *Symbol;
 typedef struct constant *Constant;
 typedef struct external *External;
@@ -89,11 +126,23 @@ typedef struct code *Code;
 typedef struct word_bin *WordBin;
 typedef struct pattern *Pattern ;
 typedef struct macro * Macro ;
+
+/**
+ * @brief  This struct is used to represent a macro in the assembly file.
+ * each macro has a name, a value and a number of lines.  
+ */
 struct macro {
 	char name[32];
 	char *value;
 	int number_of_lines;
 };
+
+
+/**
+ * @brief  This struct is used to represent a entry in the assembly file.
+ * each entry has a symbol and a line in the file.
+ *  
+ */
 struct entry {
   Symbol symbol;
   int line_in_file;

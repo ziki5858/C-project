@@ -1,7 +1,8 @@
 /**
  * @file preprossesor.c
  * @author shlomo-weisz
- * @brief this program is a preprossesor for the assembler
+ * @brief this program is a preprossesor for the assembler. it gets a file with a macro definition and a file with a macro call,
+ * and it will replace the macro call with the macro definition. the program will create a new file with the replaced macro call.
  * @version 0.1
  * @date 2024-01-10
  *

@@ -1,6 +1,6 @@
 CFLAGS = -Wall -ansi -pedantic -fsanitize=address -g
-assembler:  firstround.o secondround.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o
-	gcc ${CFLAGS}  firstround.o secondround.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o -o assembler
+assembler:  firstround.o secondround.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o
+	gcc ${CFLAGS}  firstround.o secondround.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o -o assembler
 
 firstround.o: ./assemblerRounds/firstround.c
 	gcc -c ${CFLAGS} ./assemblerRounds/firstround.c -o firstround.o
@@ -40,5 +40,12 @@ structs_func.o: ./assemblerRounds/structs_func.c ./assemblerRounds/structs_func.
 
 encoder.o: ./assemblerRounds/encoder.c ./assemblerRounds/encoder.h
 	gcc -c ${CFLAGS} ./assemblerRounds/encoder.c -o encoder.o
+
+validation.o: ./assemblerRounds/validation.c ./assemblerRounds/validation.h
+	gcc -c ${CFLAGS} ./assemblerRounds/validation.c -o validation.o
+	
+bilder.o: ./assemblerRounds/bilder.c ./assemblerRounds/bilder.h
+	gcc -c ${CFLAGS} ./assemblerRounds/bilder.c -o bilder.o
+
 clean:
 	rm -f *.o 

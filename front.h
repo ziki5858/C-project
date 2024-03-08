@@ -106,7 +106,7 @@ struct entry {
   Symbol symbol;
   int line_in_file;
 };
-#endif
+
 struct word_bin {
   char word[WIDTH_OF_WORD]; /**/
 };
@@ -116,6 +116,7 @@ struct code {
   WordBin *lines;
   int line_in_file;
 };
+#endif
 void print_error_memory(int line);
 void print_error_msg(char *msg, int line);
 extern int num_of_entries;

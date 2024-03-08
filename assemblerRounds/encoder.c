@@ -1,3 +1,20 @@
+/**
+ * @file encoder.c
+ * @author shlomo weisz
+ * @brief  This file contains the implementation of the functions that used to encode the instructions and the operands of the assembler.
+ * the file contains the following functions:
+ * 1. toBinaryString - a function that converts a number to a binary string.
+ * 2. encoded_register - a function that encodes a register.
+ * 3. encoded_registers - a function that encodes two registers.
+ * 4. encoded_data - a function that encodes data.
+ * 5. encoded_immidiate_number - a function that encodes an immidiate number.
+ * 6. encoded_instruction - a function that encodes an instruction.
+ * @version 0.1
+ * @date 2024-03-07
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include "encoder.h"
 /**
  * @brief Convert number to binary string
@@ -12,6 +29,7 @@ char *toBinaryString(int n, int num_bits) {
   if (!string) {
     return NULL;
   }
+  /* convert the number to binary */
   for (i = num_bits - 1; i >= 0; i--) {
     string[i] = (n & 1) + '0';
     n >>= 1;
@@ -91,7 +109,7 @@ char *encoded_immidiate_number(int n) {
   strcat(result, base);
   free(base);
   result[WIDTH_OF_WORD - 1] = '\0';
-  result[12] = '0';
+  result[12] = '0'; /* A flag for immidiate number */
   result[13] = '0';
   return result;
 }
