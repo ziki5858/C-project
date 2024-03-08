@@ -155,3 +155,65 @@ char *encoded_instruction(struct pattern *instruction) {
 
   return result;
 }
+
+
+/**
+ * @brief  encode the direct operand, by converting the value to binary and adding the ARE flag
+ * 
+ * @param value  the value of the operand
+ * @param are_flag  the ARE flag
+ * @return char*  the encoded operand
+ */
+char *encoded_direct(int value, int are_flag){
+	char *result, *temp_res;
+	result = (char*)calloc(WIDTH_OF_WORD, sizeof(char));
+              if (result == NULL) {
+                printf("error in allocation memory\n");
+                error_flag = 1;
+                return NULL;
+              }
+	temp_res = toBinaryString(value, 12);
+    strcpy(result, temp_res);
+	free(temp_res);
+	temp_res = toBinaryString(are_flag, 2);
+    strcat(result, temp_res);
+	free(temp_res);
+	return result;
+}
+
+
+/**
+ * @brief convert the code and data tables to binary table
+ * 
+ */
+void to_binary_table() {
+  int i, j, k;
+  /* allocate memory for the binary table */
+  char **result = (char **)calloc(DC + IC, sizeof(char *));
+  if (result == NULL) {
+    printf("error in allocation memory\n");
+    error_flag = 1;
+  }
+  /* loop over the code table and copy the lines to the binary table */
+  for (i = 0, k = 0; i < num_of_codes; i++) {
+    for (j = 0; j < code[i]->num_of_lines; j++) {
+      result[k] = calloc(WIDTH_OF_WORD, sizeof(char));
+      if (result[k] == NULL) {
+        printf("error in allocation memory\n");
+        error_flag = 1;
+      }
+      strcat(result[k], (char *)code[i]->lines[j]);
+      k++;
+    }
+  }
+  /* loop over the data table and copy the lines to the binary table */
+  for (i = 0; i < data->num_of_lines; i++) {
+    result[i + k] = calloc(WIDTH_OF_WORD, sizeof(char));
+    if (result[i + k] == NULL) {
+      printf("error in allocation memory\n");
+      error_flag = 1;
+    }
+    strcpy(result[i + k], (char *)data->lines[i]);
+  }
+  binary_table = result;
+}

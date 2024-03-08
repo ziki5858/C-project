@@ -26,6 +26,8 @@
  * instructions in the pattern struct, according to the number of operands and
  * the type of the operands in the instruction.
  * 13. allocate_memory_for_data - a function that allocate memory for data.
+ * 14. validate_entreis - a function that check if all the entries are defined.
+ * 15. there_is_direct - a function that check if there is a direct operand in the instruction.
  * @version 0.1
  * @date 2024-03-07
  *
@@ -350,4 +352,39 @@ void allocate_memory_for_data(struct pattern *data_i, int current_pattern_num) {
       return;
     }
   }
+}
+
+
+/**
+ * @brief  check if all the entries are defined
+ * 
+ */
+void validate_entreis() {
+  Entry e;
+  int i;
+  /* loop over the entry table and check if the symbol is defined */
+  for (i = 0; i < num_of_entries_in_table; i++) {
+    e = entry_table[i];
+    if (e->symbol->address == 0) {
+
+      printf("error: in line:%d entry %s definition not found\n", e->line_in_file, e->symbol->label);
+      error_flag = 1;
+    }
+  }
+}
+
+
+/**
+ * @brief check if there is a direct operand in the instruction.
+ * 
+ * @param head The head of the linked list
+ * @return int 1 if there is a direct operand, 0 otherwise
+ */
+int there_is_direct(struct Node *head) {
+  if (head->data->choice.inst.operands[0].op_type == DIRECT ||
+    head->data->choice.inst.operands[0].op_type == DIRECT_INDEX ||( head->data->choice.inst.num_of_operands == 2 &&
+    (head->data->choice.inst.operands[1].op_type == DIRECT ||
+     head->data->choice.inst.operands[1].op_type == DIRECT_INDEX)))
+	return 1;
+  return 0;
 }

@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include "structs.h"
+#include "../front.h"
 #define WIDTH_OF_WORD 15
 
 
 
 extern int current_pattern_num;
-
+extern int num_of_codes;
 /**
  * @brief Convert number to binary string
  *
@@ -65,3 +66,20 @@ char *encoded_immidiate_number(int n);
  * @return char* The encoded instruction
  */
 char *encoded_instruction(struct pattern *instruction);
+
+
+/**
+ * @brief  encode the direct operand, by converting the value to binary and adding the ARE flag
+ * 
+ * @param value  the value of the operand
+ * @param are_flag  the ARE flag
+ * @return char*  the encoded operand
+ */
+char *encoded_direct(int value, int are_flag);
+
+
+/**
+ * @brief convert the code and data tables to binary table
+ * 
+ */
+void to_binary_table();

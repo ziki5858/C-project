@@ -1,12 +1,11 @@
 CFLAGS = -Wall -ansi -pedantic -fsanitize=address -g
-assembler:  firstround.o secondround.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o
-	gcc ${CFLAGS}  firstround.o secondround.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o -o assembler
+assembler:  rounds.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o
+	gcc ${CFLAGS}  rounds.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o -o assembler
 
-firstround.o: ./assemblerRounds/firstround.c
-	gcc -c ${CFLAGS} ./assemblerRounds/firstround.c -o firstround.o
+rounds.o: ./assemblerRounds/rounds.c
+	gcc -c ${CFLAGS} ./assemblerRounds/rounds.c -o rounds.o
 
-secondround.o: ./assemblerRounds/secondround.c
-	gcc -c ${CFLAGS} ./assemblerRounds/secondround.c -o secondround.o
+
 
 back.o: ./back/back.c
 	gcc -c ${CFLAGS} ./back/back.c -o back.o

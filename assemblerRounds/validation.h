@@ -124,3 +124,19 @@ void allocate_memory_for_instructions(struct pattern *ins, Code *code_i, int cur
  * @param data_i The data to allocate memory for
  */
 void allocate_memory_for_data(struct pattern *data_i, int current_pattern_num);
+
+
+/**
+ * @brief  check if all the entries are defined
+ * 
+ */
+void validate_entreis();
+
+
+/**
+ * @brief check if there is a direct operand in the instruction.
+ * 
+ * @param head The head of the linked list
+ * @return int 1 if there is a direct operand, 0 otherwise
+ */
+int there_is_direct(struct Node *head);

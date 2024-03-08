@@ -147,6 +147,11 @@ struct entry {
   Symbol symbol;
   int line_in_file;
 };
+struct code {
+  int num_of_lines;
+  WordBin *lines;
+  int line_in_file;
+};
 #endif
 
 

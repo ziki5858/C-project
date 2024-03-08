@@ -12,7 +12,7 @@ endmcr
  sub r1, r4 
  m_mcr
 L1: inc L3 
-.entry LOOP
+.entry LOOP  
  bne LOOP 
 END: hlt 
 .define len = 4 
