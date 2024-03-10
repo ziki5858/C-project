@@ -1,0 +1,122 @@
+\hypertarget{define_8c}{}\doxysection{front/define.c File Reference}
+\label{define_8c}\index{front/define.c@{front/define.c}}
+{\ttfamily \#include \char`\"{}heade\+Methods.\+h\char`\"{}}\newline
+Include dependency graph for define.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{define_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3}{define\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is a define and update the pattern structure. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{define_8c_a529fe24170a61c22c810022e539206c3}{is\+Numeric}} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Function to check if a string is numeric. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{define_8c_aa0b3977cf0af0a66723704d8ca22fa37}{is\+Valid\+Constant\+Name}} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Function to check if a string is a valid constant name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3}\label{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3}} 
+\index{define.c@{define.c}!defineFormat@{defineFormat}}
+\index{defineFormat@{defineFormat}!define.c@{define.c}}
+\doxysubsubsection{\texorpdfstring{defineFormat()}{defineFormat()}}
+{\footnotesize\ttfamily int define\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is a define and update the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is a define; otherwise, -\/1. 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file define.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{define_8c_a9b934e4c8638e4436a0b6b440cea6fc3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{define_8c_a529fe24170a61c22c810022e539206c3}\label{define_8c_a529fe24170a61c22c810022e539206c3}} 
+\index{define.c@{define.c}!isNumeric@{isNumeric}}
+\index{isNumeric@{isNumeric}!define.c@{define.c}}
+\doxysubsubsection{\texorpdfstring{isNumeric()}{isNumeric()}}
+{\footnotesize\ttfamily int is\+Numeric (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Function to check if a string is numeric. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The word to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is numeric; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 48 of file define.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{define_8c_a529fe24170a61c22c810022e539206c3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{define_8c_aa0b3977cf0af0a66723704d8ca22fa37}\label{define_8c_aa0b3977cf0af0a66723704d8ca22fa37}} 
+\index{define.c@{define.c}!isValidConstantName@{isValidConstantName}}
+\index{isValidConstantName@{isValidConstantName}!define.c@{define.c}}
+\doxysubsubsection{\texorpdfstring{isValidConstantName()}{isValidConstantName()}}
+{\footnotesize\ttfamily int is\+Valid\+Constant\+Name (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Function to check if a string is a valid constant name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The word to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is a valid constant name; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file define.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{define_8c_aa0b3977cf0af0a66723704d8ca22fa37_icgraph}
+\end{center}
+\end{figure}

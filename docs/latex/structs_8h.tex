@@ -1,0 +1,734 @@
+\hypertarget{structs_8h}{}\doxysection{assembler\+Rounds/structs.h File Reference}
+\label{structs_8h}\index{assemblerRounds/structs.h@{assemblerRounds/structs.h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structs_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpattern}{pattern}}
+\item 
+struct \mbox{\hyperlink{structNode}{Node}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a node in a linked list. each node has a pointer to the data, and a pointer to the next node. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structsymbol}{symbol}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a symbol in the assembly file. each symbol has a label, an address, a type and a line in the file. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structconstant}{constant}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a constant in the assembly file. each constant has a label, a value and a line in the file. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structexternal}{external}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a code in the assembly file. each code has a label, an address, a line in the file and a pointer to the next code. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmacro}{macro}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a macro in the assembly file. each macro has a name, a value and a number of lines. ~\newline
+ \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structentry}{entry}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a entry in the assembly file. each entry has a symbol and a line in the file. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcode}{code}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{structs_8h_a706068f562dd5c64a8b7bbd4b2298dd1}{MAX\+\_\+\+LINE\+\_\+\+SIZE}}~81
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{structs_8h_a96127aad3b7750628d041f17c8490726}{MAX\+\_\+\+LABEL\+\_\+\+SIZE}}~31
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{structs_8h_a65c89d1d0a1292b0cb20a62e33f99902}{MAX\+\_\+\+ERROR\+\_\+\+SIZE}}~300
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structsymbol}{symbol}} $\ast$ \mbox{\hyperlink{structs_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}}
+\item 
+typedef struct \mbox{\hyperlink{structconstant}{constant}} $\ast$ \mbox{\hyperlink{structs_8h_a6285fc1207264550aa3f40302f54dd80}{Constant}}
+\item 
+typedef struct \mbox{\hyperlink{structexternal}{external}} $\ast$ \mbox{\hyperlink{structs_8h_aaa7ca4df7549cc433aee28a22f343dd7}{External}}
+\item 
+typedef struct \mbox{\hyperlink{structentry}{entry}} $\ast$ \mbox{\hyperlink{structs_8h_a33a7cf9e35c645e2357af82b0b94bbf6}{Entry}}
+\item 
+typedef struct \mbox{\hyperlink{structcode}{code}} $\ast$ \mbox{\hyperlink{structs_8h_abe3edd5382a2cebebc55bcbb54ea2161}{Code}}
+\item 
+typedef struct \mbox{\hyperlink{structword__bin}{word\+\_\+bin}} $\ast$ \mbox{\hyperlink{structs_8h_a3afa16dfd0f49429db5f377946493458}{Word\+Bin}}
+\item 
+typedef struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$ \mbox{\hyperlink{structs_8h_ab2704a73a309452dd220ddcbe06ce5ed}{Pattern}}
+\item 
+typedef struct \mbox{\hyperlink{structmacro}{macro}} $\ast$ \mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{structs_8h_a79bb11a21ca0169a3520c5053e045ced}{Directive\+Type}} \{ \newline
+\mbox{\hyperlink{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}{ENTRY}}
+, \mbox{\hyperlink{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}{EXTERN}}
+, \mbox{\hyperlink{structs_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}{STRING}}
+, \mbox{\hyperlink{structs_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}{DATA}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}{ENTRY}}
+, \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}{EXTERN}}
+, \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}{STRING}}
+, \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}{DATA}}
+, \newline
+\mbox{\hyperlink{front_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}{ENTRY}}
+, \mbox{\hyperlink{front_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}{EXTERN}}
+, \mbox{\hyperlink{front_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}{STRING}}
+, \mbox{\hyperlink{front_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}{DATA}}
+ \}
+\begin{DoxyCompactList}\small\item\em this struct is used to represent a line in the assembly file. the line type can be a directive, an instruction, a define or an error. if the line is a directive, there is a union with the directive type and the data. if the line is an instruction, there is a union with the instruction type and the operands. if the line is a define, there is a union with the value of the define. if the line is an error, there is a union with the error message. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}{Instruction\+Type}} \{ \newline
+\mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}{MOV}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}{CMP}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}{ADD}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}{SUB}}
+, \newline
+\mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}{LEA}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}{NOT}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}{CLR}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}{INC}}
+, \newline
+\mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}{DEC}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}{JMP}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}{BNE}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}{RED}}
+, \newline
+\mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}{PRN}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}{JSR}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}{RTS}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}{HLT}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}{MOV}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}{CMP}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}{ADD}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}{SUB}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}{LEA}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}{NOT}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}{CLR}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}{INC}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}{DEC}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}{JMP}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}{BNE}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}{RED}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}{PRN}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}{JSR}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}{RTS}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}{HLT}}
+, \newline
+\mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}{MOV}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}{CMP}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}{ADD}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}{SUB}}
+, \newline
+\mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}{LEA}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}{NOT}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}{CLR}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}{INC}}
+, \newline
+\mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}{DEC}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}{JMP}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}{BNE}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}{RED}}
+, \newline
+\mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}{PRN}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}{JSR}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}{RTS}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}{HLT}}
+ \}
+\item 
+enum \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1b}{Register}} \{ \newline
+\mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}{r0}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}{r1}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}{r2}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}{r3}}
+, \newline
+\mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}{r4}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}{r5}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}{r6}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}{r7}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}{r0}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}{r1}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}{r2}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}{r3}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}{r4}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}{r5}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}{r6}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}{r7}}
+, \newline
+\mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}{r0}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}{r1}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}{r2}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}{r3}}
+, \newline
+\mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}{r4}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}{r5}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}{r6}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}{r7}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{structs_8h_a9bc7ac767565a8034a20624470307b11}{print\+\_\+error\+\_\+memory}} (int line, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em Print error message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structs_8h_ae86ea6e30277962226bee129b5a8e007}{print\+\_\+error\+\_\+msg}} (char $\ast$msg, int line, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em Print error message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{structs_8h_a65c89d1d0a1292b0cb20a62e33f99902}\label{structs_8h_a65c89d1d0a1292b0cb20a62e33f99902}} 
+\index{structs.h@{structs.h}!MAX\_ERROR\_SIZE@{MAX\_ERROR\_SIZE}}
+\index{MAX\_ERROR\_SIZE@{MAX\_ERROR\_SIZE}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_ERROR\_SIZE}{MAX\_ERROR\_SIZE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} MAX\+\_\+\+ERROR\+\_\+\+SIZE~300}
+
+
+
+Definition at line 6 of file structs.\+h.
+
+\mbox{\Hypertarget{structs_8h_a96127aad3b7750628d041f17c8490726}\label{structs_8h_a96127aad3b7750628d041f17c8490726}} 
+\index{structs.h@{structs.h}!MAX\_LABEL\_SIZE@{MAX\_LABEL\_SIZE}}
+\index{MAX\_LABEL\_SIZE@{MAX\_LABEL\_SIZE}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LABEL\_SIZE}{MAX\_LABEL\_SIZE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} MAX\+\_\+\+LABEL\+\_\+\+SIZE~31}
+
+
+
+Definition at line 5 of file structs.\+h.
+
+\mbox{\Hypertarget{structs_8h_a706068f562dd5c64a8b7bbd4b2298dd1}\label{structs_8h_a706068f562dd5c64a8b7bbd4b2298dd1}} 
+\index{structs.h@{structs.h}!MAX\_LINE\_SIZE@{MAX\_LINE\_SIZE}}
+\index{MAX\_LINE\_SIZE@{MAX\_LINE\_SIZE}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LINE\_SIZE}{MAX\_LINE\_SIZE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} MAX\+\_\+\+LINE\+\_\+\+SIZE~81}
+
+
+
+Definition at line 4 of file structs.\+h.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{structs_8h_abe3edd5382a2cebebc55bcbb54ea2161}\label{structs_8h_abe3edd5382a2cebebc55bcbb54ea2161}} 
+\index{structs.h@{structs.h}!Code@{Code}}
+\index{Code@{Code}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{Code}{Code}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structcode}{code}}$\ast$ \mbox{\hyperlink{structs_8h_abe3edd5382a2cebebc55bcbb54ea2161}{Code}}}
+
+
+
+Definition at line 128 of file structs.\+h.
+
+\mbox{\Hypertarget{structs_8h_a6285fc1207264550aa3f40302f54dd80}\label{structs_8h_a6285fc1207264550aa3f40302f54dd80}} 
+\index{structs.h@{structs.h}!Constant@{Constant}}
+\index{Constant@{Constant}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{Constant}{Constant}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structconstant}{constant}}$\ast$ \mbox{\hyperlink{structs_8h_a6285fc1207264550aa3f40302f54dd80}{Constant}}}
+
+
+
+Definition at line 125 of file structs.\+h.
+
+\mbox{\Hypertarget{structs_8h_a33a7cf9e35c645e2357af82b0b94bbf6}\label{structs_8h_a33a7cf9e35c645e2357af82b0b94bbf6}} 
+\index{structs.h@{structs.h}!Entry@{Entry}}
+\index{Entry@{Entry}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{Entry}{Entry}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structentry}{entry}}$\ast$ \mbox{\hyperlink{structs_8h_a33a7cf9e35c645e2357af82b0b94bbf6}{Entry}}}
+
+
+
+Definition at line 127 of file structs.\+h.
+
+\mbox{\Hypertarget{structs_8h_aaa7ca4df7549cc433aee28a22f343dd7}\label{structs_8h_aaa7ca4df7549cc433aee28a22f343dd7}} 
+\index{structs.h@{structs.h}!External@{External}}
+\index{External@{External}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{External}{External}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structexternal}{external}}$\ast$ \mbox{\hyperlink{structs_8h_aaa7ca4df7549cc433aee28a22f343dd7}{External}}}
+
+
+
+Definition at line 126 of file structs.\+h.
+
+\mbox{\Hypertarget{structs_8h_a35621d1d74428cb9205a146d080b97f2}\label{structs_8h_a35621d1d74428cb9205a146d080b97f2}} 
+\index{structs.h@{structs.h}!Macro@{Macro}}
+\index{Macro@{Macro}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{Macro}{Macro}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structmacro}{macro}}$\ast$ \mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}}}
+
+
+
+Definition at line 131 of file structs.\+h.
+
+\mbox{\Hypertarget{structs_8h_ab2704a73a309452dd220ddcbe06ce5ed}\label{structs_8h_ab2704a73a309452dd220ddcbe06ce5ed}} 
+\index{structs.h@{structs.h}!Pattern@{Pattern}}
+\index{Pattern@{Pattern}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{Pattern}{Pattern}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structpattern}{pattern}}$\ast$ \mbox{\hyperlink{structs_8h_ab2704a73a309452dd220ddcbe06ce5ed}{Pattern}}}
+
+
+
+Definition at line 130 of file structs.\+h.
+
+\mbox{\Hypertarget{structs_8h_acd28fff7ecff538f521dd72fb4191000}\label{structs_8h_acd28fff7ecff538f521dd72fb4191000}} 
+\index{structs.h@{structs.h}!Symbol@{Symbol}}
+\index{Symbol@{Symbol}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{Symbol}{Symbol}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structsymbol}{symbol}}$\ast$ \mbox{\hyperlink{structs_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}}}
+
+
+
+Definition at line 124 of file structs.\+h.
+
+\mbox{\Hypertarget{structs_8h_a3afa16dfd0f49429db5f377946493458}\label{structs_8h_a3afa16dfd0f49429db5f377946493458}} 
+\index{structs.h@{structs.h}!WordBin@{WordBin}}
+\index{WordBin@{WordBin}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{WordBin}{WordBin}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structword__bin}{word\+\_\+bin}}$\ast$ \mbox{\hyperlink{structs_8h_a3afa16dfd0f49429db5f377946493458}{Word\+Bin}}}
+
+
+
+Definition at line 129 of file structs.\+h.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045ced}\label{structs_8h_a79bb11a21ca0169a3520c5053e045ced}} 
+\index{structs.h@{structs.h}!DirectiveType@{DirectiveType}}
+\index{DirectiveType@{DirectiveType}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{DirectiveType}{DirectiveType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{structs_8h_a79bb11a21ca0169a3520c5053e045ced}{Directive\+Type}}}
+
+
+
+this struct is used to represent a line in the assembly file. the line type can be a directive, an instruction, a define or an error. if the line is a directive, there is a union with the directive type and the data. if the line is an instruction, there is a union with the instruction type and the operands. if the line is a define, there is a union with the value of the define. if the line is an error, there is a union with the error message. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENTRY@{ENTRY}!structs.h@{structs.h}}\index{structs.h@{structs.h}!ENTRY@{ENTRY}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}\label{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}} 
+ENTRY&Entry directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXTERN@{EXTERN}!structs.h@{structs.h}}\index{structs.h@{structs.h}!EXTERN@{EXTERN}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}\label{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}} 
+EXTERN&Extern directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!structs.h@{structs.h}}\index{structs.h@{structs.h}!STRING@{STRING}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}\label{structs_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}} 
+STRING&String directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA@{DATA}!structs.h@{structs.h}}\index{structs.h@{structs.h}!DATA@{DATA}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}\label{structs_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}} 
+DATA&Data directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENTRY@{ENTRY}!structs.h@{structs.h}}\index{structs.h@{structs.h}!ENTRY@{ENTRY}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}\label{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}} 
+ENTRY&Entry directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXTERN@{EXTERN}!structs.h@{structs.h}}\index{structs.h@{structs.h}!EXTERN@{EXTERN}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}\label{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}} 
+EXTERN&Extern directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!structs.h@{structs.h}}\index{structs.h@{structs.h}!STRING@{STRING}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}\label{structs_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}} 
+STRING&String directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA@{DATA}!structs.h@{structs.h}}\index{structs.h@{structs.h}!DATA@{DATA}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}\label{structs_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}} 
+DATA&Data directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENTRY@{ENTRY}!structs.h@{structs.h}}\index{structs.h@{structs.h}!ENTRY@{ENTRY}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}\label{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}} 
+ENTRY&Entry directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXTERN@{EXTERN}!structs.h@{structs.h}}\index{structs.h@{structs.h}!EXTERN@{EXTERN}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}\label{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}} 
+EXTERN&Extern directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!structs.h@{structs.h}}\index{structs.h@{structs.h}!STRING@{STRING}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}\label{structs_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}} 
+STRING&String directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA@{DATA}!structs.h@{structs.h}}\index{structs.h@{structs.h}!DATA@{DATA}}}\mbox{\Hypertarget{structs_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}\label{structs_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}} 
+DATA&Data directive \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 19 of file structs.\+h.
+
+\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}} 
+\index{structs.h@{structs.h}!InstructionType@{InstructionType}}
+\index{InstructionType@{InstructionType}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{InstructionType}{InstructionType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}{Instruction\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOV@{MOV}!structs.h@{structs.h}}\index{structs.h@{structs.h}!MOV@{MOV}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}} 
+MOV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CMP@{CMP}!structs.h@{structs.h}}\index{structs.h@{structs.h}!CMP@{CMP}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}} 
+CMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ADD@{ADD}!structs.h@{structs.h}}\index{structs.h@{structs.h}!ADD@{ADD}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}} 
+ADD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUB@{SUB}!structs.h@{structs.h}}\index{structs.h@{structs.h}!SUB@{SUB}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}} 
+SUB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEA@{LEA}!structs.h@{structs.h}}\index{structs.h@{structs.h}!LEA@{LEA}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}} 
+LEA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT@{NOT}!structs.h@{structs.h}}\index{structs.h@{structs.h}!NOT@{NOT}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}} 
+NOT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLR@{CLR}!structs.h@{structs.h}}\index{structs.h@{structs.h}!CLR@{CLR}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}} 
+CLR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INC@{INC}!structs.h@{structs.h}}\index{structs.h@{structs.h}!INC@{INC}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}} 
+INC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEC@{DEC}!structs.h@{structs.h}}\index{structs.h@{structs.h}!DEC@{DEC}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}} 
+DEC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JMP@{JMP}!structs.h@{structs.h}}\index{structs.h@{structs.h}!JMP@{JMP}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}} 
+JMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BNE@{BNE}!structs.h@{structs.h}}\index{structs.h@{structs.h}!BNE@{BNE}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}} 
+BNE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RED@{RED}!structs.h@{structs.h}}\index{structs.h@{structs.h}!RED@{RED}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}} 
+RED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRN@{PRN}!structs.h@{structs.h}}\index{structs.h@{structs.h}!PRN@{PRN}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}} 
+PRN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JSR@{JSR}!structs.h@{structs.h}}\index{structs.h@{structs.h}!JSR@{JSR}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}} 
+JSR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RTS@{RTS}!structs.h@{structs.h}}\index{structs.h@{structs.h}!RTS@{RTS}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}} 
+RTS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HLT@{HLT}!structs.h@{structs.h}}\index{structs.h@{structs.h}!HLT@{HLT}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}} 
+HLT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOV@{MOV}!structs.h@{structs.h}}\index{structs.h@{structs.h}!MOV@{MOV}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}} 
+MOV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CMP@{CMP}!structs.h@{structs.h}}\index{structs.h@{structs.h}!CMP@{CMP}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}} 
+CMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ADD@{ADD}!structs.h@{structs.h}}\index{structs.h@{structs.h}!ADD@{ADD}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}} 
+ADD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUB@{SUB}!structs.h@{structs.h}}\index{structs.h@{structs.h}!SUB@{SUB}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}} 
+SUB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEA@{LEA}!structs.h@{structs.h}}\index{structs.h@{structs.h}!LEA@{LEA}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}} 
+LEA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT@{NOT}!structs.h@{structs.h}}\index{structs.h@{structs.h}!NOT@{NOT}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}} 
+NOT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLR@{CLR}!structs.h@{structs.h}}\index{structs.h@{structs.h}!CLR@{CLR}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}} 
+CLR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INC@{INC}!structs.h@{structs.h}}\index{structs.h@{structs.h}!INC@{INC}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}} 
+INC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEC@{DEC}!structs.h@{structs.h}}\index{structs.h@{structs.h}!DEC@{DEC}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}} 
+DEC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JMP@{JMP}!structs.h@{structs.h}}\index{structs.h@{structs.h}!JMP@{JMP}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}} 
+JMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BNE@{BNE}!structs.h@{structs.h}}\index{structs.h@{structs.h}!BNE@{BNE}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}} 
+BNE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RED@{RED}!structs.h@{structs.h}}\index{structs.h@{structs.h}!RED@{RED}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}} 
+RED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRN@{PRN}!structs.h@{structs.h}}\index{structs.h@{structs.h}!PRN@{PRN}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}} 
+PRN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JSR@{JSR}!structs.h@{structs.h}}\index{structs.h@{structs.h}!JSR@{JSR}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}} 
+JSR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RTS@{RTS}!structs.h@{structs.h}}\index{structs.h@{structs.h}!RTS@{RTS}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}} 
+RTS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HLT@{HLT}!structs.h@{structs.h}}\index{structs.h@{structs.h}!HLT@{HLT}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}} 
+HLT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOV@{MOV}!structs.h@{structs.h}}\index{structs.h@{structs.h}!MOV@{MOV}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}} 
+MOV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CMP@{CMP}!structs.h@{structs.h}}\index{structs.h@{structs.h}!CMP@{CMP}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}} 
+CMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ADD@{ADD}!structs.h@{structs.h}}\index{structs.h@{structs.h}!ADD@{ADD}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}} 
+ADD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUB@{SUB}!structs.h@{structs.h}}\index{structs.h@{structs.h}!SUB@{SUB}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}} 
+SUB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEA@{LEA}!structs.h@{structs.h}}\index{structs.h@{structs.h}!LEA@{LEA}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}} 
+LEA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT@{NOT}!structs.h@{structs.h}}\index{structs.h@{structs.h}!NOT@{NOT}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}} 
+NOT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLR@{CLR}!structs.h@{structs.h}}\index{structs.h@{structs.h}!CLR@{CLR}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}} 
+CLR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INC@{INC}!structs.h@{structs.h}}\index{structs.h@{structs.h}!INC@{INC}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}} 
+INC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEC@{DEC}!structs.h@{structs.h}}\index{structs.h@{structs.h}!DEC@{DEC}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}} 
+DEC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JMP@{JMP}!structs.h@{structs.h}}\index{structs.h@{structs.h}!JMP@{JMP}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}} 
+JMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BNE@{BNE}!structs.h@{structs.h}}\index{structs.h@{structs.h}!BNE@{BNE}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}} 
+BNE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RED@{RED}!structs.h@{structs.h}}\index{structs.h@{structs.h}!RED@{RED}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}} 
+RED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRN@{PRN}!structs.h@{structs.h}}\index{structs.h@{structs.h}!PRN@{PRN}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}} 
+PRN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JSR@{JSR}!structs.h@{structs.h}}\index{structs.h@{structs.h}!JSR@{JSR}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}} 
+JSR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RTS@{RTS}!structs.h@{structs.h}}\index{structs.h@{structs.h}!RTS@{RTS}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}} 
+RTS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HLT@{HLT}!structs.h@{structs.h}}\index{structs.h@{structs.h}!HLT@{HLT}}}\mbox{\Hypertarget{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}\label{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}} 
+HLT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 27 of file structs.\+h.
+
+\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1b}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1b}} 
+\index{structs.h@{structs.h}!Register@{Register}}
+\index{Register@{Register}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{Register}{Register}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1b}{Register}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r0@{r0}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r0@{r0}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}} 
+r0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r1@{r1}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r1@{r1}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}} 
+r1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r2@{r2}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r2@{r2}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}} 
+r2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r3@{r3}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r3@{r3}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}} 
+r3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r4@{r4}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r4@{r4}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}} 
+r4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r5@{r5}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r5@{r5}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}} 
+r5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r6@{r6}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r6@{r6}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}} 
+r6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r7@{r7}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r7@{r7}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}} 
+r7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r0@{r0}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r0@{r0}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}} 
+r0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r1@{r1}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r1@{r1}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}} 
+r1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r2@{r2}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r2@{r2}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}} 
+r2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r3@{r3}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r3@{r3}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}} 
+r3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r4@{r4}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r4@{r4}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}} 
+r4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r5@{r5}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r5@{r5}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}} 
+r5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r6@{r6}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r6@{r6}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}} 
+r6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r7@{r7}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r7@{r7}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}} 
+r7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r0@{r0}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r0@{r0}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}} 
+r0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r1@{r1}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r1@{r1}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}} 
+r1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r2@{r2}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r2@{r2}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}} 
+r2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r3@{r3}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r3@{r3}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}} 
+r3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r4@{r4}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r4@{r4}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}} 
+r4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r5@{r5}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r5@{r5}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}} 
+r5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r6@{r6}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r6@{r6}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}} 
+r6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r7@{r7}!structs.h@{structs.h}}\index{structs.h@{structs.h}!r7@{r7}}}\mbox{\Hypertarget{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}\label{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}} 
+r7&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 32 of file structs.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{structs_8h_a9bc7ac767565a8034a20624470307b11}\label{structs_8h_a9bc7ac767565a8034a20624470307b11}} 
+\index{structs.h@{structs.h}!print\_error\_memory@{print\_error\_memory}}
+\index{print\_error\_memory@{print\_error\_memory}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{print\_error\_memory()}{print\_error\_memory()}}
+{\footnotesize\ttfamily void print\+\_\+error\+\_\+memory (\begin{DoxyParamCaption}\item[{int}]{line,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Print error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message to print \\
+\hline
+{\em line} & The line in the file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file validation.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structs_8h_a9bc7ac767565a8034a20624470307b11_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structs_8h_ae86ea6e30277962226bee129b5a8e007}\label{structs_8h_ae86ea6e30277962226bee129b5a8e007}} 
+\index{structs.h@{structs.h}!print\_error\_msg@{print\_error\_msg}}
+\index{print\_error\_msg@{print\_error\_msg}!structs.h@{structs.h}}
+\doxysubsubsection{\texorpdfstring{print\_error\_msg()}{print\_error\_msg()}}
+{\footnotesize\ttfamily void print\+\_\+error\+\_\+msg (\begin{DoxyParamCaption}\item[{char $\ast$}]{msg,  }\item[{int}]{line,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Print error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message to print \\
+\hline
+{\em line} & The line in the file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 57 of file validation.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structs_8h_ae86ea6e30277962226bee129b5a8e007_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,5 @@
+<map id="search_macro" name="search_macro">
+<area shape="rect" id="node1" title="this function searchs for a macro in the trie" alt="" coords="5,5,119,32"/>
+<area shape="rect" id="node2" href="$trie_8c.html#a30321ace47f8c6fd4a373a31faade78d" title="This function is used to find a string in the trie." alt="" coords="167,5,269,32"/>
+<area shape="rect" id="node3" href="$trie_8c.html#a201440dcabea53e0531915199bf953f0" title="This function is used to check if the string is exist in the sub trie." alt="" coords="317,5,476,32"/>
+</map>

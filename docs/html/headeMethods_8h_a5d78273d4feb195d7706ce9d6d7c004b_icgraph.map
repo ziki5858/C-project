@@ -1,0 +1,13 @@
+<map id="addToEntryLabelSet" name="addToEntryLabelSet">
+<area shape="rect" id="node1" title="Function to add a label to the entry label set." alt="" coords="1341,31,1492,57"/>
+<area shape="rect" id="node2" href="$define_8c.html#a9b934e4c8638e4436a0b6b440cea6fc3" title="Function to check if a word is a define and update the pattern structure." alt="" coords="1156,5,1264,32"/>
+<area shape="rect" id="node9" href="$directive_8c.html#ac2837c269e696fee0db3df8f8ab43e3d" title="Handles processing of the .extern directive." alt="" coords="1127,56,1293,83"/>
+<area shape="rect" id="node3" href="$front_8c.html#ad64629aa668f0f6ed15bafc208c1d4ea" title="Function to process the .define directive." alt="" coords="783,5,897,32"/>
+<area shape="rect" id="node4" href="$front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,31,727,57"/>
+<area shape="rect" id="node5" href="$front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,31,556,57"/>
+<area shape="rect" id="node6" href="$front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,31,409,57"/>
+<area shape="rect" id="node7" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,31,199,57"/>
+<area shape="rect" id="node8" href="$assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,31,60,57"/>
+<area shape="rect" id="node10" href="$directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,56,1079,83"/>
+<area shape="rect" id="node11" href="$front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,56,905,83"/>
+</map>

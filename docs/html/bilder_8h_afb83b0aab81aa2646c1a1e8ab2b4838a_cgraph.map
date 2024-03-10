@@ -1,0 +1,6 @@
+<map id="register_encoder" name="register_encoder">
+<area shape="rect" id="node1" title="This function is used to handle the case of register. it will encode the register,..." alt="" coords="5,5,136,32"/>
+<area shape="rect" id="node2" href="$encoder_8c.html#abfa816799aeeddcc30361dca6776b2b0" title="Encoded registers." alt="" coords="184,5,325,32"/>
+<area shape="rect" id="node3" href="$encoder_8c.html#aef0173c0f117f19b3395e740e283cb99" title="Encoded register." alt="" coords="373,5,508,32"/>
+<area shape="rect" id="node4" href="$encoder_8c.html#a0be324d0748f78ad58808205ec37bbf3" title="Convert number to binary string." alt="" coords="556,5,671,32"/>
+</map>

@@ -14,6 +14,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+
+
+/**
+ * @brief trie for the macros
+ * 
+ */
+Trie macro_trie;
+
+
 /**
  * @brief check if the line length is bigger than the max length
  *

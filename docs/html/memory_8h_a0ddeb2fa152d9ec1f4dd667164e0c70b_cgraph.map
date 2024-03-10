@@ -1,0 +1,15 @@
+<map id="free_memory" name="free_memory">
+<area shape="rect" id="node1" title="This function used to free all the memory that was allocated during the initialization of the memory." alt="" coords="5,81,116,108"/>
+<area shape="rect" id="node2" href="$memory_8c.html#aa81fcdd2e229893abbbd6454df50190a" title="This function used to free all the memory that was allocated during the initialization of the linked ..." alt="" coords="164,5,308,32"/>
+<area shape="rect" id="node3" href="$memory_8c.html#a4820e0bd808b42ba90570175d7c1eb72" title="This function used to free all the memory that was allocated during the initialization of the other t..." alt="" coords="168,56,304,83"/>
+<area shape="rect" id="node4" href="$memory_8c.html#abfc3f3790f9d96cd26d82e8a930a067f" title="This function used to free all the memory that was allocated during the initialization of the code an..." alt="" coords="166,107,306,133"/>
+<area shape="rect" id="node5" href="$memory_8c.html#a28307c17d327be8b540de41a204721b8" title="This function used to free all the memory that was allocated during the initialization of the tries." alt="" coords="194,157,278,184"/>
+<area shape="rect" id="node6" href="$memory_8c.html#ab72a011396237df730273de2a81766f8" title="This function used to free all the memory that was allocated during the initialization of the constan..." alt="" coords="369,56,503,83"/>
+<area shape="rect" id="node7" href="$memory_8c.html#a9ccdddf2f907682ac7ad4b5ac33e998c" title="This function used to free all the memory that was allocated during the initialization of the extern." alt="" coords="376,107,496,133"/>
+<area shape="rect" id="node8" href="$memory_8c.html#ab66b92af0d922a9cbd25af68bfe01df4" title="This function used to free all the memory that was allocated during the initialization of the macro." alt="" coords="377,157,495,184"/>
+<area shape="rect" id="node9" href="$trie_8c.html#a931444381dead5674e25a5182b5290ac" title="This function is used to destroy the trie." alt="" coords="386,208,486,235"/>
+<area shape="rect" id="node12" href="$trie_8c.html#a9adfc5528dd018be99fdda4e9c98512d" title="This function is used to destroy the trie, and free the end of string pointer, by using a function po..." alt="" coords="356,259,516,285"/>
+<area shape="rect" id="node10" href="$trie_8c.html#abd84b75a7f69607cadfdec5ccd2e9686" title="This function is used to create a new trie." alt="" coords="637,233,681,260"/>
+<area shape="rect" id="node11" href="$trie_8c.html#a83fd0f7479552699c2ba6282f907dea7" title="This function is used to destroy the sub trie." alt="" coords="594,183,725,209"/>
+<area shape="rect" id="node13" href="$trie_8c.html#a41f5ece0ee296f4e4c14bfc5128e94b3" title="This function is used to destroy the trie, and free the end of string pointer, by using a function po..." alt="" coords="564,284,755,311"/>
+</map>

@@ -1,0 +1,257 @@
+\hypertarget{trie_8h}{}\doxysection{trie/trie.h File Reference}
+\label{trie_8h}\index{trie/trie.h@{trie/trie.h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{trie_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtrie__node}{trie\+\_\+node}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a trie node. each node has a pointer to the end of the string, and an array of pointers to the next nodes. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structtrie}{trie}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a trie root. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{trie_8h_a94a1e5f861b1237b2b3aa03b605439f3}{TRIE\+\_\+\+BASE\+\_\+\+CHAR}}~\textquotesingle{}.\textquotesingle{}
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{trie_8h_a933ae6c9bc1909ae7eb3e3a1c6266436}{TRIE\+\_\+\+CHAR\+\_\+\+COUNT}}~77
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structtrie}{trie}} $\ast$ \mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}}
+\item 
+typedef struct \mbox{\hyperlink{structtrie__node}{trie\+\_\+node}} $\ast$ \mbox{\hyperlink{trie_8h_a47ec1d70ec2a806865ab835255d31e2a}{Trie\+Node}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} \mbox{\hyperlink{trie_8h_abd84b75a7f69607cadfdec5ccd2e9686}{trie}} ()
+\begin{DoxyCompactList}\small\item\em This function is used to create a new trie. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{trie_8h_a2a2a39a0906c717c226fd49622c43d02}{insert\+\_\+to\+\_\+trie}} (\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} \mbox{\hyperlink{structtrie}{trie}}, const char $\ast$string, void $\ast$end\+\_\+of\+\_\+string\+\_\+pointer)
+\begin{DoxyCompactList}\small\item\em This function is used to insert a string into the trie. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{trie_8h_a30321ace47f8c6fd4a373a31faade78d}{exist\+\_\+in\+\_\+trie}} (\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} \mbox{\hyperlink{structtrie}{trie}}, const char $\ast$string)
+\begin{DoxyCompactList}\small\item\em This function is used to find a string in the trie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trie_8h_a931444381dead5674e25a5182b5290ac}{destroy\+\_\+trie}} (\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} $\ast$\mbox{\hyperlink{structtrie}{trie}})
+\begin{DoxyCompactList}\small\item\em This function is used to destroy the trie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trie_8h_a9adfc5528dd018be99fdda4e9c98512d}{destroy\+\_\+trie\+\_\+with\+\_\+ptr}} (\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} $\ast$\mbox{\hyperlink{structtrie}{trie}}, void($\ast$destroy\+\_\+ptr)(void $\ast$))
+\begin{DoxyCompactList}\small\item\em This function is used to destroy the trie, and free the end of string pointer, by using a function pointer that given by the user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{trie_8h_a94a1e5f861b1237b2b3aa03b605439f3}\label{trie_8h_a94a1e5f861b1237b2b3aa03b605439f3}} 
+\index{trie.h@{trie.h}!TRIE\_BASE\_CHAR@{TRIE\_BASE\_CHAR}}
+\index{TRIE\_BASE\_CHAR@{TRIE\_BASE\_CHAR}!trie.h@{trie.h}}
+\doxysubsubsection{\texorpdfstring{TRIE\_BASE\_CHAR}{TRIE\_BASE\_CHAR}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} TRIE\+\_\+\+BASE\+\_\+\+CHAR~\textquotesingle{}.\textquotesingle{}}
+
+
+
+Definition at line 3 of file trie.\+h.
+
+\mbox{\Hypertarget{trie_8h_a933ae6c9bc1909ae7eb3e3a1c6266436}\label{trie_8h_a933ae6c9bc1909ae7eb3e3a1c6266436}} 
+\index{trie.h@{trie.h}!TRIE\_CHAR\_COUNT@{TRIE\_CHAR\_COUNT}}
+\index{TRIE\_CHAR\_COUNT@{TRIE\_CHAR\_COUNT}!trie.h@{trie.h}}
+\doxysubsubsection{\texorpdfstring{TRIE\_CHAR\_COUNT}{TRIE\_CHAR\_COUNT}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} TRIE\+\_\+\+CHAR\+\_\+\+COUNT~77}
+
+
+
+Definition at line 4 of file trie.\+h.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}\label{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}} 
+\index{trie.h@{trie.h}!Trie@{Trie}}
+\index{Trie@{Trie}!trie.h@{trie.h}}
+\doxysubsubsection{\texorpdfstring{Trie}{Trie}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structtrie}{trie}}$\ast$ \mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}}}
+
+
+
+Definition at line 7 of file trie.\+h.
+
+\mbox{\Hypertarget{trie_8h_a47ec1d70ec2a806865ab835255d31e2a}\label{trie_8h_a47ec1d70ec2a806865ab835255d31e2a}} 
+\index{trie.h@{trie.h}!TrieNode@{TrieNode}}
+\index{TrieNode@{TrieNode}!trie.h@{trie.h}}
+\doxysubsubsection{\texorpdfstring{TrieNode}{TrieNode}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structtrie__node}{trie\+\_\+node}}$\ast$ \mbox{\hyperlink{trie_8h_a47ec1d70ec2a806865ab835255d31e2a}{Trie\+Node}}}
+
+
+
+Definition at line 8 of file trie.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{trie_8h_a931444381dead5674e25a5182b5290ac}\label{trie_8h_a931444381dead5674e25a5182b5290ac}} 
+\index{trie.h@{trie.h}!destroy\_trie@{destroy\_trie}}
+\index{destroy\_trie@{destroy\_trie}!trie.h@{trie.h}}
+\doxysubsubsection{\texorpdfstring{destroy\_trie()}{destroy\_trie()}}
+{\footnotesize\ttfamily void destroy\+\_\+trie (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} $\ast$}]{trie }\end{DoxyParamCaption})}
+
+
+
+This function is used to destroy the trie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em trie} & The trie. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 113 of file trie.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{trie_8h_a931444381dead5674e25a5182b5290ac_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{trie_8h_a931444381dead5674e25a5182b5290ac_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{trie_8h_a9adfc5528dd018be99fdda4e9c98512d}\label{trie_8h_a9adfc5528dd018be99fdda4e9c98512d}} 
+\index{trie.h@{trie.h}!destroy\_trie\_with\_ptr@{destroy\_trie\_with\_ptr}}
+\index{destroy\_trie\_with\_ptr@{destroy\_trie\_with\_ptr}!trie.h@{trie.h}}
+\doxysubsubsection{\texorpdfstring{destroy\_trie\_with\_ptr()}{destroy\_trie\_with\_ptr()}}
+{\footnotesize\ttfamily void destroy\+\_\+trie\+\_\+with\+\_\+ptr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} $\ast$}]{trie,  }\item[{void($\ast$)(void $\ast$)}]{destroy\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+This function is used to destroy the trie, and free the end of string pointer, by using a function pointer that given by the user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em trie} & The trie. \\
+\hline
+{\em destroy\+\_\+ptr} & The function pointer that is used to free the end of string pointer. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 157 of file trie.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{trie_8h_a9adfc5528dd018be99fdda4e9c98512d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{trie_8h_a9adfc5528dd018be99fdda4e9c98512d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{trie_8h_a30321ace47f8c6fd4a373a31faade78d}\label{trie_8h_a30321ace47f8c6fd4a373a31faade78d}} 
+\index{trie.h@{trie.h}!exist\_in\_trie@{exist\_in\_trie}}
+\index{exist\_in\_trie@{exist\_in\_trie}!trie.h@{trie.h}}
+\doxysubsubsection{\texorpdfstring{exist\_in\_trie()}{exist\_in\_trie()}}
+{\footnotesize\ttfamily void$\ast$ exist\+\_\+in\+\_\+trie (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}}}]{trie,  }\item[{const char $\ast$}]{string }\end{DoxyParamCaption})}
+
+
+
+This function is used to find a string in the trie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em trie} & The trie. \\
+\hline
+{\em string} & The string to be found. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The end of string pointer of the string in the trie. 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file trie.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{trie_8h_a30321ace47f8c6fd4a373a31faade78d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{trie_8h_a30321ace47f8c6fd4a373a31faade78d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{trie_8h_a2a2a39a0906c717c226fd49622c43d02}\label{trie_8h_a2a2a39a0906c717c226fd49622c43d02}} 
+\index{trie.h@{trie.h}!insert\_to\_trie@{insert\_to\_trie}}
+\index{insert\_to\_trie@{insert\_to\_trie}!trie.h@{trie.h}}
+\doxysubsubsection{\texorpdfstring{insert\_to\_trie()}{insert\_to\_trie()}}
+{\footnotesize\ttfamily const char$\ast$ insert\+\_\+to\+\_\+trie (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}}}]{trie,  }\item[{const char $\ast$}]{string,  }\item[{void $\ast$}]{end\+\_\+of\+\_\+string\+\_\+pointer }\end{DoxyParamCaption})}
+
+
+
+This function is used to insert a string into the trie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em trie} & The trie. \\
+\hline
+{\em string} & The string to be inserted. \\
+\hline
+{\em end\+\_\+of\+\_\+string\+\_\+pointer} & The pointer that the end of the string points to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const char$\ast$ The string inserted into the trie. 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file trie.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{trie_8h_a2a2a39a0906c717c226fd49622c43d02_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{trie_8h_abd84b75a7f69607cadfdec5ccd2e9686}\label{trie_8h_abd84b75a7f69607cadfdec5ccd2e9686}} 
+\index{trie.h@{trie.h}!trie@{trie}}
+\index{trie@{trie}!trie.h@{trie.h}}
+\doxysubsubsection{\texorpdfstring{trie()}{trie()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} \mbox{\hyperlink{structtrie}{trie}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function is used to create a new trie. 
+
+\begin{DoxyReturn}{Returns}
+Trie The new trie. 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file trie.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{trie_8h_abd84b75a7f69607cadfdec5ccd2e9686_icgraph}
+\end{center}
+\end{figure}

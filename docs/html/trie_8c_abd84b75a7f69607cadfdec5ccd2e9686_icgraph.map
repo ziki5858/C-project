@@ -1,0 +1,11 @@
+<map id="trie" name="trie">
+<area shape="rect" id="node1" title="This function is used to create a new trie." alt="" coords="752,81,796,108"/>
+<area shape="rect" id="node2" href="$trie_8c.html#a931444381dead5674e25a5182b5290ac" title="This function is used to destroy the trie." alt="" coords="574,5,674,32"/>
+<area shape="rect" id="node7" href="$trie_8c.html#a9adfc5528dd018be99fdda4e9c98512d" title="This function is used to destroy the trie, and free the end of string pointer, by using a function po..." alt="" coords="544,56,704,83"/>
+<area shape="rect" id="node8" href="$rounds_8c.html#a8d1601cdfa9ee1868a99f9f4cbc92cdb" title="The first round of the assembler. In this round we will go through the linked list and handle the lab..." alt="" coords="405,107,496,133"/>
+<area shape="rect" id="node9" href="$preprossesor_8c.html#a4937d5ec7c48d80fdb9cb24d94d68251" title="this function is the main function of the preprossesor, it opens the file, reads it line by line and ..." alt="" coords="255,157,349,184"/>
+<area shape="rect" id="node3" href="$memory_8c.html#a28307c17d327be8b540de41a204721b8" title="This function used to free all the memory that was allocated during the initialization of the tries." alt="" coords="409,56,493,83"/>
+<area shape="rect" id="node4" href="$memory_8c.html#a0ddeb2fa152d9ec1f4dd667164e0c70b" title="This function used to free all the memory that was allocated during the initialization of the memory." alt="" coords="247,56,357,83"/>
+<area shape="rect" id="node5" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,107,199,133"/>
+<area shape="rect" id="node6" href="$assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,107,60,133"/>
+</map>

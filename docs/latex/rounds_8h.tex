@@ -1,0 +1,87 @@
+\hypertarget{rounds_8h}{}\doxysection{assembler\+Rounds/rounds.h File Reference}
+\label{rounds_8h}\index{assemblerRounds/rounds.h@{assemblerRounds/rounds.h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{rounds_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rounds_8h_a8d1601cdfa9ee1868a99f9f4cbc92cdb}{first\+\_\+round}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$head, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int $\ast$IC, int $\ast$DC)
+\begin{DoxyCompactList}\small\item\em The first round of the assembler. In this round we will go through the linked list and handle the labels, the directives and the instructions. after this round we will have all the symbols and we can encode the instructions of direct operands. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rounds_8h_a7a109141fdd10aee3c3680446563f562}{secondround}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$head, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em The second round of the assembler. now we have all the symbols and we can encode the instructions of direct operands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rounds_8h_a8d1601cdfa9ee1868a99f9f4cbc92cdb}\label{rounds_8h_a8d1601cdfa9ee1868a99f9f4cbc92cdb}} 
+\index{rounds.h@{rounds.h}!first\_round@{first\_round}}
+\index{first\_round@{first\_round}!rounds.h@{rounds.h}}
+\doxysubsubsection{\texorpdfstring{first\_round()}{first\_round()}}
+{\footnotesize\ttfamily void first\+\_\+round (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{head,  }\item[{int $\ast$}]{error\+\_\+flag,  }\item[{int $\ast$}]{IC,  }\item[{int $\ast$}]{DC }\end{DoxyParamCaption})}
+
+
+
+The first round of the assembler. In this round we will go through the linked list and handle the labels, the directives and the instructions. after this round we will have all the symbols and we can encode the instructions of direct operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & The head of the linked list \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 35 of file rounds.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rounds_8h_a8d1601cdfa9ee1868a99f9f4cbc92cdb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{rounds_8h_a8d1601cdfa9ee1868a99f9f4cbc92cdb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{rounds_8h_a7a109141fdd10aee3c3680446563f562}\label{rounds_8h_a7a109141fdd10aee3c3680446563f562}} 
+\index{rounds.h@{rounds.h}!secondround@{secondround}}
+\index{secondround@{secondround}!rounds.h@{rounds.h}}
+\doxysubsubsection{\texorpdfstring{secondround()}{secondround()}}
+{\footnotesize\ttfamily void secondround (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{head,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+The second round of the assembler. now we have all the symbols and we can encode the instructions of direct operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & The head of the linked list \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 109 of file rounds.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rounds_8h_a7a109141fdd10aee3c3680446563f562_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{rounds_8h_a7a109141fdd10aee3c3680446563f562_icgraph}
+\end{center}
+\end{figure}

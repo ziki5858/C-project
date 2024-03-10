@@ -1,0 +1,5 @@
+<map id="destroy_trie_with_ptr" name="destroy_trie_with_ptr">
+<area shape="rect" id="node1" title="This function is used to destroy the trie, and free the end of string pointer, by using a function po..." alt="" coords="5,31,165,57"/>
+<area shape="rect" id="node2" href="$trie_8c.html#abd84b75a7f69607cadfdec5ccd2e9686" title="This function is used to create a new trie." alt="" coords="287,5,331,32"/>
+<area shape="rect" id="node3" href="$trie_8c.html#a41f5ece0ee296f4e4c14bfc5128e94b3" title="This function is used to destroy the trie, and free the end of string pointer, by using a function po..." alt="" coords="213,56,404,83"/>
+</map>

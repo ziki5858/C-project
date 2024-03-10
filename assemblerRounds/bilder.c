@@ -1,4 +1,61 @@
-#include "bilder.h"
+/**
+ * @file bilder.c
+ * @author shlomo weisz
+ * @brief  This file contains the implementation of the functions that used to build the code and data tables of the assembler.
+ * the file contains the following functions:
+ * 1. directive - a function that handles the case of directive.
+ * 2. data_def - a function that handles the case of data definition.
+ * 3. string_def - a function that handles the case of string definition.
+ * 4. entry_def - a function that handles the case of entry definition.
+ * 5. extern_def - a function that handles the case of extern definition.
+ * 6. define - a function that handles the case of define.
+ * 7. instruction - a function that handles the case of instruction.
+ * 8. source_operand - a function that handles the case of source operand.
+ * 9. target_operand - a function that handles the case of target operand.
+ * 10. tow_registers - a function that handles the case of tow registers.
+ * 11. register_encoder - a function that handles the case of register.
+ * 12. direct - a function that handles the case of direct operand.
+ * 13. direct_index - a function that handles the case of direct index operand.
+ * 14. immediate - a function that handles the case of immediate operand.
+ * @version 0.1
+ * @date 2024-03-09
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+#include "./headers/bilder.h"
+
+
+/**
+ * @brief  This function is used to handle the case of directive.
+ * it will call the right function to handle the directive.
+ *
+ * @param current_pattern  The current pattern that we want to handle.
+ * @param current_pattern_num  The number of the current pattern.
+ * @param DC  The data counter.
+ */
+void directive(struct Node *current_pattern, int current_pattern_num, int *DC, int *error_flag, int *IC) {
+
+  /* check the type of the directive */
+  switch (current_pattern->data->choice.dir.directive_type) {
+
+  /* dealing with data directive */
+  case DATA:
+    data_def(current_pattern, current_pattern_num, DC, error_flag, IC);
+    break;
+  case STRING:
+    string_def(current_pattern, current_pattern_num, DC, error_flag, IC);
+    break;
+
+  case ENTRY:
+    entry_def(current_pattern, current_pattern_num, error_flag);
+    break;
+  case EXTERN:
+    extern_def(current_pattern, current_pattern_num, error_flag);
+    break;
+  }
+}
+
 
 /**
  * @brief  This function is used to handle the case of data definition.
@@ -8,16 +65,16 @@
  * @param current_pattern_num  The number of the current pattern.
  * @param DC  The data counter.
  */
-void data_def(struct Node *current_pattern, int current_pattern_num, int *DC) {
+void data_def(struct Node *current_pattern, int current_pattern_num, int *DC, int *error_flag, int *IC) {
   int sign = 1, i, data_element;
   char *buffer, *temp_data;
   /* check if there is a label */
   if (current_pattern->data->label[0]) {
     handle_lable_define(current_pattern->data, "data", *DC,
-                        current_pattern_num);
+                        current_pattern_num, error_flag, *IC, *DC, current_pattern->data->choice.dir.size);
   }
   /* insert the data to the data table */
-  allocate_memory_for_data(current_pattern->data, current_pattern_num);
+  allocate_memory_for_data(current_pattern->data, current_pattern_num, error_flag);
   for (i = 0; i < current_pattern->data->choice.dir.size; i++) {
     buffer = current_pattern->data->choice.dir.data[i];
 
@@ -30,14 +87,14 @@ void data_def(struct Node *current_pattern, int current_pattern_num, int *DC) {
         buffer++;
       }
       if (!containsOnlyDigits(&buffer[0])) { /* check if the data is a number */
-        print_error_msg("data element is not a number", current_pattern_num);
-        continue;
+        print_error_msg("data element is not a number", current_pattern_num, error_flag);
+        return;
       } else
         data_element = atoi(buffer) * sign;
     }
     if (data_element > MAX_DATA_VALUE || data_element < MIN_DATA_VALUE) {
-      print_error_msg("data element is out of range", current_pattern_num);
-      continue;
+      print_error_msg("data element is out of range", current_pattern_num, error_flag);
+      return;
     }
     /* insert the data to the data table */
     temp_data = encoded_data(data_element);
@@ -57,15 +114,15 @@ void data_def(struct Node *current_pattern, int current_pattern_num, int *DC) {
  * @param DC  The data counter.
  */
 void string_def(struct Node *current_pattern, int current_pattern_num,
-                int *DC) {
+                int *DC, int *error_flag, int *IC) {
   int i, char_index;
   char *temp_data;
   if (current_pattern->data->label[0]) {
     handle_lable_define(current_pattern->data, "data", *DC,
-                        current_pattern_num);
+                        current_pattern_num, error_flag, *IC, *DC, current_pattern->data->choice.dir.size);
   }
   /* insert the data to the data table */
-  allocate_memory_for_data(current_pattern->data, current_pattern_num);
+  allocate_memory_for_data(current_pattern->data, current_pattern_num, error_flag);
   for (i = 0; i < current_pattern->data->choice.dir.size; i++) {
     char_index = current_pattern->data->choice.dir.string[i];
     temp_data = encoded_data(char_index);
@@ -83,14 +140,14 @@ void string_def(struct Node *current_pattern, int current_pattern_num,
  * @param current_pattern  The current pattern that we want to handle.
  * @param current_pattern_num  The number of the current pattern.
  */
-void entry_def(struct Node *current_pattern, int current_pattern_num) {
+void entry_def(struct Node *current_pattern, int current_pattern_num, int *error_flag) {
   Symbol s;
   if (exist_in_trie(entries, current_pattern->data->label)) {
     /* seem to be allowed */
     return;
   }
   if (exist_in_trie(externals, current_pattern->data->label)) {
-    print_error_msg("symbol already exist as external", current_pattern_num);
+    print_error_msg("symbol already exist as external", current_pattern_num, error_flag);
   }
   if ((s = (Symbol)exist_in_trie(symbols, current_pattern->data->label))) {
 
@@ -104,7 +161,7 @@ void entry_def(struct Node *current_pattern, int current_pattern_num) {
     }
   } else { /* symbol not found */
     s = create_symbol(current_pattern->data->label, 0, S_ENTRY,
-                      current_pattern_num);
+                      current_pattern_num, error_flag, 1);
     create_entry(s, current_pattern_num);
   }
 }
@@ -116,10 +173,10 @@ void entry_def(struct Node *current_pattern, int current_pattern_num) {
  * @param current_pattern  The current pattern that we want to handle.
  * @param current_pattern_num  The number of the current pattern.
  */
-void extern_def(struct Node *current_pattern, int current_pattern_num) {
+void extern_def(struct Node *current_pattern, int current_pattern_num, int *error_flag) {
   Symbol s;
   if (exist_in_trie(entries, current_pattern->data->label)) {
-    print_error_msg("symbol already exist as entry", current_pattern_num);
+    print_error_msg("symbol already exist as entry", current_pattern_num, error_flag);
     return;
   }
   if (exist_in_trie(externals, current_pattern->data->label)) {
@@ -127,45 +184,17 @@ void extern_def(struct Node *current_pattern, int current_pattern_num) {
     return;
   }
   if ((s = exist_in_trie(symbols, current_pattern->data->label))) {
-    print_error_msg("symbol already exist as symbol", current_pattern_num);
+    print_error_msg("symbol already exist as symbol", current_pattern_num, error_flag);
     return;
 
   } else {
     s = create_symbol(current_pattern->data->label, 0, S_EXTERN,
-                      current_pattern_num);
-    create_external(current_pattern->data->label, current_pattern_num);
+                      current_pattern_num, error_flag, 1);
+    create_external(current_pattern->data->label, current_pattern_num, error_flag);
   }
 }
 
-/**
- * @brief  This function is used to handle the case of directive.
- * it will call the right function to handle the directive.
- *
- * @param current_pattern  The current pattern that we want to handle.
- * @param current_pattern_num  The number of the current pattern.
- * @param DC  The data counter.
- */
-void directive(struct Node *current_pattern, int current_pattern_num, int *DC) {
 
-  /* check the type of the directive */
-  switch (current_pattern->data->choice.dir.directive_type) {
-
-  /* dealing with data directive */
-  case DATA:
-    data_def(current_pattern, current_pattern_num, DC);
-    break;
-  case STRING:
-    string_def(current_pattern, current_pattern_num, DC);
-    break;
-
-  case ENTRY:
-    entry_def(current_pattern, current_pattern_num);
-    break;
-  case EXTERN:
-    extern_def(current_pattern, current_pattern_num);
-    break;
-  }
-}
 
 /**
  * @brief  This function is used to handle the case of define.
@@ -173,17 +202,136 @@ void directive(struct Node *current_pattern, int current_pattern_num, int *DC) {
  * @param current_pattern  The current pattern that we want to handle.
  * @param current_pattern_num  The number of the current pattern.
  */
-void define(struct Node *current_pattern, int current_pattern_num) {
+void define(struct Node *current_pattern, int current_pattern_num, int *error_flag) {
   if (exist_in_trie(symbols, current_pattern->data->label)) {
-    print_error_msg("symbol already exist as symbol", current_pattern_num);
+    print_error_msg("symbol already exist as symbol", current_pattern_num, error_flag);
     return;
   }
   if (exist_in_trie(constant, current_pattern->data->label)) {
-    print_error_msg("symbol already exist as constant", current_pattern_num);
+    print_error_msg("symbol already exist as constant", current_pattern_num, error_flag);
     return;
   }
   create_constant(current_pattern->data->label,
-                  current_pattern->data->choice.def.value, current_pattern_num);
+                  current_pattern->data->choice.def.value, current_pattern_num, error_flag);
+}
+
+
+
+/**
+ * @brief  This function is used to handle the case of instruction.
+ * it will insert the instruction to the code table, and encode the instruction.
+ * 
+ * @param current_pattern  The current pattern that we want to handle.
+ * @param current_pattern_num  The number of the current pattern.
+ * @param IC  The instruction counter.
+ */
+void instruction(struct Node *current_pattern, int current_pattern_num, int *IC, int *error_flag, int *DC) {
+  int num_of_word_nedded = 1;
+  char *temp_ins;
+
+  /* check the valdiation of the operands type and number */
+  if (!check_validation_of_operands_num(current_pattern->data)) {
+    print_error_msg("invalid number of operands", current_pattern_num, error_flag);
+    return;
+  }
+  if (!check_validation_of_operands_type(current_pattern->data)) {
+    print_error_msg("invalid type of operands", current_pattern_num, error_flag);
+    return;
+  }
+
+  /* check if there is a label */
+  if (current_pattern->data->label[0]) {
+    handle_lable_define(current_pattern->data, "code", *IC, current_pattern_num, error_flag, *IC, *DC,1);
+  }
+
+  allocate_memory_for_instructions(current_pattern->data, &(code[num_of_codes]),
+                                   current_pattern_num, error_flag);
+  current_pattern->data->choice.inst.code = code[num_of_codes];
+
+  temp_ins = encoded_instruction(current_pattern->data, error_flag, current_pattern_num);
+  strcpy(code[num_of_codes]->lines[0]->word, temp_ins);
+  free(temp_ins);
+
+  /* check if there ara operands */
+  if (current_pattern->data->choice.inst.num_of_operands >= 1) {
+
+    /* check the type of the first operand */
+    if (current_pattern->data->choice.inst.num_of_operands == 2) { /*there is olso sorce op*/
+      if ((current_pattern->data->choice.inst.operands[0].op_type ==
+           REGISTER) &&
+          (current_pattern->data->choice.inst.operands[1].op_type ==
+           REGISTER)) { /*tow registers*/
+        tow_registers(current_pattern, current_pattern_num,
+                      &num_of_word_nedded);
+
+      } else
+        source_operand(current_pattern, current_pattern_num, &num_of_word_nedded, error_flag);
+    }
+	target_operand(current_pattern, current_pattern_num, &num_of_word_nedded, error_flag);
+    
+  }
+  num_of_codes++;
+  (*IC) += num_of_word_nedded;
+}
+
+
+/**
+ * @brief  This function is used to handle the case of source operand.
+ * it will encode the source operand, based on the type of the operand. 
+ * @param current_pattern  The current pattern that we want to handle.
+ * @param current_pattern_num  The number of the current pattern.
+ * @param num_of_word_nedded  The number of word nedded to encode the operand.
+ */
+void source_operand(struct Node *current_pattern, int current_pattern_num, int *num_of_word_nedded, int *error_flag){
+	switch (current_pattern->data->choice.inst.operands[1].op_type) {
+        case REGISTER:
+          /*only the sorsce operand is register*/
+          register_encoder(current_pattern, 1, num_of_word_nedded);
+          break;
+
+        case IMMEDIATE_NUMBER:
+          immediate(current_pattern, 1, num_of_word_nedded, error_flag, current_pattern_num);
+          break;
+
+        case DIRECT:
+          direct(current_pattern, 1, num_of_word_nedded);
+          break;
+        case DIRECT_INDEX:
+
+          direct_index(current_pattern, 1, num_of_word_nedded, current_pattern_num, error_flag);
+          break;
+        }
+}
+
+/**
+ * @brief  This function is used to handle the case of target operand.
+ * it will encode the target operand, based on the type of the operand. 
+ * @param current_pattern  The current pattern that we want to handle.
+ * @param current_pattern_num  The number of the current pattern.
+ * @param num_of_word_nedded  The number of word nedded to encode the operand.
+ */
+void target_operand(struct Node *current_pattern, int current_pattern_num, int *num_of_word_nedded, int *error_flag){
+	switch (current_pattern->data->choice.inst.operands[0].op_type) {
+    case REGISTER:
+	/*only the target operand is register*/
+      if ((current_pattern->data->choice.inst.num_of_operands == 2) &&
+          (current_pattern->data->choice.inst.operands[1].op_type != REGISTER)) {
+        register_encoder(current_pattern, 0, num_of_word_nedded);
+      }
+      break;
+
+    case IMMEDIATE_NUMBER:
+      immediate(current_pattern, 0, num_of_word_nedded, error_flag, current_pattern_num);
+      break;
+
+    case DIRECT:
+      direct(current_pattern, 0, num_of_word_nedded);
+      break;
+
+    case DIRECT_INDEX:
+      direct_index(current_pattern, 0, num_of_word_nedded, current_pattern_num, error_flag);
+      break;
+    }
 }
 
 
@@ -257,12 +405,12 @@ void direct(struct Node *current_pattern, int operand_num, int *num_of_word_nedd
  * @param num_of_word_nedded  The number of word nedded to encode the operand.
  * @param current_pattern_num  The number of the current pattern.
  */
-void direct_index(struct Node *current_pattern, int operand_num, int *num_of_word_nedded, int current_pattern_num) {
+void direct_index(struct Node *current_pattern, int operand_num, int *num_of_word_nedded, int current_pattern_num, int *error_flag) {
     char *first_word, *second_word;
 	(*num_of_word_nedded) += 2;
     first_word = encoded_data(0); /*will encoded next round*/
 	/* the second word is the immidiate number */
-	second_word = encoded_immidiate_number(extract_immidiate_number(current_pattern->data, operand_num, current_pattern_num));
+	second_word = encoded_immidiate_number(extract_immidiate_number(current_pattern->data, operand_num, current_pattern_num, error_flag), error_flag, current_pattern_num);
     
 	/* insert the words to the code table, based on the num of the operand */
 	if (operand_num == 1) {
@@ -284,133 +432,16 @@ void direct_index(struct Node *current_pattern, int operand_num, int *num_of_wor
  * @param operand_num  The number of the operand.
  * @param num_of_word_nedded  The number of word nedded to encode the operand.
  */
-void immediate(struct Node *current_pattern, int operand_num, int *num_of_word_nedded) {
+void immediate(struct Node *current_pattern, int operand_num, int *num_of_word_nedded, int *error_flag, int current_pattern_num) {
     char *temp_ins;
     (*num_of_word_nedded) += 1;
 	/* extract the immidiate number and encode it, based on the num of the operand */
 	if (operand_num == 1) {
-	  temp_ins = encoded_immidiate_number(extract_immidiate_number(current_pattern->data, 1, current_pattern_num));
+	  temp_ins = encoded_immidiate_number(extract_immidiate_number(current_pattern->data, 1, current_pattern_num, error_flag), error_flag, current_pattern_num);
 	  strcpy(code[num_of_codes]->lines[1]->word, temp_ins);
 	} else {
-	  temp_ins = encoded_immidiate_number(extract_immidiate_number(current_pattern->data, 0, current_pattern_num));
+	  temp_ins = encoded_immidiate_number(extract_immidiate_number(current_pattern->data, 0, current_pattern_num, error_flag), error_flag, current_pattern_num);
 	  strcpy(code[num_of_codes]->lines[(*num_of_word_nedded) - 1]->word, temp_ins);
 	}
 	free(temp_ins);
-}
-
-/**
- * @brief  This function is used to handle the case of source operand.
- * it will encode the source operand, based on the type of the operand. 
- * @param current_pattern  The current pattern that we want to handle.
- * @param current_pattern_num  The number of the current pattern.
- * @param num_of_word_nedded  The number of word nedded to encode the operand.
- */
-void source_operand(struct Node *current_pattern, int current_pattern_num, int *num_of_word_nedded){
-	switch (current_pattern->data->choice.inst.operands[1].op_type) {
-        case REGISTER:
-          /*only the sorsce operand is register*/
-          register_encoder(current_pattern, 1, num_of_word_nedded);
-          break;
-
-        case IMMEDIATE_NUMBER:
-          immediate(current_pattern, 1, num_of_word_nedded);
-          break;
-
-        case DIRECT:
-          direct(current_pattern, 1, num_of_word_nedded);
-          break;
-        case DIRECT_INDEX:
-
-          direct_index(current_pattern, 1, num_of_word_nedded, current_pattern_num);
-          break;
-        }
-}
-
-/**
- * @brief  This function is used to handle the case of target operand.
- * it will encode the target operand, based on the type of the operand. 
- * @param current_pattern  The current pattern that we want to handle.
- * @param current_pattern_num  The number of the current pattern.
- * @param num_of_word_nedded  The number of word nedded to encode the operand.
- */
-void target_operand(struct Node *current_pattern, int current_pattern_num, int *num_of_word_nedded){
-	switch (current_pattern->data->choice.inst.operands[0].op_type) {
-    case REGISTER:
-	/*only the target operand is register*/
-      if ((current_pattern->data->choice.inst.num_of_operands == 2) &&
-          (current_pattern->data->choice.inst.operands[1].op_type != REGISTER)) {
-        register_encoder(current_pattern, 0, num_of_word_nedded);
-      }
-      break;
-
-    case IMMEDIATE_NUMBER:
-      immediate(current_pattern, 0, num_of_word_nedded);
-      break;
-
-    case DIRECT:
-      direct(current_pattern, 0, num_of_word_nedded);
-      break;
-
-    case DIRECT_INDEX:
-      direct_index(current_pattern, 0, num_of_word_nedded, current_pattern_num);
-      break;
-    }
-}
-
-
-/**
- * @brief  This function is used to handle the case of instruction.
- * it will insert the instruction to the code table, and encode the instruction.
- * 
- * @param current_pattern  The current pattern that we want to handle.
- * @param current_pattern_num  The number of the current pattern.
- * @param IC  The instruction counter.
- */
-void instruction(struct Node *current_pattern, int current_pattern_num, int *IC) {
-  int num_of_word_nedded = 1;
-  char *temp_ins;
-
-  /* check the valdiation of the operands type and number */
-  if (!check_validation_of_operands_num(current_pattern->data)) {
-    print_error_msg("invalid number of operands", current_pattern_num);
-    return;
-  }
-  if (!check_validation_of_operands_type(current_pattern->data)) {
-    print_error_msg("invalid type of operands", current_pattern_num);
-    return;
-  }
-
-  /* check if there is a label */
-  if (current_pattern->data->label[0]) {
-    handle_lable_define(current_pattern->data, "code", *IC, current_pattern_num);
-  }
-
-  allocate_memory_for_instructions(current_pattern->data, &(code[num_of_codes]),
-                                   current_pattern_num);
-  current_pattern->data->choice.inst.code = code[num_of_codes];
-
-  temp_ins = encoded_instruction(current_pattern->data);
-  strcpy(code[num_of_codes]->lines[0]->word, temp_ins);
-  free(temp_ins);
-
-  /* check if there ara operands */
-  if (current_pattern->data->choice.inst.num_of_operands >= 1) {
-
-    /* check the type of the first operand */
-    if (current_pattern->data->choice.inst.num_of_operands == 2) { /*there is olso sorce op*/
-      if ((current_pattern->data->choice.inst.operands[0].op_type ==
-           REGISTER) &&
-          (current_pattern->data->choice.inst.operands[1].op_type ==
-           REGISTER)) { /*tow registers*/
-        tow_registers(current_pattern, current_pattern_num,
-                      &num_of_word_nedded);
-
-      } else
-        source_operand(current_pattern, current_pattern_num, &num_of_word_nedded);
-    }
-	target_operand(current_pattern, current_pattern_num, &num_of_word_nedded);
-    
-  }
-  num_of_codes++;
-  (*IC) += num_of_word_nedded;
 }

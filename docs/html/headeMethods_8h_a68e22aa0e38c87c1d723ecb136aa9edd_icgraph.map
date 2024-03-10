@@ -1,0 +1,11 @@
+<map id="checkCommaAtEnd" name="checkCommaAtEnd">
+<area shape="rect" id="node1" title="Checks for a comma at the end of a line." alt="" coords="1331,5,1480,32"/>
+<area shape="rect" id="node2" href="$directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf" title="Handles processing of the .data directive." alt="" coords="1127,5,1283,32"/>
+<area shape="rect" id="node3" href="$directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,5,1079,32"/>
+<area shape="rect" id="node4" href="$front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
+<area shape="rect" id="node5" href="$front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
+<area shape="rect" id="node6" href="$front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
+<area shape="rect" id="node7" href="$front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
+<area shape="rect" id="node8" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
+<area shape="rect" id="node9" href="$assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
+</map>

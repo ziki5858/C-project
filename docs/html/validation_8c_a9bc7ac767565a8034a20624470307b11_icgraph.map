@@ -1,0 +1,27 @@
+<map id="print_error_memory" name="print_error_memory">
+<area shape="rect" id="node1" title="Print error message." alt="" coords="1297,236,1449,263"/>
+<area shape="rect" id="node2" href="$validation_8c.html#a031321c26638c28ff9c119fe8d7d503d" title="Allocate memory for data." alt="" coords="796,84,993,111"/>
+<area shape="rect" id="node9" href="$validation_8c.html#a3e3cebcf58082af1066e47d05a822c18" title="Allocate memory for instructions in the pattern struct, according to the number of operands and the t..." alt="" coords="587,389,748,430"/>
+<area shape="rect" id="node13" href="$encoder_8c.html#a329e12ab97669c9a40afdc3f39a2625e" title="Encoded instruction based on the pattern of the instruction and the operands." alt="" coords="247,407,400,434"/>
+<area shape="rect" id="node14" href="$structs__func_8c.html#aa036fc362052cd9b0c1fa9e7d8bc6612" title="Create a constant object." alt="" coords="1082,236,1209,263"/>
+<area shape="rect" id="node16" href="$structs__func_8c.html#a604f4a431dcdb24cdb2b23b7c2c5caa2" title="Create a external object." alt="" coords="1083,40,1207,67"/>
+<area shape="rect" id="node18" href="$structs__func_8c.html#ab3b1b13c2ffe7592565c333bb8ea67bc" title="Create a symbol object." alt="" coords="1086,179,1205,206"/>
+<area shape="rect" id="node21" href="$encoder_8c.html#ab5d697d299b25fafae120ba695e8e426" title="Encoded immidiate number." alt="" coords="1041,287,1249,314"/>
+<area shape="rect" id="node3" href="$bilder_8c.html#a7d3f2dabed665b6991d348cd9b9eecdd" title="This function is used to handle the case of data definition. it will insert the data to the data tabl..." alt="" coords="628,84,707,111"/>
+<area shape="rect" id="node8" href="$bilder_8c.html#adc7c1d36ef80f1bec801aa44aae83ec3" title="This function is used to handle the case of string definition. it will insert the data to the data ta..." alt="" coords="624,34,711,60"/>
+<area shape="rect" id="node4" href="$bilder_8c.html#ac249210a8dde740ac716b4664a6dca0c" title="This function is used to handle the case of directive. it will call the right function to handle the ..." alt="" coords="454,84,533,111"/>
+<area shape="rect" id="node5" href="$rounds_8c.html#a8d1601cdfa9ee1868a99f9f4cbc92cdb" title="The first round of the assembler. In this round we will go through the linked list and handle the lab..." alt="" coords="278,224,369,251"/>
+<area shape="rect" id="node6" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,224,199,251"/>
+<area shape="rect" id="node7" href="$assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,224,60,251"/>
+<area shape="rect" id="node10" href="$bilder_8c.html#aaa835797e1904edef894e1e73b903918" title="This function is used to handle the case of instruction. it will insert the instruction to the code t..." alt="" coords="448,338,539,364"/>
+<area shape="rect" id="node11" href="$validation_8c.html#ae2257b5716f42bf8265ab55d8f74b9c9" title="Check validation of operands number." alt="" coords="247,341,399,382"/>
+<area shape="rect" id="node12" href="$validation_8c.html#ac8fb5cb950ac90d557b5f046005688da" title="Check validation of operands type." alt="" coords="247,276,399,317"/>
+<area shape="rect" id="node15" href="$bilder_8c.html#af63faf595418d3c43329adee44aa3516" title="This function is used to handle the case of define." alt="" coords="462,231,525,258"/>
+<area shape="rect" id="node17" href="$bilder_8c.html#ac120f9f7295bddb3c11e7580f0ff4062" title="This function is used to handle the case of extern definition. it will insert the extern to the exter..." alt="" coords="849,34,941,60"/>
+<area shape="rect" id="node19" href="$bilder_8c.html#a659ba63d2ee204703597eb6cc0e06a21" title="This function is used to handle the case of entry definition. it will insert the entry to the entry t..." alt="" coords="625,186,709,212"/>
+<area shape="rect" id="node20" href="$validation_8c.html#aac54d5c00f1ea10a95bb05541d4b22c9" title="Handle lable define by adding the lable to the symbol table." alt="" coords="819,135,971,162"/>
+<area shape="rect" id="node22" href="$bilder_8c.html#a02bdaced5ed29b8a4f4b0ede5c566d0b" title="This function is used to handle the case of direct index operand. it will encode the direct index ope..." alt="" coords="843,287,946,314"/>
+<area shape="rect" id="node25" href="$bilder_8c.html#aa9d0dd78e4decc1d601c819ec688c7b6" title="This function is used to handle the case of immediate operand. it will encode the immediate operand,..." alt="" coords="848,338,941,364"/>
+<area shape="rect" id="node23" href="$bilder_8c.html#acad5e22d5cb7ccbda6c217bd63100717" title="This function is used to handle the case of source operand. it will encode the source operand,..." alt="" coords="605,338,730,364"/>
+<area shape="rect" id="node24" href="$bilder_8c.html#a00848de3dfe3318931fb763fdec2869f" title="This function is used to handle the case of target operand. it will encode the target operand,..." alt="" coords="607,287,728,314"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="processDefine" name="processDefine">
+<area shape="rect" id="node1" title="Function to process the .define directive." alt="" coords="5,157,120,184"/>
+<area shape="rect" id="node2" href="$define_8c.html#a9b934e4c8638e4436a0b6b440cea6fc3" title="Function to check if a word is a define and update the pattern structure." alt="" coords="187,107,295,133"/>
+<area shape="rect" id="node9" href="$front_8c.html#abeb421a01dadd83e4b4a97672817c99c" title="Function to handle the return value of various processing functions." alt="" coords="168,183,313,209"/>
+<area shape="rect" id="node3" href="$directive_8c.html#a5d78273d4feb195d7706ce9d6d7c004b" title="Function to add a label to the entry label set." alt="" coords="367,5,518,32"/>
+<area shape="rect" id="node4" href="$front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="411,56,475,83"/>
+<area shape="rect" id="node7" href="$define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a string is numeric." alt="" coords="399,107,487,133"/>
+<area shape="rect" id="node8" href="$define_8c.html#aa0b3977cf0af0a66723704d8ca22fa37" title="Function to check if a string is a valid constant name." alt="" coords="361,157,524,184"/>
+<area shape="rect" id="node5" href="$front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="572,132,665,159"/>
+<area shape="rect" id="node6" href="$front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="713,132,811,159"/>
+</map>

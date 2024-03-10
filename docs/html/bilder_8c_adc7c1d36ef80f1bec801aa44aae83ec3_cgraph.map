@@ -1,0 +1,15 @@
+<map id="string_def" name="string_def">
+<area shape="rect" id="node1" title="This function is used to handle the case of string definition. it will insert the data to the data ta..." alt="" coords="5,56,92,83"/>
+<area shape="rect" id="node2" href="$validation_8c.html#a031321c26638c28ff9c119fe8d7d503d" title="Allocate memory for data." alt="" coords="140,5,337,32"/>
+<area shape="rect" id="node4" href="$encoder_8c.html#a9d6485eee7bd29a18a5cd2d0f854ba48" title="Encoded data." alt="" coords="182,56,295,83"/>
+<area shape="rect" id="node6" href="$validation_8c.html#aac54d5c00f1ea10a95bb05541d4b22c9" title="Handle lable define by adding the lable to the symbol table." alt="" coords="163,132,315,159"/>
+<area shape="rect" id="node3" href="$validation_8c.html#a9bc7ac767565a8034a20624470307b11" title="Print error message." alt="" coords="385,5,537,32"/>
+<area shape="rect" id="node5" href="$encoder_8c.html#a0be324d0748f78ad58808205ec37bbf3" title="Convert number to binary string." alt="" coords="404,56,519,83"/>
+<area shape="rect" id="node7" href="$structs__func_8c.html#ab3b1b13c2ffe7592565c333bb8ea67bc" title="Create a symbol object." alt="" coords="402,107,521,133"/>
+<area shape="rect" id="node11" href="$trie_8c.html#a30321ace47f8c6fd4a373a31faade78d" title="This function is used to find a string in the trie." alt="" coords="410,157,513,184"/>
+<area shape="rect" id="node13" href="$validation_8c.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="399,208,524,235"/>
+<area shape="rect" id="node8" href="$trie_8c.html#a2a2a39a0906c717c226fd49622c43d02" title="This function is used to insert a string into the trie." alt="" coords="611,31,719,57"/>
+<area shape="rect" id="node9" href="$structs_8h.html#a9bc7ac767565a8034a20624470307b11" title="Print error message." alt="" coords="589,81,741,108"/>
+<area shape="rect" id="node10" href="$structs_8h.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="602,132,727,159"/>
+<area shape="rect" id="node12" href="$trie_8c.html#a201440dcabea53e0531915199bf953f0" title="This function is used to check if the string is exist in the sub trie." alt="" coords="585,183,744,209"/>
+</map>

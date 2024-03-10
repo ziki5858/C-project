@@ -1,0 +1,256 @@
+\hypertarget{structs__func_8h}{}\doxysection{assembler\+Rounds/structs\+\_\+func.h File Reference}
+\label{structs__func_8h}\index{assemblerRounds/structs\_func.h@{assemblerRounds/structs\_func.h}}
+{\ttfamily \#include \char`\"{}../trie/trie.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}structs.\+h\char`\"{}}\newline
+Include dependency graph for structs\+\_\+func.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{structs__func_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structs__func_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structs_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}} \mbox{\hyperlink{structs__func_8h_ab3b1b13c2ffe7592565c333bb8ea67bc}{create\+\_\+symbol}} (char $\ast$label, int address, int type, int line\+\_\+in\+\_\+file, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int num\+\_\+of\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Create a symbol object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_a6285fc1207264550aa3f40302f54dd80}{Constant}} \mbox{\hyperlink{structs__func_8h_aa036fc362052cd9b0c1fa9e7d8bc6612}{create\+\_\+constant}} (char $\ast$label, int value, int line\+\_\+in\+\_\+file, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em Create a constant object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_aaa7ca4df7549cc433aee28a22f343dd7}{External}} \mbox{\hyperlink{structs__func_8h_a604f4a431dcdb24cdb2b23b7c2c5caa2}{create\+\_\+external}} (char $\ast$label, int line\+\_\+in\+\_\+file, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em Create a external object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structs__func_8h_aaaddbedc1be4fdaad140b9b6a5e86f44}{insert\+\_\+address\+\_\+to\+\_\+external}} (\mbox{\hyperlink{structs_8h_aaa7ca4df7549cc433aee28a22f343dd7}{External}} e, int address)
+\begin{DoxyCompactList}\small\item\em Insert address to external. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_a33a7cf9e35c645e2357af82b0b94bbf6}{Entry}} \mbox{\hyperlink{structs__func_8h_aa5635bcd585de28376682566e798a623}{create\+\_\+entry}} (\mbox{\hyperlink{structs_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}} \mbox{\hyperlink{structsymbol}{symbol}}, int line\+\_\+in\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Create a entry object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structs__func_8h_a517e10c66f890d5285159e12b73ab287}{num\+\_\+of\+\_\+symbols\+\_\+in\+\_\+entries}}
+\item 
+int \mbox{\hyperlink{structs__func_8h_ae36f2f797e77de6c271d786a4d05b80a}{size\+\_\+of\+\_\+symbol\+\_\+table}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{structs__func_8h_aa036fc362052cd9b0c1fa9e7d8bc6612}\label{structs__func_8h_aa036fc362052cd9b0c1fa9e7d8bc6612}} 
+\index{structs\_func.h@{structs\_func.h}!create\_constant@{create\_constant}}
+\index{create\_constant@{create\_constant}!structs\_func.h@{structs\_func.h}}
+\doxysubsubsection{\texorpdfstring{create\_constant()}{create\_constant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_a6285fc1207264550aa3f40302f54dd80}{Constant}} create\+\_\+constant (\begin{DoxyParamCaption}\item[{char $\ast$}]{label,  }\item[{int}]{value,  }\item[{int}]{line\+\_\+in\+\_\+file,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Create a constant object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & the label of the constant \\
+\hline
+{\em value} & The value of the constant \\
+\hline
+{\em line\+\_\+in\+\_\+file} & The line in the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Constant 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file structs\+\_\+func.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{structs__func_8h_aa036fc362052cd9b0c1fa9e7d8bc6612_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structs__func_8h_aa036fc362052cd9b0c1fa9e7d8bc6612_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structs__func_8h_aa5635bcd585de28376682566e798a623}\label{structs__func_8h_aa5635bcd585de28376682566e798a623}} 
+\index{structs\_func.h@{structs\_func.h}!create\_entry@{create\_entry}}
+\index{create\_entry@{create\_entry}!structs\_func.h@{structs\_func.h}}
+\doxysubsubsection{\texorpdfstring{create\_entry()}{create\_entry()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_a33a7cf9e35c645e2357af82b0b94bbf6}{Entry}} create\+\_\+entry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}}}]{symbol,  }\item[{int}]{line\+\_\+in\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Create a entry object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em symbol} & the symbol of the entry \\
+\hline
+{\em line\+\_\+in\+\_\+file} & The line in the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Entry 
+\end{DoxyReturn}
+
+
+Definition at line 170 of file structs\+\_\+func.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{structs__func_8h_aa5635bcd585de28376682566e798a623_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structs__func_8h_aa5635bcd585de28376682566e798a623_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structs__func_8h_a604f4a431dcdb24cdb2b23b7c2c5caa2}\label{structs__func_8h_a604f4a431dcdb24cdb2b23b7c2c5caa2}} 
+\index{structs\_func.h@{structs\_func.h}!create\_external@{create\_external}}
+\index{create\_external@{create\_external}!structs\_func.h@{structs\_func.h}}
+\doxysubsubsection{\texorpdfstring{create\_external()}{create\_external()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_aaa7ca4df7549cc433aee28a22f343dd7}{External}} create\+\_\+external (\begin{DoxyParamCaption}\item[{char $\ast$}]{label,  }\item[{int}]{line\+\_\+in\+\_\+file,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Create a external object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & the label of the external \\
+\hline
+{\em line\+\_\+in\+\_\+file} & The line in the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+External 
+\end{DoxyReturn}
+
+
+Definition at line 129 of file structs\+\_\+func.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{structs__func_8h_a604f4a431dcdb24cdb2b23b7c2c5caa2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structs__func_8h_a604f4a431dcdb24cdb2b23b7c2c5caa2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structs__func_8h_ab3b1b13c2ffe7592565c333bb8ea67bc}\label{structs__func_8h_ab3b1b13c2ffe7592565c333bb8ea67bc}} 
+\index{structs\_func.h@{structs\_func.h}!create\_symbol@{create\_symbol}}
+\index{create\_symbol@{create\_symbol}!structs\_func.h@{structs\_func.h}}
+\doxysubsubsection{\texorpdfstring{create\_symbol()}{create\_symbol()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}} create\+\_\+symbol (\begin{DoxyParamCaption}\item[{char $\ast$}]{label,  }\item[{int}]{address,  }\item[{int}]{type,  }\item[{int}]{line\+\_\+in\+\_\+file,  }\item[{int $\ast$}]{error\+\_\+flag,  }\item[{int}]{num\+\_\+of\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Create a symbol object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & the label of the symbol \\
+\hline
+{\em address} & The address of the symbol in the memory \\
+\hline
+{\em type} & The type of the symbol \\
+\hline
+{\em line\+\_\+in\+\_\+file} & The line in the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Symbol 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file structs\+\_\+func.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{structs__func_8h_ab3b1b13c2ffe7592565c333bb8ea67bc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structs__func_8h_ab3b1b13c2ffe7592565c333bb8ea67bc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structs__func_8h_aaaddbedc1be4fdaad140b9b6a5e86f44}\label{structs__func_8h_aaaddbedc1be4fdaad140b9b6a5e86f44}} 
+\index{structs\_func.h@{structs\_func.h}!insert\_address\_to\_external@{insert\_address\_to\_external}}
+\index{insert\_address\_to\_external@{insert\_address\_to\_external}!structs\_func.h@{structs\_func.h}}
+\doxysubsubsection{\texorpdfstring{insert\_address\_to\_external()}{insert\_address\_to\_external()}}
+{\footnotesize\ttfamily void insert\+\_\+address\+\_\+to\+\_\+external (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aaa7ca4df7549cc433aee28a22f343dd7}{External}}}]{e,  }\item[{int}]{address }\end{DoxyParamCaption})}
+
+
+
+Insert address to external. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & the external \\
+\hline
+{\em address} & The address to insert\\
+\hline
+{\em e} & the external to insert the address \\
+\hline
+{\em address} & The address to insert \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 155 of file structs\+\_\+func.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structs__func_8h_aaaddbedc1be4fdaad140b9b6a5e86f44_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{structs__func_8h_a517e10c66f890d5285159e12b73ab287}\label{structs__func_8h_a517e10c66f890d5285159e12b73ab287}} 
+\index{structs\_func.h@{structs\_func.h}!num\_of\_symbols\_in\_entries@{num\_of\_symbols\_in\_entries}}
+\index{num\_of\_symbols\_in\_entries@{num\_of\_symbols\_in\_entries}!structs\_func.h@{structs\_func.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_symbols\_in\_entries}{num\_of\_symbols\_in\_entries}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+symbols\+\_\+in\+\_\+entries\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 54 of file structs\+\_\+func.\+c.
+
+\mbox{\Hypertarget{structs__func_8h_ae36f2f797e77de6c271d786a4d05b80a}\label{structs__func_8h_ae36f2f797e77de6c271d786a4d05b80a}} 
+\index{structs\_func.h@{structs\_func.h}!size\_of\_symbol\_table@{size\_of\_symbol\_table}}
+\index{size\_of\_symbol\_table@{size\_of\_symbol\_table}!structs\_func.h@{structs\_func.h}}
+\doxysubsubsection{\texorpdfstring{size\_of\_symbol\_table}{size\_of\_symbol\_table}}
+{\footnotesize\ttfamily int size\+\_\+of\+\_\+symbol\+\_\+table}
+
+
+
+Definition at line 4 of file structs\+\_\+func.\+h.
+

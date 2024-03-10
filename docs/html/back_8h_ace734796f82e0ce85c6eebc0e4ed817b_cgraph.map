@@ -1,0 +1,5 @@
+<map id="translator" name="translator">
+<area shape="rect" id="node1" title="This function translates the binary table to encrypted words." alt="" coords="5,5,91,32"/>
+<area shape="rect" id="node2" href="$back_8c.html#ab16ee0504c0012a7fde87e66aa82afcb" title="This function converts a binary word to encrypted word." alt="" coords="139,5,209,32"/>
+<area shape="rect" id="node3" href="$back_8c.html#a190069a3548de5780f59d460d43682b4" title="This function converts a binary word to a number." alt="" coords="257,5,352,32"/>
+</map>

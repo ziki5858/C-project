@@ -1,0 +1,17 @@
+<map id="data_def" name="data_def">
+<area shape="rect" id="node1" title="This function is used to handle the case of data definition. it will insert the data to the data tabl..." alt="" coords="5,157,84,184"/>
+<area shape="rect" id="node2" href="$validation_8c.html#a031321c26638c28ff9c119fe8d7d503d" title="Allocate memory for data." alt="" coords="132,5,329,32"/>
+<area shape="rect" id="node4" href="$validation_8c.html#a1fc776f0020f1e928ca9ce9d425957ed" title="Check if the string contains only digits." alt="" coords="158,56,303,83"/>
+<area shape="rect" id="node5" href="$validation_8c.html#ab60101cd3a730d414c4ef6db6eeac431" title="Determaine the sign of the number." alt="" coords="165,107,296,133"/>
+<area shape="rect" id="node6" href="$encoder_8c.html#a9d6485eee7bd29a18a5cd2d0f854ba48" title="Encoded data." alt="" coords="174,157,287,184"/>
+<area shape="rect" id="node8" href="$trie_8c.html#a30321ace47f8c6fd4a373a31faade78d" title="This function is used to find a string in the trie." alt="" coords="402,208,505,235"/>
+<area shape="rect" id="node10" href="$validation_8c.html#aac54d5c00f1ea10a95bb05541d4b22c9" title="Handle lable define by adding the lable to the symbol table." alt="" coords="155,259,307,285"/>
+<area shape="rect" id="node14" href="$structs_8h.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="594,360,719,387"/>
+<area shape="rect" id="node3" href="$validation_8c.html#a9bc7ac767565a8034a20624470307b11" title="Print error message." alt="" coords="377,5,529,32"/>
+<area shape="rect" id="node7" href="$encoder_8c.html#a0be324d0748f78ad58808205ec37bbf3" title="Convert number to binary string." alt="" coords="396,157,511,184"/>
+<area shape="rect" id="node9" href="$trie_8c.html#a201440dcabea53e0531915199bf953f0" title="This function is used to check if the string is exist in the sub trie." alt="" coords="577,208,736,235"/>
+<area shape="rect" id="node11" href="$structs__func_8c.html#ab3b1b13c2ffe7592565c333bb8ea67bc" title="Create a symbol object." alt="" coords="394,259,513,285"/>
+<area shape="rect" id="node15" href="$validation_8c.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="391,309,516,336"/>
+<area shape="rect" id="node12" href="$trie_8c.html#a2a2a39a0906c717c226fd49622c43d02" title="This function is used to insert a string into the trie." alt="" coords="603,259,711,285"/>
+<area shape="rect" id="node13" href="$structs_8h.html#a9bc7ac767565a8034a20624470307b11" title="Print error message." alt="" coords="581,309,733,336"/>
+</map>

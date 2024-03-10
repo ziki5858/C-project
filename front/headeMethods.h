@@ -3,11 +3,13 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-
+#define WIDTH_OF_WORD 15
 #define MAX_ERROR_SIZE 300
 #define MAX_LINE_SIZE 81
 #define MAX_LABEL_SIZE 31
 
+#ifndef ASSEMBLER_STRUCTURES
+#define ASSEMBLER_STRUCTURES
 /* Enumeration for directive types */
 enum DirectiveType {
     ENTRY, /**< Entry directive */
@@ -61,12 +63,59 @@ struct pattern {
         } def;
     } choice;
 };
-
-/* Structure for a linked list node representing a pattern */
 struct Node {
-    struct pattern *data;  /**< Data containing information about the assembly language pattern */
-    struct Node *next;    /**< Pointer to the next node in the linked list */
+  struct pattern *data;
+  struct Node *next;
+  int num_in_list;
 };
+
+struct symbol {
+  char label[MAX_LABEL_SIZE];
+  int address;
+  enum { CODE, S_DATA, S_EXTERN, S_ENTRY, ENTRY_CODE, ENTRY_DATA } type;
+  int line_in_file;
+};
+
+struct constant {
+  char *label;
+  int value;
+  int line_in_file;
+};
+
+struct external {
+  char *label;
+  int *addresses;
+  int number_of_addresses;
+  int line_in_file;
+};
+typedef struct symbol *Symbol;
+typedef struct constant *Constant;
+typedef struct external *External;
+typedef struct entry *Entry;
+typedef struct code *Code;
+typedef struct word_bin *WordBin;
+typedef struct pattern *Pattern ;
+typedef struct macro * Macro ;
+struct macro {
+	char name[32];
+	char *value;
+	int number_of_lines;
+};
+struct entry {
+  Symbol symbol;
+  int line_in_file;
+};
+
+struct word_bin {
+  char word[WIDTH_OF_WORD]; /**/
+};
+
+struct code {
+  int num_of_lines;
+  WordBin *lines;
+  int line_in_file;
+};
+#endif
 
 /* Structure to map instruction names to their corresponding enum values */
 struct InstructionMapping {

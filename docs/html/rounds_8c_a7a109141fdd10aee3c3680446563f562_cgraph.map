@@ -1,0 +1,13 @@
+<map id="secondround" name="secondround">
+<area shape="rect" id="node1" title="The second round of the assembler. now we have all the symbols and we can encode the instructions of ..." alt="" coords="5,137,111,164"/>
+<area shape="rect" id="node2" href="$validation_8c.html#a81dd6d7982066025d98239c80e621953" title="check if the index of the direct operand is out of bounds" alt="" coords="185,61,331,88"/>
+<area shape="rect" id="node3" href="$trie_8c.html#a30321ace47f8c6fd4a373a31faade78d" title="This function is used to find a string in the trie." alt="" coords="663,36,766,63"/>
+<area shape="rect" id="node7" href="$encoder_8c.html#a423ad3b2b7cc5f6f9394d47c25e930e2" title="encode the direct operand, by converting the value to binary and adding the ARE flag" alt="" coords="197,112,319,139"/>
+<area shape="rect" id="node9" href="$structs__func_8c.html#aaaddbedc1be4fdaad140b9b6a5e86f44" title="Insert address to external." alt="" coords="159,163,357,189"/>
+<area shape="rect" id="node10" href="$validation_8c.html#aa5b335f86f0ea18708e249a1c6c629a8" title="check if there is a direct operand in the instruction." alt="" coords="199,213,317,240"/>
+<area shape="rect" id="node11" href="$validation_8c.html#afd091464e6fb7f02e28f443b21779ea9" title="check if all the entries are defined" alt="" coords="195,264,321,291"/>
+<area shape="rect" id="node5" href="$validation_8c.html#a39e018e9177c69e7051ba8b1a7e7cd2d" title="Extract immidiate number from the instruction." alt="" coords="405,87,604,113"/>
+<area shape="rect" id="node4" href="$trie_8c.html#a201440dcabea53e0531915199bf953f0" title="This function is used to check if the string is exist in the sub trie." alt="" coords="825,36,984,63"/>
+<area shape="rect" id="node6" href="$validation_8c.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="652,87,777,113"/>
+<area shape="rect" id="node8" href="$encoder_8c.html#a0be324d0748f78ad58808205ec37bbf3" title="Convert number to binary string." alt="" coords="447,137,562,164"/>
+</map>

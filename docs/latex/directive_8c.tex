@@ -1,0 +1,540 @@
+\hypertarget{directive_8c}{}\doxysection{front/directive.c File Reference}
+\label{directive_8c}\index{front/directive.c@{front/directive.c}}
+{\ttfamily \#include \char`\"{}heade\+Methods.\+h\char`\"{}}\newline
+Include dependency graph for directive.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{directive_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structLabelSet}{Label\+Set}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{directive_8c_ab54926c39817863421a74e1ada92e412}{is\+Valid\+Label}} (char $\ast$name, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int need\+Colon, int \mbox{\hyperlink{structsymbol}{symbol}})
+\begin{DoxyCompactList}\small\item\em Function to check if a label is valid. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_ae5ec285c69a731057cf0c53c79537eee}{directive\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is a directive and return the directive type. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a15246dafea3587f742716cbed87e4d59}{handle\+Entry\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of the .entry directive. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b}{add\+To\+Entry\+Label\+Set}} (const char $\ast$label)
+\begin{DoxyCompactList}\small\item\em Function to add a label to the entry label set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc}{is\+Entry\+Label}} (const char $\ast$label)
+\begin{DoxyCompactList}\small\item\em Function to check if a label is in the entry label set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_ac2837c269e696fee0db3df8f8ab43e3d}{handle\+Extern\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of the .extern directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a7b53e8771f21707e0dbea3b2c0cfe819}{handle\+String\+Directive}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of the .string directive. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{directive_8c_a59d683d34a59781f51a6f9eb02112caa}{spare\+Space}} (char $\ast$token)
+\begin{DoxyCompactList}\small\item\em Function to check if a label is in the external label set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a48e46c99fa59387602fd6551e7f23192}{check\+\_\+comas\+\_\+continus}} (char $\ast$line)
+\begin{DoxyCompactList}\small\item\em This function checks if there are multiple consecutive comas. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}{handle\+Data\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of the .data directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a856654e2325ad10e1561ce8b623a9df8}{check\+Comma\+Word}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Checks for a comma before a word. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a68e22aa0e38c87c1d723ecb136aa9edd}{check\+Comma\+At\+End}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Checks for a comma at the end of a line. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{directive_8c_a8b315535f4cc7908415c17737bf7c64a}{process\+Numeric\+Arguments}} (FILE $\ast$file, char $\ast$word, char $\ast$input, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\item 
+int \mbox{\hyperlink{directive_8c_a4209c81388b14c5650d72bc2e92a5f91}{check\+Last\+Character}} (const char input\mbox{[}$\,$\mbox{]}, char error\+Char)
+\begin{DoxyCompactList}\small\item\em Function to check if the last character of a string is a specific character. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structLabelSet}{Label\+Set}} \mbox{\hyperlink{directive_8c_aa795197fca18171ad741914750ca0dd1}{entry\+Label\+Set}} = \{ 0 \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b}\label{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b}} 
+\index{directive.c@{directive.c}!addToEntryLabelSet@{addToEntryLabelSet}}
+\index{addToEntryLabelSet@{addToEntryLabelSet}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{addToEntryLabelSet()}{addToEntryLabelSet()}}
+{\footnotesize\ttfamily void add\+To\+Entry\+Label\+Set (\begin{DoxyParamCaption}\item[{const char $\ast$}]{label }\end{DoxyParamCaption})}
+
+
+
+Function to add a label to the entry label set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & The label to be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 103 of file directive.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a48e46c99fa59387602fd6551e7f23192}\label{directive_8c_a48e46c99fa59387602fd6551e7f23192}} 
+\index{directive.c@{directive.c}!check\_comas\_continus@{check\_comas\_continus}}
+\index{check\_comas\_continus@{check\_comas\_continus}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{check\_comas\_continus()}{check\_comas\_continus()}}
+{\footnotesize\ttfamily int check\+\_\+comas\+\_\+continus (\begin{DoxyParamCaption}\item[{char $\ast$}]{line }\end{DoxyParamCaption})}
+
+
+
+This function checks if there are multiple consecutive comas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & The line that the user entered \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if there are multiple consecutive comas, 1 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 189 of file directive.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a48e46c99fa59387602fd6551e7f23192_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a68e22aa0e38c87c1d723ecb136aa9edd}\label{directive_8c_a68e22aa0e38c87c1d723ecb136aa9edd}} 
+\index{directive.c@{directive.c}!checkCommaAtEnd@{checkCommaAtEnd}}
+\index{checkCommaAtEnd@{checkCommaAtEnd}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{checkCommaAtEnd()}{checkCommaAtEnd()}}
+{\footnotesize\ttfamily int check\+Comma\+At\+End (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Checks for a comma at the end of a line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if a comma is found at the end; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 259 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a68e22aa0e38c87c1d723ecb136aa9edd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a68e22aa0e38c87c1d723ecb136aa9edd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a856654e2325ad10e1561ce8b623a9df8}\label{directive_8c_a856654e2325ad10e1561ce8b623a9df8}} 
+\index{directive.c@{directive.c}!checkCommaWord@{checkCommaWord}}
+\index{checkCommaWord@{checkCommaWord}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{checkCommaWord()}{checkCommaWord()}}
+{\footnotesize\ttfamily int check\+Comma\+Word (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Checks for a comma before a word. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if a comma is found before the word; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 241 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a856654e2325ad10e1561ce8b623a9df8_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a4209c81388b14c5650d72bc2e92a5f91}\label{directive_8c_a4209c81388b14c5650d72bc2e92a5f91}} 
+\index{directive.c@{directive.c}!checkLastCharacter@{checkLastCharacter}}
+\index{checkLastCharacter@{checkLastCharacter}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{checkLastCharacter()}{checkLastCharacter()}}
+{\footnotesize\ttfamily int check\+Last\+Character (\begin{DoxyParamCaption}\item[{const char}]{input\mbox{[}$\,$\mbox{]},  }\item[{char}]{error\+Char }\end{DoxyParamCaption})}
+
+
+
+Function to check if the last character of a string is a specific character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The string to be checked. \\
+\hline
+{\em error\+Char} & The specific character to check for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the last character is the specified character; otherwise, 1. 
+\end{DoxyReturn}
+
+
+Definition at line 315 of file directive.\+c.
+
+\mbox{\Hypertarget{directive_8c_ae5ec285c69a731057cf0c53c79537eee}\label{directive_8c_ae5ec285c69a731057cf0c53c79537eee}} 
+\index{directive.c@{directive.c}!directiveFormat@{directiveFormat}}
+\index{directiveFormat@{directiveFormat}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{directiveFormat()}{directiveFormat()}}
+{\footnotesize\ttfamily int directive\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is a directive and return the directive type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Directive\+Type enumeration if the word is a directive; otherwise, -\/1. 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ae5ec285c69a731057cf0c53c79537eee_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ae5ec285c69a731057cf0c53c79537eee_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}\label{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}} 
+\index{directive.c@{directive.c}!handleDataDirective@{handleDataDirective}}
+\index{handleDataDirective@{handleDataDirective}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{handleDataDirective()}{handleDataDirective()}}
+{\footnotesize\ttfamily int handle\+Data\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of the .data directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 208 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a15246dafea3587f742716cbed87e4d59}\label{directive_8c_a15246dafea3587f742716cbed87e4d59}} 
+\index{directive.c@{directive.c}!handleEntryDirective@{handleEntryDirective}}
+\index{handleEntryDirective@{handleEntryDirective}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{handleEntryDirective()}{handleEntryDirective()}}
+{\footnotesize\ttfamily int handle\+Entry\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of the .entry directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a15246dafea3587f742716cbed87e4d59_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a15246dafea3587f742716cbed87e4d59_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_ac2837c269e696fee0db3df8f8ab43e3d}\label{directive_8c_ac2837c269e696fee0db3df8f8ab43e3d}} 
+\index{directive.c@{directive.c}!handleExternDirective@{handleExternDirective}}
+\index{handleExternDirective@{handleExternDirective}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{handleExternDirective()}{handleExternDirective()}}
+{\footnotesize\ttfamily int handle\+Extern\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of the .extern directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 118 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ac2837c269e696fee0db3df8f8ab43e3d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ac2837c269e696fee0db3df8f8ab43e3d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a7b53e8771f21707e0dbea3b2c0cfe819}\label{directive_8c_a7b53e8771f21707e0dbea3b2c0cfe819}} 
+\index{directive.c@{directive.c}!handleStringDirective@{handleStringDirective}}
+\index{handleStringDirective@{handleStringDirective}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{handleStringDirective()}{handleStringDirective()}}
+{\footnotesize\ttfamily int handle\+String\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of the .string directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a7b53e8771f21707e0dbea3b2c0cfe819_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a7b53e8771f21707e0dbea3b2c0cfe819_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc}\label{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc}} 
+\index{directive.c@{directive.c}!isEntryLabel@{isEntryLabel}}
+\index{isEntryLabel@{isEntryLabel}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{isEntryLabel()}{isEntryLabel()}}
+{\footnotesize\ttfamily int is\+Entry\+Label (\begin{DoxyParamCaption}\item[{const char $\ast$}]{label }\end{DoxyParamCaption})}
+
+
+
+Function to check if a label is in the entry label set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & The label to be checked. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 108 of file directive.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_ab54926c39817863421a74e1ada92e412}\label{directive_8c_ab54926c39817863421a74e1ada92e412}} 
+\index{directive.c@{directive.c}!isValidLabel@{isValidLabel}}
+\index{isValidLabel@{isValidLabel}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{isValidLabel()}{isValidLabel()}}
+{\footnotesize\ttfamily int is\+Valid\+Label (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{need\+Colon,  }\item[{int}]{symbol }\end{DoxyParamCaption})}
+
+
+
+Function to check if a label is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The label to be checked. \\
+\hline
+{\em data} & Pointer to the data structure where the label is stored if valid. \\
+\hline
+{\em need\+Colon} & Flag indicating whether the label requires a colon at the end. \\
+\hline
+{\em symbol} & Flag indicating whether the label is a symbol. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the label is valid; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file directive.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_ab54926c39817863421a74e1ada92e412_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a8b315535f4cc7908415c17737bf7c64a}\label{directive_8c_a8b315535f4cc7908415c17737bf7c64a}} 
+\index{directive.c@{directive.c}!processNumericArguments@{processNumericArguments}}
+\index{processNumericArguments@{processNumericArguments}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{processNumericArguments()}{processNumericArguments()}}
+{\footnotesize\ttfamily int process\+Numeric\+Arguments (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{char $\ast$}]{input,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Definition at line 277 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a8b315535f4cc7908415c17737bf7c64a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a8b315535f4cc7908415c17737bf7c64a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{directive_8c_a59d683d34a59781f51a6f9eb02112caa}\label{directive_8c_a59d683d34a59781f51a6f9eb02112caa}} 
+\index{directive.c@{directive.c}!spareSpace@{spareSpace}}
+\index{spareSpace@{spareSpace}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{spareSpace()}{spareSpace()}}
+{\footnotesize\ttfamily void spare\+Space (\begin{DoxyParamCaption}\item[{char $\ast$}]{token }\end{DoxyParamCaption})}
+
+
+
+Function to check if a label is in the external label set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & The label to be checked. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 173 of file directive.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{directive_8c_a59d683d34a59781f51a6f9eb02112caa_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{directive_8c_aa795197fca18171ad741914750ca0dd1}\label{directive_8c_aa795197fca18171ad741914750ca0dd1}} 
+\index{directive.c@{directive.c}!entryLabelSet@{entryLabelSet}}
+\index{entryLabelSet@{entryLabelSet}!directive.c@{directive.c}}
+\doxysubsubsection{\texorpdfstring{entryLabelSet}{entryLabelSet}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structLabelSet}{Label\+Set}} entry\+Label\+Set = \{ 0 \}}
+
+
+
+Definition at line 1 of file directive.\+c.
+

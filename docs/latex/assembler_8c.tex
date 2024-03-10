@@ -1,0 +1,125 @@
+\hypertarget{assembler_8c}{}\doxysection{assembler.\+c File Reference}
+\label{assembler_8c}\index{assembler.c@{assembler.c}}
+
+
+This program is an assembler for the assembly language that was given in the course. The program gets a file name as an argument and assembles the file to a binary file. The program can get multiple files as arguments and assemble them all. the process of the assembler is as follows\+:  
+
+
+{\ttfamily \#include \char`\"{}front.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./back/back.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./back/memory.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./assembler\+Rounds/rounds.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./front/heade\+Methods.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Include dependency graph for assembler.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{assembler_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{assembler_8c_a39da808ec5bb413e291a597674a53de8}{assembler}} (char $\ast$file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em This function is the main function of the assembler, it calls all the other functions in the program. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{assembler_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em This is the main function of the program, it calls the assembler function for each file that was given as an argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This program is an assembler for the assembly language that was given in the course. The program gets a file name as an argument and assembles the file to a binary file. The program can get multiple files as arguments and assemble them all. the process of the assembler is as follows\+: 
+
+\begin{DoxyAuthor}{Author}
+Shlomo Weisz (\href{mailto:shlomowaize@gmail.com}{\texttt{ shlomowaize@gmail.\+com}})
+\begin{DoxyEnumerate}
+\item preprocess the file
+\item parse the file into a linked list of nodes
+\item first round of the assembler
+\item second round of the assembler
+\item translate the binary table to the output files The program is written in C language. The program have the following functions\+:
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item assembler -\/ the main function of the assembler 
+\end{DoxyEnumerate}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/21
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{assembler_8c_a39da808ec5bb413e291a597674a53de8}\label{assembler_8c_a39da808ec5bb413e291a597674a53de8}} 
+\index{assembler.c@{assembler.c}!assembler@{assembler}}
+\index{assembler@{assembler}!assembler.c@{assembler.c}}
+\doxysubsubsection{\texorpdfstring{assembler()}{assembler()}}
+{\footnotesize\ttfamily void assembler (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+This function is the main function of the assembler, it calls all the other functions in the program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & The name of the file that we want to assemble. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 38 of file assembler.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{assembler_8c_a39da808ec5bb413e291a597674a53de8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{assembler_8c_a39da808ec5bb413e291a597674a53de8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{assembler_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{assembler_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{assembler.c@{assembler.c}!main@{main}}
+\index{main@{main}!assembler.c@{assembler.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+This is the main function of the program, it calls the assembler function for each file that was given as an argument. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of files that were given as arguments. \\
+\hline
+{\em argv} & The names of the files that were given as arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 97 of file assembler.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{assembler_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}

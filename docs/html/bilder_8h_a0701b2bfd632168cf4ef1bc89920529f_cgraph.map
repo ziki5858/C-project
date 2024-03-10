@@ -1,0 +1,5 @@
+<map id="direct" name="direct">
+<area shape="rect" id="node1" title="This function is used to handle the case of direct operand. it will encode the direct operand,..." alt="" coords="5,5,64,32"/>
+<area shape="rect" id="node2" href="$encoder_8c.html#a9d6485eee7bd29a18a5cd2d0f854ba48" title="Encoded data." alt="" coords="112,5,225,32"/>
+<area shape="rect" id="node3" href="$encoder_8c.html#a0be324d0748f78ad58808205ec37bbf3" title="Convert number to binary string." alt="" coords="273,5,388,32"/>
+</map>

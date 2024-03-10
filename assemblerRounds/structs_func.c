@@ -30,7 +30,7 @@
  * @copyright Copyright (c) 2024
  * 
  */
-#include "structs_func.h"
+#include "./headers/structs_func.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -65,10 +65,10 @@ int num_of_symbols_in_entries = 0;
  * @param line_in_file The line in the file
  * @return Symbol 
  */
-Symbol create_symbol(char *label, int address, int type, int line_in_file) {
+Symbol create_symbol(char *label, int address, int type, int line_in_file, int *error_flag, int num_of_data) {
   Symbol s = (Symbol)calloc(1, sizeof(struct symbol));
   if (!s) {
-    print_error_memory(line_in_file);
+    print_error_memory(line_in_file, error_flag);
     return NULL;
   }
   /* set the values of the symbol */
@@ -76,6 +76,7 @@ Symbol create_symbol(char *label, int address, int type, int line_in_file) {
   s->address = address;
   s->type = type;
   s->line_in_file = line_in_file;
+  s->num_of_data = num_of_data;
 
   if (insert_to_trie(symbols, label, s)) {
     if (num_of_symbols == size_of_symbol_table) { /* if the symbol table is full, we will allocate more memory */
@@ -87,7 +88,7 @@ Symbol create_symbol(char *label, int address, int type, int line_in_file) {
     num_of_symbols++;
     return s;
   }
-  print_error_msg("fail to add symbol", line_in_file);
+  print_error_msg("fail to add symbol", line_in_file, error_flag);
   return NULL;
 }
 
@@ -100,10 +101,10 @@ Symbol create_symbol(char *label, int address, int type, int line_in_file) {
  * @param line_in_file The line in the file
  * @return Constant 
  */
-Constant create_constant(char *label, int value, int line_in_file) {
+Constant create_constant(char *label, int value, int line_in_file, int *error_flag) {
   Constant c = (Constant)calloc(1, sizeof(struct constant));
   if (!c) {
-    print_error_memory(line_in_file);
+    print_error_memory(line_in_file, error_flag);
     return NULL;
   }
   /* set the values of the constant */
@@ -113,7 +114,7 @@ Constant create_constant(char *label, int value, int line_in_file) {
   if (insert_to_trie(constant, label, c)) {
     return c;
   }
-  print_error_msg("fail to add constant", line_in_file);
+  print_error_msg("fail to add constant", line_in_file, error_flag);
   return NULL;
 }
 
@@ -125,10 +126,10 @@ Constant create_constant(char *label, int value, int line_in_file) {
  * @param line_in_file The line in the file
  * @return External 
  */
-External create_external(char *label, int line_in_file) {
+External create_external(char *label, int line_in_file, int *error_flag) {
   External e = (External)calloc(1, sizeof(struct external));
   if (!e) {
-    print_error_memory(line_in_file);
+    print_error_memory(line_in_file, error_flag);
     return NULL;
   }
   /* set the values of the external */
@@ -140,7 +141,7 @@ External create_external(char *label, int line_in_file) {
     external_table[num_of_externals_in_table++] = e; /* add the external to the table */
     return e;
   }
-  print_error_msg("fail to add external", line_in_file);
+  print_error_msg("fail to add external", line_in_file, error_flag);
   return NULL;
 }
 

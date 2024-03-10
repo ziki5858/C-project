@@ -1,0 +1,351 @@
+\hypertarget{preprossesor_8h}{}\doxysection{preprocessor/preprossesor.h File Reference}
+\label{preprossesor_8h}\index{preprocessor/preprossesor.h@{preprocessor/preprossesor.h}}
+{\ttfamily \#include \char`\"{}../trie/trie.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for preprossesor.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{preprossesor_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmacro}{macro}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a macro in the assembly file. each macro has a name, a value and a number of lines. ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{preprossesor_8h_a7fec066679f2a7f6ff763ba54a4907ba}{SKIP\+\_\+\+SPACES}}(line)~while($\ast$line == \textquotesingle{} \textquotesingle{} $\vert$$\vert$ $\ast$line == \textquotesingle{}\textbackslash{}t\textquotesingle{} $\vert$$\vert$ $\ast$line == \textquotesingle{}\textbackslash{}r\textquotesingle{}) line++
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{preprossesor_8h_a4cc90bcb7f74a30981136e792fd6e099}{REMOVE\+\_\+\+SPACES\+\_\+\+FROM\+\_\+\+END}}(line)
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{preprossesor_8h_a1a9b6f40de4cd7ffb57dd5abf8ec1f03}{SPACES}}~\char`\"{} \textbackslash{}t\textbackslash{}n\textbackslash{}r\textbackslash{}f\textbackslash{}v\char`\"{}
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{preprossesor_8h_af0f2173e3b202ddf5756531b4471dcb2}{MAX\+\_\+\+LINE\+\_\+\+LENGTH}}~81
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{preprossesor_8h_ae666285eb88a97383006df6062bf00f3}{EXT\+\_\+\+BEFORE}}~\char`\"{}.as\char`\"{}
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{preprossesor_8h_a1bdb9dd6a1d068fb4b5f24d23f63e16f}{EXT\+\_\+\+AFTER}}~\char`\"{}.am\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structmacro}{macro}} $\ast$ \mbox{\hyperlink{preprossesor_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{preprossesor_8h_adfa102d48e712a2ac687a30d81c5eb24}{determaine\+\_\+which\+\_\+line\+\_\+is\+\_\+it}} (char $\ast$line)
+\begin{DoxyCompactList}\small\item\em this function determaine which line is it, if it is a macro, a macro definition, a macro end or a normal line \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}} \mbox{\hyperlink{preprossesor_8h_a66f0b8ca942d36a86be6246243deae92}{creat\+\_\+macro}} (char $\ast$line, int count)
+\begin{DoxyCompactList}\small\item\em this function creats a macro \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}} \mbox{\hyperlink{preprossesor_8h_a0eaae1973b0f0567da2f037ef054c143}{search\+\_\+macro}} (char $\ast$line)
+\begin{DoxyCompactList}\small\item\em this function searchs for a macro in the trie \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{preprossesor_8h_a176d295d987ebe0f9330c5833d3461eb}{insert\+\_\+line\+\_\+to\+\_\+macro}} (\mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}} macro\+\_\+to\+\_\+insert, char $\ast$line)
+\begin{DoxyCompactList}\small\item\em this function inserts a line to a macro \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{preprossesor_8h_a4937d5ec7c48d80fdb9cb24d94d68251}{preprocess}} (char $\ast$name\+\_\+of\+\_\+file)
+\begin{DoxyCompactList}\small\item\em this function is the main function of the preprossesor, it opens the file, reads it line by line and determaines which line is it \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{preprossesor_8h_ab6ccd1d8e71ba1c07c97246fcf7168de}{is\+\_\+saved\+\_\+word}} (char $\ast$word)
+\begin{DoxyCompactList}\small\item\em Check if the word is a saved word. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{preprossesor_8h_a1bdb9dd6a1d068fb4b5f24d23f63e16f}\label{preprossesor_8h_a1bdb9dd6a1d068fb4b5f24d23f63e16f}} 
+\index{preprossesor.h@{preprossesor.h}!EXT\_AFTER@{EXT\_AFTER}}
+\index{EXT\_AFTER@{EXT\_AFTER}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{EXT\_AFTER}{EXT\_AFTER}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} EXT\+\_\+\+AFTER~\char`\"{}.am\char`\"{}}
+
+
+
+Definition at line 14 of file preprossesor.\+h.
+
+\mbox{\Hypertarget{preprossesor_8h_ae666285eb88a97383006df6062bf00f3}\label{preprossesor_8h_ae666285eb88a97383006df6062bf00f3}} 
+\index{preprossesor.h@{preprossesor.h}!EXT\_BEFORE@{EXT\_BEFORE}}
+\index{EXT\_BEFORE@{EXT\_BEFORE}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{EXT\_BEFORE}{EXT\_BEFORE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} EXT\+\_\+\+BEFORE~\char`\"{}.as\char`\"{}}
+
+
+
+Definition at line 13 of file preprossesor.\+h.
+
+\mbox{\Hypertarget{preprossesor_8h_af0f2173e3b202ddf5756531b4471dcb2}\label{preprossesor_8h_af0f2173e3b202ddf5756531b4471dcb2}} 
+\index{preprossesor.h@{preprossesor.h}!MAX\_LINE\_LENGTH@{MAX\_LINE\_LENGTH}}
+\index{MAX\_LINE\_LENGTH@{MAX\_LINE\_LENGTH}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LINE\_LENGTH}{MAX\_LINE\_LENGTH}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} MAX\+\_\+\+LINE\+\_\+\+LENGTH~81}
+
+
+
+Definition at line 12 of file preprossesor.\+h.
+
+\mbox{\Hypertarget{preprossesor_8h_a4cc90bcb7f74a30981136e792fd6e099}\label{preprossesor_8h_a4cc90bcb7f74a30981136e792fd6e099}} 
+\index{preprossesor.h@{preprossesor.h}!REMOVE\_SPACES\_FROM\_END@{REMOVE\_SPACES\_FROM\_END}}
+\index{REMOVE\_SPACES\_FROM\_END@{REMOVE\_SPACES\_FROM\_END}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{REMOVE\_SPACES\_FROM\_END}{REMOVE\_SPACES\_FROM\_END}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} REMOVE\+\_\+\+SPACES\+\_\+\+FROM\+\_\+\+END(\begin{DoxyParamCaption}\item[{}]{line }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{while} (line[strlen(line) -\/ 1] == \textcolor{charliteral}{' '} || line[strlen(line) -\/ 1] == \textcolor{charliteral}{'\(\backslash\)n'} ||    \(\backslash\)}
+\DoxyCodeLine{         line[strlen(line) -\/ 1] == \textcolor{charliteral}{'\(\backslash\)t'}|| line[strlen(line) -\/ 1] == \textcolor{charliteral}{'\(\backslash\)r'}) \{    \(\backslash\)}
+\DoxyCodeLine{    line[strlen(line) -\/ 1] = \textcolor{charliteral}{'\(\backslash\)0'};                                             \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+
+
+Definition at line 6 of file preprossesor.\+h.
+
+\mbox{\Hypertarget{preprossesor_8h_a7fec066679f2a7f6ff763ba54a4907ba}\label{preprossesor_8h_a7fec066679f2a7f6ff763ba54a4907ba}} 
+\index{preprossesor.h@{preprossesor.h}!SKIP\_SPACES@{SKIP\_SPACES}}
+\index{SKIP\_SPACES@{SKIP\_SPACES}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{SKIP\_SPACES}{SKIP\_SPACES}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} SKIP\+\_\+\+SPACES(\begin{DoxyParamCaption}\item[{}]{line }\end{DoxyParamCaption})~while($\ast$line == \textquotesingle{} \textquotesingle{} $\vert$$\vert$ $\ast$line == \textquotesingle{}\textbackslash{}t\textquotesingle{} $\vert$$\vert$ $\ast$line == \textquotesingle{}\textbackslash{}r\textquotesingle{}) line++}
+
+
+
+Definition at line 5 of file preprossesor.\+h.
+
+\mbox{\Hypertarget{preprossesor_8h_a1a9b6f40de4cd7ffb57dd5abf8ec1f03}\label{preprossesor_8h_a1a9b6f40de4cd7ffb57dd5abf8ec1f03}} 
+\index{preprossesor.h@{preprossesor.h}!SPACES@{SPACES}}
+\index{SPACES@{SPACES}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{SPACES}{SPACES}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} SPACES~\char`\"{} \textbackslash{}t\textbackslash{}n\textbackslash{}r\textbackslash{}f\textbackslash{}v\char`\"{}}
+
+
+
+Definition at line 11 of file preprossesor.\+h.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{preprossesor_8h_a35621d1d74428cb9205a146d080b97f2}\label{preprossesor_8h_a35621d1d74428cb9205a146d080b97f2}} 
+\index{preprossesor.h@{preprossesor.h}!Macro@{Macro}}
+\index{Macro@{Macro}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{Macro}{Macro}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structmacro}{macro}}$\ast$ \mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}}}
+
+
+
+Definition at line 26 of file preprossesor.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{preprossesor_8h_a66f0b8ca942d36a86be6246243deae92}\label{preprossesor_8h_a66f0b8ca942d36a86be6246243deae92}} 
+\index{preprossesor.h@{preprossesor.h}!creat\_macro@{creat\_macro}}
+\index{creat\_macro@{creat\_macro}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{creat\_macro()}{creat\_macro()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}} creat\+\_\+macro (\begin{DoxyParamCaption}\item[{char $\ast$}]{line,  }\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+this function creats a macro 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & the line to creat the macro from \\
+\hline
+{\em count} & the number of the line in the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Macro the macro that was created 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file preprossesor.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{preprossesor_8h_a66f0b8ca942d36a86be6246243deae92_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8h_a66f0b8ca942d36a86be6246243deae92_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{preprossesor_8h_adfa102d48e712a2ac687a30d81c5eb24}\label{preprossesor_8h_adfa102d48e712a2ac687a30d81c5eb24}} 
+\index{preprossesor.h@{preprossesor.h}!determaine\_which\_line\_is\_it@{determaine\_which\_line\_is\_it}}
+\index{determaine\_which\_line\_is\_it@{determaine\_which\_line\_is\_it}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{determaine\_which\_line\_is\_it()}{determaine\_which\_line\_is\_it()}}
+{\footnotesize\ttfamily int determaine\+\_\+which\+\_\+line\+\_\+is\+\_\+it (\begin{DoxyParamCaption}\item[{char $\ast$}]{line }\end{DoxyParamCaption})}
+
+
+
+this function determaine which line is it, if it is a macro, a macro definition, a macro end or a normal line 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & the line to determaine \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int the type of the line 
+\end{DoxyReturn}
+
+
+Definition at line 43 of file preprossesor.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8h_adfa102d48e712a2ac687a30d81c5eb24_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8h_adfa102d48e712a2ac687a30d81c5eb24_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{preprossesor_8h_a176d295d987ebe0f9330c5833d3461eb}\label{preprossesor_8h_a176d295d987ebe0f9330c5833d3461eb}} 
+\index{preprossesor.h@{preprossesor.h}!insert\_line\_to\_macro@{insert\_line\_to\_macro}}
+\index{insert\_line\_to\_macro@{insert\_line\_to\_macro}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{insert\_line\_to\_macro()}{insert\_line\_to\_macro()}}
+{\footnotesize\ttfamily void insert\+\_\+line\+\_\+to\+\_\+macro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}}}]{macro\+\_\+to\+\_\+insert,  }\item[{char $\ast$}]{line }\end{DoxyParamCaption})}
+
+
+
+this function inserts a line to a macro 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & the macro to insert the line to \\
+\hline
+{\em line} & the line to insert \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 150 of file preprossesor.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8h_a176d295d987ebe0f9330c5833d3461eb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{preprossesor_8h_ab6ccd1d8e71ba1c07c97246fcf7168de}\label{preprossesor_8h_ab6ccd1d8e71ba1c07c97246fcf7168de}} 
+\index{preprossesor.h@{preprossesor.h}!is\_saved\_word@{is\_saved\_word}}
+\index{is\_saved\_word@{is\_saved\_word}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{is\_saved\_word()}{is\_saved\_word()}}
+{\footnotesize\ttfamily int is\+\_\+saved\+\_\+word (\begin{DoxyParamCaption}\item[{char $\ast$}]{word }\end{DoxyParamCaption})}
+
+
+
+Check if the word is a saved word. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & The word to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if saved word, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 182 of file validation.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8h_ab6ccd1d8e71ba1c07c97246fcf7168de_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{preprossesor_8h_a4937d5ec7c48d80fdb9cb24d94d68251}\label{preprossesor_8h_a4937d5ec7c48d80fdb9cb24d94d68251}} 
+\index{preprossesor.h@{preprossesor.h}!preprocess@{preprocess}}
+\index{preprocess@{preprocess}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{preprocess()}{preprocess()}}
+{\footnotesize\ttfamily int preprocess (\begin{DoxyParamCaption}\item[{char $\ast$}]{name\+\_\+of\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+this function is the main function of the preprossesor, it opens the file, reads it line by line and determaines which line is it 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+\_\+of\+\_\+file} & the name of the file to preprosses \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if the preprosses was successful, 1 if not 
+\end{DoxyReturn}
+
+
+Definition at line 167 of file preprossesor.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8h_a4937d5ec7c48d80fdb9cb24d94d68251_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{preprossesor_8h_a4937d5ec7c48d80fdb9cb24d94d68251_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{preprossesor_8h_a0eaae1973b0f0567da2f037ef054c143}\label{preprossesor_8h_a0eaae1973b0f0567da2f037ef054c143}} 
+\index{preprossesor.h@{preprossesor.h}!search\_macro@{search\_macro}}
+\index{search\_macro@{search\_macro}!preprossesor.h@{preprossesor.h}}
+\doxysubsubsection{\texorpdfstring{search\_macro()}{search\_macro()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}} search\+\_\+macro (\begin{DoxyParamCaption}\item[{char $\ast$}]{line }\end{DoxyParamCaption})}
+
+
+
+this function searchs for a macro in the trie 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & the line to search the macro in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Macro the macro that was found, if not found returns NULL 
+\end{DoxyReturn}
+
+
+Definition at line 133 of file preprossesor.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8h_a0eaae1973b0f0567da2f037ef054c143_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8h_a0eaae1973b0f0567da2f037ef054c143_icgraph}
+\end{center}
+\end{figure}

@@ -1,7 +1,7 @@
 .entry LIST
   .extern W
 .define sz = 2 
-MAIN: mov r3, LIST[sz] 
+MAIN: movv r3, LIST[sz] 
 LOOP: jmp W
 mcr m_mcr 
    cmp K, #sz
@@ -13,10 +13,10 @@ endmcr
  m_mcr
 L1: inc L3 
 .entry LOOP
- bne LOOP 
+ bne LvOOP 
 END: hlt 
 .define len = 4 
 STR: .string "abcdef" 
-LIST: .data 6, -9, len 
+LIST: .davta 6, -9, len 
 K: .data 22
   .extern L3

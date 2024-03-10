@@ -1,0 +1,154 @@
+\hypertarget{rounds_8c}{}\doxysection{assembler\+Rounds/rounds.c File Reference}
+\label{rounds_8c}\index{assemblerRounds/rounds.c@{assemblerRounds/rounds.c}}
+
+
+This file contains the implementation of the functions that used to handle the first and the second rounds of the assembler. the file contains the following functions\+:  
+
+
+{\ttfamily \#include \char`\"{}../front.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bilder.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rounds.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for rounds.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rounds_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{rounds_8c_a3ce6ccf57f03c78e7baa7467aa9031a8}{WIDTH\+\_\+\+OF\+\_\+\+WORD}}~15
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rounds_8c_a8d1601cdfa9ee1868a99f9f4cbc92cdb}{first\+\_\+round}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$head, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int $\ast$IC, int $\ast$DC)
+\begin{DoxyCompactList}\small\item\em The first round of the assembler. In this round we will go through the linked list and handle the labels, the directives and the instructions. after this round we will have all the symbols and we can encode the instructions of direct operands. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rounds_8c_a7a109141fdd10aee3c3680446563f562}{secondround}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$head, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em The second round of the assembler. now we have all the symbols and we can encode the instructions of direct operands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rounds_8c_ad47b460851c0dd5e4518ec0c0cff9931}{num\+\_\+of\+\_\+codes}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the functions that used to handle the first and the second rounds of the assembler. the file contains the following functions\+: 
+
+\begin{DoxyAuthor}{Author}
+shlomo weisz
+\begin{DoxyEnumerate}
+\item first\+\_\+round -\/ a function that handles the first round of the assembler.
+\item secondround -\/ a function that handles the second round of the assembler. 
+\end{DoxyEnumerate}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/03-\/09
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rounds_8c_a3ce6ccf57f03c78e7baa7467aa9031a8}\label{rounds_8c_a3ce6ccf57f03c78e7baa7467aa9031a8}} 
+\index{rounds.c@{rounds.c}!WIDTH\_OF\_WORD@{WIDTH\_OF\_WORD}}
+\index{WIDTH\_OF\_WORD@{WIDTH\_OF\_WORD}!rounds.c@{rounds.c}}
+\doxysubsubsection{\texorpdfstring{WIDTH\_OF\_WORD}{WIDTH\_OF\_WORD}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} WIDTH\+\_\+\+OF\+\_\+\+WORD~15}
+
+
+
+Definition at line 19 of file rounds.\+c.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rounds_8c_a8d1601cdfa9ee1868a99f9f4cbc92cdb}\label{rounds_8c_a8d1601cdfa9ee1868a99f9f4cbc92cdb}} 
+\index{rounds.c@{rounds.c}!first\_round@{first\_round}}
+\index{first\_round@{first\_round}!rounds.c@{rounds.c}}
+\doxysubsubsection{\texorpdfstring{first\_round()}{first\_round()}}
+{\footnotesize\ttfamily void first\+\_\+round (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{head,  }\item[{int $\ast$}]{error\+\_\+flag,  }\item[{int $\ast$}]{IC,  }\item[{int $\ast$}]{DC }\end{DoxyParamCaption})}
+
+
+
+The first round of the assembler. In this round we will go through the linked list and handle the labels, the directives and the instructions. after this round we will have all the symbols and we can encode the instructions of direct operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & The head of the linked list \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 35 of file rounds.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rounds_8c_a8d1601cdfa9ee1868a99f9f4cbc92cdb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{rounds_8c_a8d1601cdfa9ee1868a99f9f4cbc92cdb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{rounds_8c_a7a109141fdd10aee3c3680446563f562}\label{rounds_8c_a7a109141fdd10aee3c3680446563f562}} 
+\index{rounds.c@{rounds.c}!secondround@{secondround}}
+\index{secondround@{secondround}!rounds.c@{rounds.c}}
+\doxysubsubsection{\texorpdfstring{secondround()}{secondround()}}
+{\footnotesize\ttfamily void secondround (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{head,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+The second round of the assembler. now we have all the symbols and we can encode the instructions of direct operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & The head of the linked list \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 109 of file rounds.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rounds_8c_a7a109141fdd10aee3c3680446563f562_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{rounds_8c_a7a109141fdd10aee3c3680446563f562_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{rounds_8c_ad47b460851c0dd5e4518ec0c0cff9931}\label{rounds_8c_ad47b460851c0dd5e4518ec0c0cff9931}} 
+\index{rounds.c@{rounds.c}!num\_of\_codes@{num\_of\_codes}}
+\index{num\_of\_codes@{num\_of\_codes}!rounds.c@{rounds.c}}
+\doxysubsubsection{\texorpdfstring{num\_of\_codes}{num\_of\_codes}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+codes = 0}
+
+
+
+Definition at line 23 of file rounds.\+c.
+

@@ -1,0 +1,4 @@
+<map id="encoded_direct" name="encoded_direct">
+<area shape="rect" id="node1" title="encode the direct operand, by converting the value to binary and adding the ARE flag" alt="" coords="5,5,127,32"/>
+<area shape="rect" id="node2" href="$encoder_8c.html#a0be324d0748f78ad58808205ec37bbf3" title="Convert number to binary string." alt="" coords="175,5,289,32"/>
+</map>

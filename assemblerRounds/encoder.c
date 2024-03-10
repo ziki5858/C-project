@@ -9,13 +9,15 @@
  * 4. encoded_data - a function that encodes data.
  * 5. encoded_immidiate_number - a function that encodes an immidiate number.
  * 6. encoded_instruction - a function that encodes an instruction.
+ * 7. encoded_direct - a function that encodes a direct operand.
+ * 8. to_binary_table - a function that converts the code and data tables to a binary table.
  * @version 0.1
  * @date 2024-03-07
  * 
  * @copyright Copyright (c) 2024
  * 
  */
-#include "encoder.h"
+#include "./headers/encoder.h"
 /**
  * @brief Convert number to binary string
  *
@@ -99,11 +101,11 @@ char *encoded_data(int n) {
  * @param n The immidiate number to encode
  * @return char* The encoded immidiate number
  */
-char *encoded_immidiate_number(int n) {
+char *encoded_immidiate_number(int n, int *error_flag, int current_pattern_num) {
   char *base = toBinaryString(n, 12);
   char *result = calloc(WIDTH_OF_WORD, sizeof(char));
   if (!result) {
-    print_error_memory(current_pattern_num);
+    print_error_memory(current_pattern_num, error_flag);
     return NULL;
   }
   strcat(result, base);
@@ -121,11 +123,12 @@ char *encoded_immidiate_number(int n) {
  * @param instruction The instruction to encode
  * @return char* The encoded instruction
  */
-char *encoded_instruction(struct pattern *instruction) {
+char *encoded_instruction(struct pattern *instruction, int *error_flag,
+						  int current_pattern_num) {
   char *result = malloc(WIDTH_OF_WORD), *op_code;
   int i, j;
   if (!result) {
-    print_error_memory(current_pattern_num);
+    print_error_memory(current_pattern_num, error_flag);
     return NULL;
   }
   result[WIDTH_OF_WORD - 1] = '\0';
@@ -164,12 +167,12 @@ char *encoded_instruction(struct pattern *instruction) {
  * @param are_flag  the ARE flag
  * @return char*  the encoded operand
  */
-char *encoded_direct(int value, int are_flag){
+char *encoded_direct(int value, int are_flag, int *error_flag){
 	char *result, *temp_res;
 	result = (char*)calloc(WIDTH_OF_WORD, sizeof(char));
               if (result == NULL) {
                 printf("error in allocation memory\n");
-                error_flag = 1;
+                *error_flag = 1;
                 return NULL;
               }
 	temp_res = toBinaryString(value, 12);
@@ -182,38 +185,5 @@ char *encoded_direct(int value, int are_flag){
 }
 
 
-/**
- * @brief convert the code and data tables to binary table
- * 
- */
-void to_binary_table() {
-  int i, j, k;
-  /* allocate memory for the binary table */
-  char **result = (char **)calloc(DC + IC, sizeof(char *));
-  if (result == NULL) {
-    printf("error in allocation memory\n");
-    error_flag = 1;
-  }
-  /* loop over the code table and copy the lines to the binary table */
-  for (i = 0, k = 0; i < num_of_codes; i++) {
-    for (j = 0; j < code[i]->num_of_lines; j++) {
-      result[k] = calloc(WIDTH_OF_WORD, sizeof(char));
-      if (result[k] == NULL) {
-        printf("error in allocation memory\n");
-        error_flag = 1;
-      }
-      strcat(result[k], (char *)code[i]->lines[j]);
-      k++;
-    }
-  }
-  /* loop over the data table and copy the lines to the binary table */
-  for (i = 0; i < data->num_of_lines; i++) {
-    result[i + k] = calloc(WIDTH_OF_WORD, sizeof(char));
-    if (result[i + k] == NULL) {
-      printf("error in allocation memory\n");
-      error_flag = 1;
-    }
-    strcpy(result[i + k], (char *)data->lines[i]);
-  }
-  binary_table = result;
-}
+
+

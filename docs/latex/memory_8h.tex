@@ -1,0 +1,251 @@
+\hypertarget{memory_8h}{}\doxysection{back/memory.h File Reference}
+\label{memory_8h}\index{back/memory.h@{back/memory.h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{memory_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{memory_8h_a0ddeb2fa152d9ec1f4dd667164e0c70b}{free\+\_\+memory}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$head, int \mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int IC, int DC, char $\ast$$\ast$binary\+\_\+table, char $\ast$$\ast$binary\+\_\+table\+\_\+translated)
+\begin{DoxyCompactList}\small\item\em This function used to free all the memory that was allocated during the initialization of the memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memory_8h_aa81fcdd2e229893abbbd6454df50190a}{destroy\+\_\+linked\+\_\+list}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em This function used to free all the memory that was allocated during the initialization of the linked list of struct node that contain the struct pattern. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memory_8h_abfc3f3790f9d96cd26d82e8a930a067f}{free\+\_\+tables\+\_\+codes}} (int DC)
+\begin{DoxyCompactList}\small\item\em This function used to free all the memory that was allocated during the initialization of the code and data tables. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memory_8h_a28307c17d327be8b540de41a204721b8}{free\+\_\+tries}} ()
+\begin{DoxyCompactList}\small\item\em This function used to free all the memory that was allocated during the initialization of the tries. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memory_8h_a4820e0bd808b42ba90570175d7c1eb72}{free\+\_\+other\+\_\+tables}} (int \mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int IC, int DC, char $\ast$$\ast$binary\+\_\+table, char $\ast$$\ast$binary\+\_\+table\+\_\+translated)
+\begin{DoxyCompactList}\small\item\em This function used to free all the memory that was allocated during the initialization of the other tables, such as the symbol table, the entry table, the external table, the binary table and the translated binary table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memory_8h_a9ccdddf2f907682ac7ad4b5ac33e998c}{destroy\+\_\+extern}} (void $\ast$extern\+\_\+i)
+\begin{DoxyCompactList}\small\item\em This function used to free all the memory that was allocated during the initialization of the extern. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memory_8h_ab66b92af0d922a9cbd25af68bfe01df4}{destroy\+\_\+macro}} (void $\ast$macro\+\_\+i)
+\begin{DoxyCompactList}\small\item\em This function used to free all the memory that was allocated during the initialization of the macro. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memory_8h_ab72a011396237df730273de2a81766f8}{destroy\+\_\+constant}} (void $\ast$constant\+\_\+i)
+\begin{DoxyCompactList}\small\item\em This function used to free all the memory that was allocated during the initialization of the constant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{memory_8h_ab72a011396237df730273de2a81766f8}\label{memory_8h_ab72a011396237df730273de2a81766f8}} 
+\index{memory.h@{memory.h}!destroy\_constant@{destroy\_constant}}
+\index{destroy\_constant@{destroy\_constant}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{destroy\_constant()}{destroy\_constant()}}
+{\footnotesize\ttfamily void destroy\+\_\+constant (\begin{DoxyParamCaption}\item[{void $\ast$}]{constant\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+This function used to free all the memory that was allocated during the initialization of the constant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em constant\+\_\+i} & The constant that we want to free. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 148 of file memory.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{memory_8h_ab72a011396237df730273de2a81766f8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{memory_8h_a9ccdddf2f907682ac7ad4b5ac33e998c}\label{memory_8h_a9ccdddf2f907682ac7ad4b5ac33e998c}} 
+\index{memory.h@{memory.h}!destroy\_extern@{destroy\_extern}}
+\index{destroy\_extern@{destroy\_extern}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{destroy\_extern()}{destroy\_extern()}}
+{\footnotesize\ttfamily void destroy\+\_\+extern (\begin{DoxyParamCaption}\item[{void $\ast$}]{extern\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+This function used to free all the memory that was allocated during the initialization of the extern. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em extern\+\_\+i} & The extern that we want to free. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 124 of file memory.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{memory_8h_a9ccdddf2f907682ac7ad4b5ac33e998c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{memory_8h_aa81fcdd2e229893abbbd6454df50190a}\label{memory_8h_aa81fcdd2e229893abbbd6454df50190a}} 
+\index{memory.h@{memory.h}!destroy\_linked\_list@{destroy\_linked\_list}}
+\index{destroy\_linked\_list@{destroy\_linked\_list}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{destroy\_linked\_list()}{destroy\_linked\_list()}}
+{\footnotesize\ttfamily void destroy\+\_\+linked\+\_\+list (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+This function used to free all the memory that was allocated during the initialization of the linked list of struct node that contain the struct pattern. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & The head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 53 of file memory.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{memory_8h_aa81fcdd2e229893abbbd6454df50190a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{memory_8h_ab66b92af0d922a9cbd25af68bfe01df4}\label{memory_8h_ab66b92af0d922a9cbd25af68bfe01df4}} 
+\index{memory.h@{memory.h}!destroy\_macro@{destroy\_macro}}
+\index{destroy\_macro@{destroy\_macro}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{destroy\_macro()}{destroy\_macro()}}
+{\footnotesize\ttfamily void destroy\+\_\+macro (\begin{DoxyParamCaption}\item[{void $\ast$}]{macro\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+This function used to free all the memory that was allocated during the initialization of the macro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em macro\+\_\+i} & The macro that we want to free. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 136 of file memory.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{memory_8h_ab66b92af0d922a9cbd25af68bfe01df4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{memory_8h_a0ddeb2fa152d9ec1f4dd667164e0c70b}\label{memory_8h_a0ddeb2fa152d9ec1f4dd667164e0c70b}} 
+\index{memory.h@{memory.h}!free\_memory@{free\_memory}}
+\index{free\_memory@{free\_memory}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{free\_memory()}{free\_memory()}}
+{\footnotesize\ttfamily void free\+\_\+memory (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{head,  }\item[{int}]{error\+\_\+flag,  }\item[{int}]{IC,  }\item[{int}]{DC,  }\item[{char $\ast$$\ast$}]{binary\+\_\+table,  }\item[{char $\ast$$\ast$}]{binary\+\_\+table\+\_\+translated }\end{DoxyParamCaption})}
+
+
+
+This function used to free all the memory that was allocated during the initialization of the memory. 
+
+
+
+Definition at line 31 of file memory.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{memory_8h_a0ddeb2fa152d9ec1f4dd667164e0c70b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{memory_8h_a0ddeb2fa152d9ec1f4dd667164e0c70b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{memory_8h_a4820e0bd808b42ba90570175d7c1eb72}\label{memory_8h_a4820e0bd808b42ba90570175d7c1eb72}} 
+\index{memory.h@{memory.h}!free\_other\_tables@{free\_other\_tables}}
+\index{free\_other\_tables@{free\_other\_tables}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{free\_other\_tables()}{free\_other\_tables()}}
+{\footnotesize\ttfamily void free\+\_\+other\+\_\+tables (\begin{DoxyParamCaption}\item[{int}]{error\+\_\+flag,  }\item[{int}]{IC,  }\item[{int}]{DC,  }\item[{char $\ast$$\ast$}]{binary\+\_\+table,  }\item[{char $\ast$$\ast$}]{binary\+\_\+table\+\_\+translated }\end{DoxyParamCaption})}
+
+
+
+This function used to free all the memory that was allocated during the initialization of the other tables, such as the symbol table, the entry table, the external table, the binary table and the translated binary table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error\+\_\+flag} & The error flag \\
+\hline
+{\em IC} & The instruction counter \\
+\hline
+{\em DC} & The data counter \\
+\hline
+{\em binary\+\_\+table} & The binary table \\
+\hline
+{\em binary\+\_\+table\+\_\+translated} & The translated binary table \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 165 of file memory.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{memory_8h_a4820e0bd808b42ba90570175d7c1eb72_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{memory_8h_abfc3f3790f9d96cd26d82e8a930a067f}\label{memory_8h_abfc3f3790f9d96cd26d82e8a930a067f}} 
+\index{memory.h@{memory.h}!free\_tables\_codes@{free\_tables\_codes}}
+\index{free\_tables\_codes@{free\_tables\_codes}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{free\_tables\_codes()}{free\_tables\_codes()}}
+{\footnotesize\ttfamily void free\+\_\+tables\+\_\+codes (\begin{DoxyParamCaption}\item[{int}]{DC }\end{DoxyParamCaption})}
+
+
+
+This function used to free all the memory that was allocated during the initialization of the code and data tables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em DC} & The data counter \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 83 of file memory.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{memory_8h_abfc3f3790f9d96cd26d82e8a930a067f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{memory_8h_a28307c17d327be8b540de41a204721b8}\label{memory_8h_a28307c17d327be8b540de41a204721b8}} 
+\index{memory.h@{memory.h}!free\_tries@{free\_tries}}
+\index{free\_tries@{free\_tries}!memory.h@{memory.h}}
+\doxysubsubsection{\texorpdfstring{free\_tries()}{free\_tries()}}
+{\footnotesize\ttfamily void free\+\_\+tries (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function used to free all the memory that was allocated during the initialization of the tries. 
+
+
+
+Definition at line 110 of file memory.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{memory_8h_a28307c17d327be8b540de41a204721b8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{memory_8h_a28307c17d327be8b540de41a204721b8_icgraph}
+\end{center}
+\end{figure}

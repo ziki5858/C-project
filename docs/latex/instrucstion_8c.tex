@@ -1,0 +1,411 @@
+\hypertarget{instrucstion_8c}{}\doxysection{front/instrucstion.c File Reference}
+\label{instrucstion_8c}\index{front/instrucstion.c@{front/instrucstion.c}}
+{\ttfamily \#include \char`\"{}heade\+Methods.\+h\char`\"{}}\newline
+Include dependency graph for instrucstion.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{instrucstion_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{instrucstion_8c_ac000c3b3bdf79ee6e35e28d96a84a8d1}{register\+Operand}} (FILE $\ast$file, char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to process a register operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_aea0cf2429f2ebfeb1545c3dda091e072}{direct\+Index\+Operand}} (FILE $\ast$file, char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to process a direct index operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_a89c67e76f0753e7b13f450f044a84e3e}{immediate\+Number\+Operand}} (char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i)
+\begin{DoxyCompactList}\small\item\em Function to process an immediate number operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_a24dc457e2ba621e13b53c55106e272d9}{direct\+Label\+Operand}} (char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to process a direct label operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}{process\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head, int operand\+Count)
+\begin{DoxyCompactList}\small\item\em Handles processing of operands for instructions. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6}{process\+Two\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions with two operands. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_ab3b600e768927750f73f08907f410181}{process\+One\+Operand}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions with one operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0}{process\+No\+Operands}} (struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}})
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions without operands. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{instrucstion_8c_a62b9aadfd2a314a92e7b35617ad05a59}{instruction\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is an instruction and update the pattern structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{instrucstion_8c_aea0cf2429f2ebfeb1545c3dda091e072}\label{instrucstion_8c_aea0cf2429f2ebfeb1545c3dda091e072}} 
+\index{instrucstion.c@{instrucstion.c}!directIndexOperand@{directIndexOperand}}
+\index{directIndexOperand@{directIndexOperand}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{directIndexOperand()}{directIndexOperand()}}
+{\footnotesize\ttfamily int direct\+Index\+Operand (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{char $\ast$}]{token,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{operand\+Count,  }\item[{int}]{i,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to process a direct index operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em token} & The token to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+{\em i} & The index of the operand. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 54 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_aea0cf2429f2ebfeb1545c3dda091e072_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_aea0cf2429f2ebfeb1545c3dda091e072_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_a24dc457e2ba621e13b53c55106e272d9}\label{instrucstion_8c_a24dc457e2ba621e13b53c55106e272d9}} 
+\index{instrucstion.c@{instrucstion.c}!directLabelOperand@{directLabelOperand}}
+\index{directLabelOperand@{directLabelOperand}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{directLabelOperand()}{directLabelOperand()}}
+{\footnotesize\ttfamily int direct\+Label\+Operand (\begin{DoxyParamCaption}\item[{char $\ast$}]{word,  }\item[{char $\ast$}]{token,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{operand\+Count,  }\item[{int}]{i,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to process a direct label operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & The word to be checked. \\
+\hline
+{\em token} & The token to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+{\em i} & The index of the operand. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 107 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{instrucstion_8c_a24dc457e2ba621e13b53c55106e272d9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a24dc457e2ba621e13b53c55106e272d9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_a89c67e76f0753e7b13f450f044a84e3e}\label{instrucstion_8c_a89c67e76f0753e7b13f450f044a84e3e}} 
+\index{instrucstion.c@{instrucstion.c}!immediateNumberOperand@{immediateNumberOperand}}
+\index{immediateNumberOperand@{immediateNumberOperand}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{immediateNumberOperand()}{immediateNumberOperand()}}
+{\footnotesize\ttfamily int immediate\+Number\+Operand (\begin{DoxyParamCaption}\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{operand\+Count,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Function to process an immediate number operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+{\em i} & The index of the operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{instrucstion_8c_a89c67e76f0753e7b13f450f044a84e3e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a89c67e76f0753e7b13f450f044a84e3e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_a62b9aadfd2a314a92e7b35617ad05a59}\label{instrucstion_8c_a62b9aadfd2a314a92e7b35617ad05a59}} 
+\index{instrucstion.c@{instrucstion.c}!instructionFormat@{instructionFormat}}
+\index{instructionFormat@{instructionFormat}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{instructionFormat()}{instructionFormat()}}
+{\footnotesize\ttfamily int instruction\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is an instruction and update the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The file pointer to the input assembly file. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is an instruction; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 197 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a62b9aadfd2a314a92e7b35617ad05a59_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a62b9aadfd2a314a92e7b35617ad05a59_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0}\label{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0}} 
+\index{instrucstion.c@{instrucstion.c}!processNoOperands@{processNoOperands}}
+\index{processNoOperands@{processNoOperands}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{processNoOperands()}{processNoOperands()}}
+{\footnotesize\ttfamily int process\+No\+Operands (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions without operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 191 of file instrucstion.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_ab3b600e768927750f73f08907f410181}\label{instrucstion_8c_ab3b600e768927750f73f08907f410181}} 
+\index{instrucstion.c@{instrucstion.c}!processOneOperand@{processOneOperand}}
+\index{processOneOperand@{processOneOperand}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{processOneOperand()}{processOneOperand()}}
+{\footnotesize\ttfamily int process\+One\+Operand (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions with one operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 182 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_ab3b600e768927750f73f08907f410181_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_ab3b600e768927750f73f08907f410181_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}\label{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}} 
+\index{instrucstion.c@{instrucstion.c}!processOperands@{processOperands}}
+\index{processOperands@{processOperands}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{processOperands()}{processOperands()}}
+{\footnotesize\ttfamily int process\+Operands (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head,  }\item[{int}]{operand\+Count }\end{DoxyParamCaption})}
+
+
+
+Handles processing of operands for instructions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The file pointer to the input assembly file. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if operand processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 123 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6}\label{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6}} 
+\index{instrucstion.c@{instrucstion.c}!processTwoOperands@{processTwoOperands}}
+\index{processTwoOperands@{processTwoOperands}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{processTwoOperands()}{processTwoOperands()}}
+{\footnotesize\ttfamily int process\+Two\+Operands (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions with two operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 173 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{instrucstion_8c_ac000c3b3bdf79ee6e35e28d96a84a8d1}\label{instrucstion_8c_ac000c3b3bdf79ee6e35e28d96a84a8d1}} 
+\index{instrucstion.c@{instrucstion.c}!registerOperand@{registerOperand}}
+\index{registerOperand@{registerOperand}!instrucstion.c@{instrucstion.c}}
+\doxysubsubsection{\texorpdfstring{registerOperand()}{registerOperand()}}
+{\footnotesize\ttfamily int register\+Operand (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{char $\ast$}]{token,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{operand\+Count,  }\item[{int}]{i,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to process a register operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em token} & The token to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+{\em i} & The index of the operand. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is a valid register operand; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_ac000c3b3bdf79ee6e35e28d96a84a8d1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{instrucstion_8c_ac000c3b3bdf79ee6e35e28d96a84a8d1_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,314 @@
+\hypertarget{encoder_8c}{}\doxysection{assembler\+Rounds/encoder.c File Reference}
+\label{encoder_8c}\index{assemblerRounds/encoder.c@{assemblerRounds/encoder.c}}
+
+
+This file contains the implementation of the functions that used to encode the instructions and the operands of the assembler. the file contains the following functions\+:  
+
+
+{\ttfamily \#include \char`\"{}encoder.\+h\char`\"{}}\newline
+Include dependency graph for encoder.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encoder_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{encoder_8c_a0be324d0748f78ad58808205ec37bbf3}{to\+Binary\+String}} (int n, int num\+\_\+bits)
+\begin{DoxyCompactList}\small\item\em Convert number to binary string. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{encoder_8c_aef0173c0f117f19b3395e740e283cb99}{encoded\+\_\+register}} (int n)
+\begin{DoxyCompactList}\small\item\em Encoded register. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{encoder_8c_abfa816799aeeddcc30361dca6776b2b0}{encoded\+\_\+registers}} (int n1, int n2)
+\begin{DoxyCompactList}\small\item\em Encoded registers. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{encoder_8c_a9d6485eee7bd29a18a5cd2d0f854ba48}{encoded\+\_\+data}} (int n)
+\begin{DoxyCompactList}\small\item\em Encoded data. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{encoder_8c_ab5d697d299b25fafae120ba695e8e426}{encoded\+\_\+immidiate\+\_\+number}} (int n, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}})
+\begin{DoxyCompactList}\small\item\em Encoded immidiate number. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{encoder_8c_a329e12ab97669c9a40afdc3f39a2625e}{encoded\+\_\+instruction}} (struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{bilder_8h_aaa835797e1904edef894e1e73b903918}{instruction}}, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}})
+\begin{DoxyCompactList}\small\item\em Encoded instruction based on the pattern of the instruction and the operands. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{encoder_8c_a423ad3b2b7cc5f6f9394d47c25e930e2}{encoded\+\_\+direct}} (int value, int are\+\_\+flag, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em encode the direct operand, by converting the value to binary and adding the ARE flag \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the functions that used to encode the instructions and the operands of the assembler. the file contains the following functions\+: 
+
+\begin{DoxyAuthor}{Author}
+shlomo weisz
+\begin{DoxyEnumerate}
+\item to\+Binary\+String -\/ a function that converts a number to a binary string.
+\item encoded\+\_\+register -\/ a function that encodes a register.
+\item encoded\+\_\+registers -\/ a function that encodes two registers.
+\item encoded\+\_\+data -\/ a function that encodes data.
+\item encoded\+\_\+immidiate\+\_\+number -\/ a function that encodes an immidiate number.
+\item encoded\+\_\+instruction -\/ a function that encodes an instruction.
+\item encoded\+\_\+direct -\/ a function that encodes a direct operand.
+\item to\+\_\+binary\+\_\+table -\/ a function that converts the code and data tables to a binary table. 
+\end{DoxyEnumerate}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/03-\/07
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{encoder_8c_a9d6485eee7bd29a18a5cd2d0f854ba48}\label{encoder_8c_a9d6485eee7bd29a18a5cd2d0f854ba48}} 
+\index{encoder.c@{encoder.c}!encoded\_data@{encoded\_data}}
+\index{encoded\_data@{encoded\_data}!encoder.c@{encoder.c}}
+\doxysubsubsection{\texorpdfstring{encoded\_data()}{encoded\_data()}}
+{\footnotesize\ttfamily char$\ast$ encoded\+\_\+data (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Encoded data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The data to encode \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The encoded data 
+\end{DoxyReturn}
+
+
+Definition at line 93 of file encoder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{encoder_8c_a9d6485eee7bd29a18a5cd2d0f854ba48_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encoder_8c_a9d6485eee7bd29a18a5cd2d0f854ba48_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{encoder_8c_a423ad3b2b7cc5f6f9394d47c25e930e2}\label{encoder_8c_a423ad3b2b7cc5f6f9394d47c25e930e2}} 
+\index{encoder.c@{encoder.c}!encoded\_direct@{encoded\_direct}}
+\index{encoded\_direct@{encoded\_direct}!encoder.c@{encoder.c}}
+\doxysubsubsection{\texorpdfstring{encoded\_direct()}{encoded\_direct()}}
+{\footnotesize\ttfamily char$\ast$ encoded\+\_\+direct (\begin{DoxyParamCaption}\item[{int}]{value,  }\item[{int}]{are\+\_\+flag,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+encode the direct operand, by converting the value to binary and adding the ARE flag 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & the value of the operand \\
+\hline
+{\em are\+\_\+flag} & the ARE flag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ the encoded operand 
+\end{DoxyReturn}
+
+
+Definition at line 170 of file encoder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{encoder_8c_a423ad3b2b7cc5f6f9394d47c25e930e2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encoder_8c_a423ad3b2b7cc5f6f9394d47c25e930e2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{encoder_8c_ab5d697d299b25fafae120ba695e8e426}\label{encoder_8c_ab5d697d299b25fafae120ba695e8e426}} 
+\index{encoder.c@{encoder.c}!encoded\_immidiate\_number@{encoded\_immidiate\_number}}
+\index{encoded\_immidiate\_number@{encoded\_immidiate\_number}!encoder.c@{encoder.c}}
+\doxysubsubsection{\texorpdfstring{encoded\_immidiate\_number()}{encoded\_immidiate\_number()}}
+{\footnotesize\ttfamily char$\ast$ encoded\+\_\+immidiate\+\_\+number (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{int $\ast$}]{error\+\_\+flag,  }\item[{int}]{current\+\_\+pattern\+\_\+num }\end{DoxyParamCaption})}
+
+
+
+Encoded immidiate number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The immidiate number to encode \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The encoded immidiate number 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file encoder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encoder_8c_ab5d697d299b25fafae120ba695e8e426_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encoder_8c_ab5d697d299b25fafae120ba695e8e426_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{encoder_8c_a329e12ab97669c9a40afdc3f39a2625e}\label{encoder_8c_a329e12ab97669c9a40afdc3f39a2625e}} 
+\index{encoder.c@{encoder.c}!encoded\_instruction@{encoded\_instruction}}
+\index{encoded\_instruction@{encoded\_instruction}!encoder.c@{encoder.c}}
+\doxysubsubsection{\texorpdfstring{encoded\_instruction()}{encoded\_instruction()}}
+{\footnotesize\ttfamily char$\ast$ encoded\+\_\+instruction (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{instruction,  }\item[{int $\ast$}]{error\+\_\+flag,  }\item[{int}]{current\+\_\+pattern\+\_\+num }\end{DoxyParamCaption})}
+
+
+
+Encoded instruction based on the pattern of the instruction and the operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instruction} & The instruction to encode \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The encoded instruction 
+\end{DoxyReturn}
+
+
+Definition at line 126 of file encoder.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encoder_8c_a329e12ab97669c9a40afdc3f39a2625e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encoder_8c_a329e12ab97669c9a40afdc3f39a2625e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{encoder_8c_aef0173c0f117f19b3395e740e283cb99}\label{encoder_8c_aef0173c0f117f19b3395e740e283cb99}} 
+\index{encoder.c@{encoder.c}!encoded\_register@{encoded\_register}}
+\index{encoded\_register@{encoded\_register}!encoder.c@{encoder.c}}
+\doxysubsubsection{\texorpdfstring{encoded\_register()}{encoded\_register()}}
+{\footnotesize\ttfamily char$\ast$ encoded\+\_\+register (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Encoded register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The register number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The encoded register 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file encoder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{encoder_8c_aef0173c0f117f19b3395e740e283cb99_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encoder_8c_aef0173c0f117f19b3395e740e283cb99_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{encoder_8c_abfa816799aeeddcc30361dca6776b2b0}\label{encoder_8c_abfa816799aeeddcc30361dca6776b2b0}} 
+\index{encoder.c@{encoder.c}!encoded\_registers@{encoded\_registers}}
+\index{encoded\_registers@{encoded\_registers}!encoder.c@{encoder.c}}
+\doxysubsubsection{\texorpdfstring{encoded\_registers()}{encoded\_registers()}}
+{\footnotesize\ttfamily char$\ast$ encoded\+\_\+registers (\begin{DoxyParamCaption}\item[{int}]{n1,  }\item[{int}]{n2 }\end{DoxyParamCaption})}
+
+
+
+Encoded registers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n1} & The first register number \\
+\hline
+{\em n2} & The second register number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The encoded registers 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file encoder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encoder_8c_abfa816799aeeddcc30361dca6776b2b0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encoder_8c_abfa816799aeeddcc30361dca6776b2b0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{encoder_8c_a0be324d0748f78ad58808205ec37bbf3}\label{encoder_8c_a0be324d0748f78ad58808205ec37bbf3}} 
+\index{encoder.c@{encoder.c}!toBinaryString@{toBinaryString}}
+\index{toBinaryString@{toBinaryString}!encoder.c@{encoder.c}}
+\doxysubsubsection{\texorpdfstring{toBinaryString()}{toBinaryString()}}
+{\footnotesize\ttfamily char$\ast$ to\+Binary\+String (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{int}]{num\+\_\+bits }\end{DoxyParamCaption})}
+
+
+
+Convert number to binary string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The number to convert \\
+\hline
+{\em num\+\_\+bits} & The number of bits \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The binary string 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file encoder.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{encoder_8c_a0be324d0748f78ad58808205ec37bbf3_icgraph}
+\end{center}
+\end{figure}

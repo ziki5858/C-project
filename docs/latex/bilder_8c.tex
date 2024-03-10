@@ -1,0 +1,602 @@
+\hypertarget{bilder_8c}{}\doxysection{assembler\+Rounds/bilder.c File Reference}
+\label{bilder_8c}\index{assemblerRounds/bilder.c@{assemblerRounds/bilder.c}}
+
+
+This file contains the implementation of the functions that used to build the code and data tables of the assembler. the file contains the following functions\+:  
+
+
+{\ttfamily \#include \char`\"{}bilder.\+h\char`\"{}}\newline
+Include dependency graph for bilder.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bilder_8c_ac249210a8dde740ac716b4664a6dca0c}{directive}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}}, int $\ast$DC, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int $\ast$IC)
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of directive. it will call the right function to handle the directive. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_a7d3f2dabed665b6991d348cd9b9eecdd}{data\+\_\+def}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}}, int $\ast$DC, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int $\ast$IC)
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of data definition. it will insert the data to the data table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_adc7c1d36ef80f1bec801aa44aae83ec3}{string\+\_\+def}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}}, int $\ast$DC, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int $\ast$IC)
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of string definition. it will insert the data to the data table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_a659ba63d2ee204703597eb6cc0e06a21}{entry\+\_\+def}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}}, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of entry definition. it will insert the entry to the entry table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_ac120f9f7295bddb3c11e7580f0ff4062}{extern\+\_\+def}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}}, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of extern definition. it will insert the extern to the extern table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_af63faf595418d3c43329adee44aa3516}{define}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}}, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of define. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_aaa835797e1904edef894e1e73b903918}{instruction}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}}, int $\ast$IC, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int $\ast$DC)
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of instruction. it will insert the instruction to the code table, and encode the instruction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_acad5e22d5cb7ccbda6c217bd63100717}{source\+\_\+operand}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}}, int $\ast$num\+\_\+of\+\_\+word\+\_\+nedded, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of source operand. it will encode the source operand, based on the type of the operand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_a00848de3dfe3318931fb763fdec2869f}{target\+\_\+operand}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}}, int $\ast$num\+\_\+of\+\_\+word\+\_\+nedded, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of target operand. it will encode the target operand, based on the type of the operand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_ae7f5326c44fedb96297b42282dcdbe43}{tow\+\_\+registers}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}}, int $\ast$num\+\_\+of\+\_\+word\+\_\+nedded)
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of tow registers. it will encode the tow registers, and insert them to the code table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_afb83b0aab81aa2646c1a1e8ab2b4838a}{register\+\_\+encoder}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int operand\+\_\+num, int $\ast$num\+\_\+of\+\_\+word\+\_\+nedded)
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of register. it will encode the register, based on the type of the operand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_a0701b2bfd632168cf4ef1bc89920529f}{direct}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int operand\+\_\+num, int $\ast$num\+\_\+of\+\_\+word\+\_\+nedded)
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of direct operand. it will encode the direct operand, based on the type of the operand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_a02bdaced5ed29b8a4f4b0ede5c566d0b}{direct\+\_\+index}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int operand\+\_\+num, int $\ast$num\+\_\+of\+\_\+word\+\_\+nedded, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}}, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of direct index operand. it will encode the direct index operand, based on the type of the operand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bilder_8c_aa9d0dd78e4decc1d601c819ec688c7b6}{immediate}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$current\+\_\+pattern, int operand\+\_\+num, int $\ast$num\+\_\+of\+\_\+word\+\_\+nedded, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}}, int \mbox{\hyperlink{encoder_8h_af99665d5265621a2cf3e4c7942a42c56}{current\+\_\+pattern\+\_\+num}})
+\begin{DoxyCompactList}\small\item\em This function is used to handle the case of immediate operand. it will encode the immediate operand, based on the type of the operand. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the functions that used to build the code and data tables of the assembler. the file contains the following functions\+: 
+
+\begin{DoxyAuthor}{Author}
+shlomo weisz
+\begin{DoxyEnumerate}
+\item directive -\/ a function that handles the case of directive.
+\item data\+\_\+def -\/ a function that handles the case of data definition.
+\item string\+\_\+def -\/ a function that handles the case of string definition.
+\item entry\+\_\+def -\/ a function that handles the case of entry definition.
+\item extern\+\_\+def -\/ a function that handles the case of extern definition.
+\item define -\/ a function that handles the case of define.
+\item instruction -\/ a function that handles the case of instruction.
+\item source\+\_\+operand -\/ a function that handles the case of source operand.
+\item target\+\_\+operand -\/ a function that handles the case of target operand.
+\item tow\+\_\+registers -\/ a function that handles the case of tow registers.
+\item register\+\_\+encoder -\/ a function that handles the case of register.
+\item direct -\/ a function that handles the case of direct operand.
+\item direct\+\_\+index -\/ a function that handles the case of direct index operand.
+\item immediate -\/ a function that handles the case of immediate operand. 
+\end{DoxyEnumerate}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/03-\/09
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bilder_8c_a7d3f2dabed665b6991d348cd9b9eecdd}\label{bilder_8c_a7d3f2dabed665b6991d348cd9b9eecdd}} 
+\index{bilder.c@{bilder.c}!data\_def@{data\_def}}
+\index{data\_def@{data\_def}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{data\_def()}{data\_def()}}
+{\footnotesize\ttfamily void data\+\_\+def (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{current\+\_\+pattern\+\_\+num,  }\item[{int $\ast$}]{DC,  }\item[{int $\ast$}]{error\+\_\+flag,  }\item[{int $\ast$}]{IC }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of data definition. it will insert the data to the data table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em current\+\_\+pattern\+\_\+num} & The number of the current pattern. \\
+\hline
+{\em DC} & The data counter. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 68 of file bilder.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_a7d3f2dabed665b6991d348cd9b9eecdd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_a7d3f2dabed665b6991d348cd9b9eecdd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_af63faf595418d3c43329adee44aa3516}\label{bilder_8c_af63faf595418d3c43329adee44aa3516}} 
+\index{bilder.c@{bilder.c}!define@{define}}
+\index{define@{define}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{define()}{define()}}
+{\footnotesize\ttfamily void define (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{current\+\_\+pattern\+\_\+num,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of define. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em current\+\_\+pattern\+\_\+num} & The number of the current pattern. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 205 of file bilder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_af63faf595418d3c43329adee44aa3516_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_af63faf595418d3c43329adee44aa3516_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_a0701b2bfd632168cf4ef1bc89920529f}\label{bilder_8c_a0701b2bfd632168cf4ef1bc89920529f}} 
+\index{bilder.c@{bilder.c}!direct@{direct}}
+\index{direct@{direct}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{direct()}{direct()}}
+{\footnotesize\ttfamily void direct (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{operand\+\_\+num,  }\item[{int $\ast$}]{num\+\_\+of\+\_\+word\+\_\+nedded }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of direct operand. it will encode the direct operand, based on the type of the operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em operand\+\_\+num} & The number of the operand. \\
+\hline
+{\em num\+\_\+of\+\_\+word\+\_\+nedded} & The number of word nedded to encode the operand. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 387 of file bilder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_a0701b2bfd632168cf4ef1bc89920529f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_a0701b2bfd632168cf4ef1bc89920529f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_a02bdaced5ed29b8a4f4b0ede5c566d0b}\label{bilder_8c_a02bdaced5ed29b8a4f4b0ede5c566d0b}} 
+\index{bilder.c@{bilder.c}!direct\_index@{direct\_index}}
+\index{direct\_index@{direct\_index}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{direct\_index()}{direct\_index()}}
+{\footnotesize\ttfamily void direct\+\_\+index (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{operand\+\_\+num,  }\item[{int $\ast$}]{num\+\_\+of\+\_\+word\+\_\+nedded,  }\item[{int}]{current\+\_\+pattern\+\_\+num,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of direct index operand. it will encode the direct index operand, based on the type of the operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em operand\+\_\+num} & The number of the operand. \\
+\hline
+{\em num\+\_\+of\+\_\+word\+\_\+nedded} & The number of word nedded to encode the operand. \\
+\hline
+{\em current\+\_\+pattern\+\_\+num} & The number of the current pattern. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 408 of file bilder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_a02bdaced5ed29b8a4f4b0ede5c566d0b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_a02bdaced5ed29b8a4f4b0ede5c566d0b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_ac249210a8dde740ac716b4664a6dca0c}\label{bilder_8c_ac249210a8dde740ac716b4664a6dca0c}} 
+\index{bilder.c@{bilder.c}!directive@{directive}}
+\index{directive@{directive}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{directive()}{directive()}}
+{\footnotesize\ttfamily void directive (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{current\+\_\+pattern\+\_\+num,  }\item[{int $\ast$}]{DC,  }\item[{int $\ast$}]{error\+\_\+flag,  }\item[{int $\ast$}]{IC }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of directive. it will call the right function to handle the directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em current\+\_\+pattern\+\_\+num} & The number of the current pattern. \\
+\hline
+{\em DC} & The data counter. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 37 of file bilder.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_ac249210a8dde740ac716b4664a6dca0c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_ac249210a8dde740ac716b4664a6dca0c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_a659ba63d2ee204703597eb6cc0e06a21}\label{bilder_8c_a659ba63d2ee204703597eb6cc0e06a21}} 
+\index{bilder.c@{bilder.c}!entry\_def@{entry\_def}}
+\index{entry\_def@{entry\_def}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{entry\_def()}{entry\_def()}}
+{\footnotesize\ttfamily void entry\+\_\+def (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{current\+\_\+pattern\+\_\+num,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of entry definition. it will insert the entry to the entry table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em current\+\_\+pattern\+\_\+num} & The number of the current pattern. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 143 of file bilder.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_a659ba63d2ee204703597eb6cc0e06a21_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_a659ba63d2ee204703597eb6cc0e06a21_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_ac120f9f7295bddb3c11e7580f0ff4062}\label{bilder_8c_ac120f9f7295bddb3c11e7580f0ff4062}} 
+\index{bilder.c@{bilder.c}!extern\_def@{extern\_def}}
+\index{extern\_def@{extern\_def}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{extern\_def()}{extern\_def()}}
+{\footnotesize\ttfamily void extern\+\_\+def (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{current\+\_\+pattern\+\_\+num,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of extern definition. it will insert the extern to the extern table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em current\+\_\+pattern\+\_\+num} & The number of the current pattern. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 176 of file bilder.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_ac120f9f7295bddb3c11e7580f0ff4062_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_ac120f9f7295bddb3c11e7580f0ff4062_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_aa9d0dd78e4decc1d601c819ec688c7b6}\label{bilder_8c_aa9d0dd78e4decc1d601c819ec688c7b6}} 
+\index{bilder.c@{bilder.c}!immediate@{immediate}}
+\index{immediate@{immediate}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{immediate()}{immediate()}}
+{\footnotesize\ttfamily void immediate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{operand\+\_\+num,  }\item[{int $\ast$}]{num\+\_\+of\+\_\+word\+\_\+nedded,  }\item[{int $\ast$}]{error\+\_\+flag,  }\item[{int}]{current\+\_\+pattern\+\_\+num }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of immediate operand. it will encode the immediate operand, based on the type of the operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em operand\+\_\+num} & The number of the operand. \\
+\hline
+{\em num\+\_\+of\+\_\+word\+\_\+nedded} & The number of word nedded to encode the operand. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 435 of file bilder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_aa9d0dd78e4decc1d601c819ec688c7b6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_aa9d0dd78e4decc1d601c819ec688c7b6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_aaa835797e1904edef894e1e73b903918}\label{bilder_8c_aaa835797e1904edef894e1e73b903918}} 
+\index{bilder.c@{bilder.c}!instruction@{instruction}}
+\index{instruction@{instruction}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{instruction()}{instruction()}}
+{\footnotesize\ttfamily void instruction (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{current\+\_\+pattern\+\_\+num,  }\item[{int $\ast$}]{IC,  }\item[{int $\ast$}]{error\+\_\+flag,  }\item[{int $\ast$}]{DC }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of instruction. it will insert the instruction to the code table, and encode the instruction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em current\+\_\+pattern\+\_\+num} & The number of the current pattern. \\
+\hline
+{\em IC} & The instruction counter. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 228 of file bilder.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_aaa835797e1904edef894e1e73b903918_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_aaa835797e1904edef894e1e73b903918_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_afb83b0aab81aa2646c1a1e8ab2b4838a}\label{bilder_8c_afb83b0aab81aa2646c1a1e8ab2b4838a}} 
+\index{bilder.c@{bilder.c}!register\_encoder@{register\_encoder}}
+\index{register\_encoder@{register\_encoder}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{register\_encoder()}{register\_encoder()}}
+{\footnotesize\ttfamily void register\+\_\+encoder (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{operand\+\_\+num,  }\item[{int $\ast$}]{num\+\_\+of\+\_\+word\+\_\+nedded }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of register. it will encode the register, based on the type of the operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em operand\+\_\+num} & The number of the operand. \\
+\hline
+{\em num\+\_\+of\+\_\+word\+\_\+nedded} & The number of word nedded to encode the operand. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 365 of file bilder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_afb83b0aab81aa2646c1a1e8ab2b4838a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_afb83b0aab81aa2646c1a1e8ab2b4838a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_acad5e22d5cb7ccbda6c217bd63100717}\label{bilder_8c_acad5e22d5cb7ccbda6c217bd63100717}} 
+\index{bilder.c@{bilder.c}!source\_operand@{source\_operand}}
+\index{source\_operand@{source\_operand}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{source\_operand()}{source\_operand()}}
+{\footnotesize\ttfamily void source\+\_\+operand (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{current\+\_\+pattern\+\_\+num,  }\item[{int $\ast$}]{num\+\_\+of\+\_\+word\+\_\+nedded,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of source operand. it will encode the source operand, based on the type of the operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em current\+\_\+pattern\+\_\+num} & The number of the current pattern. \\
+\hline
+{\em num\+\_\+of\+\_\+word\+\_\+nedded} & The number of word nedded to encode the operand. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 285 of file bilder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_acad5e22d5cb7ccbda6c217bd63100717_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_acad5e22d5cb7ccbda6c217bd63100717_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_adc7c1d36ef80f1bec801aa44aae83ec3}\label{bilder_8c_adc7c1d36ef80f1bec801aa44aae83ec3}} 
+\index{bilder.c@{bilder.c}!string\_def@{string\_def}}
+\index{string\_def@{string\_def}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{string\_def()}{string\_def()}}
+{\footnotesize\ttfamily void string\+\_\+def (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{current\+\_\+pattern\+\_\+num,  }\item[{int $\ast$}]{DC,  }\item[{int $\ast$}]{error\+\_\+flag,  }\item[{int $\ast$}]{IC }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of string definition. it will insert the data to the data table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em current\+\_\+pattern\+\_\+num} & The number of the current pattern. \\
+\hline
+{\em DC} & The data counter. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 116 of file bilder.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_adc7c1d36ef80f1bec801aa44aae83ec3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_adc7c1d36ef80f1bec801aa44aae83ec3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_a00848de3dfe3318931fb763fdec2869f}\label{bilder_8c_a00848de3dfe3318931fb763fdec2869f}} 
+\index{bilder.c@{bilder.c}!target\_operand@{target\_operand}}
+\index{target\_operand@{target\_operand}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{target\_operand()}{target\_operand()}}
+{\footnotesize\ttfamily void target\+\_\+operand (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{current\+\_\+pattern\+\_\+num,  }\item[{int $\ast$}]{num\+\_\+of\+\_\+word\+\_\+nedded,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of target operand. it will encode the target operand, based on the type of the operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em current\+\_\+pattern\+\_\+num} & The number of the current pattern. \\
+\hline
+{\em num\+\_\+of\+\_\+word\+\_\+nedded} & The number of word nedded to encode the operand. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 313 of file bilder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_a00848de3dfe3318931fb763fdec2869f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_a00848de3dfe3318931fb763fdec2869f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{bilder_8c_ae7f5326c44fedb96297b42282dcdbe43}\label{bilder_8c_ae7f5326c44fedb96297b42282dcdbe43}} 
+\index{bilder.c@{bilder.c}!tow\_registers@{tow\_registers}}
+\index{tow\_registers@{tow\_registers}!bilder.c@{bilder.c}}
+\doxysubsubsection{\texorpdfstring{tow\_registers()}{tow\_registers()}}
+{\footnotesize\ttfamily void tow\+\_\+registers (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+\_\+pattern,  }\item[{int}]{current\+\_\+pattern\+\_\+num,  }\item[{int $\ast$}]{num\+\_\+of\+\_\+word\+\_\+nedded }\end{DoxyParamCaption})}
+
+
+
+This function is used to handle the case of tow registers. it will encode the tow registers, and insert them to the code table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+pattern} & The current pattern that we want to handle. \\
+\hline
+{\em current\+\_\+pattern\+\_\+num} & The number of the current pattern. \\
+\hline
+{\em num\+\_\+of\+\_\+word\+\_\+nedded} & The number of word nedded to encode the operand. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 346 of file bilder.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_ae7f5326c44fedb96297b42282dcdbe43_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bilder_8c_ae7f5326c44fedb96297b42282dcdbe43_icgraph}
+\end{center}
+\end{figure}

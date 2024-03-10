@@ -1,0 +1,5 @@
+<map id="back/memory.h" name="back/memory.h">
+<area shape="rect" id="node1" title=" " alt="" coords="61,5,183,32"/>
+<area shape="rect" id="node2" href="$assembler_8c.html" title="This program is an assembler for the assembly language that was given in the course...." alt="" coords="5,80,105,107"/>
+<area shape="rect" id="node3" href="$memory_8c.html" title="This file contains the implementation of the functions that used to handle the memory of the assemble..." alt="" coords="129,80,251,107"/>
+</map>

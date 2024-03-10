@@ -1,0 +1,13 @@
+<map id="immediateNumberOperand" name="immediateNumberOperand">
+<area shape="rect" id="node1" title="Function to process an immediate number operand." alt="" coords="1539,31,1739,57"/>
+<area shape="rect" id="node2" href="$headeMethods_8h.html#aa5aebcb22236185a42e088063d0030e7" title="Handles processing of operands for instructions." alt="" coords="1356,31,1491,57"/>
+<area shape="rect" id="node3" href="$headeMethods_8h.html#ab3b600e768927750f73f08907f410181" title="Handles processing of instructions with one operand." alt="" coords="1152,5,1305,32"/>
+<area shape="rect" id="node11" href="$headeMethods_8h.html#a3a9b245c491e5d371d975156a60f32e6" title="Handles processing of instructions with two operands." alt="" coords="1149,56,1308,83"/>
+<area shape="rect" id="node4" href="$headeMethods_8h.html#a62b9aadfd2a314a92e7b35617ad05a59" title="Function to check if a word is an instruction and update the pattern structure." alt="" coords="964,31,1101,57"/>
+<area shape="rect" id="node5" href="$front_8c.html#a6c9769c574f45aa0d47468334c624e7c" title="Function to process a generic instruction." alt="" coords="775,31,916,57"/>
+<area shape="rect" id="node6" href="$front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,31,727,57"/>
+<area shape="rect" id="node7" href="$front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,31,556,57"/>
+<area shape="rect" id="node8" href="$front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,31,409,57"/>
+<area shape="rect" id="node9" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,31,199,57"/>
+<area shape="rect" id="node10" href="$assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,31,60,57"/>
+</map>

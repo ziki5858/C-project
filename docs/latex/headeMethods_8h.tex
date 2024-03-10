@@ -1,0 +1,2230 @@
+\hypertarget{headeMethods_8h}{}\doxysection{front/heade\+Methods.h File Reference}
+\label{headeMethods_8h}\index{front/headeMethods.h@{front/headeMethods.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+Include dependency graph for heade\+Methods.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{headeMethods_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpattern}{pattern}}
+\item 
+struct \mbox{\hyperlink{structNode}{Node}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a node in a linked list. each node has a pointer to the data, and a pointer to the next node. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structsymbol}{symbol}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a symbol in the assembly file. each symbol has a label, an address, a type and a line in the file. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structconstant}{constant}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a constant in the assembly file. each constant has a label, a value and a line in the file. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structexternal}{external}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a code in the assembly file. each code has a label, an address, a line in the file and a pointer to the next code. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmacro}{macro}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a macro in the assembly file. each macro has a name, a value and a number of lines. ~\newline
+ \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structentry}{entry}}
+\begin{DoxyCompactList}\small\item\em This struct is used to represent a entry in the assembly file. each entry has a symbol and a line in the file. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structword__bin}{word\+\_\+bin}}
+\item 
+struct \mbox{\hyperlink{structcode}{code}}
+\item 
+struct \mbox{\hyperlink{structInstructionMapping}{Instruction\+Mapping}}
+\item 
+struct \mbox{\hyperlink{structRegisterMapping}{Register\+Mapping}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{headeMethods_8h_a3ce6ccf57f03c78e7baa7467aa9031a8}{WIDTH\+\_\+\+OF\+\_\+\+WORD}}~15
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{headeMethods_8h_a65c89d1d0a1292b0cb20a62e33f99902}{MAX\+\_\+\+ERROR\+\_\+\+SIZE}}~300
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}{MAX\+\_\+\+LINE\+\_\+\+SIZE}}~81
+\item 
+\#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} \mbox{\hyperlink{headeMethods_8h_a96127aad3b7750628d041f17c8490726}{MAX\+\_\+\+LABEL\+\_\+\+SIZE}}~31
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structsymbol}{symbol}} $\ast$ \mbox{\hyperlink{headeMethods_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}}
+\item 
+typedef struct \mbox{\hyperlink{structconstant}{constant}} $\ast$ \mbox{\hyperlink{headeMethods_8h_a6285fc1207264550aa3f40302f54dd80}{Constant}}
+\item 
+typedef struct \mbox{\hyperlink{structexternal}{external}} $\ast$ \mbox{\hyperlink{headeMethods_8h_aaa7ca4df7549cc433aee28a22f343dd7}{External}}
+\item 
+typedef struct \mbox{\hyperlink{structentry}{entry}} $\ast$ \mbox{\hyperlink{headeMethods_8h_a33a7cf9e35c645e2357af82b0b94bbf6}{Entry}}
+\item 
+typedef struct \mbox{\hyperlink{structcode}{code}} $\ast$ \mbox{\hyperlink{headeMethods_8h_abe3edd5382a2cebebc55bcbb54ea2161}{Code}}
+\item 
+typedef struct \mbox{\hyperlink{structword__bin}{word\+\_\+bin}} $\ast$ \mbox{\hyperlink{headeMethods_8h_a3afa16dfd0f49429db5f377946493458}{Word\+Bin}}
+\item 
+typedef struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$ \mbox{\hyperlink{headeMethods_8h_ab2704a73a309452dd220ddcbe06ce5ed}{Pattern}}
+\item 
+typedef struct \mbox{\hyperlink{structmacro}{macro}} $\ast$ \mbox{\hyperlink{headeMethods_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ced}{Directive\+Type}} \{ \newline
+\mbox{\hyperlink{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}{ENTRY}}
+, \mbox{\hyperlink{structs_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}{EXTERN}}
+, \mbox{\hyperlink{structs_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}{STRING}}
+, \mbox{\hyperlink{structs_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}{DATA}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}{ENTRY}}
+, \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}{EXTERN}}
+, \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}{STRING}}
+, \mbox{\hyperlink{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}{DATA}}
+, \newline
+\mbox{\hyperlink{front_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}{ENTRY}}
+, \mbox{\hyperlink{front_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}{EXTERN}}
+, \mbox{\hyperlink{front_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}{STRING}}
+, \mbox{\hyperlink{front_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}{DATA}}
+ \}
+\item 
+enum \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}{Instruction\+Type}} \{ \newline
+\mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}{MOV}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}{CMP}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}{ADD}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}{SUB}}
+, \newline
+\mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}{LEA}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}{NOT}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}{CLR}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}{INC}}
+, \newline
+\mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}{DEC}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}{JMP}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}{BNE}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}{RED}}
+, \newline
+\mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}{PRN}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}{JSR}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}{RTS}}
+, \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}{HLT}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}{MOV}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}{CMP}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}{ADD}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}{SUB}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}{LEA}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}{NOT}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}{CLR}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}{INC}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}{DEC}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}{JMP}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}{BNE}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}{RED}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}{PRN}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}{JSR}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}{RTS}}
+, \mbox{\hyperlink{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}{HLT}}
+, \newline
+\mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}{MOV}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}{CMP}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}{ADD}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}{SUB}}
+, \newline
+\mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}{LEA}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}{NOT}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}{CLR}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}{INC}}
+, \newline
+\mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}{DEC}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}{JMP}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}{BNE}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}{RED}}
+, \newline
+\mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}{PRN}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}{JSR}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}{RTS}}
+, \mbox{\hyperlink{front_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}{HLT}}
+ \}
+\item 
+enum \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1b}{Register}} \{ \newline
+\mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}{r0}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}{r1}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}{r2}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}{r3}}
+, \newline
+\mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}{r4}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}{r5}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}{r6}}
+, \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}{r7}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}{r0}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}{r1}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}{r2}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}{r3}}
+, \newline
+\mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}{r4}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}{r5}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}{r6}}
+, \mbox{\hyperlink{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}{r7}}
+, \newline
+\mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}{r0}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}{r1}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}{r2}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}{r3}}
+, \newline
+\mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}{r4}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}{r5}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}{r6}}
+, \mbox{\hyperlink{front_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}{r7}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{headeMethods_8h_afe3366f2706fc967b47458f213b22d5e}{categorize\+Word}} (FILE $\ast$file, char $\ast$lineB, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Categorizes a word based on its type and updates the pattern structure. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_ae5ec285c69a731057cf0c53c79537eee}{directive\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is a directive and return the directive type. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a9b934e4c8638e4436a0b6b440cea6fc3}{define\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is a define and update the pattern structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{headeMethods_8h_aae39fecfe9b53c1dc0d78bbe36f679b9}{is\+Error}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, const char $\ast$error\+Message, const char $\ast$filename, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is an error and update the pattern structure. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a8b315535f4cc7908415c17737bf7c64a}{process\+Numeric\+Arguments}} (FILE $\ast$file, char $\ast$word, char $\ast$input, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\item 
+int \mbox{\hyperlink{headeMethods_8h_a7b53e8771f21707e0dbea3b2c0cfe819}{handle\+String\+Directive}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of the .string directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_ad92ccce9c6a0fc6284c17e0c7bc977bf}{handle\+Data\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of the .data directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_ac2837c269e696fee0db3df8f8ab43e3d}{handle\+Extern\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of the .extern directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a15246dafea3587f742716cbed87e4d59}{handle\+Entry\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of the .entry directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a68e22aa0e38c87c1d723ecb136aa9edd}{check\+Comma\+At\+End}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Checks for a comma at the end of a line. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a856654e2325ad10e1561ce8b623a9df8}{check\+Comma\+Word}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Checks for a comma before a word. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNode}{Node}} $\ast$ \mbox{\hyperlink{headeMethods_8h_a9262b8182e78a43b156ffc09247db7fa}{create\+Node}} (struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}})
+\begin{DoxyCompactList}\small\item\em Creates a new linked list node with the given data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{headeMethods_8h_a88ab37900f78f113703f240ce43e8e3c}{insert\+Node}} (struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}})
+\begin{DoxyCompactList}\small\item\em Inserts a new node at the end of the linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{headeMethods_8h_ac26aaf7e0131a5ccdb4c14ae928aa87d}{process\+Line}} (FILE $\ast$file, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNode}{Node}} $\ast$ \mbox{\hyperlink{headeMethods_8h_a2bc68f82a4715dc30ae2c450eeb1e629}{process\+Assembly\+Text}} (const char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Processes an entire file of assembly language text and builds a linked list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_aa0b3977cf0af0a66723704d8ca22fa37}{is\+Valid\+Constant\+Name}} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Function to check if a string is a valid constant name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a529fe24170a61c22c810022e539206c3}{is\+Numeric}} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Function to check if a string is numeric. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_ab54926c39817863421a74e1ada92e412}{is\+Valid\+Label}} (char $\ast$name, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int need\+Colon, int \mbox{\hyperlink{structsymbol}{symbol}})
+\begin{DoxyCompactList}\small\item\em Function to check if a label is valid. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a4209c81388b14c5650d72bc2e92a5f91}{check\+Last\+Character}} (const char input\mbox{[}$\,$\mbox{]}, char error\+Char)
+\begin{DoxyCompactList}\small\item\em Function to check if the last character of a string is a specific character. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_ac000c3b3bdf79ee6e35e28d96a84a8d1}{register\+Operand}} (FILE $\ast$file, char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to process a register operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_aea0cf2429f2ebfeb1545c3dda091e072}{direct\+Index\+Operand}} (FILE $\ast$file, char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to process a direct index operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a89c67e76f0753e7b13f450f044a84e3e}{immediate\+Number\+Operand}} (char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i)
+\begin{DoxyCompactList}\small\item\em Function to process an immediate number operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a24dc457e2ba621e13b53c55106e272d9}{direct\+Label\+Operand}} (char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to process a direct label operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_ad64629aa668f0f6ed15bafc208c1d4ea}{process\+Define}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to process the .define directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a0440372907b5c2e53ad21de725ffafec}{process\+Directive}} (FILE $\ast$file, char $\ast$lineB, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to process a generic directive. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a6c9769c574f45aa0d47468334c624e7c}{process\+Instruction}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to process a generic instruction. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a62b9aadfd2a314a92e7b35617ad05a59}{instruction\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to check if a word is an instruction and update the pattern structure. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a4ca2c34a863fc17db10031bfe5ccf0b0}{process\+No\+Operands}} (struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}})
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions without operands. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_ab3b600e768927750f73f08907f410181}{process\+One\+Operand}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions with one operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a3a9b245c491e5d371d975156a60f32e6}{process\+Two\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Handles processing of instructions with two operands. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_aa5aebcb22236185a42e088063d0030e7}{process\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head, int operand\+Count)
+\begin{DoxyCompactList}\small\item\em Handles processing of operands for instructions. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_abeb421a01dadd83e4b4a97672817c99c}{handle\+Return\+Value}} (int return\+\_\+value, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to handle the return value of various processing functions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{headeMethods_8h_a5d78273d4feb195d7706ce9d6d7c004b}{add\+To\+Entry\+Label\+Set}} (const char $\ast$label)
+\begin{DoxyCompactList}\small\item\em Function to add a label to the entry label set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a1076c92ff396fe7c35841d34e32fdcbc}{is\+Entry\+Label}} (const char $\ast$label)
+\begin{DoxyCompactList}\small\item\em Function to check if a label is in the entry label set. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{headeMethods_8h_a59d683d34a59781f51a6f9eb02112caa}{spare\+Space}} (char $\ast$token)
+\begin{DoxyCompactList}\small\item\em Function to check if a label is in the external label set. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{headeMethods_8h_a48e46c99fa59387602fd6551e7f23192}{check\+\_\+comas\+\_\+continus}} (char $\ast$line)
+\begin{DoxyCompactList}\small\item\em This function checks if there are multiple consecutive comas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structInstructionMapping}{Instruction\+Mapping}} \mbox{\hyperlink{headeMethods_8h_a3c4d69d58e5f21876f589033c2f2b8a0}{instruction\+Mappings}} \mbox{[}$\,$\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structRegisterMapping}{Register\+Mapping}} \mbox{\hyperlink{headeMethods_8h_a46fc27e049a0166b0d291695ee10e462}{register\+Mappings}} \mbox{[}$\,$\mbox{]}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_a4d446a347bb50b9a831c9d6f355373e9}{num\+\_\+of\+\_\+patterns}}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_a085b57d9ed0b3d5392eb3dcffe1b2301}{num\+\_\+of\+\_\+entries}}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_aef398d61da8585441be8052f91c005d9}{num\+\_\+of\+\_\+externals}}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_a5ab8d71be5fa7d6cc6c7d7f498a814c6}{num\+\_\+of\+\_\+constants}}
+\item 
+int \mbox{\hyperlink{headeMethods_8h_a44bf2f6ee91a35522c07c779325d3ef0}{line\+Number}}
+\item 
+const int \mbox{\hyperlink{headeMethods_8h_a3ad98e54fafae1497bd42b491d9742cc}{true}}
+\item 
+const int \mbox{\hyperlink{headeMethods_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\item 
+const int \mbox{\hyperlink{headeMethods_8h_aca066bc9dac122bcb62dc91898b5f1f9}{true\+\_\+in\+Valid}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{headeMethods_8h_a65c89d1d0a1292b0cb20a62e33f99902}\label{headeMethods_8h_a65c89d1d0a1292b0cb20a62e33f99902}} 
+\index{headeMethods.h@{headeMethods.h}!MAX\_ERROR\_SIZE@{MAX\_ERROR\_SIZE}}
+\index{MAX\_ERROR\_SIZE@{MAX\_ERROR\_SIZE}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_ERROR\_SIZE}{MAX\_ERROR\_SIZE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} MAX\+\_\+\+ERROR\+\_\+\+SIZE~300}
+
+
+
+Definition at line 7 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_a96127aad3b7750628d041f17c8490726}\label{headeMethods_8h_a96127aad3b7750628d041f17c8490726}} 
+\index{headeMethods.h@{headeMethods.h}!MAX\_LABEL\_SIZE@{MAX\_LABEL\_SIZE}}
+\index{MAX\_LABEL\_SIZE@{MAX\_LABEL\_SIZE}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LABEL\_SIZE}{MAX\_LABEL\_SIZE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} MAX\+\_\+\+LABEL\+\_\+\+SIZE~31}
+
+
+
+Definition at line 9 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}\label{headeMethods_8h_a706068f562dd5c64a8b7bbd4b2298dd1}} 
+\index{headeMethods.h@{headeMethods.h}!MAX\_LINE\_SIZE@{MAX\_LINE\_SIZE}}
+\index{MAX\_LINE\_SIZE@{MAX\_LINE\_SIZE}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LINE\_SIZE}{MAX\_LINE\_SIZE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} MAX\+\_\+\+LINE\+\_\+\+SIZE~81}
+
+
+
+Definition at line 8 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_a3ce6ccf57f03c78e7baa7467aa9031a8}\label{headeMethods_8h_a3ce6ccf57f03c78e7baa7467aa9031a8}} 
+\index{headeMethods.h@{headeMethods.h}!WIDTH\_OF\_WORD@{WIDTH\_OF\_WORD}}
+\index{WIDTH\_OF\_WORD@{WIDTH\_OF\_WORD}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{WIDTH\_OF\_WORD}{WIDTH\_OF\_WORD}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{bilder_8h_af63faf595418d3c43329adee44aa3516}{define}} WIDTH\+\_\+\+OF\+\_\+\+WORD~15}
+
+
+
+Definition at line 6 of file heade\+Methods.\+h.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{headeMethods_8h_abe3edd5382a2cebebc55bcbb54ea2161}\label{headeMethods_8h_abe3edd5382a2cebebc55bcbb54ea2161}} 
+\index{headeMethods.h@{headeMethods.h}!Code@{Code}}
+\index{Code@{Code}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{Code}{Code}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structcode}{code}}$\ast$ \mbox{\hyperlink{structs_8h_abe3edd5382a2cebebc55bcbb54ea2161}{Code}}}
+
+
+
+Definition at line 95 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_a6285fc1207264550aa3f40302f54dd80}\label{headeMethods_8h_a6285fc1207264550aa3f40302f54dd80}} 
+\index{headeMethods.h@{headeMethods.h}!Constant@{Constant}}
+\index{Constant@{Constant}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{Constant}{Constant}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structconstant}{constant}}$\ast$ \mbox{\hyperlink{structs_8h_a6285fc1207264550aa3f40302f54dd80}{Constant}}}
+
+
+
+Definition at line 92 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_a33a7cf9e35c645e2357af82b0b94bbf6}\label{headeMethods_8h_a33a7cf9e35c645e2357af82b0b94bbf6}} 
+\index{headeMethods.h@{headeMethods.h}!Entry@{Entry}}
+\index{Entry@{Entry}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{Entry}{Entry}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structentry}{entry}}$\ast$ \mbox{\hyperlink{structs_8h_a33a7cf9e35c645e2357af82b0b94bbf6}{Entry}}}
+
+
+
+Definition at line 94 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_aaa7ca4df7549cc433aee28a22f343dd7}\label{headeMethods_8h_aaa7ca4df7549cc433aee28a22f343dd7}} 
+\index{headeMethods.h@{headeMethods.h}!External@{External}}
+\index{External@{External}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{External}{External}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structexternal}{external}}$\ast$ \mbox{\hyperlink{structs_8h_aaa7ca4df7549cc433aee28a22f343dd7}{External}}}
+
+
+
+Definition at line 93 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_a35621d1d74428cb9205a146d080b97f2}\label{headeMethods_8h_a35621d1d74428cb9205a146d080b97f2}} 
+\index{headeMethods.h@{headeMethods.h}!Macro@{Macro}}
+\index{Macro@{Macro}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{Macro}{Macro}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structmacro}{macro}}$\ast$ \mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}}}
+
+
+
+Definition at line 98 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_ab2704a73a309452dd220ddcbe06ce5ed}\label{headeMethods_8h_ab2704a73a309452dd220ddcbe06ce5ed}} 
+\index{headeMethods.h@{headeMethods.h}!Pattern@{Pattern}}
+\index{Pattern@{Pattern}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{Pattern}{Pattern}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structpattern}{pattern}}$\ast$ \mbox{\hyperlink{structs_8h_ab2704a73a309452dd220ddcbe06ce5ed}{Pattern}}}
+
+
+
+Definition at line 97 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_acd28fff7ecff538f521dd72fb4191000}\label{headeMethods_8h_acd28fff7ecff538f521dd72fb4191000}} 
+\index{headeMethods.h@{headeMethods.h}!Symbol@{Symbol}}
+\index{Symbol@{Symbol}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{Symbol}{Symbol}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structsymbol}{symbol}}$\ast$ \mbox{\hyperlink{structs_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}}}
+
+
+
+Definition at line 91 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_a3afa16dfd0f49429db5f377946493458}\label{headeMethods_8h_a3afa16dfd0f49429db5f377946493458}} 
+\index{headeMethods.h@{headeMethods.h}!WordBin@{WordBin}}
+\index{WordBin@{WordBin}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{WordBin}{WordBin}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structword__bin}{word\+\_\+bin}}$\ast$ \mbox{\hyperlink{structs_8h_a3afa16dfd0f49429db5f377946493458}{Word\+Bin}}}
+
+
+
+Definition at line 96 of file heade\+Methods.\+h.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ced}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ced}} 
+\index{headeMethods.h@{headeMethods.h}!DirectiveType@{DirectiveType}}
+\index{DirectiveType@{DirectiveType}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{DirectiveType}{DirectiveType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{structs_8h_a79bb11a21ca0169a3520c5053e045ced}{Directive\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENTRY@{ENTRY}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!ENTRY@{ENTRY}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}} 
+ENTRY&Entry directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXTERN@{EXTERN}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!EXTERN@{EXTERN}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}} 
+EXTERN&Extern directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!STRING@{STRING}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}} 
+STRING&String directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA@{DATA}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!DATA@{DATA}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}} 
+DATA&Data directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENTRY@{ENTRY}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!ENTRY@{ENTRY}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}} 
+ENTRY&Entry directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXTERN@{EXTERN}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!EXTERN@{EXTERN}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}} 
+EXTERN&Extern directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!STRING@{STRING}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}} 
+STRING&String directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA@{DATA}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!DATA@{DATA}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}} 
+DATA&Data directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ENTRY@{ENTRY}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!ENTRY@{ENTRY}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6}} 
+ENTRY&Entry directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXTERN@{EXTERN}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!EXTERN@{EXTERN}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039}} 
+EXTERN&Extern directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!STRING@{STRING}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921}} 
+STRING&String directive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA@{DATA}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!DATA@{DATA}}}\mbox{\Hypertarget{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}\label{headeMethods_8h_a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2}} 
+DATA&Data directive \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 14 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}} 
+\index{headeMethods.h@{headeMethods.h}!InstructionType@{InstructionType}}
+\index{InstructionType@{InstructionType}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{InstructionType}{InstructionType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{structs_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0d}{Instruction\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOV@{MOV}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!MOV@{MOV}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}} 
+MOV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CMP@{CMP}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!CMP@{CMP}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}} 
+CMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ADD@{ADD}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!ADD@{ADD}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}} 
+ADD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUB@{SUB}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!SUB@{SUB}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}} 
+SUB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEA@{LEA}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!LEA@{LEA}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}} 
+LEA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT@{NOT}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!NOT@{NOT}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}} 
+NOT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLR@{CLR}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!CLR@{CLR}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}} 
+CLR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INC@{INC}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!INC@{INC}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}} 
+INC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEC@{DEC}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!DEC@{DEC}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}} 
+DEC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JMP@{JMP}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!JMP@{JMP}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}} 
+JMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BNE@{BNE}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!BNE@{BNE}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}} 
+BNE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RED@{RED}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!RED@{RED}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}} 
+RED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRN@{PRN}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!PRN@{PRN}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}} 
+PRN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JSR@{JSR}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!JSR@{JSR}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}} 
+JSR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RTS@{RTS}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!RTS@{RTS}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}} 
+RTS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HLT@{HLT}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!HLT@{HLT}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}} 
+HLT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOV@{MOV}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!MOV@{MOV}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}} 
+MOV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CMP@{CMP}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!CMP@{CMP}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}} 
+CMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ADD@{ADD}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!ADD@{ADD}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}} 
+ADD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUB@{SUB}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!SUB@{SUB}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}} 
+SUB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEA@{LEA}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!LEA@{LEA}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}} 
+LEA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT@{NOT}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!NOT@{NOT}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}} 
+NOT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLR@{CLR}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!CLR@{CLR}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}} 
+CLR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INC@{INC}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!INC@{INC}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}} 
+INC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEC@{DEC}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!DEC@{DEC}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}} 
+DEC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JMP@{JMP}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!JMP@{JMP}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}} 
+JMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BNE@{BNE}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!BNE@{BNE}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}} 
+BNE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RED@{RED}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!RED@{RED}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}} 
+RED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRN@{PRN}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!PRN@{PRN}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}} 
+PRN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JSR@{JSR}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!JSR@{JSR}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}} 
+JSR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RTS@{RTS}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!RTS@{RTS}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}} 
+RTS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HLT@{HLT}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!HLT@{HLT}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}} 
+HLT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOV@{MOV}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!MOV@{MOV}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b}} 
+MOV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CMP@{CMP}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!CMP@{CMP}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e}} 
+CMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ADD@{ADD}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!ADD@{ADD}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909}} 
+ADD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUB@{SUB}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!SUB@{SUB}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da}} 
+SUB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEA@{LEA}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!LEA@{LEA}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05}} 
+LEA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT@{NOT}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!NOT@{NOT}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6}} 
+NOT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLR@{CLR}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!CLR@{CLR}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017}} 
+CLR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INC@{INC}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!INC@{INC}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d}} 
+INC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEC@{DEC}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!DEC@{DEC}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481}} 
+DEC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JMP@{JMP}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!JMP@{JMP}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a}} 
+JMP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BNE@{BNE}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!BNE@{BNE}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd}} 
+BNE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RED@{RED}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!RED@{RED}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88}} 
+RED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRN@{PRN}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!PRN@{PRN}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787}} 
+PRN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JSR@{JSR}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!JSR@{JSR}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85}} 
+JSR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RTS@{RTS}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!RTS@{RTS}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66}} 
+RTS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HLT@{HLT}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!HLT@{HLT}}}\mbox{\Hypertarget{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}\label{headeMethods_8h_a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4}} 
+HLT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 22 of file heade\+Methods.\+h.
+
+\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1b}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1b}} 
+\index{headeMethods.h@{headeMethods.h}!Register@{Register}}
+\index{Register@{Register}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{Register}{Register}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{structs_8h_a8e39d30bce1b2172c347b10e96f05d1b}{Register}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r0@{r0}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r0@{r0}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}} 
+r0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r1@{r1}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r1@{r1}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}} 
+r1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r2@{r2}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r2@{r2}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}} 
+r2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r3@{r3}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r3@{r3}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}} 
+r3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r4@{r4}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r4@{r4}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}} 
+r4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r5@{r5}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r5@{r5}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}} 
+r5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r6@{r6}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r6@{r6}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}} 
+r6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r7@{r7}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r7@{r7}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}} 
+r7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r0@{r0}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r0@{r0}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}} 
+r0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r1@{r1}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r1@{r1}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}} 
+r1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r2@{r2}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r2@{r2}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}} 
+r2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r3@{r3}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r3@{r3}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}} 
+r3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r4@{r4}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r4@{r4}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}} 
+r4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r5@{r5}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r5@{r5}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}} 
+r5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r6@{r6}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r6@{r6}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}} 
+r6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r7@{r7}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r7@{r7}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}} 
+r7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r0@{r0}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r0@{r0}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c}} 
+r0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r1@{r1}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r1@{r1}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce}} 
+r1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r2@{r2}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r2@{r2}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05}} 
+r2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r3@{r3}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r3@{r3}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd}} 
+r3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r4@{r4}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r4@{r4}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2}} 
+r4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r5@{r5}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r5@{r5}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32}} 
+r5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r6@{r6}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r6@{r6}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473}} 
+r6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{r7@{r7}!headeMethods.h@{headeMethods.h}}\index{headeMethods.h@{headeMethods.h}!r7@{r7}}}\mbox{\Hypertarget{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}\label{headeMethods_8h_a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f}} 
+r7&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 27 of file heade\+Methods.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{headeMethods_8h_a5d78273d4feb195d7706ce9d6d7c004b}\label{headeMethods_8h_a5d78273d4feb195d7706ce9d6d7c004b}} 
+\index{headeMethods.h@{headeMethods.h}!addToEntryLabelSet@{addToEntryLabelSet}}
+\index{addToEntryLabelSet@{addToEntryLabelSet}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{addToEntryLabelSet()}{addToEntryLabelSet()}}
+{\footnotesize\ttfamily void add\+To\+Entry\+Label\+Set (\begin{DoxyParamCaption}\item[{const char $\ast$}]{label }\end{DoxyParamCaption})}
+
+
+
+Function to add a label to the entry label set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & The label to be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 103 of file directive.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a5d78273d4feb195d7706ce9d6d7c004b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_afe3366f2706fc967b47458f213b22d5e}\label{headeMethods_8h_afe3366f2706fc967b47458f213b22d5e}} 
+\index{headeMethods.h@{headeMethods.h}!categorizeWord@{categorizeWord}}
+\index{categorizeWord@{categorizeWord}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{categorizeWord()}{categorizeWord()}}
+{\footnotesize\ttfamily void categorize\+Word (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{lineB,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Categorizes a word based on its type and updates the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em lineB} & The line being processed. \\
+\hline
+{\em word} & The word to be categorized. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 133 of file front.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_afe3366f2706fc967b47458f213b22d5e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_afe3366f2706fc967b47458f213b22d5e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a48e46c99fa59387602fd6551e7f23192}\label{headeMethods_8h_a48e46c99fa59387602fd6551e7f23192}} 
+\index{headeMethods.h@{headeMethods.h}!check\_comas\_continus@{check\_comas\_continus}}
+\index{check\_comas\_continus@{check\_comas\_continus}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{check\_comas\_continus()}{check\_comas\_continus()}}
+{\footnotesize\ttfamily int check\+\_\+comas\+\_\+continus (\begin{DoxyParamCaption}\item[{char $\ast$}]{line }\end{DoxyParamCaption})}
+
+
+
+This function checks if there are multiple consecutive comas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & The line that the user entered \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if there are multiple consecutive comas, 1 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 189 of file directive.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a48e46c99fa59387602fd6551e7f23192_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a68e22aa0e38c87c1d723ecb136aa9edd}\label{headeMethods_8h_a68e22aa0e38c87c1d723ecb136aa9edd}} 
+\index{headeMethods.h@{headeMethods.h}!checkCommaAtEnd@{checkCommaAtEnd}}
+\index{checkCommaAtEnd@{checkCommaAtEnd}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{checkCommaAtEnd()}{checkCommaAtEnd()}}
+{\footnotesize\ttfamily int check\+Comma\+At\+End (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Checks for a comma at the end of a line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if a comma is found at the end; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 259 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a68e22aa0e38c87c1d723ecb136aa9edd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a68e22aa0e38c87c1d723ecb136aa9edd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a856654e2325ad10e1561ce8b623a9df8}\label{headeMethods_8h_a856654e2325ad10e1561ce8b623a9df8}} 
+\index{headeMethods.h@{headeMethods.h}!checkCommaWord@{checkCommaWord}}
+\index{checkCommaWord@{checkCommaWord}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{checkCommaWord()}{checkCommaWord()}}
+{\footnotesize\ttfamily int check\+Comma\+Word (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Checks for a comma before a word. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if a comma is found before the word; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 241 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a856654e2325ad10e1561ce8b623a9df8_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a4209c81388b14c5650d72bc2e92a5f91}\label{headeMethods_8h_a4209c81388b14c5650d72bc2e92a5f91}} 
+\index{headeMethods.h@{headeMethods.h}!checkLastCharacter@{checkLastCharacter}}
+\index{checkLastCharacter@{checkLastCharacter}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{checkLastCharacter()}{checkLastCharacter()}}
+{\footnotesize\ttfamily int check\+Last\+Character (\begin{DoxyParamCaption}\item[{const char}]{input\mbox{[}$\,$\mbox{]},  }\item[{char}]{error\+Char }\end{DoxyParamCaption})}
+
+
+
+Function to check if the last character of a string is a specific character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The string to be checked. \\
+\hline
+{\em error\+Char} & The specific character to check for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the last character is the specified character; otherwise, 1. 
+\end{DoxyReturn}
+
+
+Definition at line 315 of file directive.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a9262b8182e78a43b156ffc09247db7fa}\label{headeMethods_8h_a9262b8182e78a43b156ffc09247db7fa}} 
+\index{headeMethods.h@{headeMethods.h}!createNode@{createNode}}
+\index{createNode@{createNode}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{createNode()}{createNode()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structNode}{Node}}$\ast$ create\+Node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Creates a new linked list node with the given data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The pattern data to be stored in the node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created node. 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file front.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a9262b8182e78a43b156ffc09247db7fa_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a9b934e4c8638e4436a0b6b440cea6fc3}\label{headeMethods_8h_a9b934e4c8638e4436a0b6b440cea6fc3}} 
+\index{headeMethods.h@{headeMethods.h}!defineFormat@{defineFormat}}
+\index{defineFormat@{defineFormat}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{defineFormat()}{defineFormat()}}
+{\footnotesize\ttfamily int define\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is a define and update the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is a define; otherwise, -\/1. 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file define.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a9b934e4c8638e4436a0b6b440cea6fc3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a9b934e4c8638e4436a0b6b440cea6fc3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_aea0cf2429f2ebfeb1545c3dda091e072}\label{headeMethods_8h_aea0cf2429f2ebfeb1545c3dda091e072}} 
+\index{headeMethods.h@{headeMethods.h}!directIndexOperand@{directIndexOperand}}
+\index{directIndexOperand@{directIndexOperand}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{directIndexOperand()}{directIndexOperand()}}
+{\footnotesize\ttfamily int direct\+Index\+Operand (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{char $\ast$}]{token,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{operand\+Count,  }\item[{int}]{i,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to process a direct index operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em token} & The token to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+{\em i} & The index of the operand. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 54 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_aea0cf2429f2ebfeb1545c3dda091e072_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_aea0cf2429f2ebfeb1545c3dda091e072_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ae5ec285c69a731057cf0c53c79537eee}\label{headeMethods_8h_ae5ec285c69a731057cf0c53c79537eee}} 
+\index{headeMethods.h@{headeMethods.h}!directiveFormat@{directiveFormat}}
+\index{directiveFormat@{directiveFormat}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{directiveFormat()}{directiveFormat()}}
+{\footnotesize\ttfamily int directive\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is a directive and return the directive type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Directive\+Type enumeration if the word is a directive; otherwise, -\/1. 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ae5ec285c69a731057cf0c53c79537eee_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ae5ec285c69a731057cf0c53c79537eee_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a24dc457e2ba621e13b53c55106e272d9}\label{headeMethods_8h_a24dc457e2ba621e13b53c55106e272d9}} 
+\index{headeMethods.h@{headeMethods.h}!directLabelOperand@{directLabelOperand}}
+\index{directLabelOperand@{directLabelOperand}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{directLabelOperand()}{directLabelOperand()}}
+{\footnotesize\ttfamily int direct\+Label\+Operand (\begin{DoxyParamCaption}\item[{char $\ast$}]{word,  }\item[{char $\ast$}]{token,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{operand\+Count,  }\item[{int}]{i,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to process a direct label operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & The word to be checked. \\
+\hline
+{\em token} & The token to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+{\em i} & The index of the operand. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 107 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{headeMethods_8h_a24dc457e2ba621e13b53c55106e272d9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a24dc457e2ba621e13b53c55106e272d9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ad92ccce9c6a0fc6284c17e0c7bc977bf}\label{headeMethods_8h_ad92ccce9c6a0fc6284c17e0c7bc977bf}} 
+\index{headeMethods.h@{headeMethods.h}!handleDataDirective@{handleDataDirective}}
+\index{handleDataDirective@{handleDataDirective}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{handleDataDirective()}{handleDataDirective()}}
+{\footnotesize\ttfamily int handle\+Data\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of the .data directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 208 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ad92ccce9c6a0fc6284c17e0c7bc977bf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ad92ccce9c6a0fc6284c17e0c7bc977bf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a15246dafea3587f742716cbed87e4d59}\label{headeMethods_8h_a15246dafea3587f742716cbed87e4d59}} 
+\index{headeMethods.h@{headeMethods.h}!handleEntryDirective@{handleEntryDirective}}
+\index{handleEntryDirective@{handleEntryDirective}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{handleEntryDirective()}{handleEntryDirective()}}
+{\footnotesize\ttfamily int handle\+Entry\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of the .entry directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a15246dafea3587f742716cbed87e4d59_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a15246dafea3587f742716cbed87e4d59_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ac2837c269e696fee0db3df8f8ab43e3d}\label{headeMethods_8h_ac2837c269e696fee0db3df8f8ab43e3d}} 
+\index{headeMethods.h@{headeMethods.h}!handleExternDirective@{handleExternDirective}}
+\index{handleExternDirective@{handleExternDirective}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{handleExternDirective()}{handleExternDirective()}}
+{\footnotesize\ttfamily int handle\+Extern\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of the .extern directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 118 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ac2837c269e696fee0db3df8f8ab43e3d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ac2837c269e696fee0db3df8f8ab43e3d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_abeb421a01dadd83e4b4a97672817c99c}\label{headeMethods_8h_abeb421a01dadd83e4b4a97672817c99c}} 
+\index{headeMethods.h@{headeMethods.h}!handleReturnValue@{handleReturnValue}}
+\index{handleReturnValue@{handleReturnValue}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{handleReturnValue()}{handleReturnValue()}}
+{\footnotesize\ttfamily int handle\+Return\+Value (\begin{DoxyParamCaption}\item[{int}]{return\+\_\+value,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to handle the return value of various processing functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em return\+\_\+value} & The return value from a processing function. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 156 of file front.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_abeb421a01dadd83e4b4a97672817c99c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_abeb421a01dadd83e4b4a97672817c99c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a7b53e8771f21707e0dbea3b2c0cfe819}\label{headeMethods_8h_a7b53e8771f21707e0dbea3b2c0cfe819}} 
+\index{headeMethods.h@{headeMethods.h}!handleStringDirective@{handleStringDirective}}
+\index{handleStringDirective@{handleStringDirective}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{handleStringDirective()}{handleStringDirective()}}
+{\footnotesize\ttfamily int handle\+String\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of the .string directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a7b53e8771f21707e0dbea3b2c0cfe819_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a7b53e8771f21707e0dbea3b2c0cfe819_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a89c67e76f0753e7b13f450f044a84e3e}\label{headeMethods_8h_a89c67e76f0753e7b13f450f044a84e3e}} 
+\index{headeMethods.h@{headeMethods.h}!immediateNumberOperand@{immediateNumberOperand}}
+\index{immediateNumberOperand@{immediateNumberOperand}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{immediateNumberOperand()}{immediateNumberOperand()}}
+{\footnotesize\ttfamily int immediate\+Number\+Operand (\begin{DoxyParamCaption}\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{operand\+Count,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Function to process an immediate number operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+{\em i} & The index of the operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{headeMethods_8h_a89c67e76f0753e7b13f450f044a84e3e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a89c67e76f0753e7b13f450f044a84e3e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a88ab37900f78f113703f240ce43e8e3c}\label{headeMethods_8h_a88ab37900f78f113703f240ce43e8e3c}} 
+\index{headeMethods.h@{headeMethods.h}!insertNode@{insertNode}}
+\index{insertNode@{insertNode}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{insertNode()}{insertNode()}}
+{\footnotesize\ttfamily void insert\+Node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Inserts a new node at the end of the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+{\em data} & The pattern data to be stored in the new node. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 85 of file front.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{headeMethods_8h_a88ab37900f78f113703f240ce43e8e3c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a88ab37900f78f113703f240ce43e8e3c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a62b9aadfd2a314a92e7b35617ad05a59}\label{headeMethods_8h_a62b9aadfd2a314a92e7b35617ad05a59}} 
+\index{headeMethods.h@{headeMethods.h}!instructionFormat@{instructionFormat}}
+\index{instructionFormat@{instructionFormat}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{instructionFormat()}{instructionFormat()}}
+{\footnotesize\ttfamily int instruction\+Format (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is an instruction and update the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The file pointer to the input assembly file. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is an instruction; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 197 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a62b9aadfd2a314a92e7b35617ad05a59_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a62b9aadfd2a314a92e7b35617ad05a59_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a1076c92ff396fe7c35841d34e32fdcbc}\label{headeMethods_8h_a1076c92ff396fe7c35841d34e32fdcbc}} 
+\index{headeMethods.h@{headeMethods.h}!isEntryLabel@{isEntryLabel}}
+\index{isEntryLabel@{isEntryLabel}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{isEntryLabel()}{isEntryLabel()}}
+{\footnotesize\ttfamily int is\+Entry\+Label (\begin{DoxyParamCaption}\item[{const char $\ast$}]{label }\end{DoxyParamCaption})}
+
+
+
+Function to check if a label is in the entry label set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & The label to be checked. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 108 of file directive.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a1076c92ff396fe7c35841d34e32fdcbc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_aae39fecfe9b53c1dc0d78bbe36f679b9}\label{headeMethods_8h_aae39fecfe9b53c1dc0d78bbe36f679b9}} 
+\index{headeMethods.h@{headeMethods.h}!isError@{isError}}
+\index{isError@{isError}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{isError()}{isError()}}
+{\footnotesize\ttfamily void is\+Error (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{const char $\ast$}]{error\+Message,  }\item[{const char $\ast$}]{filename,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to check if a word is an error and update the pattern structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em error\+Message} & The error message to be associated with the pattern. \\
+\hline
+{\em filename} & The name of the file being processed. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 191 of file front.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{headeMethods_8h_aae39fecfe9b53c1dc0d78bbe36f679b9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_aae39fecfe9b53c1dc0d78bbe36f679b9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a529fe24170a61c22c810022e539206c3}\label{headeMethods_8h_a529fe24170a61c22c810022e539206c3}} 
+\index{headeMethods.h@{headeMethods.h}!isNumeric@{isNumeric}}
+\index{isNumeric@{isNumeric}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{isNumeric()}{isNumeric()}}
+{\footnotesize\ttfamily int is\+Numeric (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Function to check if a string is numeric. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The word to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is numeric; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 48 of file define.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a529fe24170a61c22c810022e539206c3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_aa0b3977cf0af0a66723704d8ca22fa37}\label{headeMethods_8h_aa0b3977cf0af0a66723704d8ca22fa37}} 
+\index{headeMethods.h@{headeMethods.h}!isValidConstantName@{isValidConstantName}}
+\index{isValidConstantName@{isValidConstantName}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{isValidConstantName()}{isValidConstantName()}}
+{\footnotesize\ttfamily int is\+Valid\+Constant\+Name (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Function to check if a string is a valid constant name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The word to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is a valid constant name; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file define.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_aa0b3977cf0af0a66723704d8ca22fa37_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ab54926c39817863421a74e1ada92e412}\label{headeMethods_8h_ab54926c39817863421a74e1ada92e412}} 
+\index{headeMethods.h@{headeMethods.h}!isValidLabel@{isValidLabel}}
+\index{isValidLabel@{isValidLabel}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{isValidLabel()}{isValidLabel()}}
+{\footnotesize\ttfamily int is\+Valid\+Label (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{need\+Colon,  }\item[{int}]{symbol }\end{DoxyParamCaption})}
+
+
+
+Function to check if a label is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The label to be checked. \\
+\hline
+{\em data} & Pointer to the data structure where the label is stored if valid. \\
+\hline
+{\em need\+Colon} & Flag indicating whether the label requires a colon at the end. \\
+\hline
+{\em symbol} & Flag indicating whether the label is a symbol. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the label is valid; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file directive.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ab54926c39817863421a74e1ada92e412_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a2bc68f82a4715dc30ae2c450eeb1e629}\label{headeMethods_8h_a2bc68f82a4715dc30ae2c450eeb1e629}} 
+\index{headeMethods.h@{headeMethods.h}!processAssemblyText@{processAssemblyText}}
+\index{processAssemblyText@{processAssemblyText}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processAssemblyText()}{processAssemblyText()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structNode}{Node}}$\ast$ process\+Assembly\+Text (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Processes an entire file of assembly language text and builds a linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file to be processed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the head of the linked list. 
+\end{DoxyReturn}
+
+
+Definition at line 120 of file front.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a2bc68f82a4715dc30ae2c450eeb1e629_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a2bc68f82a4715dc30ae2c450eeb1e629_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ad64629aa668f0f6ed15bafc208c1d4ea}\label{headeMethods_8h_ad64629aa668f0f6ed15bafc208c1d4ea}} 
+\index{headeMethods.h@{headeMethods.h}!processDefine@{processDefine}}
+\index{processDefine@{processDefine}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processDefine()}{processDefine()}}
+{\footnotesize\ttfamily int process\+Define (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to process the .define directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 166 of file front.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ad64629aa668f0f6ed15bafc208c1d4ea_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ad64629aa668f0f6ed15bafc208c1d4ea_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a0440372907b5c2e53ad21de725ffafec}\label{headeMethods_8h_a0440372907b5c2e53ad21de725ffafec}} 
+\index{headeMethods.h@{headeMethods.h}!processDirective@{processDirective}}
+\index{processDirective@{processDirective}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processDirective()}{processDirective()}}
+{\footnotesize\ttfamily int process\+Directive (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{lineB,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to process a generic directive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em lineB} & The line being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 173 of file front.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a0440372907b5c2e53ad21de725ffafec_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a0440372907b5c2e53ad21de725ffafec_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a6c9769c574f45aa0d47468334c624e7c}\label{headeMethods_8h_a6c9769c574f45aa0d47468334c624e7c}} 
+\index{headeMethods.h@{headeMethods.h}!processInstruction@{processInstruction}}
+\index{processInstruction@{processInstruction}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processInstruction()}{processInstruction()}}
+{\footnotesize\ttfamily int process\+Instruction (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to process a generic instruction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 184 of file front.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a6c9769c574f45aa0d47468334c624e7c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a6c9769c574f45aa0d47468334c624e7c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ac26aaf7e0131a5ccdb4c14ae928aa87d}\label{headeMethods_8h_ac26aaf7e0131a5ccdb4c14ae928aa87d}} 
+\index{headeMethods.h@{headeMethods.h}!processLine@{processLine}}
+\index{processLine@{processLine}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processLine()}{processLine()}}
+{\footnotesize\ttfamily void process\+Line (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 99 of file front.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ac26aaf7e0131a5ccdb4c14ae928aa87d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ac26aaf7e0131a5ccdb4c14ae928aa87d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a4ca2c34a863fc17db10031bfe5ccf0b0}\label{headeMethods_8h_a4ca2c34a863fc17db10031bfe5ccf0b0}} 
+\index{headeMethods.h@{headeMethods.h}!processNoOperands@{processNoOperands}}
+\index{processNoOperands@{processNoOperands}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processNoOperands()}{processNoOperands()}}
+{\footnotesize\ttfamily int process\+No\+Operands (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions without operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 191 of file instrucstion.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a4ca2c34a863fc17db10031bfe5ccf0b0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a8b315535f4cc7908415c17737bf7c64a}\label{headeMethods_8h_a8b315535f4cc7908415c17737bf7c64a}} 
+\index{headeMethods.h@{headeMethods.h}!processNumericArguments@{processNumericArguments}}
+\index{processNumericArguments@{processNumericArguments}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processNumericArguments()}{processNumericArguments()}}
+{\footnotesize\ttfamily int process\+Numeric\+Arguments (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{char $\ast$}]{input,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Definition at line 277 of file directive.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a8b315535f4cc7908415c17737bf7c64a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a8b315535f4cc7908415c17737bf7c64a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ab3b600e768927750f73f08907f410181}\label{headeMethods_8h_ab3b600e768927750f73f08907f410181}} 
+\index{headeMethods.h@{headeMethods.h}!processOneOperand@{processOneOperand}}
+\index{processOneOperand@{processOneOperand}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processOneOperand()}{processOneOperand()}}
+{\footnotesize\ttfamily int process\+One\+Operand (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions with one operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 182 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ab3b600e768927750f73f08907f410181_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ab3b600e768927750f73f08907f410181_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_aa5aebcb22236185a42e088063d0030e7}\label{headeMethods_8h_aa5aebcb22236185a42e088063d0030e7}} 
+\index{headeMethods.h@{headeMethods.h}!processOperands@{processOperands}}
+\index{processOperands@{processOperands}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processOperands()}{processOperands()}}
+{\footnotesize\ttfamily int process\+Operands (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head,  }\item[{int}]{operand\+Count }\end{DoxyParamCaption})}
+
+
+
+Handles processing of operands for instructions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The file pointer to the input assembly file. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if operand processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 123 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_aa5aebcb22236185a42e088063d0030e7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_aa5aebcb22236185a42e088063d0030e7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a3a9b245c491e5d371d975156a60f32e6}\label{headeMethods_8h_a3a9b245c491e5d371d975156a60f32e6}} 
+\index{headeMethods.h@{headeMethods.h}!processTwoOperands@{processTwoOperands}}
+\index{processTwoOperands@{processTwoOperands}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{processTwoOperands()}{processTwoOperands()}}
+{\footnotesize\ttfamily int process\+Two\+Operands (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Handles processing of instructions with two operands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if processing is successful; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 173 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a3a9b245c491e5d371d975156a60f32e6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a3a9b245c491e5d371d975156a60f32e6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_ac000c3b3bdf79ee6e35e28d96a84a8d1}\label{headeMethods_8h_ac000c3b3bdf79ee6e35e28d96a84a8d1}} 
+\index{headeMethods.h@{headeMethods.h}!registerOperand@{registerOperand}}
+\index{registerOperand@{registerOperand}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{registerOperand()}{registerOperand()}}
+{\footnotesize\ttfamily int register\+Operand (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file,  }\item[{char $\ast$}]{word,  }\item[{char $\ast$}]{token,  }\item[{struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$}]{data,  }\item[{int}]{operand\+Count,  }\item[{int}]{i,  }\item[{struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to process a register operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Pointer to the file being processed. \\
+\hline
+{\em word} & The word to be checked. \\
+\hline
+{\em token} & The token to be checked. \\
+\hline
+{\em data} & A pointer to the pattern data structure to be updated. \\
+\hline
+{\em operand\+Count} & The expected count of operands. \\
+\hline
+{\em i} & The index of the operand. \\
+\hline
+{\em head} & A pointer to the head of the linked list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the word is a valid register operand; otherwise, 0. 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file instrucstion.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ac000c3b3bdf79ee6e35e28d96a84a8d1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_ac000c3b3bdf79ee6e35e28d96a84a8d1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{headeMethods_8h_a59d683d34a59781f51a6f9eb02112caa}\label{headeMethods_8h_a59d683d34a59781f51a6f9eb02112caa}} 
+\index{headeMethods.h@{headeMethods.h}!spareSpace@{spareSpace}}
+\index{spareSpace@{spareSpace}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{spareSpace()}{spareSpace()}}
+{\footnotesize\ttfamily void spare\+Space (\begin{DoxyParamCaption}\item[{char $\ast$}]{token }\end{DoxyParamCaption})}
+
+
+
+Function to check if a label is in the external label set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & The label to be checked. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 173 of file directive.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{headeMethods_8h_a59d683d34a59781f51a6f9eb02112caa_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{headeMethods_8h_a4bd6d4d04b1126eefee5484b1521c6f9}\label{headeMethods_8h_a4bd6d4d04b1126eefee5484b1521c6f9}} 
+\index{headeMethods.h@{headeMethods.h}!false@{false}}
+\index{false@{false}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{false}{false}}
+{\footnotesize\ttfamily const int false\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 43 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a3c4d69d58e5f21876f589033c2f2b8a0}\label{headeMethods_8h_a3c4d69d58e5f21876f589033c2f2b8a0}} 
+\index{headeMethods.h@{headeMethods.h}!instructionMappings@{instructionMappings}}
+\index{instructionMappings@{instructionMappings}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{instructionMappings}{instructionMappings}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structInstructionMapping}{Instruction\+Mapping}} instruction\+Mappings\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 44 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a44bf2f6ee91a35522c07c779325d3ef0}\label{headeMethods_8h_a44bf2f6ee91a35522c07c779325d3ef0}} 
+\index{headeMethods.h@{headeMethods.h}!lineNumber@{lineNumber}}
+\index{lineNumber@{lineNumber}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{lineNumber}{lineNumber}}
+{\footnotesize\ttfamily int line\+Number\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 40 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a5ab8d71be5fa7d6cc6c7d7f498a814c6}\label{headeMethods_8h_a5ab8d71be5fa7d6cc6c7d7f498a814c6}} 
+\index{headeMethods.h@{headeMethods.h}!num\_of\_constants@{num\_of\_constants}}
+\index{num\_of\_constants@{num\_of\_constants}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_constants}{num\_of\_constants}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+constants\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 39 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a085b57d9ed0b3d5392eb3dcffe1b2301}\label{headeMethods_8h_a085b57d9ed0b3d5392eb3dcffe1b2301}} 
+\index{headeMethods.h@{headeMethods.h}!num\_of\_entries@{num\_of\_entries}}
+\index{num\_of\_entries@{num\_of\_entries}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_entries}{num\_of\_entries}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+entries\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 37 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_aef398d61da8585441be8052f91c005d9}\label{headeMethods_8h_aef398d61da8585441be8052f91c005d9}} 
+\index{headeMethods.h@{headeMethods.h}!num\_of\_externals@{num\_of\_externals}}
+\index{num\_of\_externals@{num\_of\_externals}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_externals}{num\_of\_externals}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+externals\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 38 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a4d446a347bb50b9a831c9d6f355373e9}\label{headeMethods_8h_a4d446a347bb50b9a831c9d6f355373e9}} 
+\index{headeMethods.h@{headeMethods.h}!num\_of\_patterns@{num\_of\_patterns}}
+\index{num\_of\_patterns@{num\_of\_patterns}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_patterns}{num\_of\_patterns}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+patterns\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 36 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a46fc27e049a0166b0d291695ee10e462}\label{headeMethods_8h_a46fc27e049a0166b0d291695ee10e462}} 
+\index{headeMethods.h@{headeMethods.h}!registerMappings@{registerMappings}}
+\index{registerMappings@{registerMappings}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{registerMappings}{registerMappings}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structRegisterMapping}{Register\+Mapping}} register\+Mappings\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 44 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_a3ad98e54fafae1497bd42b491d9742cc}\label{headeMethods_8h_a3ad98e54fafae1497bd42b491d9742cc}} 
+\index{headeMethods.h@{headeMethods.h}!true@{true}}
+\index{true@{true}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{true}{true}}
+{\footnotesize\ttfamily const int true\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 42 of file front.\+c.
+
+\mbox{\Hypertarget{headeMethods_8h_aca066bc9dac122bcb62dc91898b5f1f9}\label{headeMethods_8h_aca066bc9dac122bcb62dc91898b5f1f9}} 
+\index{headeMethods.h@{headeMethods.h}!true\_inValid@{true\_inValid}}
+\index{true\_inValid@{true\_inValid}!headeMethods.h@{headeMethods.h}}
+\doxysubsubsection{\texorpdfstring{true\_inValid}{true\_inValid}}
+{\footnotesize\ttfamily const int true\+\_\+in\+Valid\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 44 of file front.\+c.
+

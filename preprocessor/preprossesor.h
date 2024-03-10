@@ -14,7 +14,6 @@
 #define EXT_AFTER ".am"
 
 
-
 /**
  * @brief struct for macro, contains the name of the macro, the value of the macro and the number of lines in the macro
  * 
@@ -27,11 +26,8 @@ struct macro {
 typedef struct macro * Macro ;
 
 
-/**
- * @brief trie for the macros
- * 
- */
-Trie macro_trie;
+
+
 
 /**
  * @brief this function determaine which line is it, if it is a macro, a macro definition, a macro end or a normal line

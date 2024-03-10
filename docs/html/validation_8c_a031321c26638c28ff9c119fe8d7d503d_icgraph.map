@@ -1,0 +1,9 @@
+<map id="allocate_memory_for_data" name="allocate_memory_for_data">
+<area shape="rect" id="node1" title="Allocate memory for data." alt="" coords="647,31,844,57"/>
+<area shape="rect" id="node2" href="$bilder_8c.html#a7d3f2dabed665b6991d348cd9b9eecdd" title="This function is used to handle the case of data definition. it will insert the data to the data tabl..." alt="" coords="516,5,595,32"/>
+<area shape="rect" id="node7" href="$bilder_8c.html#adc7c1d36ef80f1bec801aa44aae83ec3" title="This function is used to handle the case of string definition. it will insert the data to the data ta..." alt="" coords="512,56,599,83"/>
+<area shape="rect" id="node3" href="$bilder_8c.html#ac249210a8dde740ac716b4664a6dca0c" title="This function is used to handle the case of directive. it will call the right function to handle the ..." alt="" coords="385,31,464,57"/>
+<area shape="rect" id="node4" href="$rounds_8c.html#a8d1601cdfa9ee1868a99f9f4cbc92cdb" title="The first round of the assembler. In this round we will go through the linked list and handle the lab..." alt="" coords="247,31,337,57"/>
+<area shape="rect" id="node5" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,31,199,57"/>
+<area shape="rect" id="node6" href="$assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,31,60,57"/>
+</map>

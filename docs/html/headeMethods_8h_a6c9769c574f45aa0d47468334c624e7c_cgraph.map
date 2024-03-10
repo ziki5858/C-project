@@ -1,0 +1,18 @@
+<map id="processInstruction" name="processInstruction">
+<area shape="rect" id="node1" title="Function to process a generic instruction." alt="" coords="5,56,147,83"/>
+<area shape="rect" id="node2" href="$front_8c.html#abeb421a01dadd83e4b4a97672817c99c" title="Function to handle the return value of various processing functions." alt="" coords="587,5,732,32"/>
+<area shape="rect" id="node5" href="$headeMethods_8h.html#a62b9aadfd2a314a92e7b35617ad05a59" title="Function to check if a word is an instruction and update the pattern structure." alt="" coords="195,107,332,133"/>
+<area shape="rect" id="node3" href="$front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="1176,56,1269,83"/>
+<area shape="rect" id="node4" href="$front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="1317,56,1415,83"/>
+<area shape="rect" id="node6" href="$front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="1046,107,1110,133"/>
+<area shape="rect" id="node7" href="$instrucstion_8c.html#a4ca2c34a863fc17db10031bfe5ccf0b0" title="Handles processing of instructions without operands." alt="" coords="383,107,535,133"/>
+<area shape="rect" id="node8" href="$instrucstion_8c.html#ab3b600e768927750f73f08907f410181" title="Handles processing of instructions with one operand." alt="" coords="383,157,536,184"/>
+<area shape="rect" id="node16" href="$instrucstion_8c.html#a3a9b245c491e5d371d975156a60f32e6" title="Handles processing of instructions with two operands." alt="" coords="380,208,539,235"/>
+<area shape="rect" id="node9" href="$instrucstion_8c.html#aa5aebcb22236185a42e088063d0030e7" title="Handles processing of operands for instructions." alt="" coords="592,208,727,235"/>
+<area shape="rect" id="node10" href="$instrucstion_8c.html#aea0cf2429f2ebfeb1545c3dda091e072" title="Function to process a direct index operand." alt="" coords="805,208,955,235"/>
+<area shape="rect" id="node12" href="$instrucstion_8c.html#a24dc457e2ba621e13b53c55106e272d9" title="Function to process a direct label operand." alt="" coords="805,259,955,285"/>
+<area shape="rect" id="node13" href="$instrucstion_8c.html#a89c67e76f0753e7b13f450f044a84e3e" title="Function to process an immediate number operand." alt="" coords="780,309,980,336"/>
+<area shape="rect" id="node15" href="$instrucstion_8c.html#ac000c3b3bdf79ee6e35e28d96a84a8d1" title="Function to process a register operand." alt="" coords="817,157,943,184"/>
+<area shape="rect" id="node11" href="$directive_8c.html#ab54926c39817863421a74e1ada92e412" title="Function to check if a label is valid." alt="" coords="1028,233,1128,260"/>
+<area shape="rect" id="node14" href="$define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a string is numeric." alt="" coords="1034,309,1122,336"/>
+</map>

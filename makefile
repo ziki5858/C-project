@@ -2,12 +2,12 @@ CFLAGS = -Wall -ansi -pedantic -fsanitize=address -g
 assembler:  rounds.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o
 	gcc ${CFLAGS}  rounds.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o -o assembler
 
-rounds.o: ./assemblerRounds/rounds.c
+rounds.o: ./assemblerRounds/rounds.c ./assemblerRounds/headers/rounds.h
 	gcc -c ${CFLAGS} ./assemblerRounds/rounds.c -o rounds.o
 
 
 
-back.o: ./back/back.c
+back.o: ./back/back.c ./back/back.h
 	gcc -c ${CFLAGS} ./back/back.c -o back.o
 
 assembler.o: assembler.c	
@@ -34,16 +34,16 @@ define.o: ./front/define.c
 preprossesor.o: ./preprocessor/preprossesor.c ./preprocessor/preprossesor.h
 	gcc -c ${CFLAGS}  ./preprocessor/preprossesor.c -o preprossesor.o
 
-structs_func.o: ./assemblerRounds/structs_func.c ./assemblerRounds/structs_func.h
+structs_func.o: ./assemblerRounds/structs_func.c ./assemblerRounds/headers/structs_func.h
 	gcc -c ${CFLAGS} ./assemblerRounds/structs_func.c -o structs_func.o
 
-encoder.o: ./assemblerRounds/encoder.c ./assemblerRounds/encoder.h
+encoder.o: ./assemblerRounds/encoder.c ./assemblerRounds/headers/encoder.h
 	gcc -c ${CFLAGS} ./assemblerRounds/encoder.c -o encoder.o
 
-validation.o: ./assemblerRounds/validation.c ./assemblerRounds/validation.h
+validation.o: ./assemblerRounds/validation.c ./assemblerRounds/headers/validation.h
 	gcc -c ${CFLAGS} ./assemblerRounds/validation.c -o validation.o
 	
-bilder.o: ./assemblerRounds/bilder.c ./assemblerRounds/bilder.h
+bilder.o: ./assemblerRounds/bilder.c ./assemblerRounds/headers/bilder.h
 	gcc -c ${CFLAGS} ./assemblerRounds/bilder.c -o bilder.o
 
 clean:

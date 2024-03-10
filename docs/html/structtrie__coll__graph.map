@@ -1,0 +1,4 @@
+<map id="trie" name="trie">
+<area shape="rect" id="node1" title="This struct is used to represent a trie root." alt="" coords="73,145,117,223"/>
+<area shape="rect" id="node2" href="$structtrie__node.html" title="This struct is used to represent a trie node. each node has a pointer to the end of the string,..." alt="" coords="5,5,184,83"/>
+</map>

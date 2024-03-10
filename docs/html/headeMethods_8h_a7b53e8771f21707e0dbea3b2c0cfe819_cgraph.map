@@ -1,0 +1,7 @@
+<map id="handleStringDirective" name="handleStringDirective">
+<area shape="rect" id="node1" title="Handles processing of the .string directive." alt="" coords="5,31,168,57"/>
+<area shape="rect" id="node2" href="$front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="233,5,297,32"/>
+<area shape="rect" id="node5" href="$directive_8c.html#a59d683d34a59781f51a6f9eb02112caa" title="Function to check if a label is in the external label set." alt="" coords="216,56,313,83"/>
+<area shape="rect" id="node3" href="$front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="361,5,455,32"/>
+<area shape="rect" id="node4" href="$front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="503,5,600,32"/>
+</map>

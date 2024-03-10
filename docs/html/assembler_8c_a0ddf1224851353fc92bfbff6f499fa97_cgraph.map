@@ -1,0 +1,52 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,1191,60,1217"/>
+<area shape="rect" id="node2" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,1191,199,1217"/>
+<area shape="rect" id="node3" href="$rounds_8c.html#a8d1601cdfa9ee1868a99f9f4cbc92cdb" title="The first round of the assembler. In this round we will go through the linked list and handle the lab..." alt="" coords="283,423,373,449"/>
+<area shape="rect" id="node26" href="$memory_8c.html#a0ddeb2fa152d9ec1f4dd667164e0c70b" title="This function used to free all the memory that was allocated during the initialization of the memory." alt="" coords="273,1165,383,1192"/>
+<area shape="rect" id="node31" href="$preprossesor_8c.html#a4937d5ec7c48d80fdb9cb24d94d68251" title="this function is the main function of the preprossesor, it opens the file, reads it line by line and ..." alt="" coords="281,933,375,960"/>
+<area shape="rect" id="node36" href="$front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,1216,409,1243"/>
+<area shape="rect" id="node38" href="$rounds_8c.html#a7a109141fdd10aee3c3680446563f562" title="The second round of the assembler. now we have all the symbols and we can encode the instructions of ..." alt="" coords="697,807,803,833"/>
+<area shape="rect" id="node44" href="$back_8c.html#a417c3b4ae314867406570da60708a861" title="convert the code and data tables to binary table" alt="" coords="267,1267,389,1293"/>
+<area shape="rect" id="node45" href="$back_8c.html#a664d99b499a91963f62d78b3790dfa9c" title="This function writes the binary table to the output files." alt="" coords="293,1343,363,1369"/>
+<area shape="rect" id="node49" href="$back_8c.html#ace734796f82e0ce85c6eebc0e4ed817b" title="This function translates the binary table to encrypted words." alt="" coords="285,1444,371,1471"/>
+<area shape="rect" id="node4" href="$validation_8c.html#af601ad44b118e968f1df222244c0334d" title="Add IC to symbol table, used for the second round." alt="" coords="457,5,639,32"/>
+<area shape="rect" id="node5" href="$bilder_8c.html#af63faf595418d3c43329adee44aa3516" title="This function is used to handle the case of define." alt="" coords="517,56,579,83"/>
+<area shape="rect" id="node9" href="$bilder_8c.html#ac249210a8dde740ac716b4664a6dca0c" title="This function is used to handle the case of directive. it will call the right function to handle the ..." alt="" coords="509,208,587,235"/>
+<area shape="rect" id="node16" href="$validation_8c.html#a0a6f56756207b9c16d20736098c57b1f" title="Handle lable error by printing an error message based on the error." alt="" coords="477,659,619,685"/>
+<area shape="rect" id="node18" href="$bilder_8c.html#aaa835797e1904edef894e1e73b903918" title="This function is used to handle the case of instruction. it will insert the instruction to the code t..." alt="" coords="705,423,795,449"/>
+<area shape="rect" id="node25" href="$trie_8c.html#abd84b75a7f69607cadfdec5ccd2e9686" title="This function is used to create a new trie." alt="" coords="526,807,570,833"/>
+<area shape="rect" id="node6" href="$structs__func_8c.html#aa036fc362052cd9b0c1fa9e7d8bc6612" title="Create a constant object." alt="" coords="687,56,813,83"/>
+<area shape="rect" id="node7" href="$structs_8h.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="898,81,1023,108"/>
+<area shape="rect" id="node8" href="$trie_8c.html#a30321ace47f8c6fd4a373a31faade78d" title="This function is used to find a string in the trie." alt="" coords="1119,233,1222,260"/>
+<area shape="rect" id="node10" href="$bilder_8c.html#a7d3f2dabed665b6991d348cd9b9eecdd" title="This function is used to handle the case of data definition. it will insert the data to the data tabl..." alt="" coords="711,208,789,235"/>
+<area shape="rect" id="node13" href="$bilder_8c.html#a659ba63d2ee204703597eb6cc0e06a21" title="This function is used to handle the case of entry definition. it will insert the entry to the entry t..." alt="" coords="708,107,792,133"/>
+<area shape="rect" id="node14" href="$bilder_8c.html#ac120f9f7295bddb3c11e7580f0ff4062" title="This function is used to handle the case of extern definition. it will insert the extern to the exter..." alt="" coords="704,157,796,184"/>
+<area shape="rect" id="node15" href="$bilder_8c.html#adc7c1d36ef80f1bec801aa44aae83ec3" title="This function is used to handle the case of string definition. it will insert the data to the data ta..." alt="" coords="707,259,793,285"/>
+<area shape="rect" id="node11" href="$validation_8c.html#aac54d5c00f1ea10a95bb05541d4b22c9" title="Handle lable define by adding the lable to the symbol table." alt="" coords="885,233,1037,260"/>
+<area shape="rect" id="node12" href="$validation_8c.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="1108,484,1233,511"/>
+<area shape="rect" id="node17" href="$validation_8c.html#ab6ccd1d8e71ba1c07c97246fcf7168de" title="Check if the word is a saved word." alt="" coords="691,857,809,884"/>
+<area shape="rect" id="node19" href="$validation_8c.html#a3e3cebcf58082af1066e47d05a822c18" title="Allocate memory for instructions in the pattern struct, according to the number of operands and the t..." alt="" coords="880,285,1041,326"/>
+<area shape="rect" id="node20" href="$validation_8c.html#ae2257b5716f42bf8265ab55d8f74b9c9" title="Check validation of operands number." alt="" coords="885,350,1037,391"/>
+<area shape="rect" id="node21" href="$validation_8c.html#ac8fb5cb950ac90d557b5f046005688da" title="Check validation of operands type." alt="" coords="885,415,1037,457"/>
+<area shape="rect" id="node22" href="$encoder_8c.html#a329e12ab97669c9a40afdc3f39a2625e" title="Encoded instruction based on the pattern of the instruction and the operands." alt="" coords="884,481,1037,508"/>
+<area shape="rect" id="node23" href="$bilder_8c.html#acad5e22d5cb7ccbda6c217bd63100717" title="This function is used to handle the case of source operand. it will encode the source operand,..." alt="" coords="898,532,1023,559"/>
+<area shape="rect" id="node24" href="$bilder_8c.html#a00848de3dfe3318931fb763fdec2869f" title="This function is used to handle the case of target operand. it will encode the target operand,..." alt="" coords="900,583,1021,609"/>
+<area shape="rect" id="node27" href="$memory_8c.html#aa81fcdd2e229893abbbd6454df50190a" title="This function used to free all the memory that was allocated during the initialization of the linked ..." alt="" coords="476,1076,620,1103"/>
+<area shape="rect" id="node28" href="$memory_8c.html#a4820e0bd808b42ba90570175d7c1eb72" title="This function used to free all the memory that was allocated during the initialization of the other t..." alt="" coords="480,1127,616,1153"/>
+<area shape="rect" id="node29" href="$memory_8c.html#abfc3f3790f9d96cd26d82e8a930a067f" title="This function used to free all the memory that was allocated during the initialization of the code an..." alt="" coords="478,1177,618,1204"/>
+<area shape="rect" id="node30" href="$memory_8c.html#a28307c17d327be8b540de41a204721b8" title="This function used to free all the memory that was allocated during the initialization of the tries." alt="" coords="506,1228,590,1255"/>
+<area shape="rect" id="node32" href="$preprossesor_8c.html#a66f0b8ca942d36a86be6246243deae92" title="this function creats a macro" alt="" coords="497,857,599,884"/>
+<area shape="rect" id="node33" href="$preprossesor_8c.html#adfa102d48e712a2ac687a30d81c5eb24" title="this function determaine which line is it, if it is a macro, a macro definition, a macro end or a nor..." alt="" coords="461,1010,635,1051"/>
+<area shape="rect" id="node34" href="$preprossesor_8c.html#a0eaae1973b0f0567da2f037ef054c143" title="this function searchs for a macro in the trie" alt="" coords="693,1017,807,1044"/>
+<area shape="rect" id="node35" href="$preprossesor_8c.html#a176d295d987ebe0f9330c5833d3461eb" title="this function inserts a line to a macro" alt="" coords="469,908,627,935"/>
+<area shape="rect" id="node37" href="$front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="499,1279,597,1305"/>
+<area shape="rect" id="node39" href="$validation_8c.html#a81dd6d7982066025d98239c80e621953" title="check if the index of the direct operand is out of bounds" alt="" coords="887,735,1034,761"/>
+<area shape="rect" id="node40" href="$encoder_8c.html#a423ad3b2b7cc5f6f9394d47c25e930e2" title="encode the direct operand, by converting the value to binary and adding the ARE flag" alt="" coords="900,836,1021,863"/>
+<area shape="rect" id="node41" href="$structs__func_8c.html#aaaddbedc1be4fdaad140b9b6a5e86f44" title="Insert address to external." alt="" coords="861,887,1060,913"/>
+<area shape="rect" id="node42" href="$validation_8c.html#aa5b335f86f0ea18708e249a1c6c629a8" title="check if there is a direct operand in the instruction." alt="" coords="901,937,1020,964"/>
+<area shape="rect" id="node43" href="$validation_8c.html#afd091464e6fb7f02e28f443b21779ea9" title="check if all the entries are defined" alt="" coords="897,785,1024,812"/>
+<area shape="rect" id="node46" href="$back_8c.html#a8c806f313fa1e6af3d0f2bcd52891db8" title="This function writes the ent file. prints the symbols of the entries and their addresses." alt="" coords="507,1380,589,1407"/>
+<area shape="rect" id="node47" href="$back_8c.html#a6dac0bae6b82ca334bf6a80ae5be375f" title="This function writes the ext file. prints the symbols of the externals and their addresses." alt="" coords="507,1431,589,1457"/>
+<area shape="rect" id="node48" href="$back_8c.html#af1240a563339eb4cf1e7c141adbabb7b" title="This function writes the obj file." alt="" coords="507,1329,589,1356"/>
+<area shape="rect" id="node50" href="$back_8c.html#ab16ee0504c0012a7fde87e66aa82afcb" title="This function converts a binary word to encrypted word." alt="" coords="513,1481,583,1508"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="destroy_trie" name="destroy_trie">
+<area shape="rect" id="node1" title="This function is used to destroy the trie." alt="" coords="537,5,637,32"/>
+<area shape="rect" id="node2" href="$memory_8c.html#a28307c17d327be8b540de41a204721b8" title="This function used to free all the memory that was allocated during the initialization of the tries." alt="" coords="405,5,489,32"/>
+<area shape="rect" id="node3" href="$memory_8c.html#a0ddeb2fa152d9ec1f4dd667164e0c70b" title="This function used to free all the memory that was allocated during the initialization of the memory." alt="" coords="247,5,357,32"/>
+<area shape="rect" id="node4" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
+<area shape="rect" id="node5" href="$assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
+</map>

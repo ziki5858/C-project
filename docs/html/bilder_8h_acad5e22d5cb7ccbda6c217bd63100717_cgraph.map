@@ -1,0 +1,17 @@
+<map id="source_operand" name="source_operand">
+<area shape="rect" id="node1" title="This function is used to handle the case of source operand. it will encode the source operand,..." alt="" coords="5,90,131,117"/>
+<area shape="rect" id="node2" href="$bilder_8c.html#a0701b2bfd632168cf4ef1bc89920529f" title="This function is used to handle the case of direct operand. it will encode the direct operand,..." alt="" coords="215,14,273,41"/>
+<area shape="rect" id="node5" href="$bilder_8c.html#a02bdaced5ed29b8a4f4b0ede5c566d0b" title="This function is used to handle the case of direct index operand. it will encode the direct index ope..." alt="" coords="193,65,295,92"/>
+<area shape="rect" id="node12" href="$bilder_8c.html#aa9d0dd78e4decc1d601c819ec688c7b6" title="This function is used to handle the case of immediate operand. it will encode the immediate operand,..." alt="" coords="197,116,291,142"/>
+<area shape="rect" id="node13" href="$bilder_8c.html#afb83b0aab81aa2646c1a1e8ab2b4838a" title="This function is used to handle the case of register. it will encode the register,..." alt="" coords="179,192,309,218"/>
+<area shape="rect" id="node3" href="$encoder_8c.html#a9d6485eee7bd29a18a5cd2d0f854ba48" title="Encoded data." alt="" coords="405,14,518,41"/>
+<area shape="rect" id="node4" href="$encoder_8c.html#a0be324d0748f78ad58808205ec37bbf3" title="Convert number to binary string." alt="" coords="835,14,950,41"/>
+<area shape="rect" id="node6" href="$encoder_8c.html#ab5d697d299b25fafae120ba695e8e426" title="Encoded immidiate number." alt="" coords="357,65,565,92"/>
+<area shape="rect" id="node8" href="$validation_8c.html#a39e018e9177c69e7051ba8b1a7e7cd2d" title="Extract immidiate number from the instruction." alt="" coords="362,116,561,142"/>
+<area shape="rect" id="node7" href="$structs_8h.html#a9bc7ac767565a8034a20624470307b11" title="Print error message." alt="" coords="613,65,765,92"/>
+<area shape="rect" id="node9" href="$trie_8c.html#a30321ace47f8c6fd4a373a31faade78d" title="This function is used to find a string in the trie." alt="" coords="638,166,741,193"/>
+<area shape="rect" id="node11" href="$validation_8c.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="627,116,752,142"/>
+<area shape="rect" id="node10" href="$trie_8c.html#a201440dcabea53e0531915199bf953f0" title="This function is used to check if the string is exist in the sub trie." alt="" coords="813,166,972,193"/>
+<area shape="rect" id="node14" href="$encoder_8c.html#abfa816799aeeddcc30361dca6776b2b0" title="Encoded registers." alt="" coords="391,205,532,232"/>
+<area shape="rect" id="node15" href="$encoder_8c.html#aef0173c0f117f19b3395e740e283cb99" title="Encoded register." alt="" coords="622,217,757,244"/>
+</map>

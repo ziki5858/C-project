@@ -1,0 +1,6 @@
+<map id="extract_immidiate_number" name="extract_immidiate_number">
+<area shape="rect" id="node1" title="Extract immidiate number from the instruction." alt="" coords="5,31,204,57"/>
+<area shape="rect" id="node2" href="$trie_8c.html#a30321ace47f8c6fd4a373a31faade78d" title="This function is used to find a string in the trie." alt="" coords="263,5,366,32"/>
+<area shape="rect" id="node4" href="$validation_8c.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="252,56,377,83"/>
+<area shape="rect" id="node3" href="$trie_8c.html#a201440dcabea53e0531915199bf953f0" title="This function is used to check if the string is exist in the sub trie." alt="" coords="425,5,584,32"/>
+</map>

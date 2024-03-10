@@ -1,0 +1,270 @@
+\hypertarget{preprossesor_8c}{}\doxysection{preprocessor/preprossesor.c File Reference}
+\label{preprossesor_8c}\index{preprocessor/preprossesor.c@{preprocessor/preprossesor.c}}
+
+
+this program is a preprossesor for the assembler. it gets a file with a macro definition and a file with a macro call, and it will replace the macro call with the macro definition. the program will create a new file with the replaced macro call.  
+
+
+{\ttfamily \#include \char`\"{}preprossesor.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for preprossesor.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{preprossesor_8c_a5ac83e95f1c61d8687bdf1d0c0c8ba09}{is\+\_\+line\+\_\+too\+\_\+long}} (char $\ast$line)
+\begin{DoxyCompactList}\small\item\em check if the line length is bigger than the max length \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{preprossesor_8c_adfa102d48e712a2ac687a30d81c5eb24}{determaine\+\_\+which\+\_\+line\+\_\+is\+\_\+it}} (char $\ast$line)
+\begin{DoxyCompactList}\small\item\em this function determaine which line is it, if it is a macro, a macro definition, a macro end or a normal line \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}} \mbox{\hyperlink{preprossesor_8c_a66f0b8ca942d36a86be6246243deae92}{creat\+\_\+macro}} (char $\ast$line, int count)
+\begin{DoxyCompactList}\small\item\em this function creats a macro \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}} \mbox{\hyperlink{preprossesor_8c_a0eaae1973b0f0567da2f037ef054c143}{search\+\_\+macro}} (char $\ast$line)
+\begin{DoxyCompactList}\small\item\em this function searchs for a macro in the trie \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{preprossesor_8c_a176d295d987ebe0f9330c5833d3461eb}{insert\+\_\+line\+\_\+to\+\_\+macro}} (\mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}} macro\+\_\+to\+\_\+insert, char $\ast$line)
+\begin{DoxyCompactList}\small\item\em this function inserts a line to a macro \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{preprossesor_8c_a4937d5ec7c48d80fdb9cb24d94d68251}{preprocess}} (char $\ast$name\+\_\+of\+\_\+file)
+\begin{DoxyCompactList}\small\item\em this function is the main function of the preprossesor, it opens the file, reads it line by line and determaines which line is it \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} \mbox{\hyperlink{preprossesor_8c_a0868260cfa7a8a45ed9a413b0cb06396}{macro\+\_\+trie}}
+\begin{DoxyCompactList}\small\item\em trie for the macros \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+this program is a preprossesor for the assembler. it gets a file with a macro definition and a file with a macro call, and it will replace the macro call with the macro definition. the program will create a new file with the replaced macro call. 
+
+\begin{DoxyAuthor}{Author}
+shlomo-\/weisz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/10
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{preprossesor_8c_a66f0b8ca942d36a86be6246243deae92}\label{preprossesor_8c_a66f0b8ca942d36a86be6246243deae92}} 
+\index{preprossesor.c@{preprossesor.c}!creat\_macro@{creat\_macro}}
+\index{creat\_macro@{creat\_macro}!preprossesor.c@{preprossesor.c}}
+\doxysubsubsection{\texorpdfstring{creat\_macro()}{creat\_macro()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}} creat\+\_\+macro (\begin{DoxyParamCaption}\item[{char $\ast$}]{line,  }\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+this function creats a macro 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & the line to creat the macro from \\
+\hline
+{\em count} & the number of the line in the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Macro the macro that was created 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file preprossesor.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{preprossesor_8c_a66f0b8ca942d36a86be6246243deae92_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8c_a66f0b8ca942d36a86be6246243deae92_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{preprossesor_8c_adfa102d48e712a2ac687a30d81c5eb24}\label{preprossesor_8c_adfa102d48e712a2ac687a30d81c5eb24}} 
+\index{preprossesor.c@{preprossesor.c}!determaine\_which\_line\_is\_it@{determaine\_which\_line\_is\_it}}
+\index{determaine\_which\_line\_is\_it@{determaine\_which\_line\_is\_it}!preprossesor.c@{preprossesor.c}}
+\doxysubsubsection{\texorpdfstring{determaine\_which\_line\_is\_it()}{determaine\_which\_line\_is\_it()}}
+{\footnotesize\ttfamily int determaine\+\_\+which\+\_\+line\+\_\+is\+\_\+it (\begin{DoxyParamCaption}\item[{char $\ast$}]{line }\end{DoxyParamCaption})}
+
+
+
+this function determaine which line is it, if it is a macro, a macro definition, a macro end or a normal line 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & the line to determaine \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int the type of the line 
+\end{DoxyReturn}
+
+
+Definition at line 43 of file preprossesor.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8c_adfa102d48e712a2ac687a30d81c5eb24_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8c_adfa102d48e712a2ac687a30d81c5eb24_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{preprossesor_8c_a176d295d987ebe0f9330c5833d3461eb}\label{preprossesor_8c_a176d295d987ebe0f9330c5833d3461eb}} 
+\index{preprossesor.c@{preprossesor.c}!insert\_line\_to\_macro@{insert\_line\_to\_macro}}
+\index{insert\_line\_to\_macro@{insert\_line\_to\_macro}!preprossesor.c@{preprossesor.c}}
+\doxysubsubsection{\texorpdfstring{insert\_line\_to\_macro()}{insert\_line\_to\_macro()}}
+{\footnotesize\ttfamily void insert\+\_\+line\+\_\+to\+\_\+macro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}}}]{macro\+\_\+to\+\_\+insert,  }\item[{char $\ast$}]{line }\end{DoxyParamCaption})}
+
+
+
+this function inserts a line to a macro 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & the macro to insert the line to \\
+\hline
+{\em line} & the line to insert \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 150 of file preprossesor.\+c.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8c_a176d295d987ebe0f9330c5833d3461eb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{preprossesor_8c_a5ac83e95f1c61d8687bdf1d0c0c8ba09}\label{preprossesor_8c_a5ac83e95f1c61d8687bdf1d0c0c8ba09}} 
+\index{preprossesor.c@{preprossesor.c}!is\_line\_too\_long@{is\_line\_too\_long}}
+\index{is\_line\_too\_long@{is\_line\_too\_long}!preprossesor.c@{preprossesor.c}}
+\doxysubsubsection{\texorpdfstring{is\_line\_too\_long()}{is\_line\_too\_long()}}
+{\footnotesize\ttfamily int is\+\_\+line\+\_\+too\+\_\+long (\begin{DoxyParamCaption}\item[{char $\ast$}]{line }\end{DoxyParamCaption})}
+
+
+
+check if the line length is bigger than the max length 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & the line to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the line is too long, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file preprossesor.\+c.
+
+\mbox{\Hypertarget{preprossesor_8c_a4937d5ec7c48d80fdb9cb24d94d68251}\label{preprossesor_8c_a4937d5ec7c48d80fdb9cb24d94d68251}} 
+\index{preprossesor.c@{preprossesor.c}!preprocess@{preprocess}}
+\index{preprocess@{preprocess}!preprossesor.c@{preprossesor.c}}
+\doxysubsubsection{\texorpdfstring{preprocess()}{preprocess()}}
+{\footnotesize\ttfamily int preprocess (\begin{DoxyParamCaption}\item[{char $\ast$}]{name\+\_\+of\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+this function is the main function of the preprossesor, it opens the file, reads it line by line and determaines which line is it 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+\_\+of\+\_\+file} & the name of the file to preprosses \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if the preprosses was successful, 1 if not 
+\end{DoxyReturn}
+
+
+Definition at line 167 of file preprossesor.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8c_a4937d5ec7c48d80fdb9cb24d94d68251_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{preprossesor_8c_a4937d5ec7c48d80fdb9cb24d94d68251_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{preprossesor_8c_a0eaae1973b0f0567da2f037ef054c143}\label{preprossesor_8c_a0eaae1973b0f0567da2f037ef054c143}} 
+\index{preprossesor.c@{preprossesor.c}!search\_macro@{search\_macro}}
+\index{search\_macro@{search\_macro}!preprossesor.c@{preprossesor.c}}
+\doxysubsubsection{\texorpdfstring{search\_macro()}{search\_macro()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_a35621d1d74428cb9205a146d080b97f2}{Macro}} search\+\_\+macro (\begin{DoxyParamCaption}\item[{char $\ast$}]{line }\end{DoxyParamCaption})}
+
+
+
+this function searchs for a macro in the trie 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & the line to search the macro in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Macro the macro that was found, if not found returns NULL 
+\end{DoxyReturn}
+
+
+Definition at line 133 of file preprossesor.\+c.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8c_a0eaae1973b0f0567da2f037ef054c143_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preprossesor_8c_a0eaae1973b0f0567da2f037ef054c143_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{preprossesor_8c_a0868260cfa7a8a45ed9a413b0cb06396}\label{preprossesor_8c_a0868260cfa7a8a45ed9a413b0cb06396}} 
+\index{preprossesor.c@{preprossesor.c}!macro\_trie@{macro\_trie}}
+\index{macro\_trie@{macro\_trie}!preprossesor.c@{preprossesor.c}}
+\doxysubsubsection{\texorpdfstring{macro\_trie}{macro\_trie}}
+{\footnotesize\ttfamily \mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} macro\+\_\+trie}
+
+
+
+trie for the macros 
+
+
+
+Definition at line 24 of file preprossesor.\+c.
+

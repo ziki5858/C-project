@@ -1,0 +1,5 @@
+<map id="destroy_trie" name="destroy_trie">
+<area shape="rect" id="node1" title="This function is used to destroy the trie." alt="" coords="5,31,105,57"/>
+<area shape="rect" id="node2" href="$trie_8c.html#abd84b75a7f69607cadfdec5ccd2e9686" title="This function is used to create a new trie." alt="" coords="197,5,241,32"/>
+<area shape="rect" id="node3" href="$trie_8c.html#a83fd0f7479552699c2ba6282f907dea7" title="This function is used to destroy the sub trie." alt="" coords="153,56,284,83"/>
+</map>

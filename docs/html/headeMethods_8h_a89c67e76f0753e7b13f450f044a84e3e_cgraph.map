@@ -1,0 +1,4 @@
+<map id="immediateNumberOperand" name="immediateNumberOperand">
+<area shape="rect" id="node1" title="Function to process an immediate number operand." alt="" coords="5,5,205,32"/>
+<area shape="rect" id="node2" href="$define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a string is numeric." alt="" coords="253,5,341,32"/>
+</map>
