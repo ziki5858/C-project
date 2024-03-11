@@ -31,11 +31,7 @@ var headeMethods_8h =
       [ "ENTRY", "headeMethods_8h.html#a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6", null ],
       [ "EXTERN", "headeMethods_8h.html#a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039", null ],
       [ "STRING", "headeMethods_8h.html#a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921", null ],
-      [ "DATA", "headeMethods_8h.html#a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2", null ],
-      [ "ENTRY", "front_8h.html#a79bb11a21ca0169a3520c5053e045cedaf1ca16f85c38f6843da477ec1aa176a6", null ],
-      [ "EXTERN", "front_8h.html#a79bb11a21ca0169a3520c5053e045cedaf017da8df4e93d9bc75880a4998c1039", null ],
-      [ "STRING", "front_8h.html#a79bb11a21ca0169a3520c5053e045cedaee847e634a4297b274316de8a8ca9921", null ],
-      [ "DATA", "front_8h.html#a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2", null ]
+      [ "DATA", "headeMethods_8h.html#a79bb11a21ca0169a3520c5053e045ceda9d7d6f31868d66330397c967c4afd2d2", null ]
     ] ],
     [ "InstructionType", "headeMethods_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0d", [
       [ "MOV", "structs_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b", null ],
@@ -69,23 +65,7 @@ var headeMethods_8h =
       [ "PRN", "headeMethods_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787", null ],
       [ "JSR", "headeMethods_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85", null ],
       [ "RTS", "headeMethods_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66", null ],
-      [ "HLT", "headeMethods_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4", null ],
-      [ "MOV", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0daa1535ce8fd6caf08009dcae925741d9b", null ],
-      [ "CMP", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da7fd9a97abde63f8c83a4756769aa899e", null ],
-      [ "ADD", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0dacfcf145f2788bf340ff3f3098bc54909", null ],
-      [ "SUB", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da12b733d4941495e86811fe6ceeeff9da", null ],
-      [ "LEA", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da42c948acd2badbe13a2ff7c4484ffc05", null ],
-      [ "NOT", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da0378ebc895849163b249d0b330257dd6", null ],
-      [ "CLR", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da2a27770e42b8c6d3343e057afe59e017", null ],
-      [ "INC", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da7967e4061665d0e072a0c3bffe00ac6d", null ],
-      [ "DEC", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da851043138f8ef49c6eeea75760b69481", null ],
-      [ "JMP", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da227d95ecea3ff1219ddb58bb03d17d5a", null ],
-      [ "BNE", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da47b77783113a840ba70ba77ffca11bcd", null ],
-      [ "RED", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0daf80f9a890089d211842d59625e561f88", null ],
-      [ "PRN", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0dae99cb768a4c27041c30a107b4880f787", null ],
-      [ "JSR", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0dafff003cfe0101900ba74af943d311b85", null ],
-      [ "RTS", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0dae58caa68ff8b6e4838007985c7e3ae66", null ],
-      [ "HLT", "front_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4", null ]
+      [ "HLT", "headeMethods_8h.html#a89ee1c4e5e5a33c60d0e6dc126ed2c0da5fa8c1a2d62dd3da3a5802305fb1f9d4", null ]
     ] ],
     [ "Register", "headeMethods_8h.html#a8e39d30bce1b2172c347b10e96f05d1b", [
       [ "r0", "structs_8h.html#a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c", null ],
@@ -103,15 +83,7 @@ var headeMethods_8h =
       [ "r4", "headeMethods_8h.html#a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2", null ],
       [ "r5", "headeMethods_8h.html#a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32", null ],
       [ "r6", "headeMethods_8h.html#a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473", null ],
-      [ "r7", "headeMethods_8h.html#a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f", null ],
-      [ "r0", "front_8h.html#a8e39d30bce1b2172c347b10e96f05d1ba20eb91018c3024df2ae3582f6e8e662c", null ],
-      [ "r1", "front_8h.html#a8e39d30bce1b2172c347b10e96f05d1ba9e5d4ad994db934322c89e4dbef3f7ce", null ],
-      [ "r2", "front_8h.html#a8e39d30bce1b2172c347b10e96f05d1ba22827a377de213db078757f368a86b05", null ],
-      [ "r3", "front_8h.html#a8e39d30bce1b2172c347b10e96f05d1ba5d5f095a80fd85c2eb082cf401ea61bd", null ],
-      [ "r4", "front_8h.html#a8e39d30bce1b2172c347b10e96f05d1ba8406953222b85effd7fc8e6d835456b2", null ],
-      [ "r5", "front_8h.html#a8e39d30bce1b2172c347b10e96f05d1ba226156e758cbef9847b584f6b4c1ab32", null ],
-      [ "r6", "front_8h.html#a8e39d30bce1b2172c347b10e96f05d1bafd54e526d8ea5a12a4e5f90ae26ca473", null ],
-      [ "r7", "front_8h.html#a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f", null ]
+      [ "r7", "headeMethods_8h.html#a8e39d30bce1b2172c347b10e96f05d1bab595c42a4c3c7e43b4a67dfa8fcde19f", null ]
     ] ],
     [ "addToEntryLabelSet", "headeMethods_8h.html#a5d78273d4feb195d7706ce9d6d7c004b", null ],
     [ "categorizeWord", "headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e", null ],

@@ -1,0 +1,327 @@
+\hypertarget{mainHeader_8h}{}\doxysection{main\+Header.\+h File Reference}
+\label{mainHeader_8h}\index{mainHeader.h@{mainHeader.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}trie/trie.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./assembler\+Rounds/headers/structs.\+h\char`\"{}}\newline
+Include dependency graph for main\+Header.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mainHeader_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mainHeader_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{mainHeader_8h_a9bc7ac767565a8034a20624470307b11}{print\+\_\+error\+\_\+memory}} (int line, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em Print error message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mainHeader_8h_ae86ea6e30277962226bee129b5a8e007}{print\+\_\+error\+\_\+msg}} (char $\ast$msg, int line, int $\ast$\mbox{\hyperlink{validation_8h_abc22a72d751fd7b9edfd17ce47da5651}{error\+\_\+flag}})
+\begin{DoxyCompactList}\small\item\em Print error message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mainHeader_8h_a39da808ec5bb413e291a597674a53de8}{assembler}} (char $\ast$file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em This function is the main function of the assembler, it calls all the other functions in the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{mainHeader_8h_a085b57d9ed0b3d5392eb3dcffe1b2301}{num\+\_\+of\+\_\+entries}}
+\item 
+int \mbox{\hyperlink{mainHeader_8h_aef398d61da8585441be8052f91c005d9}{num\+\_\+of\+\_\+externals}}
+\item 
+int \mbox{\hyperlink{mainHeader_8h_a3cb0fd567f534f76bf1bfb32cea22f4f}{num\+\_\+of\+\_\+symbols}}
+\item 
+int \mbox{\hyperlink{mainHeader_8h_a4d446a347bb50b9a831c9d6f355373e9}{num\+\_\+of\+\_\+patterns}}
+\item 
+int \mbox{\hyperlink{mainHeader_8h_affe5706eac93a29705c56d136aea2592}{num\+\_\+of\+\_\+entries\+\_\+in\+\_\+table}}
+\item 
+\mbox{\hyperlink{structs_8h_aaa7ca4df7549cc433aee28a22f343dd7}{External}} $\ast$ \mbox{\hyperlink{mainHeader_8h_adc4fe72d2892e7aabbfa67c8666f8b90}{external\+\_\+table}}
+\item 
+\mbox{\hyperlink{structs_8h_a33a7cf9e35c645e2357af82b0b94bbf6}{Entry}} $\ast$ \mbox{\hyperlink{mainHeader_8h_a2f129a86808ab28af75c73427f9fd7a7}{entry\+\_\+table}}
+\item 
+\mbox{\hyperlink{structs_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}} $\ast$ \mbox{\hyperlink{mainHeader_8h_a01428df6ec046e44c88ffd03c9a2221f}{symbol\+\_\+table\+\_\+of\+\_\+entries}}
+\item 
+\mbox{\hyperlink{structs_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}} $\ast$ \mbox{\hyperlink{mainHeader_8h_acd7c538eb07644b2d2610fd0b10bd1ec}{symbol\+\_\+table}}
+\item 
+\mbox{\hyperlink{structs_8h_abe3edd5382a2cebebc55bcbb54ea2161}{Code}} $\ast$ \mbox{\hyperlink{mainHeader_8h_a0050e4d87b004c3b9a6315662ed930c3}{code}}
+\item 
+\mbox{\hyperlink{structs_8h_abe3edd5382a2cebebc55bcbb54ea2161}{Code}} \mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}
+\item 
+\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} \mbox{\hyperlink{mainHeader_8h_aa2d9be0c213f3b5379e0a217033ff253}{symbols}}
+\item 
+\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} \mbox{\hyperlink{mainHeader_8h_afd9ec5d1ad39b54386f489f84f6dc972}{constant}}
+\item 
+\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} \mbox{\hyperlink{mainHeader_8h_aac4a198c7f272f3fe3df136c6d01fdfb}{externals}}
+\item 
+\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} \mbox{\hyperlink{mainHeader_8h_a586f60ddd48b72d78753897b851f7b1a}{entries}}
+\item 
+\mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} \mbox{\hyperlink{mainHeader_8h_a0868260cfa7a8a45ed9a413b0cb06396}{macro\+\_\+trie}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mainHeader_8h_a39da808ec5bb413e291a597674a53de8}\label{mainHeader_8h_a39da808ec5bb413e291a597674a53de8}} 
+\index{mainHeader.h@{mainHeader.h}!assembler@{assembler}}
+\index{assembler@{assembler}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{assembler()}{assembler()}}
+{\footnotesize\ttfamily void assembler (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+This function is the main function of the assembler, it calls all the other functions in the program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & The name of the file that we want to assemble. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 38 of file assembler.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mainHeader_8h_a39da808ec5bb413e291a597674a53de8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{mainHeader_8h_a39da808ec5bb413e291a597674a53de8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{mainHeader_8h_a9bc7ac767565a8034a20624470307b11}\label{mainHeader_8h_a9bc7ac767565a8034a20624470307b11}} 
+\index{mainHeader.h@{mainHeader.h}!print\_error\_memory@{print\_error\_memory}}
+\index{print\_error\_memory@{print\_error\_memory}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{print\_error\_memory()}{print\_error\_memory()}}
+{\footnotesize\ttfamily void print\+\_\+error\+\_\+memory (\begin{DoxyParamCaption}\item[{int}]{line,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Print error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message to print \\
+\hline
+{\em line} & The line in the file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file validation.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mainHeader_8h_a9bc7ac767565a8034a20624470307b11_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{mainHeader_8h_ae86ea6e30277962226bee129b5a8e007}\label{mainHeader_8h_ae86ea6e30277962226bee129b5a8e007}} 
+\index{mainHeader.h@{mainHeader.h}!print\_error\_msg@{print\_error\_msg}}
+\index{print\_error\_msg@{print\_error\_msg}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{print\_error\_msg()}{print\_error\_msg()}}
+{\footnotesize\ttfamily void print\+\_\+error\+\_\+msg (\begin{DoxyParamCaption}\item[{char $\ast$}]{msg,  }\item[{int}]{line,  }\item[{int $\ast$}]{error\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Print error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message to print \\
+\hline
+{\em line} & The line in the file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 57 of file validation.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mainHeader_8h_ae86ea6e30277962226bee129b5a8e007_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{mainHeader_8h_a0050e4d87b004c3b9a6315662ed930c3}\label{mainHeader_8h_a0050e4d87b004c3b9a6315662ed930c3}} 
+\index{mainHeader.h@{mainHeader.h}!code@{code}}
+\index{code@{code}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{code}{code}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_abe3edd5382a2cebebc55bcbb54ea2161}{Code}}$\ast$ \mbox{\hyperlink{structcode}{code}}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 42 of file structs\+\_\+func.\+c.
+
+\mbox{\Hypertarget{mainHeader_8h_afd9ec5d1ad39b54386f489f84f6dc972}\label{mainHeader_8h_afd9ec5d1ad39b54386f489f84f6dc972}} 
+\index{mainHeader.h@{mainHeader.h}!constant@{constant}}
+\index{constant@{constant}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{constant}{constant}}
+{\footnotesize\ttfamily \mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} \mbox{\hyperlink{structconstant}{constant}}}
+
+
+
+Definition at line 25 of file main\+Header.\+h.
+
+\mbox{\Hypertarget{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}\label{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}} 
+\index{mainHeader.h@{mainHeader.h}!data@{data}}
+\index{data@{data}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_abe3edd5382a2cebebc55bcbb54ea2161}{Code}} data}
+
+
+
+Definition at line 24 of file main\+Header.\+h.
+
+\mbox{\Hypertarget{mainHeader_8h_a586f60ddd48b72d78753897b851f7b1a}\label{mainHeader_8h_a586f60ddd48b72d78753897b851f7b1a}} 
+\index{mainHeader.h@{mainHeader.h}!entries@{entries}}
+\index{entries@{entries}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{entries}{entries}}
+{\footnotesize\ttfamily \mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} entries}
+
+
+
+Definition at line 25 of file main\+Header.\+h.
+
+\mbox{\Hypertarget{mainHeader_8h_a2f129a86808ab28af75c73427f9fd7a7}\label{mainHeader_8h_a2f129a86808ab28af75c73427f9fd7a7}} 
+\index{mainHeader.h@{mainHeader.h}!entry\_table@{entry\_table}}
+\index{entry\_table@{entry\_table}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{entry\_table}{entry\_table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_a33a7cf9e35c645e2357af82b0b94bbf6}{Entry}}$\ast$ entry\+\_\+table\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 50 of file structs\+\_\+func.\+c.
+
+\mbox{\Hypertarget{mainHeader_8h_adc4fe72d2892e7aabbfa67c8666f8b90}\label{mainHeader_8h_adc4fe72d2892e7aabbfa67c8666f8b90}} 
+\index{mainHeader.h@{mainHeader.h}!external\_table@{external\_table}}
+\index{external\_table@{external\_table}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{external\_table}{external\_table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_aaa7ca4df7549cc433aee28a22f343dd7}{External}}$\ast$ external\+\_\+table\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 47 of file structs\+\_\+func.\+c.
+
+\mbox{\Hypertarget{mainHeader_8h_aac4a198c7f272f3fe3df136c6d01fdfb}\label{mainHeader_8h_aac4a198c7f272f3fe3df136c6d01fdfb}} 
+\index{mainHeader.h@{mainHeader.h}!externals@{externals}}
+\index{externals@{externals}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{externals}{externals}}
+{\footnotesize\ttfamily \mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} externals}
+
+
+
+Definition at line 25 of file main\+Header.\+h.
+
+\mbox{\Hypertarget{mainHeader_8h_a0868260cfa7a8a45ed9a413b0cb06396}\label{mainHeader_8h_a0868260cfa7a8a45ed9a413b0cb06396}} 
+\index{mainHeader.h@{mainHeader.h}!macro\_trie@{macro\_trie}}
+\index{macro\_trie@{macro\_trie}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{macro\_trie}{macro\_trie}}
+{\footnotesize\ttfamily \mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} macro\+\_\+trie}
+
+
+
+Definition at line 25 of file main\+Header.\+h.
+
+\mbox{\Hypertarget{mainHeader_8h_a085b57d9ed0b3d5392eb3dcffe1b2301}\label{mainHeader_8h_a085b57d9ed0b3d5392eb3dcffe1b2301}} 
+\index{mainHeader.h@{mainHeader.h}!num\_of\_entries@{num\_of\_entries}}
+\index{num\_of\_entries@{num\_of\_entries}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_entries}{num\_of\_entries}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+entries\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 36 of file parse.\+c.
+
+\mbox{\Hypertarget{mainHeader_8h_affe5706eac93a29705c56d136aea2592}\label{mainHeader_8h_affe5706eac93a29705c56d136aea2592}} 
+\index{mainHeader.h@{mainHeader.h}!num\_of\_entries\_in\_table@{num\_of\_entries\_in\_table}}
+\index{num\_of\_entries\_in\_table@{num\_of\_entries\_in\_table}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_entries\_in\_table}{num\_of\_entries\_in\_table}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+entries\+\_\+in\+\_\+table\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 51 of file structs\+\_\+func.\+c.
+
+\mbox{\Hypertarget{mainHeader_8h_aef398d61da8585441be8052f91c005d9}\label{mainHeader_8h_aef398d61da8585441be8052f91c005d9}} 
+\index{mainHeader.h@{mainHeader.h}!num\_of\_externals@{num\_of\_externals}}
+\index{num\_of\_externals@{num\_of\_externals}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_externals}{num\_of\_externals}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+externals\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 37 of file parse.\+c.
+
+\mbox{\Hypertarget{mainHeader_8h_a4d446a347bb50b9a831c9d6f355373e9}\label{mainHeader_8h_a4d446a347bb50b9a831c9d6f355373e9}} 
+\index{mainHeader.h@{mainHeader.h}!num\_of\_patterns@{num\_of\_patterns}}
+\index{num\_of\_patterns@{num\_of\_patterns}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_patterns}{num\_of\_patterns}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+patterns\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 35 of file parse.\+c.
+
+\mbox{\Hypertarget{mainHeader_8h_a3cb0fd567f534f76bf1bfb32cea22f4f}\label{mainHeader_8h_a3cb0fd567f534f76bf1bfb32cea22f4f}} 
+\index{mainHeader.h@{mainHeader.h}!num\_of\_symbols@{num\_of\_symbols}}
+\index{num\_of\_symbols@{num\_of\_symbols}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{num\_of\_symbols}{num\_of\_symbols}}
+{\footnotesize\ttfamily int num\+\_\+of\+\_\+symbols\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 45 of file structs\+\_\+func.\+c.
+
+\mbox{\Hypertarget{mainHeader_8h_acd7c538eb07644b2d2610fd0b10bd1ec}\label{mainHeader_8h_acd7c538eb07644b2d2610fd0b10bd1ec}} 
+\index{mainHeader.h@{mainHeader.h}!symbol\_table@{symbol\_table}}
+\index{symbol\_table@{symbol\_table}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{symbol\_table}{symbol\_table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}}$\ast$ symbol\+\_\+table\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 44 of file structs\+\_\+func.\+c.
+
+\mbox{\Hypertarget{mainHeader_8h_a01428df6ec046e44c88ffd03c9a2221f}\label{mainHeader_8h_a01428df6ec046e44c88ffd03c9a2221f}} 
+\index{mainHeader.h@{mainHeader.h}!symbol\_table\_of\_entries@{symbol\_table\_of\_entries}}
+\index{symbol\_table\_of\_entries@{symbol\_table\_of\_entries}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{symbol\_table\_of\_entries}{symbol\_table\_of\_entries}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_acd28fff7ecff538f521dd72fb4191000}{Symbol}}$\ast$ symbol\+\_\+table\+\_\+of\+\_\+entries\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 53 of file structs\+\_\+func.\+c.
+
+\mbox{\Hypertarget{mainHeader_8h_aa2d9be0c213f3b5379e0a217033ff253}\label{mainHeader_8h_aa2d9be0c213f3b5379e0a217033ff253}} 
+\index{mainHeader.h@{mainHeader.h}!symbols@{symbols}}
+\index{symbols@{symbols}!mainHeader.h@{mainHeader.h}}
+\doxysubsubsection{\texorpdfstring{symbols}{symbols}}
+{\footnotesize\ttfamily \mbox{\hyperlink{trie_8h_abb8da546b3f8c4bf56e0b1da2059cd5c}{Trie}} symbols\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line 40 of file structs\+\_\+func.\+c.
+

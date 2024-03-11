@@ -1,0 +1,13 @@
+<map id="mainHeader.h" name="mainHeader.h">
+<area shape="rect" id="node1" title=" " alt="" coords="372,5,485,32"/>
+<area shape="rect" id="node2" href="$assembler_8c.html" title="This program is an assembler for the assembly language that was given in the course...." alt="" coords="5,87,105,114"/>
+<area shape="rect" id="node3" href="$bilder_8h.html" title=" " alt="" coords="265,169,459,211"/>
+<area shape="rect" id="node6" href="$encoder_8h.html" title=" " alt="" coords="130,80,325,121"/>
+<area shape="rect" id="node8" href="$validation_8h.html" title=" " alt="" coords="399,80,594,121"/>
+<area shape="rect" id="node10" href="$back_8c.html" title="This file contains the implementation of the functions that used to handle the back end of the assemb..." alt="" coords="618,87,717,114"/>
+<area shape="rect" id="node11" href="$memory_8c.html" title="This file contains the implementation of the functions that used to handle the memory of the assemble..." alt="" coords="741,87,863,114"/>
+<area shape="rect" id="node4" href="$bilder_8c.html" title="This file contains the implementation of the functions that used to build the code and data tables of..." alt="" coords="159,259,349,285"/>
+<area shape="rect" id="node5" href="$rounds_8c.html" title="This file contains the implementation of the functions that used to handle the first and the second r..." alt="" coords="373,259,570,285"/>
+<area shape="rect" id="node7" href="$encoder_8c.html" title="This file contains the implementation of the functions that used to encode the instructions and the o..." alt="" coords="36,177,240,203"/>
+<area shape="rect" id="node9" href="$validation_8c.html" title="This file contains the implementation of the functions that used to validate the assembler...." alt="" coords="483,177,702,203"/>
+</map>

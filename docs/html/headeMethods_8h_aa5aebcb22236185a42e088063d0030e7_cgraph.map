@@ -1,12 +1,12 @@
 <map id="processOperands" name="processOperands">
 <area shape="rect" id="node1" title="Handles processing of operands for instructions." alt="" coords="5,81,140,108"/>
 <area shape="rect" id="node2" href="$instrucstion_8c.html#aea0cf2429f2ebfeb1545c3dda091e072" title="Function to process a direct index operand." alt="" coords="213,81,363,108"/>
-<area shape="rect" id="node3" href="$front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="454,30,518,57"/>
+<area shape="rect" id="node3" href="$headeMethods_8h.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="454,30,518,57"/>
 <area shape="rect" id="node7" href="$instrucstion_8c.html#a24dc457e2ba621e13b53c55106e272d9" title="Function to process a direct label operand." alt="" coords="213,132,363,158"/>
 <area shape="rect" id="node8" href="$instrucstion_8c.html#a89c67e76f0753e7b13f450f044a84e3e" title="Function to process an immediate number operand." alt="" coords="188,182,388,209"/>
 <area shape="rect" id="node10" href="$instrucstion_8c.html#ac000c3b3bdf79ee6e35e28d96a84a8d1" title="Function to process a register operand." alt="" coords="225,30,351,57"/>
 <area shape="rect" id="node6" href="$directive_8c.html#ab54926c39817863421a74e1ada92e412" title="Function to check if a label is valid." alt="" coords="436,106,536,133"/>
-<area shape="rect" id="node4" href="$front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="584,30,677,57"/>
-<area shape="rect" id="node5" href="$front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="725,30,823,57"/>
+<area shape="rect" id="node4" href="$parse_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="584,30,677,57"/>
+<area shape="rect" id="node5" href="$parse_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="725,30,823,57"/>
 <area shape="rect" id="node9" href="$define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a string is numeric." alt="" coords="442,182,530,209"/>
 </map>

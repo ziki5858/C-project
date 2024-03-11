@@ -1,14 +1,14 @@
 CFLAGS = -Wall -ansi -pedantic -fsanitize=address -g
-assembler:  rounds.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o
-	gcc ${CFLAGS}  rounds.o back.o assembler.o trie.o memory.o front.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o -o assembler
+assembler:  rounds.o print.o assembler.o trie.o memory.o parse.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o
+	gcc ${CFLAGS}  rounds.o print.o assembler.o trie.o memory.o parse.o instrucstion.o directive.o define.o preprossesor.o structs_func.o encoder.o validation.o bilder.o -o assembler
 
 rounds.o: ./assemblerRounds/rounds.c ./assemblerRounds/headers/rounds.h
 	gcc -c ${CFLAGS} ./assemblerRounds/rounds.c -o rounds.o
 
 
 
-back.o: ./back/back.c ./back/back.h
-	gcc -c ${CFLAGS} ./back/back.c -o back.o
+print.o: ./end/print.c ./end/print.h
+	gcc -c ${CFLAGS} ./end/print.c -o print.o
 
 assembler.o: assembler.c	
 	gcc -c ${CFLAGS} assembler.c -o assembler.o
@@ -16,20 +16,20 @@ assembler.o: assembler.c
 trie.o: trie/trie.c
 	gcc -c ${CFLAGS} trie/trie.c -o trie.o
 
-memory.o: ./back/memory.c
-	gcc -c ${CFLAGS} ./back/memory.c -o memory.o
+memory.o: ./end/memory.c
+	gcc -c ${CFLAGS} ./end/memory.c -o memory.o
 
-front.o: ./front/front.c
-	gcc -c ${CFLAGS} ./front/front.c -o front.o
+parse.o: ./parse/parse.c
+	gcc -c ${CFLAGS} ./parse/parse.c -o parse.o
 
-instrucstion.o: ./front/instrucstion.c
-	gcc -c ${CFLAGS} ./front/instrucstion.c -o instrucstion.o
+instrucstion.o: ./parse/instrucstion.c
+	gcc -c ${CFLAGS} ./parse/instrucstion.c -o instrucstion.o
 
-directive.o: ./front/directive.c
-	gcc -c ${CFLAGS} ./front/directive.c -o directive.o
+directive.o: ./parse/directive.c
+	gcc -c ${CFLAGS} ./parse/directive.c -o directive.o
 
-define.o: ./front/define.c
-	gcc -c ${CFLAGS} ./front/define.c -o define.o
+define.o: ./parse/define.c
+	gcc -c ${CFLAGS} ./parse/define.c -o define.o
 
 preprossesor.o: ./preprocessor/preprossesor.c ./preprocessor/preprossesor.h
 	gcc -c ${CFLAGS}  ./preprocessor/preprossesor.c -o preprossesor.o

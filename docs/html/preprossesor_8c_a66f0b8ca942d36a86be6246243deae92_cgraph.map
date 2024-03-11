@@ -1,5 +1,5 @@
 <map id="creat_macro" name="creat_macro">
 <area shape="rect" id="node1" title="this function creats a macro" alt="" coords="5,31,108,57"/>
 <area shape="rect" id="node2" href="$trie_8c.html#a2a2a39a0906c717c226fd49622c43d02" title="This function is used to insert a string into the trie." alt="" coords="161,5,269,32"/>
-<area shape="rect" id="node3" href="$validation_8c.html#ab6ccd1d8e71ba1c07c97246fcf7168de" title="Check if the word is a saved word." alt="" coords="156,56,275,83"/>
+<area shape="rect" id="node3" href="$validation_8h.html#ab6ccd1d8e71ba1c07c97246fcf7168de" title="Check if the word is a saved word." alt="" coords="156,56,275,83"/>
 </map>

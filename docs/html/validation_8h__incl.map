@@ -1,11 +1,11 @@
-<map id="assemblerRounds/validation.h" name="assemblerRounds/validation.h">
-<area shape="rect" id="node1" title=" " alt="" coords="216,5,435,32"/>
-<area shape="rect" id="node2" href="$front_8h.html" title=" " alt="" coords="227,80,304,107"/>
-<area shape="rect" id="node8" href="$structs__func_8h.html" title=" " alt="" coords="366,80,479,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,155,72,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="97,155,167,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="191,155,262,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="286,155,357,181"/>
-<area shape="rect" id="node7" href="$trie_8h.html" title=" " alt="" coords="381,155,464,181"/>
-<area shape="rect" id="node9" href="$structs_8h.html" title=" " alt="" coords="489,155,567,181"/>
+<map id="assemblerRounds/headers/validation.h" name="assemblerRounds/headers/validation.h">
+<area shape="rect" id="node1" title=" " alt="" coords="275,5,470,47"/>
+<area shape="rect" id="node2" href="$mainHeader_8h.html" title=" " alt="" coords="229,95,367,121"/>
+<area shape="rect" id="node9" href="$structs__func_8h.html" title=" " alt="" coords="391,95,504,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="195,177,262,203"/>
+<area shape="rect" id="node4" title=" " alt="" coords="287,177,357,203"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,177,76,203"/>
+<area shape="rect" id="node6" title=" " alt="" coords="100,177,171,203"/>
+<area shape="rect" id="node7" href="$trie_8h.html" title=" " alt="" coords="382,177,465,203"/>
+<area shape="rect" id="node8" href="$structs_8h.html" title=" " alt="" coords="489,169,691,211"/>
 </map>

@@ -1,7 +1,7 @@
 <map id="entry_def" name="entry_def">
 <area shape="rect" id="node1" title="This function is used to handle the case of entry definition. it will insert the entry to the entry t..." alt="" coords="5,81,89,108"/>
-<area shape="rect" id="node2" href="$structs__func_8c.html#aa5635bcd585de28376682566e798a623" title="Create a entry object." alt="" coords="145,5,249,32"/>
-<area shape="rect" id="node4" href="$structs__func_8c.html#ab3b1b13c2ffe7592565c333bb8ea67bc" title="Create a symbol object." alt="" coords="137,56,256,83"/>
+<area shape="rect" id="node2" href="$structs__func_8h.html#aa5635bcd585de28376682566e798a623" title="Create a entry object." alt="" coords="145,5,249,32"/>
+<area shape="rect" id="node4" href="$structs__func_8h.html#ab3b1b13c2ffe7592565c333bb8ea67bc" title="Create a symbol object." alt="" coords="137,56,256,83"/>
 <area shape="rect" id="node6" href="$structs_8h.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="321,107,446,133"/>
 <area shape="rect" id="node7" href="$trie_8c.html#a30321ace47f8c6fd4a373a31faade78d" title="This function is used to find a string in the trie." alt="" coords="145,157,248,184"/>
 <area shape="rect" id="node3" href="$trie_8c.html#a2a2a39a0906c717c226fd49622c43d02" title="This function is used to insert a string into the trie." alt="" coords="329,5,437,32"/>

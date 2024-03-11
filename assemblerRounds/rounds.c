@@ -11,7 +11,7 @@
  * @copyright Copyright (c) 2024
  * 
  */
-#include "../front.h"
+ 
 #include "./headers/bilder.h"
 #include "./headers/rounds.h"
 #include <stdio.h>

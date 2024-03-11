@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Mmn14: assemblerRounds/validation.h Source File</title>
+<title>Mmn14: assemblerRounds/headers/validation.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('validation_8h_source.html',''); initRe
 <div class="title">validation.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="validation_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../front.h&quot;</span></div>
+<a href="validation_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../../mainHeader.h&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="structs__func_8h.html">structs_func.h</a>&quot;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="validation_8h.html#abc22a72d751fd7b9edfd17ce47da5651">error_flag</a>;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
@@ -145,9 +145,9 @@ $(document).ready(function(){initNavTree('validation_8h_source.html',''); initRe
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keywordtype">int</span> <a class="code" href="validation_8h.html#a81dd6d7982066025d98239c80e621953">check_direct_index</a>(<span class="keyword">struct</span> <a class="code" href="structNode.html">Node</a> *node, <span class="keywordtype">int</span> *<a class="code" href="validation_8h.html#abc22a72d751fd7b9edfd17ce47da5651">error_flag</a>);</div>
 <div class="ttc" id="abilder_8c_html_aaa835797e1904edef894e1e73b903918"><div class="ttname"><a href="bilder_8c.html#aaa835797e1904edef894e1e73b903918">instruction</a></div><div class="ttdeci">void instruction(struct Node *current_pattern, int current_pattern_num, int *IC, int *error_flag, int *DC)</div><div class="ttdoc">This function is used to handle the case of instruction. it will insert the instruction to the code t...</div><div class="ttdef"><b>Definition:</b> <a href="bilder_8c_source.html#l00228">bilder.c:228</a></div></div>
 <div class="ttc" id="aencoder_8h_html_af99665d5265621a2cf3e4c7942a42c56"><div class="ttname"><a href="encoder_8h.html#af99665d5265621a2cf3e4c7942a42c56">current_pattern_num</a></div><div class="ttdeci">int current_pattern_num</div></div>
-<div class="ttc" id="astructNode_html"><div class="ttname"><a href="structNode.html">Node</a></div><div class="ttdoc">This struct is used to represent a node in a linked list. each node has a pointer to the data,...</div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00077">structs.h:77</a></div></div>
-<div class="ttc" id="astructcode_html"><div class="ttname"><a href="structcode.html">code</a></div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00153">structs.h:153</a></div></div>
-<div class="ttc" id="astructpattern_html"><div class="ttname"><a href="structpattern.html">pattern</a></div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00037">structs.h:37</a></div></div>
+<div class="ttc" id="astructNode_html"><div class="ttname"><a href="structNode.html">Node</a></div><div class="ttdoc">This struct is used to represent a node in a linked list. each node has a pointer to the data,...</div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00078">structs.h:78</a></div></div>
+<div class="ttc" id="astructcode_html"><div class="ttname"><a href="structcode.html">code</a></div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00154">structs.h:154</a></div></div>
+<div class="ttc" id="astructpattern_html"><div class="ttname"><a href="structpattern.html">pattern</a></div><div class="ttdef"><b>Definition:</b> <a href="structs_8h_source.html#l00038">structs.h:38</a></div></div>
 <div class="ttc" id="astructs__func_8h_html"><div class="ttname"><a href="structs__func_8h.html">structs_func.h</a></div></div>
 <div class="ttc" id="avalidation_8h_html_a031321c26638c28ff9c119fe8d7d503d"><div class="ttname"><a href="validation_8h.html#a031321c26638c28ff9c119fe8d7d503d">allocate_memory_for_data</a></div><div class="ttdeci">void allocate_memory_for_data(struct pattern *data_i, int current_pattern_num, int *error_flag)</div><div class="ttdoc">Allocate memory for data.</div><div class="ttdef"><b>Definition:</b> <a href="validation_8c_source.html#l00342">validation.c:342</a></div></div>
 <div class="ttc" id="avalidation_8h_html_a0a6f56756207b9c16d20736098c57b1f"><div class="ttname"><a href="validation_8h.html#a0a6f56756207b9c16d20736098c57b1f">handle_lable_error</a></div><div class="ttdeci">void handle_lable_error(struct pattern *p, int current_pattern_num, int *error_flag)</div><div class="ttdoc">Handle lable error by printing an error message based on the error.</div><div class="ttdef"><b>Definition:</b> <a href="validation_8c_source.html#l00233">validation.c:233</a></div></div>
@@ -171,7 +171,7 @@ $(document).ready(function(){initNavTree('validation_8h_source.html',''); initRe
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_20936338be3472184364521ccf33619b.html">assemblerRounds</a></li><li class="navelem"><a class="el" href="validation_8h.html">validation.h</a></li>
+    <li class="navelem"><a class="el" href="dir_20936338be3472184364521ccf33619b.html">assemblerRounds</a></li><li class="navelem"><a class="el" href="dir_98896965bea255938b30fe00183422fd.html">headers</a></li><li class="navelem"><a class="el" href="validation_8h.html">validation.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

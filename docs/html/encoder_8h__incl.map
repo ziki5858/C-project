@@ -1,10 +1,10 @@
-<map id="assemblerRounds/encoder.h" name="assemblerRounds/encoder.h">
-<area shape="rect" id="node1" title=" " alt="" coords="124,5,329,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,155,72,181"/>
-<area shape="rect" id="node3" title=" " alt="" coords="97,155,167,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="394,155,465,181"/>
-<area shape="rect" id="node5" href="$structs_8h.html" title=" " alt="" coords="341,80,419,107"/>
-<area shape="rect" id="node6" href="$front_8h.html" title=" " alt="" coords="188,80,265,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="299,155,370,181"/>
-<area shape="rect" id="node8" href="$trie_8h.html" title=" " alt="" coords="192,155,275,181"/>
+<map id="assemblerRounds/headers/encoder.h" name="assemblerRounds/headers/encoder.h">
+<area shape="rect" id="node1" title=" " alt="" coords="109,5,304,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,169,72,196"/>
+<area shape="rect" id="node3" title=" " alt="" coords="97,169,167,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="191,169,262,196"/>
+<area shape="rect" id="node5" href="$structs_8h.html" title=" " alt="" coords="489,169,567,196"/>
+<area shape="rect" id="node6" href="$mainHeader_8h.html" title=" " alt="" coords="245,95,382,121"/>
+<area shape="rect" id="node7" title=" " alt="" coords="286,169,357,196"/>
+<area shape="rect" id="node8" href="$trie_8h.html" title=" " alt="" coords="381,169,464,196"/>
 </map>

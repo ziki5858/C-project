@@ -1,4 +1,4 @@
-#include "../../front.h"
+#include "../../mainHeader.h"
 #include "structs_func.h"
 extern int error_flag;
 

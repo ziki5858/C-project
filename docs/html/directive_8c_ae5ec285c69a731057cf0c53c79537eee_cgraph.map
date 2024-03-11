@@ -7,11 +7,11 @@
 <area shape="rect" id="node16" href="$directive_8c.html#a7b53e8771f21707e0dbea3b2c0cfe819" title="Handles processing of the .string directive." alt="" coords="181,284,343,311"/>
 <area shape="rect" id="node3" href="$directive_8c.html#a48e46c99fa59387602fd6551e7f23192" title="This function checks if there are multiple consecutive comas." alt="" coords="407,132,579,159"/>
 <area shape="rect" id="node4" href="$directive_8c.html#a68e22aa0e38c87c1d723ecb136aa9edd" title="Checks for a comma at the end of a line." alt="" coords="418,183,567,209"/>
-<area shape="rect" id="node5" href="$front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="659,233,723,260"/>
+<area shape="rect" id="node5" href="$headeMethods_8h.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="659,233,723,260"/>
 <area shape="rect" id="node8" href="$directive_8c.html#a8b315535f4cc7908415c17737bf7c64a" title=" " alt="" coords="393,31,592,57"/>
 <area shape="rect" id="node11" href="$directive_8c.html#a59d683d34a59781f51a6f9eb02112caa" title="Function to check if a label is in the external label set." alt="" coords="444,233,541,260"/>
-<area shape="rect" id="node6" href="$front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="791,233,884,260"/>
-<area shape="rect" id="node7" href="$front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="932,233,1029,260"/>
+<area shape="rect" id="node6" href="$parse_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="791,233,884,260"/>
+<area shape="rect" id="node7" href="$parse_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="932,233,1029,260"/>
 <area shape="rect" id="node9" href="$directive_8c.html#a1076c92ff396fe7c35841d34e32fdcbc" title="Function to check if a label is in the entry label set." alt="" coords="640,56,743,83"/>
 <area shape="rect" id="node10" href="$define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a string is numeric." alt="" coords="647,5,735,32"/>
 <area shape="rect" id="node15" href="$directive_8c.html#a5d78273d4feb195d7706ce9d6d7c004b" title="Function to add a label to the entry label set." alt="" coords="417,487,568,513"/>

@@ -1,5 +1,4 @@
-#include "../../front.h"
-#include "../../trie/trie.h"
+#include "../../mainHeader.h"
 #include "encoder.h"
 #include "structs.h"
 #include "structs_func.h"

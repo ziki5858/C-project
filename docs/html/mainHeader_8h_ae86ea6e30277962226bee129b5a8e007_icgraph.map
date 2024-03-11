@@ -1,0 +1,22 @@
+<map id="print_error_msg" name="print_error_msg">
+<area shape="rect" id="node1" title="Print error message." alt="" coords="1221,208,1347,235"/>
+<area shape="rect" id="node2" href="$validation_8h.html#a39e018e9177c69e7051ba8b1a7e7cd2d" title="Extract immidiate number from the instruction." alt="" coords="975,81,1173,108"/>
+<area shape="rect" id="node16" href="$validation_8h.html#aac54d5c00f1ea10a95bb05541d4b22c9" title="Handle lable define by adding the lable to the symbol table." alt="" coords="775,208,927,235"/>
+<area shape="rect" id="node20" href="$validation_8h.html#a0a6f56756207b9c16d20736098c57b1f" title="Handle lable error by printing an error message based on the error." alt="" coords="1003,284,1145,311"/>
+<area shape="rect" id="node3" href="$validation_8h.html#a81dd6d7982066025d98239c80e621953" title="check if the index of the direct operand is out of bounds" alt="" coords="777,5,924,32"/>
+<area shape="rect" id="node7" href="$bilder_8c.html#a02bdaced5ed29b8a4f4b0ede5c566d0b" title="This function is used to handle the case of direct index operand. it will encode the direct index ope..." alt="" coords="799,56,902,83"/>
+<area shape="rect" id="node15" href="$bilder_8c.html#aa9d0dd78e4decc1d601c819ec688c7b6" title="This function is used to handle the case of immediate operand. it will encode the immediate operand,..." alt="" coords="804,107,897,133"/>
+<area shape="rect" id="node4" href="$rounds_8h.html#a7a109141fdd10aee3c3680446563f562" title="The second round of the assembler. now we have all the symbols and we can encode the instructions of ..." alt="" coords="448,5,553,32"/>
+<area shape="rect" id="node5" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,123,199,149"/>
+<area shape="rect" id="node6" href="$assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,123,60,149"/>
+<area shape="rect" id="node8" href="$bilder_8c.html#acad5e22d5cb7ccbda6c217bd63100717" title="This function is used to handle the case of source operand. it will encode the source operand,..." alt="" coords="601,107,727,133"/>
+<area shape="rect" id="node14" href="$bilder_8c.html#a00848de3dfe3318931fb763fdec2869f" title="This function is used to handle the case of target operand. it will encode the target operand,..." alt="" coords="603,56,725,83"/>
+<area shape="rect" id="node9" href="$bilder_8c.html#aaa835797e1904edef894e1e73b903918" title="This function is used to handle the case of instruction. it will insert the instruction to the code t..." alt="" coords="455,129,546,156"/>
+<area shape="rect" id="node10" href="$validation_8h.html#ae2257b5716f42bf8265ab55d8f74b9c9" title="Check validation of operands number." alt="" coords="247,57,399,98"/>
+<area shape="rect" id="node11" href="$validation_8h.html#ac8fb5cb950ac90d557b5f046005688da" title="Check validation of operands type." alt="" coords="247,122,399,163"/>
+<area shape="rect" id="node12" href="$encoder_8c.html#a329e12ab97669c9a40afdc3f39a2625e" title="Encoded instruction based on the pattern of the instruction and the operands." alt="" coords="247,188,400,215"/>
+<area shape="rect" id="node13" href="$rounds_8h.html#a8d1601cdfa9ee1868a99f9f4cbc92cdb" title="The first round of the assembler. In this round we will go through the linked list and handle the lab..." alt="" coords="278,239,369,265"/>
+<area shape="rect" id="node17" href="$bilder_8c.html#a7d3f2dabed665b6991d348cd9b9eecdd" title="This function is used to handle the case of data definition. it will insert the data to the data tabl..." alt="" coords="625,259,703,285"/>
+<area shape="rect" id="node19" href="$bilder_8c.html#adc7c1d36ef80f1bec801aa44aae83ec3" title="This function is used to handle the case of string definition. it will insert the data to the data ta..." alt="" coords="621,208,707,235"/>
+<area shape="rect" id="node18" href="$bilder_8c.html#ac249210a8dde740ac716b4664a6dca0c" title="This function is used to handle the case of directive. it will call the right function to handle the ..." alt="" coords="461,239,540,265"/>
+</map>

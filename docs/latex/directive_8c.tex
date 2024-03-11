@@ -1,7 +1,8 @@
-\hypertarget{directive_8c}{}\doxysection{front/directive.c File Reference}
-\label{directive_8c}\index{front/directive.c@{front/directive.c}}
+\hypertarget{directive_8c}{}\doxysection{parse/directive.c File Reference}
+\label{directive_8c}\index{parse/directive.c@{parse/directive.c}}
 {\ttfamily \#include \char`\"{}heade\+Methods.\+h\char`\"{}}\newline
-Include dependency graph for directive.\+c\+:\nopagebreak
+Include dependency graph for directive.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -16,31 +17,31 @@ struct \mbox{\hyperlink{structLabelSet}{Label\+Set}}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{directive_8c_ab54926c39817863421a74e1ada92e412}{is\+Valid\+Label}} (char $\ast$name, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int need\+Colon, int \mbox{\hyperlink{structsymbol}{symbol}})
+int \mbox{\hyperlink{directive_8c_ab54926c39817863421a74e1ada92e412}{is\+Valid\+Label}} (char $\ast$name, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int need\+Colon, int \mbox{\hyperlink{structsymbol}{symbol}})
 \begin{DoxyCompactList}\small\item\em Function to check if a label is valid. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{directive_8c_ae5ec285c69a731057cf0c53c79537eee}{directive\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{directive_8c_ae5ec285c69a731057cf0c53c79537eee}{directive\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Function to check if a word is a directive and return the directive type. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{directive_8c_a15246dafea3587f742716cbed87e4d59}{handle\+Entry\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{directive_8c_a15246dafea3587f742716cbed87e4d59}{handle\+Entry\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Handles processing of the .entry directive. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{directive_8c_a5d78273d4feb195d7706ce9d6d7c004b}{add\+To\+Entry\+Label\+Set}} (const char $\ast$label)
 \begin{DoxyCompactList}\small\item\em Function to add a label to the entry label set. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{directive_8c_a1076c92ff396fe7c35841d34e32fdcbc}{is\+Entry\+Label}} (const char $\ast$label)
 \begin{DoxyCompactList}\small\item\em Function to check if a label is in the entry label set. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{directive_8c_ac2837c269e696fee0db3df8f8ab43e3d}{handle\+Extern\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{directive_8c_ac2837c269e696fee0db3df8f8ab43e3d}{handle\+Extern\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Handles processing of the .extern directive. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{directive_8c_a7b53e8771f21707e0dbea3b2c0cfe819}{handle\+String\+Directive}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{directive_8c_a7b53e8771f21707e0dbea3b2c0cfe819}{handle\+String\+Directive}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Handles processing of the .string directive. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{directive_8c_a59d683d34a59781f51a6f9eb02112caa}{spare\+Space}} (char $\ast$token)
 \begin{DoxyCompactList}\small\item\em Function to check if a label is in the external label set. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{directive_8c_a48e46c99fa59387602fd6551e7f23192}{check\+\_\+comas\+\_\+continus}} (char $\ast$line)
 \begin{DoxyCompactList}\small\item\em This function checks if there are multiple consecutive comas. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}{handle\+Data\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf}{handle\+Data\+Directive}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Handles processing of the .data directive. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{directive_8c_a856654e2325ad10e1561ce8b623a9df8}{check\+Comma\+Word}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{directive_8c_a856654e2325ad10e1561ce8b623a9df8}{check\+Comma\+Word}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Checks for a comma before a word. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{directive_8c_a68e22aa0e38c87c1d723ecb136aa9edd}{check\+Comma\+At\+End}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{directive_8c_a68e22aa0e38c87c1d723ecb136aa9edd}{check\+Comma\+At\+End}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Checks for a comma at the end of a line. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{directive_8c_a8b315535f4cc7908415c17737bf7c64a}{process\+Numeric\+Arguments}} (FILE $\ast$file, char $\ast$word, char $\ast$input, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{directive_8c_a8b315535f4cc7908415c17737bf7c64a}{process\+Numeric\+Arguments}} (FILE $\ast$file, char $\ast$word, char $\ast$input, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \item 
 int \mbox{\hyperlink{directive_8c_a4209c81388b14c5650d72bc2e92a5f91}{check\+Last\+Character}} (const char input\mbox{[}$\,$\mbox{]}, char error\+Char)
 \begin{DoxyCompactList}\small\item\em Function to check if the last character of a string is a specific character. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -71,7 +72,8 @@ Function to add a label to the entry label set.
 
 Definition at line 103 of file directive.\+c.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -100,7 +102,8 @@ int 0 if there are multiple consecutive comas, 1 otherwise
 
 Definition at line 189 of file directive.\+c.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -135,14 +138,16 @@ Checks for a comma at the end of a line.
 
 Definition at line 259 of file directive.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{directive_8c_a68e22aa0e38c87c1d723ecb136aa9edd_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -177,7 +182,8 @@ Checks for a comma before a word.
 
 Definition at line 241 of file directive.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -236,14 +242,16 @@ The Directive\+Type enumeration if the word is a directive; otherwise, -\/1.
 
 Definition at line 71 of file directive.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{directive_8c_ae5ec285c69a731057cf0c53c79537eee_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -278,14 +286,16 @@ Handles processing of the .data directive.
 
 Definition at line 208 of file directive.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{directive_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -320,14 +330,16 @@ Handles processing of the .entry directive.
 
 Definition at line 90 of file directive.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{directive_8c_a15246dafea3587f742716cbed87e4d59_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -362,14 +374,16 @@ Handles processing of the .extern directive.
 
 Definition at line 118 of file directive.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{directive_8c_ac2837c269e696fee0db3df8f8ab43e3d_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -400,14 +414,16 @@ Handles processing of the .string directive.
 
 Definition at line 141 of file directive.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{directive_8c_a7b53e8771f21707e0dbea3b2c0cfe819_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -433,7 +449,8 @@ Function to check if a label is in the entry label set.
 
 Definition at line 108 of file directive.\+c.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -468,7 +485,8 @@ Function to check if a label is valid.
 
 Definition at line 40 of file directive.\+c.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -485,14 +503,16 @@ Here is the caller graph for this function\+:\nopagebreak
 
 Definition at line 277 of file directive.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{directive_8c_a8b315535f4cc7908415c17737bf7c64a_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -518,7 +538,8 @@ Function to check if a label is in the external label set.
 
 Definition at line 173 of file directive.\+c.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

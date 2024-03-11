@@ -1,8 +1,8 @@
 <map id="extern_def" name="extern_def">
 <area shape="rect" id="node1" title="This function is used to handle the case of extern definition. it will insert the extern to the exter..." alt="" coords="5,81,97,108"/>
-<area shape="rect" id="node2" href="$structs__func_8c.html#a604f4a431dcdb24cdb2b23b7c2c5caa2" title="Create a external object." alt="" coords="145,5,269,32"/>
+<area shape="rect" id="node2" href="$structs__func_8h.html#a604f4a431dcdb24cdb2b23b7c2c5caa2" title="Create a external object." alt="" coords="145,5,269,32"/>
 <area shape="rect" id="node5" href="$structs_8h.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="334,107,459,133"/>
-<area shape="rect" id="node6" href="$structs__func_8c.html#ab3b1b13c2ffe7592565c333bb8ea67bc" title="Create a symbol object." alt="" coords="148,56,267,83"/>
+<area shape="rect" id="node6" href="$structs__func_8h.html#ab3b1b13c2ffe7592565c333bb8ea67bc" title="Create a symbol object." alt="" coords="148,56,267,83"/>
 <area shape="rect" id="node7" href="$trie_8c.html#a30321ace47f8c6fd4a373a31faade78d" title="This function is used to find a string in the trie." alt="" coords="156,157,259,184"/>
 <area shape="rect" id="node3" href="$trie_8c.html#a2a2a39a0906c717c226fd49622c43d02" title="This function is used to insert a string into the trie." alt="" coords="343,5,451,32"/>
 <area shape="rect" id="node4" href="$structs_8h.html#a9bc7ac767565a8034a20624470307b11" title="Print error message." alt="" coords="321,56,473,83"/>

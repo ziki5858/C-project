@@ -1,6 +1,6 @@
 <map id="handle_lable_error" name="handle_lable_error">
 <area shape="rect" id="node1" title="Handle lable error by printing an error message based on the error." alt="" coords="385,5,528,32"/>
-<area shape="rect" id="node2" href="$rounds_8c.html#a8d1601cdfa9ee1868a99f9f4cbc92cdb" title="The first round of the assembler. In this round we will go through the linked list and handle the lab..." alt="" coords="247,5,337,32"/>
+<area shape="rect" id="node2" href="$rounds_8h.html#a8d1601cdfa9ee1868a99f9f4cbc92cdb" title="The first round of the assembler. In this round we will go through the linked list and handle the lab..." alt="" coords="247,5,337,32"/>
 <area shape="rect" id="node3" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
 <area shape="rect" id="node4" href="$assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
 </map>

@@ -1,7 +1,8 @@
-\hypertarget{instrucstion_8c}{}\doxysection{front/instrucstion.c File Reference}
-\label{instrucstion_8c}\index{front/instrucstion.c@{front/instrucstion.c}}
+\hypertarget{instrucstion_8c}{}\doxysection{parse/instrucstion.c File Reference}
+\label{instrucstion_8c}\index{parse/instrucstion.c@{parse/instrucstion.c}}
 {\ttfamily \#include \char`\"{}heade\+Methods.\+h\char`\"{}}\newline
-Include dependency graph for instrucstion.\+c\+:\nopagebreak
+Include dependency graph for instrucstion.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,23 +12,23 @@ Include dependency graph for instrucstion.\+c\+:\nopagebreak
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{instrucstion_8c_ac000c3b3bdf79ee6e35e28d96a84a8d1}{register\+Operand}} (FILE $\ast$file, char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{instrucstion_8c_ac000c3b3bdf79ee6e35e28d96a84a8d1}{register\+Operand}} (FILE $\ast$file, char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Function to process a register operand. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{instrucstion_8c_aea0cf2429f2ebfeb1545c3dda091e072}{direct\+Index\+Operand}} (FILE $\ast$file, char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{instrucstion_8c_aea0cf2429f2ebfeb1545c3dda091e072}{direct\+Index\+Operand}} (FILE $\ast$file, char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Function to process a direct index operand. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{instrucstion_8c_a89c67e76f0753e7b13f450f044a84e3e}{immediate\+Number\+Operand}} (char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i)
+int \mbox{\hyperlink{instrucstion_8c_a89c67e76f0753e7b13f450f044a84e3e}{immediate\+Number\+Operand}} (char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i)
 \begin{DoxyCompactList}\small\item\em Function to process an immediate number operand. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{instrucstion_8c_a24dc457e2ba621e13b53c55106e272d9}{direct\+Label\+Operand}} (char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{instrucstion_8c_a24dc457e2ba621e13b53c55106e272d9}{direct\+Label\+Operand}} (char $\ast$word, char $\ast$token, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, int operand\+Count, int i, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Function to process a direct label operand. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}{process\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head, int operand\+Count)
+int \mbox{\hyperlink{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7}{process\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head, int operand\+Count)
 \begin{DoxyCompactList}\small\item\em Handles processing of operands for instructions. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6}{process\+Two\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6}{process\+Two\+Operands}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Handles processing of instructions with two operands. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{instrucstion_8c_ab3b600e768927750f73f08907f410181}{process\+One\+Operand}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{instrucstion_8c_ab3b600e768927750f73f08907f410181}{process\+One\+Operand}} (FILE $\ast$file, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Handles processing of instructions with one operand. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0}{process\+No\+Operands}} (struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}})
+int \mbox{\hyperlink{instrucstion_8c_a4ca2c34a863fc17db10031bfe5ccf0b0}{process\+No\+Operands}} (struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}})
 \begin{DoxyCompactList}\small\item\em Handles processing of instructions without operands. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{instrucstion_8c_a62b9aadfd2a314a92e7b35617ad05a59}{instruction\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{front_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
+int \mbox{\hyperlink{instrucstion_8c_a62b9aadfd2a314a92e7b35617ad05a59}{instruction\+Format}} (FILE $\ast$file, char $\ast$word, struct \mbox{\hyperlink{structpattern}{pattern}} $\ast$\mbox{\hyperlink{mainHeader_8h_ade4902a6519ea03936fcdd009ff193df}{data}}, struct \mbox{\hyperlink{structNode}{Node}} $\ast$$\ast$head)
 \begin{DoxyCompactList}\small\item\em Function to check if a word is an instruction and update the pattern structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -66,14 +67,16 @@ Function to process a direct index operand.
 
 Definition at line 54 of file instrucstion.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{instrucstion_8c_aea0cf2429f2ebfeb1545c3dda091e072_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -119,7 +122,8 @@ Here is the call graph for this function\+:\nopagebreak
 \includegraphics[width=303pt]{instrucstion_8c_a24dc457e2ba621e13b53c55106e272d9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -161,7 +165,8 @@ Here is the call graph for this function\+:\nopagebreak
 \includegraphics[width=332pt]{instrucstion_8c_a89c67e76f0753e7b13f450f044a84e3e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -196,14 +201,16 @@ Function to check if a word is an instruction and update the pattern structure.
 
 Definition at line 197 of file instrucstion.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{instrucstion_8c_a62b9aadfd2a314a92e7b35617ad05a59_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -232,7 +239,8 @@ Handles processing of instructions without operands.
 
 Definition at line 191 of file instrucstion.\+c.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -265,14 +273,16 @@ Handles processing of instructions with one operand.
 
 Definition at line 182 of file instrucstion.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{instrucstion_8c_ab3b600e768927750f73f08907f410181_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -307,14 +317,16 @@ Handles processing of operands for instructions.
 
 Definition at line 123 of file instrucstion.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{instrucstion_8c_aa5aebcb22236185a42e088063d0030e7_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -347,14 +359,16 @@ Handles processing of instructions with two operands.
 
 Definition at line 173 of file instrucstion.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{instrucstion_8c_a3a9b245c491e5d371d975156a60f32e6_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -395,14 +409,16 @@ Function to process a register operand.
 
 Definition at line 27 of file instrucstion.\+c.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{instrucstion_8c_ac000c3b3bdf79ee6e35e28d96a84a8d1_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

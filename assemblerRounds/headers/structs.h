@@ -1,9 +1,10 @@
 #ifndef ASSEMBLER_STRUCTURES
 #define ASSEMBLER_STRUCTURES
 
+#define WIDTH_OF_WORD 15
+#define MAX_ERROR_SIZE 300
 #define MAX_LINE_SIZE 81
 #define MAX_LABEL_SIZE 31
-#define MAX_ERROR_SIZE 300
 
 /**
  * @brief this struct is used to represent a line in the assembly file.
@@ -154,6 +155,9 @@ struct code {
   int num_of_lines;
   WordBin *lines;
   int line_in_file;
+};
+struct word_bin {
+  char word[WIDTH_OF_WORD]; /**/
 };
 #endif
 

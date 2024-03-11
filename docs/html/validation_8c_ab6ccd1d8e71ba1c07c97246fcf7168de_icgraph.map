@@ -1,9 +1,9 @@
 <map id="is_saved_word" name="is_saved_word">
 <area shape="rect" id="node1" title="Check if the word is a saved word." alt="" coords="579,31,697,57"/>
 <area shape="rect" id="node2" href="$preprossesor_8c.html#a66f0b8ca942d36a86be6246243deae92" title="this function creats a macro" alt="" coords="408,5,511,32"/>
-<area shape="rect" id="node6" href="$validation_8c.html#a0a6f56756207b9c16d20736098c57b1f" title="Handle lable error by printing an error message based on the error." alt="" coords="388,56,531,83"/>
+<area shape="rect" id="node6" href="$validation_8h.html#a0a6f56756207b9c16d20736098c57b1f" title="Handle lable error by printing an error message based on the error." alt="" coords="388,56,531,83"/>
 <area shape="rect" id="node3" href="$preprossesor_8c.html#a4937d5ec7c48d80fdb9cb24d94d68251" title="this function is the main function of the preprossesor, it opens the file, reads it line by line and ..." alt="" coords="247,5,340,32"/>
 <area shape="rect" id="node4" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,31,199,57"/>
 <area shape="rect" id="node5" href="$assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,31,60,57"/>
-<area shape="rect" id="node7" href="$rounds_8c.html#a8d1601cdfa9ee1868a99f9f4cbc92cdb" title="The first round of the assembler. In this round we will go through the linked list and handle the lab..." alt="" coords="248,56,339,83"/>
+<area shape="rect" id="node7" href="$rounds_8h.html#a8d1601cdfa9ee1868a99f9f4cbc92cdb" title="The first round of the assembler. In this round we will go through the linked list and handle the lab..." alt="" coords="248,56,339,83"/>
 </map>

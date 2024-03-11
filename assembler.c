@@ -20,11 +20,11 @@
  *
  */
 
-#include "front.h"
-#include "./back/back.h"
-#include "./back/memory.h"
-#include "./assemblerRounds/./headers/rounds.h"
-#include "./front/headeMethods.h"
+#include "mainHeader.h"
+#include "./end/print.h"
+#include "./end/memory.h"
+#include "./assemblerRounds/headers/rounds.h"
+#include "./parse/headeMethods.h"
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>

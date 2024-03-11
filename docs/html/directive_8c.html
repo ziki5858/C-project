@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Mmn14: front/directive.c File Reference</title>
+<title>Mmn14: parse/directive.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -94,9 +94,9 @@ $(document).ready(function(){initNavTree('directive_8c.html',''); initResizable(
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for directive.c:</div>
 <div class="dyncontent">
-<div class="center"><img src="directive_8c__incl.png" border="0" usemap="#afront_2directive_8c" alt=""/></div>
-<map name="afront_2directive_8c" id="afront_2directive_8c">
-<area shape="rect" title=" " alt="" coords="116,5,241,32"/>
+<div class="center"><img src="directive_8c__incl.png" border="0" usemap="#aparse_2directive_8c" alt=""/></div>
+<map name="aparse_2directive_8c" id="aparse_2directive_8c">
+<area shape="rect" title=" " alt="" coords="113,5,244,32"/>
 <area shape="rect" href="headeMethods_8h.html" title=" " alt="" coords="113,80,244,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,72,181"/>
 <area shape="rect" title=" " alt="" coords="97,155,167,181"/>
@@ -114,13 +114,13 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab54926c39817863421a74e1ada92e412"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#ab54926c39817863421a74e1ada92e412">isValidLabel</a> (char *name, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="front_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, int needColon, int <a class="el" href="structsymbol.html">symbol</a>)</td></tr>
+<tr class="memitem:ab54926c39817863421a74e1ada92e412"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#ab54926c39817863421a74e1ada92e412">isValidLabel</a> (char *name, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="mainHeader_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, int needColon, int <a class="el" href="structsymbol.html">symbol</a>)</td></tr>
 <tr class="memdesc:ab54926c39817863421a74e1ada92e412"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to check if a label is valid.  <a href="directive_8c.html#ab54926c39817863421a74e1ada92e412">More...</a><br /></td></tr>
 <tr class="separator:ab54926c39817863421a74e1ada92e412"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5ec285c69a731057cf0c53c79537eee"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee">directiveFormat</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="front_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
+<tr class="memitem:ae5ec285c69a731057cf0c53c79537eee"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee">directiveFormat</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="mainHeader_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
 <tr class="memdesc:ae5ec285c69a731057cf0c53c79537eee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to check if a word is a directive and return the directive type.  <a href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee">More...</a><br /></td></tr>
 <tr class="separator:ae5ec285c69a731057cf0c53c79537eee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15246dafea3587f742716cbed87e4d59"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a15246dafea3587f742716cbed87e4d59">handleEntryDirective</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="front_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
+<tr class="memitem:a15246dafea3587f742716cbed87e4d59"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a15246dafea3587f742716cbed87e4d59">handleEntryDirective</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="mainHeader_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
 <tr class="memdesc:a15246dafea3587f742716cbed87e4d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles processing of the .entry directive.  <a href="directive_8c.html#a15246dafea3587f742716cbed87e4d59">More...</a><br /></td></tr>
 <tr class="separator:a15246dafea3587f742716cbed87e4d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d78273d4feb195d7706ce9d6d7c004b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a5d78273d4feb195d7706ce9d6d7c004b">addToEntryLabelSet</a> (const char *label)</td></tr>
@@ -129,10 +129,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a1076c92ff396fe7c35841d34e32fdcbc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a1076c92ff396fe7c35841d34e32fdcbc">isEntryLabel</a> (const char *label)</td></tr>
 <tr class="memdesc:a1076c92ff396fe7c35841d34e32fdcbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to check if a label is in the entry label set.  <a href="directive_8c.html#a1076c92ff396fe7c35841d34e32fdcbc">More...</a><br /></td></tr>
 <tr class="separator:a1076c92ff396fe7c35841d34e32fdcbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2837c269e696fee0db3df8f8ab43e3d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#ac2837c269e696fee0db3df8f8ab43e3d">handleExternDirective</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="front_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
+<tr class="memitem:ac2837c269e696fee0db3df8f8ab43e3d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#ac2837c269e696fee0db3df8f8ab43e3d">handleExternDirective</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="mainHeader_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
 <tr class="memdesc:ac2837c269e696fee0db3df8f8ab43e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles processing of the .extern directive.  <a href="directive_8c.html#ac2837c269e696fee0db3df8f8ab43e3d">More...</a><br /></td></tr>
 <tr class="separator:ac2837c269e696fee0db3df8f8ab43e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b53e8771f21707e0dbea3b2c0cfe819"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a7b53e8771f21707e0dbea3b2c0cfe819">handleStringDirective</a> (FILE *file, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="front_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
+<tr class="memitem:a7b53e8771f21707e0dbea3b2c0cfe819"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a7b53e8771f21707e0dbea3b2c0cfe819">handleStringDirective</a> (FILE *file, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="mainHeader_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
 <tr class="memdesc:a7b53e8771f21707e0dbea3b2c0cfe819"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles processing of the .string directive.  <a href="directive_8c.html#a7b53e8771f21707e0dbea3b2c0cfe819">More...</a><br /></td></tr>
 <tr class="separator:a7b53e8771f21707e0dbea3b2c0cfe819"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59d683d34a59781f51a6f9eb02112caa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a59d683d34a59781f51a6f9eb02112caa">spareSpace</a> (char *token)</td></tr>
@@ -141,16 +141,16 @@ Functions</h2></td></tr>
 <tr class="memitem:a48e46c99fa59387602fd6551e7f23192"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a48e46c99fa59387602fd6551e7f23192">check_comas_continus</a> (char *line)</td></tr>
 <tr class="memdesc:a48e46c99fa59387602fd6551e7f23192"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if there are multiple consecutive comas.  <a href="directive_8c.html#a48e46c99fa59387602fd6551e7f23192">More...</a><br /></td></tr>
 <tr class="separator:a48e46c99fa59387602fd6551e7f23192"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad92ccce9c6a0fc6284c17e0c7bc977bf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf">handleDataDirective</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="front_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
+<tr class="memitem:ad92ccce9c6a0fc6284c17e0c7bc977bf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf">handleDataDirective</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="mainHeader_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
 <tr class="memdesc:ad92ccce9c6a0fc6284c17e0c7bc977bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles processing of the .data directive.  <a href="directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf">More...</a><br /></td></tr>
 <tr class="separator:ad92ccce9c6a0fc6284c17e0c7bc977bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a856654e2325ad10e1561ce8b623a9df8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a856654e2325ad10e1561ce8b623a9df8">checkCommaWord</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="front_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
+<tr class="memitem:a856654e2325ad10e1561ce8b623a9df8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a856654e2325ad10e1561ce8b623a9df8">checkCommaWord</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="mainHeader_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
 <tr class="memdesc:a856654e2325ad10e1561ce8b623a9df8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for a comma before a word.  <a href="directive_8c.html#a856654e2325ad10e1561ce8b623a9df8">More...</a><br /></td></tr>
 <tr class="separator:a856654e2325ad10e1561ce8b623a9df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68e22aa0e38c87c1d723ecb136aa9edd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a68e22aa0e38c87c1d723ecb136aa9edd">checkCommaAtEnd</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="front_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
+<tr class="memitem:a68e22aa0e38c87c1d723ecb136aa9edd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a68e22aa0e38c87c1d723ecb136aa9edd">checkCommaAtEnd</a> (FILE *file, char *word, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="mainHeader_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
 <tr class="memdesc:a68e22aa0e38c87c1d723ecb136aa9edd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for a comma at the end of a line.  <a href="directive_8c.html#a68e22aa0e38c87c1d723ecb136aa9edd">More...</a><br /></td></tr>
 <tr class="separator:a68e22aa0e38c87c1d723ecb136aa9edd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b315535f4cc7908415c17737bf7c64a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a8b315535f4cc7908415c17737bf7c64a">processNumericArguments</a> (FILE *file, char *word, char *input, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="front_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
+<tr class="memitem:a8b315535f4cc7908415c17737bf7c64a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a8b315535f4cc7908415c17737bf7c64a">processNumericArguments</a> (FILE *file, char *word, char *input, struct <a class="el" href="structpattern.html">pattern</a> *<a class="el" href="mainHeader_8h.html#ade4902a6519ea03936fcdd009ff193df">data</a>, struct <a class="el" href="structNode.html">Node</a> **head)</td></tr>
 <tr class="separator:a8b315535f4cc7908415c17737bf7c64a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4209c81388b14c5650d72bc2e92a5f91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="directive_8c.html#a4209c81388b14c5650d72bc2e92a5f91">checkLastCharacter</a> (const char input[], char errorChar)</td></tr>
 <tr class="memdesc:a4209c81388b14c5650d72bc2e92a5f91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to check if the last character of a string is a specific character.  <a href="directive_8c.html#a4209c81388b14c5650d72bc2e92a5f91">More...</a><br /></td></tr>
@@ -195,14 +195,14 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="Function to add a label to the entry label set." alt="" coords="1341,31,1492,57"/>
 <area shape="rect" href="define_8c.html#a9b934e4c8638e4436a0b6b440cea6fc3" title="Function to check if a word is a define and update the pattern structure." alt="" coords="1156,5,1264,32"/>
 <area shape="rect" href="directive_8c.html#ac2837c269e696fee0db3df8f8ab43e3d" title="Handles processing of the .extern directive." alt="" coords="1127,56,1293,83"/>
-<area shape="rect" href="front_8c.html#ad64629aa668f0f6ed15bafc208c1d4ea" title="Function to process the .define directive." alt="" coords="783,5,897,32"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,31,727,57"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,31,556,57"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,31,409,57"/>
+<area shape="rect" href="headeMethods_8h.html#ad64629aa668f0f6ed15bafc208c1d4ea" title="Function to process the .define directive." alt="" coords="783,5,897,32"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,31,727,57"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,31,556,57"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,31,409,57"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,31,199,57"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,31,60,57"/>
 <area shape="rect" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,56,1079,83"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,56,905,83"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,56,905,83"/>
 </map>
 </div>
 
@@ -242,10 +242,10 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="This function checks if there are multiple consecutive comas." alt="" coords="1331,5,1503,32"/>
 <area shape="rect" href="directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf" title="Handles processing of the .data directive." alt="" coords="1127,5,1283,32"/>
 <area shape="rect" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,5,1079,32"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
 </map>
@@ -310,9 +310,9 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="directive_8c_a68e22aa0e38c87c1d723ecb136aa9edd_cgraph.png" border="0" usemap="#adirective_8c_a68e22aa0e38c87c1d723ecb136aa9edd_cgraph" alt=""/></div>
 <map name="adirective_8c_a68e22aa0e38c87c1d723ecb136aa9edd_cgraph" id="adirective_8c_a68e22aa0e38c87c1d723ecb136aa9edd_cgraph">
 <area shape="rect" title="Checks for a comma at the end of a line." alt="" coords="5,5,155,32"/>
-<area shape="rect" href="front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="203,5,267,32"/>
-<area shape="rect" href="front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="315,5,408,32"/>
-<area shape="rect" href="front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="456,5,553,32"/>
+<area shape="rect" href="headeMethods_8h.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="203,5,267,32"/>
+<area shape="rect" href="parse_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="315,5,408,32"/>
+<area shape="rect" href="parse_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="456,5,553,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -323,10 +323,10 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="Checks for a comma at the end of a line." alt="" coords="1331,5,1480,32"/>
 <area shape="rect" href="directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf" title="Handles processing of the .data directive." alt="" coords="1127,5,1283,32"/>
 <area shape="rect" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,5,1079,32"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
 </map>
@@ -391,9 +391,9 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="directive_8c_a856654e2325ad10e1561ce8b623a9df8_cgraph.png" border="0" usemap="#adirective_8c_a856654e2325ad10e1561ce8b623a9df8_cgraph" alt=""/></div>
 <map name="adirective_8c_a856654e2325ad10e1561ce8b623a9df8_cgraph" id="adirective_8c_a856654e2325ad10e1561ce8b623a9df8_cgraph">
 <area shape="rect" title="Checks for a comma before a word." alt="" coords="5,5,149,32"/>
-<area shape="rect" href="front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="197,5,261,32"/>
-<area shape="rect" href="front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="309,5,403,32"/>
-<area shape="rect" href="front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="451,5,548,32"/>
+<area shape="rect" href="headeMethods_8h.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="197,5,261,32"/>
+<area shape="rect" href="parse_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="309,5,403,32"/>
+<area shape="rect" href="parse_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="451,5,548,32"/>
 </map>
 </div>
 
@@ -503,11 +503,11 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="directive_8c.html#a7b53e8771f21707e0dbea3b2c0cfe819" title="Handles processing of the .string directive." alt="" coords="181,284,343,311"/>
 <area shape="rect" href="directive_8c.html#a48e46c99fa59387602fd6551e7f23192" title="This function checks if there are multiple consecutive comas." alt="" coords="407,132,579,159"/>
 <area shape="rect" href="directive_8c.html#a68e22aa0e38c87c1d723ecb136aa9edd" title="Checks for a comma at the end of a line." alt="" coords="418,183,567,209"/>
-<area shape="rect" href="front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="659,233,723,260"/>
+<area shape="rect" href="headeMethods_8h.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="659,233,723,260"/>
 <area shape="rect" href="directive_8c.html#a8b315535f4cc7908415c17737bf7c64a" title=" " alt="" coords="393,31,592,57"/>
 <area shape="rect" href="directive_8c.html#a59d683d34a59781f51a6f9eb02112caa" title="Function to check if a label is in the external label set." alt="" coords="444,233,541,260"/>
-<area shape="rect" href="front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="791,233,884,260"/>
-<area shape="rect" href="front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="932,233,1029,260"/>
+<area shape="rect" href="parse_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="791,233,884,260"/>
+<area shape="rect" href="parse_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="932,233,1029,260"/>
 <area shape="rect" href="directive_8c.html#a1076c92ff396fe7c35841d34e32fdcbc" title="Function to check if a label is in the entry label set." alt="" coords="640,56,743,83"/>
 <area shape="rect" href="define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a string is numeric." alt="" coords="647,5,735,32"/>
 <area shape="rect" href="directive_8c.html#a5d78273d4feb195d7706ce9d6d7c004b" title="Function to add a label to the entry label set." alt="" coords="417,487,568,513"/>
@@ -519,10 +519,10 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="directive_8c_ae5ec285c69a731057cf0c53c79537eee_icgraph.png" border="0" usemap="#adirective_8c_ae5ec285c69a731057cf0c53c79537eee_icgraph" alt=""/></div>
 <map name="adirective_8c_ae5ec285c69a731057cf0c53c79537eee_icgraph" id="adirective_8c_ae5ec285c69a731057cf0c53c79537eee_icgraph">
 <area shape="rect" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,5,1079,32"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
 </map>
@@ -589,11 +589,11 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Handles processing of the .data directive." alt="" coords="5,107,161,133"/>
 <area shape="rect" href="directive_8c.html#a48e46c99fa59387602fd6551e7f23192" title="This function checks if there are multiple consecutive comas." alt="" coords="223,5,395,32"/>
 <area shape="rect" href="directive_8c.html#a68e22aa0e38c87c1d723ecb136aa9edd" title="Checks for a comma at the end of a line." alt="" coords="234,56,383,83"/>
-<area shape="rect" href="front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="475,107,539,133"/>
+<area shape="rect" href="headeMethods_8h.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="475,107,539,133"/>
 <area shape="rect" href="directive_8c.html#a8b315535f4cc7908415c17737bf7c64a" title=" " alt="" coords="209,157,408,184"/>
 <area shape="rect" href="directive_8c.html#a59d683d34a59781f51a6f9eb02112caa" title="Function to check if a label is in the external label set." alt="" coords="260,208,357,235"/>
-<area shape="rect" href="front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="607,107,700,133"/>
-<area shape="rect" href="front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="748,107,845,133"/>
+<area shape="rect" href="parse_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="607,107,700,133"/>
+<area shape="rect" href="parse_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="748,107,845,133"/>
 <area shape="rect" href="directive_8c.html#a1076c92ff396fe7c35841d34e32fdcbc" title="Function to check if a label is in the entry label set." alt="" coords="456,157,559,184"/>
 <area shape="rect" href="define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a string is numeric." alt="" coords="463,208,551,235"/>
 </map>
@@ -605,10 +605,10 @@ Here is the caller graph for this function:</div>
 <map name="adirective_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf_icgraph" id="adirective_8c_ad92ccce9c6a0fc6284c17e0c7bc977bf_icgraph">
 <area shape="rect" title="Handles processing of the .data directive." alt="" coords="1127,5,1283,32"/>
 <area shape="rect" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,5,1079,32"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
 </map>
@@ -673,10 +673,10 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="directive_8c_a15246dafea3587f742716cbed87e4d59_cgraph.png" border="0" usemap="#adirective_8c_a15246dafea3587f742716cbed87e4d59_cgraph" alt=""/></div>
 <map name="adirective_8c_a15246dafea3587f742716cbed87e4d59_cgraph" id="adirective_8c_a15246dafea3587f742716cbed87e4d59_cgraph">
 <area shape="rect" title="Handles processing of the .entry directive." alt="" coords="5,31,164,57"/>
-<area shape="rect" href="front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="230,5,294,32"/>
+<area shape="rect" href="headeMethods_8h.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="230,5,294,32"/>
 <area shape="rect" href="directive_8c.html#ab54926c39817863421a74e1ada92e412" title="Function to check if a label is valid." alt="" coords="212,56,312,83"/>
-<area shape="rect" href="front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="360,5,453,32"/>
-<area shape="rect" href="front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="501,5,599,32"/>
+<area shape="rect" href="parse_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="360,5,453,32"/>
+<area shape="rect" href="parse_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="501,5,599,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -686,10 +686,10 @@ Here is the caller graph for this function:</div>
 <map name="adirective_8c_a15246dafea3587f742716cbed87e4d59_icgraph" id="adirective_8c_a15246dafea3587f742716cbed87e4d59_icgraph">
 <area shape="rect" title="Handles processing of the .entry directive." alt="" coords="1127,5,1285,32"/>
 <area shape="rect" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,5,1079,32"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
 </map>
@@ -755,10 +755,10 @@ Here is the call graph for this function:</div>
 <map name="adirective_8c_ac2837c269e696fee0db3df8f8ab43e3d_cgraph" id="adirective_8c_ac2837c269e696fee0db3df8f8ab43e3d_cgraph">
 <area shape="rect" title="Handles processing of the .extern directive." alt="" coords="5,56,172,83"/>
 <area shape="rect" href="directive_8c.html#a5d78273d4feb195d7706ce9d6d7c004b" title="Function to add a label to the entry label set." alt="" coords="220,5,371,32"/>
-<area shape="rect" href="front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="263,56,327,83"/>
+<area shape="rect" href="headeMethods_8h.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="263,56,327,83"/>
 <area shape="rect" href="directive_8c.html#ab54926c39817863421a74e1ada92e412" title="Function to check if a label is valid." alt="" coords="245,107,345,133"/>
-<area shape="rect" href="front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="419,56,512,83"/>
-<area shape="rect" href="front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="560,56,657,83"/>
+<area shape="rect" href="parse_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="419,56,512,83"/>
+<area shape="rect" href="parse_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="560,56,657,83"/>
 </map>
 </div>
 <div class="dynheader">
@@ -768,10 +768,10 @@ Here is the caller graph for this function:</div>
 <map name="adirective_8c_ac2837c269e696fee0db3df8f8ab43e3d_icgraph" id="adirective_8c_ac2837c269e696fee0db3df8f8ab43e3d_icgraph">
 <area shape="rect" title="Handles processing of the .extern directive." alt="" coords="1127,5,1293,32"/>
 <area shape="rect" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,5,1079,32"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
 </map>
@@ -828,10 +828,10 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="directive_8c_a7b53e8771f21707e0dbea3b2c0cfe819_cgraph.png" border="0" usemap="#adirective_8c_a7b53e8771f21707e0dbea3b2c0cfe819_cgraph" alt=""/></div>
 <map name="adirective_8c_a7b53e8771f21707e0dbea3b2c0cfe819_cgraph" id="adirective_8c_a7b53e8771f21707e0dbea3b2c0cfe819_cgraph">
 <area shape="rect" title="Handles processing of the .string directive." alt="" coords="5,31,168,57"/>
-<area shape="rect" href="front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="233,5,297,32"/>
+<area shape="rect" href="headeMethods_8h.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="233,5,297,32"/>
 <area shape="rect" href="directive_8c.html#a59d683d34a59781f51a6f9eb02112caa" title="Function to check if a label is in the external label set." alt="" coords="216,56,313,83"/>
-<area shape="rect" href="front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="361,5,455,32"/>
-<area shape="rect" href="front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="503,5,600,32"/>
+<area shape="rect" href="parse_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="361,5,455,32"/>
+<area shape="rect" href="parse_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="503,5,600,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -841,10 +841,10 @@ Here is the caller graph for this function:</div>
 <map name="adirective_8c_a7b53e8771f21707e0dbea3b2c0cfe819_icgraph" id="adirective_8c_a7b53e8771f21707e0dbea3b2c0cfe819_icgraph">
 <area shape="rect" title="Handles processing of the .string directive." alt="" coords="1127,5,1289,32"/>
 <area shape="rect" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,5,1079,32"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
 </map>
@@ -886,10 +886,10 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="directive_8c.html#a8b315535f4cc7908415c17737bf7c64a" title=" " alt="" coords="1331,5,1529,32"/>
 <area shape="rect" href="directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf" title="Handles processing of the .data directive." alt="" coords="1127,5,1283,32"/>
 <area shape="rect" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,5,1079,32"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
 </map>
@@ -963,13 +963,13 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="headeMethods_8h.html#ab3b600e768927750f73f08907f410181" title="Handles processing of instructions with one operand." alt="" coords="1152,56,1305,83"/>
 <area shape="rect" href="headeMethods_8h.html#a3a9b245c491e5d371d975156a60f32e6" title="Handles processing of instructions with two operands." alt="" coords="1149,107,1308,133"/>
 <area shape="rect" href="headeMethods_8h.html#a62b9aadfd2a314a92e7b35617ad05a59" title="Function to check if a word is an instruction and update the pattern structure." alt="" coords="964,107,1101,133"/>
-<area shape="rect" href="front_8c.html#a6c9769c574f45aa0d47468334c624e7c" title="Function to process a generic instruction." alt="" coords="775,107,916,133"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,132,727,159"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,132,556,159"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,132,409,159"/>
+<area shape="rect" href="headeMethods_8h.html#a6c9769c574f45aa0d47468334c624e7c" title="Function to process a generic instruction." alt="" coords="775,107,916,133"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,132,727,159"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,132,556,159"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,132,409,159"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,132,199,159"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,132,60,159"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="967,157,1098,184"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="967,157,1098,184"/>
 </map>
 </div>
 
@@ -1027,10 +1027,10 @@ Here is the call graph for this function:</div>
 <map name="adirective_8c_a8b315535f4cc7908415c17737bf7c64a_cgraph" id="adirective_8c_a8b315535f4cc7908415c17737bf7c64a_cgraph">
 <area shape="rect" title=" " alt="" coords="5,56,204,83"/>
 <area shape="rect" href="directive_8c.html#a1076c92ff396fe7c35841d34e32fdcbc" title="Function to check if a label is in the entry label set." alt="" coords="252,5,355,32"/>
-<area shape="rect" href="front_8c.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="271,56,335,83"/>
+<area shape="rect" href="headeMethods_8h.html#aae39fecfe9b53c1dc0d78bbe36f679b9" title="Function to check if a word is an error and update the pattern structure." alt="" coords="271,56,335,83"/>
 <area shape="rect" href="define_8c.html#a529fe24170a61c22c810022e539206c3" title="Function to check if a string is numeric." alt="" coords="259,107,347,133"/>
-<area shape="rect" href="front_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="403,56,496,83"/>
-<area shape="rect" href="front_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="544,56,641,83"/>
+<area shape="rect" href="parse_8c.html#a88ab37900f78f113703f240ce43e8e3c" title="Inserts a new node at the end of the linked list." alt="" coords="403,56,496,83"/>
+<area shape="rect" href="parse_8c.html#a9262b8182e78a43b156ffc09247db7fa" title="Creates a new linked list node with the given data." alt="" coords="544,56,641,83"/>
 </map>
 </div>
 <div class="dynheader">
@@ -1041,10 +1041,10 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="1331,5,1529,32"/>
 <area shape="rect" href="directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf" title="Handles processing of the .data directive." alt="" coords="1127,5,1283,32"/>
 <area shape="rect" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,5,1079,32"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,5,905,32"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,5,727,32"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,5,556,32"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,5,409,32"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,5,199,32"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,5,60,32"/>
 </map>
@@ -1086,10 +1086,10 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="directive_8c.html#ad92ccce9c6a0fc6284c17e0c7bc977bf" title="Handles processing of the .data directive." alt="" coords="1130,5,1286,32"/>
 <area shape="rect" href="directive_8c.html#a7b53e8771f21707e0dbea3b2c0cfe819" title="Handles processing of the .string directive." alt="" coords="1127,56,1289,83"/>
 <area shape="rect" href="directive_8c.html#ae5ec285c69a731057cf0c53c79537eee" title="Function to check if a word is a directive and return the directive type." alt="" coords="953,31,1079,57"/>
-<area shape="rect" href="front_8c.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,31,905,57"/>
-<area shape="rect" href="front_8c.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,31,727,57"/>
-<area shape="rect" href="front_8c.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,31,556,57"/>
-<area shape="rect" href="front_8c.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,31,409,57"/>
+<area shape="rect" href="headeMethods_8h.html#a0440372907b5c2e53ad21de725ffafec" title="Function to process a generic directive." alt="" coords="775,31,905,57"/>
+<area shape="rect" href="headeMethods_8h.html#afe3366f2706fc967b47458f213b22d5e" title="Categorizes a word based on its type and updates the pattern structure." alt="" coords="604,31,727,57"/>
+<area shape="rect" href="headeMethods_8h.html#ac26aaf7e0131a5ccdb4c14ae928aa87d" title="Processes a line of assembly language text, tokenizes words, and inserts nodes into the linked list." alt="" coords="457,31,556,57"/>
+<area shape="rect" href="headeMethods_8h.html#a2bc68f82a4715dc30ae2c450eeb1e629" title="Processes an entire file of assembly language text and builds a linked list." alt="" coords="247,31,409,57"/>
 <area shape="rect" href="assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,31,199,57"/>
 <area shape="rect" href="assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,31,60,57"/>
 </map>
@@ -1119,7 +1119,7 @@ Here is the caller graph for this function:</div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_eed86db7529606514d497fbeb937baf1.html">front</a></li><li class="navelem"><a class="el" href="directive_8c.html">directive.c</a></li>
+    <li class="navelem"><a class="el" href="dir_63c2c83ba71ed26bb58d748fa603720d.html">parse</a></li><li class="navelem"><a class="el" href="directive_8c.html">directive.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

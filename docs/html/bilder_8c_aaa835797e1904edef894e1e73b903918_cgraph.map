@@ -1,10 +1,10 @@
 <map id="instruction" name="instruction">
 <area shape="rect" id="node1" title="This function is used to handle the case of instruction. it will insert the instruction to the code t..." alt="" coords="5,227,96,254"/>
-<area shape="rect" id="node2" href="$validation_8c.html#a3e3cebcf58082af1066e47d05a822c18" title="Allocate memory for instructions in the pattern struct, according to the number of operands and the t..." alt="" coords="144,5,305,47"/>
-<area shape="rect" id="node4" href="$validation_8c.html#ae2257b5716f42bf8265ab55d8f74b9c9" title="Check validation of operands number." alt="" coords="149,71,301,112"/>
-<area shape="rect" id="node5" href="$validation_8c.html#ac8fb5cb950ac90d557b5f046005688da" title="Check validation of operands type." alt="" coords="149,136,301,177"/>
+<area shape="rect" id="node2" href="$validation_8h.html#a3e3cebcf58082af1066e47d05a822c18" title="Allocate memory for instructions in the pattern struct, according to the number of operands and the t..." alt="" coords="144,5,305,47"/>
+<area shape="rect" id="node4" href="$validation_8h.html#ae2257b5716f42bf8265ab55d8f74b9c9" title="Check validation of operands number." alt="" coords="149,71,301,112"/>
+<area shape="rect" id="node5" href="$validation_8h.html#ac8fb5cb950ac90d557b5f046005688da" title="Check validation of operands type." alt="" coords="149,136,301,177"/>
 <area shape="rect" id="node6" href="$encoder_8c.html#a329e12ab97669c9a40afdc3f39a2625e" title="Encoded instruction based on the pattern of the instruction and the operands." alt="" coords="581,347,734,374"/>
-<area shape="rect" id="node9" href="$validation_8c.html#aac54d5c00f1ea10a95bb05541d4b22c9" title="Handle lable define by adding the lable to the symbol table." alt="" coords="353,249,505,275"/>
+<area shape="rect" id="node9" href="$validation_8h.html#aac54d5c00f1ea10a95bb05541d4b22c9" title="Handle lable define by adding the lable to the symbol table." alt="" coords="353,249,505,275"/>
 <area shape="rect" id="node12" href="$structs_8h.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="823,145,948,171"/>
 <area shape="rect" id="node16" href="$bilder_8c.html#acad5e22d5cb7ccbda6c217bd63100717" title="This function is used to handle the case of source operand. it will encode the source operand,..." alt="" coords="162,474,287,501"/>
 <area shape="rect" id="node26" href="$bilder_8c.html#a00848de3dfe3318931fb763fdec2869f" title="This function is used to handle the case of target operand. it will encode the target operand,..." alt="" coords="164,423,285,450"/>
@@ -12,7 +12,7 @@
 <area shape="rect" id="node3" href="$validation_8c.html#a9bc7ac767565a8034a20624470307b11" title="Print error message." alt="" coords="353,13,505,39"/>
 <area shape="rect" id="node7" href="$structs_8h.html#a9bc7ac767565a8034a20624470307b11" title="Print error message." alt="" coords="809,347,961,374"/>
 <area shape="rect" id="node8" href="$encoder_8c.html#a0be324d0748f78ad58808205ec37bbf3" title="Convert number to binary string." alt="" coords="1031,474,1146,501"/>
-<area shape="rect" id="node10" href="$structs__func_8c.html#ab3b1b13c2ffe7592565c333bb8ea67bc" title="Create a symbol object." alt="" coords="598,195,717,222"/>
+<area shape="rect" id="node10" href="$structs__func_8h.html#ab3b1b13c2ffe7592565c333bb8ea67bc" title="Create a symbol object." alt="" coords="598,195,717,222"/>
 <area shape="rect" id="node13" href="$trie_8c.html#a30321ace47f8c6fd4a373a31faade78d" title="This function is used to find a string in the trie." alt="" coords="834,246,937,273"/>
 <area shape="rect" id="node15" href="$validation_8c.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="823,297,948,323"/>
 <area shape="rect" id="node11" href="$trie_8c.html#a2a2a39a0906c717c226fd49622c43d02" title="This function is used to insert a string into the trie." alt="" coords="831,195,939,222"/>
@@ -23,7 +23,7 @@
 <area shape="rect" id="node23" href="$bilder_8c.html#afb83b0aab81aa2646c1a1e8ab2b4838a" title="This function is used to handle the case of register. it will encode the register,..." alt="" coords="364,550,495,577"/>
 <area shape="rect" id="node18" href="$encoder_8c.html#a9d6485eee7bd29a18a5cd2d0f854ba48" title="Encoded data." alt="" coords="601,499,714,526"/>
 <area shape="rect" id="node20" href="$encoder_8c.html#ab5d697d299b25fafae120ba695e8e426" title="Encoded immidiate number." alt="" coords="553,449,761,475"/>
-<area shape="rect" id="node21" href="$validation_8c.html#a39e018e9177c69e7051ba8b1a7e7cd2d" title="Extract immidiate number from the instruction." alt="" coords="558,398,757,425"/>
+<area shape="rect" id="node21" href="$validation_8h.html#a39e018e9177c69e7051ba8b1a7e7cd2d" title="Extract immidiate number from the instruction." alt="" coords="558,398,757,425"/>
 <area shape="rect" id="node24" href="$encoder_8c.html#abfa816799aeeddcc30361dca6776b2b0" title="Encoded registers." alt="" coords="587,550,728,577"/>
 <area shape="rect" id="node25" href="$encoder_8c.html#aef0173c0f117f19b3395e740e283cb99" title="Encoded register." alt="" coords="818,550,953,577"/>
 </map>

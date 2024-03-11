@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "structs.h"
-#include "../../front.h"
+#include "../../mainHeader.h"
 #define WIDTH_OF_WORD 15
 
 

@@ -1,8 +1,8 @@
-<map id="front/headeMethods.h" name="front/headeMethods.h">
-<area shape="rect" id="node1" title=" " alt="" coords="242,5,407,32"/>
+<map id="parse/headeMethods.h" name="parse/headeMethods.h">
+<area shape="rect" id="node1" title=" " alt="" coords="247,5,418,32"/>
 <area shape="rect" id="node2" href="$assembler_8c.html" title="This program is an assembler for the assembly language that was given in the course...." alt="" coords="5,80,105,107"/>
-<area shape="rect" id="node3" href="$define_8c.html" title=" " alt="" coords="129,80,237,107"/>
-<area shape="rect" id="node4" href="$directive_8c.html" title=" " alt="" coords="262,80,387,107"/>
-<area shape="rect" id="node5" href="$front_8c.html" title=" " alt="" coords="411,80,510,107"/>
-<area shape="rect" id="node6" href="$instrucstion_8c.html" title=" " alt="" coords="534,80,678,107"/>
+<area shape="rect" id="node3" href="$define_8c.html" title=" " alt="" coords="129,80,243,107"/>
+<area shape="rect" id="node4" href="$directive_8c.html" title=" " alt="" coords="267,80,398,107"/>
+<area shape="rect" id="node5" href="$instrucstion_8c.html" title=" " alt="" coords="422,80,571,107"/>
+<area shape="rect" id="node6" href="$parse_8c.html" title=" " alt="" coords="595,80,705,107"/>
 </map>

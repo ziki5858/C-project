@@ -1,6 +1,6 @@
 <map id="define" name="define">
 <area shape="rect" id="node1" title="This function is used to handle the case of define." alt="" coords="5,107,68,133"/>
-<area shape="rect" id="node2" href="$structs__func_8c.html#aa036fc362052cd9b0c1fa9e7d8bc6612" title="Create a constant object." alt="" coords="116,56,243,83"/>
+<area shape="rect" id="node2" href="$structs__func_8h.html#aa036fc362052cd9b0c1fa9e7d8bc6612" title="Create a constant object." alt="" coords="116,56,243,83"/>
 <area shape="rect" id="node5" href="$structs_8h.html#ae86ea6e30277962226bee129b5a8e007" title="Print error message." alt="" coords="307,107,433,133"/>
 <area shape="rect" id="node6" href="$trie_8c.html#a30321ace47f8c6fd4a373a31faade78d" title="This function is used to find a string in the trie." alt="" coords="128,157,231,184"/>
 <area shape="rect" id="node3" href="$trie_8c.html#a2a2a39a0906c717c226fd49622c43d02" title="This function is used to insert a string into the trie." alt="" coords="316,5,424,32"/>

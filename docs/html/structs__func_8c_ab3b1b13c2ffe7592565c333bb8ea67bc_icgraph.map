@@ -2,15 +2,15 @@
 <area shape="rect" id="node1" title="Create a symbol object." alt="" coords="925,56,1044,83"/>
 <area shape="rect" id="node2" href="$bilder_8c.html#a659ba63d2ee204703597eb6cc0e06a21" title="This function is used to handle the case of entry definition. it will insert the entry to the entry t..." alt="" coords="759,5,843,32"/>
 <area shape="rect" id="node7" href="$bilder_8c.html#ac120f9f7295bddb3c11e7580f0ff4062" title="This function is used to handle the case of extern definition. it will insert the extern to the exter..." alt="" coords="755,56,847,83"/>
-<area shape="rect" id="node8" href="$validation_8c.html#aac54d5c00f1ea10a95bb05541d4b22c9" title="Handle lable define by adding the lable to the symbol table." alt="" coords="725,132,877,159"/>
+<area shape="rect" id="node8" href="$validation_8h.html#aac54d5c00f1ea10a95bb05541d4b22c9" title="Handle lable define by adding the lable to the symbol table." alt="" coords="725,132,877,159"/>
 <area shape="rect" id="node3" href="$bilder_8c.html#ac249210a8dde740ac716b4664a6dca0c" title="This function is used to handle the case of directive. it will call the right function to handle the ..." alt="" coords="423,56,501,83"/>
-<area shape="rect" id="node4" href="$rounds_8c.html#a8d1601cdfa9ee1868a99f9f4cbc92cdb" title="The first round of the assembler. In this round we will go through the linked list and handle the lab..." alt="" coords="247,81,337,108"/>
+<area shape="rect" id="node4" href="$rounds_8h.html#a8d1601cdfa9ee1868a99f9f4cbc92cdb" title="The first round of the assembler. In this round we will go through the linked list and handle the lab..." alt="" coords="247,81,337,108"/>
 <area shape="rect" id="node5" href="$assembler_8c.html#a39da808ec5bb413e291a597674a53de8" title="This function is the main function of the assembler, it calls all the other functions in the program." alt="" coords="108,81,199,108"/>
 <area shape="rect" id="node6" href="$assembler_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="This is the main function of the program, it calls the assembler function for each file that was give..." alt="" coords="5,81,60,108"/>
 <area shape="rect" id="node9" href="$bilder_8c.html#a7d3f2dabed665b6991d348cd9b9eecdd" title="This function is used to handle the case of data definition. it will insert the data to the data tabl..." alt="" coords="593,107,671,133"/>
 <area shape="rect" id="node10" href="$bilder_8c.html#aaa835797e1904edef894e1e73b903918" title="This function is used to handle the case of instruction. it will insert the instruction to the code t..." alt="" coords="587,219,677,245"/>
 <area shape="rect" id="node14" href="$bilder_8c.html#adc7c1d36ef80f1bec801aa44aae83ec3" title="This function is used to handle the case of string definition. it will insert the data to the data ta..." alt="" coords="589,157,675,184"/>
-<area shape="rect" id="node11" href="$validation_8c.html#ae2257b5716f42bf8265ab55d8f74b9c9" title="Check validation of operands number." alt="" coords="386,158,538,199"/>
-<area shape="rect" id="node12" href="$validation_8c.html#ac8fb5cb950ac90d557b5f046005688da" title="Check validation of operands type." alt="" coords="386,223,538,265"/>
+<area shape="rect" id="node11" href="$validation_8h.html#ae2257b5716f42bf8265ab55d8f74b9c9" title="Check validation of operands number." alt="" coords="386,158,538,199"/>
+<area shape="rect" id="node12" href="$validation_8h.html#ac8fb5cb950ac90d557b5f046005688da" title="Check validation of operands type." alt="" coords="386,223,538,265"/>
 <area shape="rect" id="node13" href="$encoder_8c.html#a329e12ab97669c9a40afdc3f39a2625e" title="Encoded instruction based on the pattern of the instruction and the operands." alt="" coords="385,289,539,316"/>
 </map>
