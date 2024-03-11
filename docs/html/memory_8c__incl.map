@@ -1,5 +1,5 @@
-<map id="back/memory.c" name="back/memory.c">
-<area shape="rect" id="node1" title="This file contains the implementation of the functions that used to handle the memory of the assemble..." alt="" coords="167,5,288,32"/>
+<map id="end/memory.c" name="end/memory.c">
+<area shape="rect" id="node1" title="This file contains the implementation of the functions that used to handle the memory of the assemble..." alt="" coords="170,5,285,32"/>
 <area shape="rect" id="node2" href="$mainHeader_8h.html" title=" " alt="" coords="165,80,290,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="5,162,76,189"/>
 <area shape="rect" id="node9" href="$memory_8h.html" title=" " alt="" coords="315,80,401,107"/>

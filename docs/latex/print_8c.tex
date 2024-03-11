@@ -1,0 +1,283 @@
+\hypertarget{print_8c}{}\doxysection{end/print.c File Reference}
+\label{print_8c}\index{end/print.c@{end/print.c}}
+{\ttfamily \#include \char`\"{}../main\+Header.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}print.\+h\char`\"{}}\newline
+Include dependency graph for print.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{print_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{print_8c_a417c3b4ae314867406570da60708a861}{to\+\_\+binary\+\_\+table}} (int IC, int DC, char $\ast$$\ast$$\ast$binary\+\_\+table)
+\begin{DoxyCompactList}\small\item\em convert the code and data tables to binary table \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{print_8c_a190069a3548de5780f59d460d43682b4}{from\+Binary}} (const char $\ast$binary\+\_\+string)
+\begin{DoxyCompactList}\small\item\em This function converts a binary word to a number. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{print_8c_ab16ee0504c0012a7fde87e66aa82afcb}{convert}} (char $\ast$word)
+\begin{DoxyCompactList}\small\item\em This function converts a binary word to encrypted word. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{print_8c_ace734796f82e0ce85c6eebc0e4ed817b}{translator}} (int IC, int DC, char $\ast$$\ast$binary\+\_\+table, char $\ast$$\ast$$\ast$binary\+\_\+table\+\_\+translated)
+\begin{DoxyCompactList}\small\item\em This function translates the binary table to encrypted words. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{print_8c_a664d99b499a91963f62d78b3790dfa9c}{to\+\_\+files}} (char $\ast$file\+\_\+name, int IC, int DC, char $\ast$$\ast$binary\+\_\+table\+\_\+translated)
+\begin{DoxyCompactList}\small\item\em This function writes the binary table to the output files. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{print_8c_af1240a563339eb4cf1e7c141adbabb7b}{write\+\_\+obj}} (char $\ast$obj\+\_\+name, int IC, int DC, char $\ast$$\ast$binary\+\_\+table\+\_\+translated)
+\begin{DoxyCompactList}\small\item\em This function writes the obj file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{print_8c_a8c806f313fa1e6af3d0f2bcd52891db8}{write\+\_\+ent}} (char $\ast$ent\+\_\+name)
+\begin{DoxyCompactList}\small\item\em This function writes the ent file. prints the symbols of the entries and their addresses. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{print_8c_a6dac0bae6b82ca334bf6a80ae5be375f}{write\+\_\+ext}} (char $\ast$ext\+\_\+name)
+\begin{DoxyCompactList}\small\item\em This function writes the ext file. prints the symbols of the externals and their addresses. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{print_8c_ab16ee0504c0012a7fde87e66aa82afcb}\label{print_8c_ab16ee0504c0012a7fde87e66aa82afcb}} 
+\index{print.c@{print.c}!convert@{convert}}
+\index{convert@{convert}!print.c@{print.c}}
+\doxysubsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily char$\ast$ convert (\begin{DoxyParamCaption}\item[{char $\ast$}]{word }\end{DoxyParamCaption})}
+
+
+
+This function converts a binary word to encrypted word. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & The binary word \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The encrypted word 
+\end{DoxyReturn}
+
+
+Definition at line 77 of file print.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{print_8c_ab16ee0504c0012a7fde87e66aa82afcb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{print_8c_ab16ee0504c0012a7fde87e66aa82afcb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{print_8c_a190069a3548de5780f59d460d43682b4}\label{print_8c_a190069a3548de5780f59d460d43682b4}} 
+\index{print.c@{print.c}!fromBinary@{fromBinary}}
+\index{fromBinary@{fromBinary}!print.c@{print.c}}
+\doxysubsubsection{\texorpdfstring{fromBinary()}{fromBinary()}}
+{\footnotesize\ttfamily int from\+Binary (\begin{DoxyParamCaption}\item[{const char $\ast$}]{binary\+\_\+string }\end{DoxyParamCaption})}
+
+
+
+This function converts a binary word to a number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The binary word \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The number 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file print.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{print_8c_a190069a3548de5780f59d460d43682b4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{print_8c_a417c3b4ae314867406570da60708a861}\label{print_8c_a417c3b4ae314867406570da60708a861}} 
+\index{print.c@{print.c}!to\_binary\_table@{to\_binary\_table}}
+\index{to\_binary\_table@{to\_binary\_table}!print.c@{print.c}}
+\doxysubsubsection{\texorpdfstring{to\_binary\_table()}{to\_binary\_table()}}
+{\footnotesize\ttfamily int to\+\_\+binary\+\_\+table (\begin{DoxyParamCaption}\item[{int}]{IC,  }\item[{int}]{DC,  }\item[{char $\ast$$\ast$$\ast$}]{binary\+\_\+table }\end{DoxyParamCaption})}
+
+
+
+convert the code and data tables to binary table 
+
+
+
+Definition at line 29 of file print.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{print_8c_a417c3b4ae314867406570da60708a861_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{print_8c_a664d99b499a91963f62d78b3790dfa9c}\label{print_8c_a664d99b499a91963f62d78b3790dfa9c}} 
+\index{print.c@{print.c}!to\_files@{to\_files}}
+\index{to\_files@{to\_files}!print.c@{print.c}}
+\doxysubsubsection{\texorpdfstring{to\_files()}{to\_files()}}
+{\footnotesize\ttfamily void to\+\_\+files (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+\_\+name,  }\item[{int}]{IC,  }\item[{int}]{DC,  }\item[{char $\ast$$\ast$}]{binary\+\_\+table\+\_\+translated }\end{DoxyParamCaption})}
+
+
+
+This function writes the binary table to the output files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & The name of the file \\
+\hline
+{\em IC} & The instruction counter \\
+\hline
+{\em DC} & The data counter \\
+\hline
+{\em binary\+\_\+table\+\_\+translated} & The binary table \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 124 of file print.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{print_8c_a664d99b499a91963f62d78b3790dfa9c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{print_8c_a664d99b499a91963f62d78b3790dfa9c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{print_8c_ace734796f82e0ce85c6eebc0e4ed817b}\label{print_8c_ace734796f82e0ce85c6eebc0e4ed817b}} 
+\index{print.c@{print.c}!translator@{translator}}
+\index{translator@{translator}!print.c@{print.c}}
+\doxysubsubsection{\texorpdfstring{translator()}{translator()}}
+{\footnotesize\ttfamily void translator (\begin{DoxyParamCaption}\item[{int}]{IC,  }\item[{int}]{DC,  }\item[{char $\ast$$\ast$}]{binary\+\_\+table,  }\item[{char $\ast$$\ast$$\ast$}]{binary\+\_\+table\+\_\+translated }\end{DoxyParamCaption})}
+
+
+
+This function translates the binary table to encrypted words. 
+
+
+
+Definition at line 107 of file print.\+c.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{print_8c_ace734796f82e0ce85c6eebc0e4ed817b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{print_8c_ace734796f82e0ce85c6eebc0e4ed817b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{print_8c_a8c806f313fa1e6af3d0f2bcd52891db8}\label{print_8c_a8c806f313fa1e6af3d0f2bcd52891db8}} 
+\index{print.c@{print.c}!write\_ent@{write\_ent}}
+\index{write\_ent@{write\_ent}!print.c@{print.c}}
+\doxysubsubsection{\texorpdfstring{write\_ent()}{write\_ent()}}
+{\footnotesize\ttfamily void write\+\_\+ent (\begin{DoxyParamCaption}\item[{char $\ast$}]{ent\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+This function writes the ent file. prints the symbols of the entries and their addresses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ent\+\_\+name} & The name of the file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 177 of file print.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{print_8c_a8c806f313fa1e6af3d0f2bcd52891db8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{print_8c_a6dac0bae6b82ca334bf6a80ae5be375f}\label{print_8c_a6dac0bae6b82ca334bf6a80ae5be375f}} 
+\index{print.c@{print.c}!write\_ext@{write\_ext}}
+\index{write\_ext@{write\_ext}!print.c@{print.c}}
+\doxysubsubsection{\texorpdfstring{write\_ext()}{write\_ext()}}
+{\footnotesize\ttfamily void write\+\_\+ext (\begin{DoxyParamCaption}\item[{char $\ast$}]{ext\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+This function writes the ext file. prints the symbols of the externals and their addresses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ext\+\_\+name} & The name of the file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 196 of file print.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{print_8c_a6dac0bae6b82ca334bf6a80ae5be375f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{print_8c_af1240a563339eb4cf1e7c141adbabb7b}\label{print_8c_af1240a563339eb4cf1e7c141adbabb7b}} 
+\index{print.c@{print.c}!write\_obj@{write\_obj}}
+\index{write\_obj@{write\_obj}!print.c@{print.c}}
+\doxysubsubsection{\texorpdfstring{write\_obj()}{write\_obj()}}
+{\footnotesize\ttfamily void write\+\_\+obj (\begin{DoxyParamCaption}\item[{char $\ast$}]{obj\+\_\+name,  }\item[{int}]{IC,  }\item[{int}]{DC,  }\item[{char $\ast$$\ast$}]{binary\+\_\+table\+\_\+translated }\end{DoxyParamCaption})}
+
+
+
+This function writes the obj file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj\+\_\+name} & The name of the file \\
+\hline
+{\em IC} & The instruction counter \\
+\hline
+{\em DC} & The data counter \\
+\hline
+{\em binary\+\_\+table\+\_\+translated} & The binary table \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 161 of file print.\+c.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{print_8c_af1240a563339eb4cf1e7c141adbabb7b_icgraph}
+\end{center}
+\end{figure}

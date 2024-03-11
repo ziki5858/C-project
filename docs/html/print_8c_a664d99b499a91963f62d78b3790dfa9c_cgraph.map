@@ -1,0 +1,6 @@
+<map id="to_files" name="to_files">
+<area shape="rect" id="node1" title="This function writes the binary table to the output files." alt="" coords="5,56,75,83"/>
+<area shape="rect" id="node2" href="$print_8c.html#a8c806f313fa1e6af3d0f2bcd52891db8" title="This function writes the ent file. prints the symbols of the entries and their addresses." alt="" coords="123,5,205,32"/>
+<area shape="rect" id="node3" href="$print_8c.html#a6dac0bae6b82ca334bf6a80ae5be375f" title="This function writes the ext file. prints the symbols of the externals and their addresses." alt="" coords="123,56,205,83"/>
+<area shape="rect" id="node4" href="$print_8c.html#af1240a563339eb4cf1e7c141adbabb7b" title="This function writes the obj file." alt="" coords="123,107,205,133"/>
+</map>
